@@ -1,2 +1,4 @@
-/README
 /.gitignore
+/.settings/*
+/.classpath
+/.project
