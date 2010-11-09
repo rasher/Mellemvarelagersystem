@@ -1,4 +1,4 @@
-/.gitignore
 /.settings/*
 /.classpath
 /.project
+*.class
