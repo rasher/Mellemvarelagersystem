@@ -1,0 +1,8 @@
+2. semesterprojekt på datamatikerstudiet i Aarhus.
+Medlemmer: Johnny, Peter, Jonas og Lars
+
+Mini git guide:
+1. Lav noget kode
+2. git add .
+3. git commit -m 'Dette er en den tekst der skal fremgå med din opdatering'
+4. git push origin dev
