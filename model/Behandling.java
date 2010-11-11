@@ -7,7 +7,6 @@ package model;
  * @author Jonas Häggqvist (10dm10v1)
  *
  */
-public class Produkttype {
-	private String navn;
-	private Behandling behandling;
+public class Behandling {
+
 }
