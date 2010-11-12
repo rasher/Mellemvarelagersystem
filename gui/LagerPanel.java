@@ -1,33 +1,25 @@
 package gui;
 
-import javax.swing.JPanel;
-import javax.swing.JFrame;
-
-import java.awt.Color;
 import java.awt.GridBagLayout;
-import javax.swing.JMenuBar;
-import java.awt.GridBagConstraints;
-
-import javax.swing.BorderFactory;
-import javax.swing.JComboBox;
-import javax.swing.JTextArea;
-import javax.swing.JButton;
-import java.awt.Insets;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JTextField;
+import javax.swing.JPanel;
 import java.awt.GridLayout;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.border.Border;
+import javax.swing.JComboBox;
 
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.JTextArea;
+import javax.swing.BorderFactory;
+import java.awt.Color;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JList;
+import javax.swing.border.Border;
 
-public class Gui extends JFrame {
+public class LagerPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JMenuBar lagerMenuBar = null;
-	private JPanel lagerPanel = null;  //  @jve:decl-index=0:visual-constraint="6,4"
 	private JPanel registrerNyMellemvarePanel = null;
 	private JPanel håndterMellemvarePanel = null;
 	private JPanel visListerPanel = null;
@@ -43,14 +35,13 @@ public class Gui extends JFrame {
 	private JButton startTørringButton = null;
 	private JButton SendTilDelbehandlingButton = null;
 	private JButton SendTilPakningButton = null;
-	private JMenu LagerMenu = null;
-	private JMenuItem LagerMenuItem = null;
 	private JLabel BatchnummerLabel = null;
 	private Border border = BorderFactory.createLineBorder(Color.GRAY);
+	private JLabel produkttypeLabel = null;
 	/**
 	 * This is the default constructor
 	 */
-	public Gui() {
+	public LagerPanel() {
 		super();
 		initialize();
 	}
@@ -61,45 +52,15 @@ public class Gui extends JFrame {
 	 * @return void
 	 */
 	private void initialize() {
-		this.setSize(800, 500);
-		this.setName("Frame0");
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setJMenuBar(getLagerMenuBar());
-		this.setTitle("Carletti");
-	}
-
-	/**
-	 * This method initializes lagerMenuBar	
-	 * 	
-	 * @return javax.swing.JMenuBar	
-	 */
-	private JMenuBar getLagerMenuBar() {
-		if (lagerMenuBar == null) {
-			lagerMenuBar = new JMenuBar();
-			lagerMenuBar.setName("Lager");
-			lagerMenuBar.add(getLagerMenu());
-		}
-		return lagerMenuBar;
-	}
-
-	/**
-	 * This method initializes lagerPanel	
-	 * 	
-	 * @return javax.swing.JPanel	
-	 */
-	private JPanel getLagerPanel() {
-		if (lagerPanel == null) {
-			GridLayout gridLayout = new GridLayout();
-			gridLayout.setRows(1);
-			gridLayout.setHgap(2);
-			lagerPanel = new JPanel();
-			lagerPanel.setSize(new Dimension(800, 500));
-			lagerPanel.setLayout(gridLayout);
-			lagerPanel.add(getRegistrerNyMellemvarePanel(), null);
-			lagerPanel.add(getHåndterMellemvarePanel(), null);
-			lagerPanel.add(getVisListerPanel(), null);
-		}
-		return lagerPanel;
+		
+		GridLayout gridLayout = new GridLayout();
+		gridLayout.setRows(1);
+		gridLayout.setHgap(2);
+		this.setSize(new Dimension(800, 500));
+		this.setLayout(gridLayout);
+		this.add(getRegistrerNyMellemvarePanel(), new GridBagConstraints());
+		this.add(getHåndterMellemvarePanel(), null);
+		this.add(getVisListerPanel(), new GridBagConstraints());
 	}
 
 	/**
@@ -109,14 +70,26 @@ public class Gui extends JFrame {
 	 */
 	private JPanel getRegistrerNyMellemvarePanel() {
 		if (registrerNyMellemvarePanel == null) {
+			GridBagConstraints gridBagConstraints21 = new GridBagConstraints();
+			gridBagConstraints21.gridx = -1;
+			gridBagConstraints21.gridy = -1;
+			GridBagConstraints gridBagConstraints13 = new GridBagConstraints();
+			gridBagConstraints13.gridx = 0;
+			gridBagConstraints13.anchor = GridBagConstraints.WEST;
+			gridBagConstraints13.insets = new Insets(5, 5, 1, 5);
+			gridBagConstraints13.ipadx = 2;
+			gridBagConstraints13.ipady = 2;
+			gridBagConstraints13.gridy = 0;
+			produkttypeLabel = new JLabel();
+			produkttypeLabel.setText("Produkttype : ");
 			GridBagConstraints gridBagConstraints2 = new GridBagConstraints();
 			gridBagConstraints2.gridx = 0;
 			gridBagConstraints2.insets = new Insets(5, 5, 5, 5);
 			gridBagConstraints2.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints2.gridy = 2;
+			gridBagConstraints2.gridy = 3;
 			GridBagConstraints gridBagConstraints1 = new GridBagConstraints();
 			gridBagConstraints1.fill = GridBagConstraints.BOTH;
-			gridBagConstraints1.gridy = 1;
+			gridBagConstraints1.gridy = 2;
 			gridBagConstraints1.weightx = 1.0;
 			gridBagConstraints1.weighty = 1.0;
 			gridBagConstraints1.ipadx = 2;
@@ -125,16 +98,18 @@ public class Gui extends JFrame {
 			gridBagConstraints1.gridx = 0;
 			GridBagConstraints gridBagConstraints = new GridBagConstraints();
 			gridBagConstraints.fill = GridBagConstraints.BOTH;
-			gridBagConstraints.insets = new Insets(5, 5, 5, 5);
+			gridBagConstraints.insets = new Insets(1, 5, 5, 5);
 			gridBagConstraints.ipadx = 2;
 			gridBagConstraints.ipady = 2;
 			gridBagConstraints.gridwidth = 2;
+			gridBagConstraints.gridy = 1;
 			gridBagConstraints.weightx = 1.0;
 			registrerNyMellemvarePanel = new JPanel();
 			registrerNyMellemvarePanel.setLayout(new GridBagLayout());
 			registrerNyMellemvarePanel.add(getVælgProdukttypeComboBox(), gridBagConstraints);
 			registrerNyMellemvarePanel.add(getProdukttypeInfoTextArea(), gridBagConstraints1);
 			registrerNyMellemvarePanel.add(getRegistrerNyMellemvareButton(), gridBagConstraints2);
+			registrerNyMellemvarePanel.add(produkttypeLabel, gridBagConstraints13);
 		}
 		return registrerNyMellemvarePanel;
 	}
@@ -383,38 +358,5 @@ public class Gui extends JFrame {
 		return SendTilPakningButton;
 	}
 
-	/**
-	 * This method initializes LagerMenu	
-	 * 	
-	 * @return javax.swing.JMenu	
-	 */
-	private JMenu getLagerMenu() {
-		if (LagerMenu == null) {
-			LagerMenu = new JMenu();
-			LagerMenu.setText("Lager");
-			LagerMenu.add(getLagerMenuItem());
-		}
-		return LagerMenu;
-	}
 
-	/**
-	 * This method initializes LagerMenuItem	
-	 * 	
-	 * @return javax.swing.JMenuItem	
-	 */
-	private JMenuItem getLagerMenuItem() {
-		if (LagerMenuItem == null) {
-			LagerMenuItem = new JMenuItem();
-			LagerMenuItem.setText("Daglig Lager Håndtering");
-			LagerMenuItem.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					Gui.this.setSize(getLagerPanel().getSize());
-					Gui.this.setContentPane(getLagerPanel());
-					Gui.this.setVisible(true);
-				}
-			});
-		}
-		return LagerMenuItem;
-	}
-
-}  //  @jve:decl-index=0:visual-constraint="689,88"
+}
