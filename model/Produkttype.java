@@ -9,5 +9,4 @@ package model;
  */
 public class Produkttype {
 	private String navn;
-	private Behandling behandling;
 }
