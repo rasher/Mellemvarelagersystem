@@ -6,9 +6,9 @@ import javax.persistence.*;
 public class Service {
 	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("Service");
 	private EntityManager em = emf.createEntityManager();
-	private Service thisInstance;
+	private static Service thisInstance;
 	
-	public Service getInstance()
+	public static Service getInstance()
 	{
 		if(thisInstance == null)
 			thisInstance = new Service();
