@@ -3,14 +3,14 @@ package gui;
 import java.awt.GridBagLayout;
 import javax.swing.JPanel;
 
-public class AdministrationPanel extends JPanel {
+public class OpretDelbehandlingPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * This is the default constructor
 	 */
-	public AdministrationPanel() {
+	public OpretDelbehandlingPanel() {
 		super();
 		initialize();
 	}
