@@ -7,7 +7,7 @@ import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
 import java.awt.Insets;
 
-public class TørretidsPanel extends JPanel {
+public class ToerretidsPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JLabel minimalTørretidLabel = null;
@@ -20,7 +20,7 @@ public class TørretidsPanel extends JPanel {
 	/**
 	 * This is the default constructor
 	 */
-	public TørretidsPanel() {
+	public ToerretidsPanel() {
 		super();
 		initialize();
 	}

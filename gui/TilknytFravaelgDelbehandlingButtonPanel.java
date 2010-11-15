@@ -8,7 +8,7 @@ import java.awt.Insets;
 import java.awt.GridLayout;
 import java.awt.Dimension;
 
-public class TilknytFravælgDelbehandlingButtonPanel extends JPanel {
+public class TilknytFravaelgDelbehandlingButtonPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JButton tilknytButton = null;
@@ -17,7 +17,7 @@ public class TilknytFravælgDelbehandlingButtonPanel extends JPanel {
 	/**
 	 * This is the default constructor
 	 */
-	public TilknytFravælgDelbehandlingButtonPanel() {
+	public TilknytFravaelgDelbehandlingButtonPanel() {
 		super();
 		initialize();
 	}

@@ -17,7 +17,7 @@ public class DelbehandlingDelPanel extends JPanel {
 	private JLabel tørretiderLabel = null;
 	private JLabel delbehandlingsStedLabel = null;
 	private JTextField delbehandlingsStedTextField = null;
-	private TørretidsPanel tørretidsPanel = null;
+	private ToerretidsPanel tørretidsPanel = null;
 	/**
 	 * This is the default constructor
 	 */
@@ -112,9 +112,9 @@ public class DelbehandlingDelPanel extends JPanel {
 	 * 	
 	 * @return gui.TørretidsPanel	
 	 */
-	private TørretidsPanel getTørretidsPanel() {
+	private ToerretidsPanel getTørretidsPanel() {
 		if (tørretidsPanel == null) {
-			tørretidsPanel = new TørretidsPanel();
+			tørretidsPanel = new ToerretidsPanel();
 		}
 		return tørretidsPanel;
 	}

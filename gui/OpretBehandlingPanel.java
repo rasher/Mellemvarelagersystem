@@ -20,8 +20,8 @@ public class OpretBehandlingPanel extends JPanel {
 	private JLabel muligeDelbehandlingerLabel = null;
 	private JList muligeDelbehandlingerList = null;
 	private ButtonPanel behandlingButtonPanel = null;
-	private TilknytFravælgDelbehandlingButtonPanel tilknytFravælgDelbehandlingButtonPanel = null;
-	private RækkefølgeDelbehandlingerButtonPanel rækkefølgeDelbehandlingerPanel = null;
+	private TilknytFravaelgDelbehandlingButtonPanel tilknytFravælgDelbehandlingButtonPanel = null;
+	private RaekkefoelgeDelbehandlingerButtonPanel rækkefølgeDelbehandlingerPanel = null;
 	/**
 	 * This is the default constructor
 	 */
@@ -164,9 +164,9 @@ public class OpretBehandlingPanel extends JPanel {
 	 * 	
 	 * @return gui.TilknytFravælgDelbehandlingButtonPanel	
 	 */
-	private TilknytFravælgDelbehandlingButtonPanel getTilknytFravælgDelbehandlingButtonPanel() {
+	private TilknytFravaelgDelbehandlingButtonPanel getTilknytFravælgDelbehandlingButtonPanel() {
 		if (tilknytFravælgDelbehandlingButtonPanel == null) {
-			tilknytFravælgDelbehandlingButtonPanel = new TilknytFravælgDelbehandlingButtonPanel();
+			tilknytFravælgDelbehandlingButtonPanel = new TilknytFravaelgDelbehandlingButtonPanel();
 		}
 		return tilknytFravælgDelbehandlingButtonPanel;
 	}
@@ -176,9 +176,9 @@ public class OpretBehandlingPanel extends JPanel {
 	 * 	
 	 * @return gui.RækkefølgeDelbehandlingerPanel	
 	 */
-	private RækkefølgeDelbehandlingerButtonPanel getRækkefølgeDelbehandlingerPanel() {
+	private RaekkefoelgeDelbehandlingerButtonPanel getRækkefølgeDelbehandlingerPanel() {
 		if (rækkefølgeDelbehandlingerPanel == null) {
-			rækkefølgeDelbehandlingerPanel = new RækkefølgeDelbehandlingerButtonPanel();
+			rækkefølgeDelbehandlingerPanel = new RaekkefoelgeDelbehandlingerButtonPanel();
 		}
 		return rækkefølgeDelbehandlingerPanel;
 	}

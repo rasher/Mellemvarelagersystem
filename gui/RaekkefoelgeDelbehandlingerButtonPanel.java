@@ -8,7 +8,7 @@ import java.awt.Insets;
 import java.awt.GridLayout;
 import java.awt.Dimension;
 
-public class RækkefølgeDelbehandlingerButtonPanel extends JPanel {
+public class RaekkefoelgeDelbehandlingerButtonPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JButton rykOPButton = null;
@@ -17,7 +17,7 @@ public class RækkefølgeDelbehandlingerButtonPanel extends JPanel {
 	/**
 	 * This is the default constructor
 	 */
-	public RækkefølgeDelbehandlingerButtonPanel() {
+	public RaekkefoelgeDelbehandlingerButtonPanel() {
 		super();
 		initialize();
 	}
