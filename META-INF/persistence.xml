@@ -6,16 +6,16 @@
     version="2.0">
 
     <persistence-unit name="Mellemvarelager" transaction-type="RESOURCE_LOCAL">
-        <class>model.Behandling</class>
-        <class>model.BehandlingsTrin</class>
-        <class>model.Delbehandling</class>
-        <class>model.Mellemvare</class>
-        <class>model.Produkttype</class>
+        <class>models.Behandling</class>
+        <class>models.BehandlingsTrin</class>
+        <class>models.Delbehandling</class>
+        <class>models.Mellemvare</class>
+        <class>models.Produkttype</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver"
-				value="com.mysql.jdbc.Driver" />
+				value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
 			<property name="javax.persistence.jdbc.url" 
-				value="jdbc:mysql://10.77.34.14:3306/sqlexpress" />
+				value="jdbc:sqlserver://10.77.34.14\sqlexpress;databaseName=mellemvarelager" />
 			<property name="javax.persistence.jdbc.user" value="projekt" />
 			<property name="javax.persistence.jdbc.password" value="carletti2000" />
 
