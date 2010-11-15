@@ -16,7 +16,7 @@ public class MainFrame extends JFrame {
 	private JMenuBar carlettiMenuBar = null;
 	private JMenu lagerMenu = null;
 	private JMenu administrationMenu = null;
-	private JMenuItem dagligLagerHåndteringMenuItem = null;
+	private JMenuItem dagligLagerHÃ¥ndteringMenuItem = null;
 	private JMenuItem opretNyeProdukterMenuItem = null;
 	private LagerPanel lagerPanel = null;  //  @jve:decl-index=0:visual-constraint="323,8"
 
@@ -76,7 +76,7 @@ public class MainFrame extends JFrame {
 		if (lagerMenu == null) {
 			lagerMenu = new JMenu();
 			lagerMenu.setText("Lager");
-			lagerMenu.add(getDagligLagerHåndteringMenuItem());
+			lagerMenu.add(getDagligLagerHÃ¥ndteringMenuItem());
 		}
 		return lagerMenu;
 	}
@@ -96,15 +96,15 @@ public class MainFrame extends JFrame {
 	}
 
 	/**
-	 * This method initializes dagligLagerHåndteringMenuItem	
+	 * This method initializes dagligLagerHÃ¥ndteringMenuItem	
 	 * 	
 	 * @return javax.swing.JMenuItem	
 	 */
-	private JMenuItem getDagligLagerHåndteringMenuItem() {
-		if (dagligLagerHåndteringMenuItem == null) {
-			dagligLagerHåndteringMenuItem = new JMenuItem();
-			dagligLagerHåndteringMenuItem.setText("Daglig Lager Håndtering");
-			dagligLagerHåndteringMenuItem
+	private JMenuItem getDagligLagerHÃ¥ndteringMenuItem() {
+		if (dagligLagerHÃ¥ndteringMenuItem == null) {
+			dagligLagerHÃ¥ndteringMenuItem = new JMenuItem();
+			dagligLagerHÃ¥ndteringMenuItem.setText("Daglig Lager HÃ¥ndtering");
+			dagligLagerHÃ¥ndteringMenuItem
 					.addActionListener(new java.awt.event.ActionListener() {
 						public void actionPerformed(java.awt.event.ActionEvent e) {
 							MainFrame.this.setContentPane(getLagerPanel());
@@ -112,7 +112,7 @@ public class MainFrame extends JFrame {
 						}
 					});
 		}
-		return dagligLagerHåndteringMenuItem;
+		return dagligLagerHÃ¥ndteringMenuItem;
 	}
 
 	/**
