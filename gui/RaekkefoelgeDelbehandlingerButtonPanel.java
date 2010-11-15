@@ -1,12 +1,9 @@
 package gui;
 
-import java.awt.GridBagLayout;
-import javax.swing.JPanel;
-import javax.swing.JButton;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import java.awt.GridLayout;
-import java.awt.Dimension;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
 
 public class RaekkefoelgeDelbehandlingerButtonPanel extends JPanel {
 

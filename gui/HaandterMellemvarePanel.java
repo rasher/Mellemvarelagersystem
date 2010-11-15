@@ -107,6 +107,7 @@ public class HaandterMellemvarePanel extends JPanel {
 	private JTextArea getBatchInfoTextArea() {
 		if (batchInfoTextArea == null) {
 			batchInfoTextArea = new JTextArea();
+			batchInfoTextArea.setBorder(MainFrame.getBorder());
 		}
 		return batchInfoTextArea;
 	}

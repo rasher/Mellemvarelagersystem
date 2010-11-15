@@ -3,6 +3,7 @@ package gui;
 
 import javax.swing.JPanel;
 import java.awt.GridLayout;
+import java.awt.Dimension;
 
 
 public class LagerPanel extends JPanel {
@@ -30,6 +31,7 @@ public class LagerPanel extends JPanel {
 		gridLayout.setRows(1);
 		this.setLayout(gridLayout);
 		this.setSize(457, 265);
+		this.setPreferredSize(new Dimension(800, 500));
 		this.add(getRegistrerNyMellemvarePanel(), null);
 		this.add(getHåndterMellemvarePanel(), null);
 		this.add(getVisListPanel(), null);

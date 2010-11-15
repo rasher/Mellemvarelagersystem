@@ -1,19 +1,17 @@
 package gui;
 
-import java.awt.GridBagLayout;
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import javax.swing.JComboBox;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
-import javax.swing.JTextArea;
-import java.awt.Dimension;
+
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 public class OpretProdukttypePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private ButtonPanel buttonPanel = null;
 	private ButtonPanel buttonPanel1 = null;
 	private JComboBox vælgProdukttypeComboBox = null;
 	private JComboBox tilknytBehandlingComboBox = null;
@@ -40,7 +38,7 @@ public class OpretProdukttypePanel extends JPanel {
 		gridBagConstraints6.gridy = 5;
 		gridBagConstraints6.weightx = 1.0;
 		gridBagConstraints6.weighty = 1.0;
-		gridBagConstraints6.insets = new Insets(0, 5, 0, 0);
+		gridBagConstraints6.insets = new Insets(0, 5, 0, 5);
 		gridBagConstraints6.gridx = 0;
 		GridBagConstraints gridBagConstraints5 = new GridBagConstraints();
 		gridBagConstraints5.gridx = 0;
@@ -95,18 +93,6 @@ public class OpretProdukttypePanel extends JPanel {
 	}
 
 	/**
-	 * This method initializes buttonPanel	
-	 * 	
-	 * @return gui.ButtonPanel	
-	 */
-	private ButtonPanel getButtonPanel() {
-		if (buttonPanel == null) {
-			buttonPanel = new ButtonPanel();
-		}
-		return buttonPanel;
-	}
-
-	/**
 	 * This method initializes buttonPanel1	
 	 * 	
 	 * @return gui.ButtonPanel	
@@ -150,6 +136,7 @@ public class OpretProdukttypePanel extends JPanel {
 	private JTextArea getProdukttypeInfoTextArea() {
 		if (produkttypeInfoTextArea == null) {
 			produkttypeInfoTextArea = new JTextArea();
+			produkttypeInfoTextArea.setBorder(MainFrame.getBorder());
 		}
 		return produkttypeInfoTextArea;
 	}

@@ -1,20 +1,13 @@
 package gui;
 
-import java.awt.GridBagLayout;
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Dimension;
-import java.awt.Insets;
 import java.awt.Rectangle;
-import javax.swing.BoxLayout;
-import java.awt.CardLayout;
-import java.awt.FlowLayout;
+
+import javax.swing.JPanel;
 
 public class OpretDelbehandlingPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private ButtonPanel buttonPanel = null;
 	private ButtonPanel buttonPanel1 = null;
 	private DelbehandlingDelPanel delbehandlingDelPanel = null;
 	/**

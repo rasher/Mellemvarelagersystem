@@ -1,14 +1,13 @@
 package gui;
 
-import java.awt.GridBagLayout;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
-import javax.swing.JComboBox;
-import javax.swing.JList;
-import javax.swing.JButton;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Dimension;
+
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
 
 public class OpretBehandlingPanel extends JPanel {
 
@@ -45,6 +44,7 @@ public class OpretBehandlingPanel extends JPanel {
 		GridBagConstraints gridBagConstraints8 = new GridBagConstraints();
 		gridBagConstraints8.gridx = 1;
 		gridBagConstraints8.fill = GridBagConstraints.NONE;
+		gridBagConstraints8.insets = new Insets(0, 0, 0, 5);
 		gridBagConstraints8.gridy = 3;
 		GridBagConstraints gridBagConstraints7 = new GridBagConstraints();
 		gridBagConstraints7.gridx = 0;
@@ -131,6 +131,7 @@ public class OpretBehandlingPanel extends JPanel {
 	private JList getVlagteDelbehandlingerList() {
 		if (vlagteDelbehandlingerList == null) {
 			vlagteDelbehandlingerList = new JList();
+			vlagteDelbehandlingerList.setBorder(MainFrame.getBorder());
 		}
 		return vlagteDelbehandlingerList;
 	}
@@ -143,6 +144,7 @@ public class OpretBehandlingPanel extends JPanel {
 	private JList getMuligeDelbehandlingerList() {
 		if (muligeDelbehandlingerList == null) {
 			muligeDelbehandlingerList = new JList();
+			muligeDelbehandlingerList.setBorder(MainFrame.getBorder());
 		}
 		return muligeDelbehandlingerList;
 	}

@@ -93,6 +93,7 @@ public class RegistrerNyMellemvarePanel extends JPanel {
 	private JTextArea getProdukttypeInfoTextArea() {
 		if (produkttypeInfoTextArea == null) {
 			produkttypeInfoTextArea = new JTextArea();
+			produkttypeInfoTextArea.setBorder(MainFrame.getBorder());
 		}
 		return produkttypeInfoTextArea;
 	}

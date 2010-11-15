@@ -1,10 +1,8 @@
 package gui;
 
-import java.awt.GridBagLayout;
-import javax.swing.JPanel;
 import java.awt.GridLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Dimension;
+
+import javax.swing.JPanel;
 
 public class AdministrationPanel extends JPanel {
 
@@ -45,6 +43,7 @@ public class AdministrationPanel extends JPanel {
 	private OpretProdukttypePanel getOpretProdukttypePanel() {
 		if (opretProdukttypePanel == null) {
 			opretProdukttypePanel = new OpretProdukttypePanel();
+			opretProdukttypePanel.setBorder(MainFrame.getBorder());
 		}
 		return opretProdukttypePanel;
 	}
@@ -57,6 +56,7 @@ public class AdministrationPanel extends JPanel {
 	private OpretBehandlingPanel getOpretBehandlingPanel() {
 		if (opretBehandlingPanel == null) {
 			opretBehandlingPanel = new OpretBehandlingPanel();
+			opretBehandlingPanel.setBorder(MainFrame.getBorder());
 		}
 		return opretBehandlingPanel;
 	}
@@ -69,6 +69,7 @@ public class AdministrationPanel extends JPanel {
 	private OpretDelbehandlingPanel getOpretDelbehandlingPanel() {
 		if (opretDelbehandlingPanel == null) {
 			opretDelbehandlingPanel = new OpretDelbehandlingPanel();
+			opretDelbehandlingPanel.setBorder(MainFrame.getBorder());
 		}
 		return opretDelbehandlingPanel;
 	}

@@ -1,13 +1,11 @@
 package gui;
 
-import java.awt.GridLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import java.awt.Dimension;
 
 public class ButtonPanel extends JPanel {
 
@@ -48,7 +46,7 @@ public class ButtonPanel extends JPanel {
 		gridBagConstraints.anchor = GridBagConstraints.WEST;
 		gridBagConstraints.gridy = 0;
 		this.setLayout(new GridBagLayout());
-		this.setSize(246, 39);
+		this.setSize(202, 36);
 		this.add(getOpretButton(), gridBagConstraints);
 		this.add(getGemButton(), gridBagConstraints1);
 		this.add(getSletButton(), gridBagConstraints2);
