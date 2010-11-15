@@ -41,6 +41,24 @@ public class BehandlingsTrin {
 	public void setDelbehandling(Delbehandling delbehandling) {
 		this.delbehandling = delbehandling;
 	}
+	/**
+	 * @return Delbehandlingens minimale tørringstid i hele minutter
+	 */
+	public int getMinimumTørringstid() {
+		return delbehandling.getMinimumTørringsTid();
+	}
+	/**
+	 * @return Delbehandlingens minimale tørringstid i hele minutter
+	 */
+	public int getOptimalTørringstid() {
+		return delbehandling.getOptimalTørringsTid();
+	}
+	/**
+	 * @return Delbehandlingens minimale tørringstid i hele minutter
+	 */
+	public int getMaksimumTørringstid() {
+		return delbehandling.getMaksimumTørringsTid();
+	}
 	
 	
 	
