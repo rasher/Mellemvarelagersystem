@@ -6,15 +6,18 @@
     version="2.0">
 
     <persistence-unit name="Groups" transaction-type="RESOURCE_LOCAL">
-        <class>groups.Group</class>
-        <class>groups.Person</class>
+        <class>model.Behandling</class>
+        <class>model.BehandlingsTrin</class>
+        <class>model.Delbehandling</class>
+        <class>model.Mellemvare</class>
+        <class>model.Produkttype</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver"
 				value="com.mysql.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url" 
-				value="jdbc:mysql://localhost:3306/Demo" />
-			<property name="javax.persistence.jdbc.user" value="root" />
-			<property name="javax.persistence.jdbc.password" value="" />
+				value="jdbc:mysql://10.77.34.14:3306/sqlexpress" />
+			<property name="javax.persistence.jdbc.user" value="projekt" />
+			<property name="javax.persistence.jdbc.password" value="carletti2000" />
 
             <!-- EclipseLink should create the database schema automatically -->
 			<property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
