@@ -9,21 +9,21 @@ import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.Insets;
 
-public class HåndterMellemvarePanel extends JPanel {
+public class H�ndterMellemvarePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JLabel batchnummerLabel = null;
 	private JTextField batchnummerTextField = null;
 	private JLabel batchInfoLabel = null;
 	private JTextArea batchInfoTextArea = null;
-	private JButton startTørringButton = null;
+	private JButton startT�rringButton = null;
 	private JButton sendTilDelbehandlingButton = null;
 	private JButton sendTilPakningButton = null;
 
 	/**
 	 * This is the default constructor
 	 */
-	public HåndterMellemvarePanel() {
+	public H�ndterMellemvarePanel() {
 		super();
 		initialize();
 	}
@@ -82,7 +82,7 @@ public class HåndterMellemvarePanel extends JPanel {
 		this.add(getBatchnummerTextField(), gridBagConstraints1);
 		this.add(batchInfoLabel, gridBagConstraints3);
 		this.add(getBatchInfoTextArea(), gridBagConstraints4);
-		this.add(getStartTørringButton(), gridBagConstraints5);
+		this.add(getStartT�rringButton(), gridBagConstraints5);
 		this.add(getSendTilDelbehandlingButton(), gridBagConstraints6);
 		this.add(getSendTilPakningButton(), gridBagConstraints7);
 	}
@@ -112,16 +112,16 @@ public class HåndterMellemvarePanel extends JPanel {
 	}
 
 	/**
-	 * This method initializes startTørringButton	
+	 * This method initializes startT�rringButton	
 	 * 	
 	 * @return javax.swing.JButton	
 	 */
-	private JButton getStartTørringButton() {
-		if (startTørringButton == null) {
-			startTørringButton = new JButton();
-			startTørringButton.setText("Start Tørring");
+	private JButton getStartT�rringButton() {
+		if (startT�rringButton == null) {
+			startT�rringButton = new JButton();
+			startT�rringButton.setText("Start T�rring");
 		}
-		return startTørringButton;
+		return startT�rringButton;
 	}
 
 	/**
