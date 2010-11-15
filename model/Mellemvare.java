@@ -7,6 +7,10 @@ import java.util.List;
 
 import javax.persistence.*;
 
+/**
+ * En mellemvare i systemet. Mellemvaren har en Produkttype og en liste af
+ * BehandlingsTrin der skal udføres før den er færdig.
+ */
 @Entity
 @Table(name = "Mellemvare")
 @NamedQuery(name = "findAlleMellemvarer", query = "Select mv from Mellemvare mv")
@@ -27,10 +31,21 @@ public class Mellemvare {
 	@ManyToOne
 	private Produkttype produkttype;
 
+	/**
+	 * Få varens produkttype
+	 * 
+	 * @return varens produkttype
+	 */
 	public Produkttype getProdukttype() {
 		return produkttype;
 	}
 
+	/**
+	 * Sæt varens produkttype
+	 * 
+	 * @param produkttype
+	 *            produkttypen der skal sættes
+	 */
 	public void setProdukttype(Produkttype produkttype) {
 		this.produkttype = produkttype;
 	}
@@ -77,23 +92,43 @@ public class Mellemvare {
 	private void beregnTørringsTider() {
 		if (aktuelBehandlingsTrin != null) {
 			minimumTørringNået = aktuelBehandlingsTrin.getStart();
-			minimumTørringNået.add(GregorianCalendar.MINUTE, aktuelBehandlingsTrin.getMinimumTørringstid());
+			minimumTørringNået.add(GregorianCalendar.MINUTE,
+					aktuelBehandlingsTrin.getMinimumTørringstid());
 			optimalTørringNået = aktuelBehandlingsTrin.getStart();
-			optimalTørringNået.add(GregorianCalendar.MINUTE, aktuelBehandlingsTrin.getOptimalTørringstid());
+			optimalTørringNået.add(GregorianCalendar.MINUTE,
+					aktuelBehandlingsTrin.getOptimalTørringstid());
 			maksimumTørringNået = aktuelBehandlingsTrin.getStart();
-			maksimumTørringNået.add(GregorianCalendar.MINUTE, aktuelBehandlingsTrin.getMaksimumTørringstid());
+			maksimumTørringNået.add(GregorianCalendar.MINUTE,
+					aktuelBehandlingsTrin.getMaksimumTørringstid());
 
 		}
 	}
 
+	/**
+	 * Tilføj et behandlingstrin
+	 * 
+	 * @param behandlingsTrin
+	 *            behandlingstrinnet der skal tilføjes
+	 */
 	public void addBehandlingsTrin(BehandlingsTrin behandlingsTrin) {
 		this.behandlingsTrin.add(behandlingsTrin);
 	}
 
+	/**
+	 * Fjern et behandlingstrin
+	 * 
+	 * @param behandlingsTrin
+	 *            behandlingstrinnet der skal fjernes
+	 */
 	public void removeBehandlingsTrin(BehandlingsTrin behandlingsTrin) {
 		this.behandlingsTrin.remove(behandlingsTrin);
 	}
 
+	/**
+	 * Returner hele listen af behandlingstrin
+	 * 
+	 * @return litsen af behandlingstrin
+	 */
 	public List<BehandlingsTrin> getBehandlingsTrin() {
 		return behandlingsTrin;
 	}
