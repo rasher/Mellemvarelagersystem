@@ -1,6 +1,7 @@
 package model;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.persistence.*;
@@ -32,9 +33,20 @@ public class Mellemvare {
 		this.produkttype = produkttype;
 	}
 
-	public void startDelbehandling()
-	{
-		
+	/**
+	 * Start næste delbehandling. Den aktuelle delbehandling afsluttes.
+	 * @throws Exception 
+	 */
+	public void startDelbehandling() throws Exception {
+		aktuelBehandlingsTrin.setSlut(new GregorianCalendar());
+		for (BehandlingsTrin b: behandlingsTrin) {
+			if (b.getStart() == null) {
+				b.setStart(new GregorianCalendar());
+				aktuelBehandlingsTrin = b;
+				return;
+			}
+		}
+		throw new Exception("Ingen uafsluttet delbehandling");
 	}
 	
 	public void startTørring()
