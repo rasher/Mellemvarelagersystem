@@ -3,7 +3,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="Delbehandling")
-@NamedQuery(name="findDelbehandlinger", query="Select db from Debehandling db")
+@NamedQuery(name="findDelbehandlinger", query="Select db from Delbehandling db")
 public class Delbehandling {
 	@Id
 	@GeneratedValue

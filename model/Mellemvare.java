@@ -11,11 +11,11 @@ public class Mellemvare {
 	@Id
 	@GeneratedValue
 	private int batchNummer;
-	@Column(length = 20)
+	@Temporal(value = TemporalType.DATE)
 	private Calendar minimumTørringNået;
-	@Column(length = 20)
+	@Temporal(value = TemporalType.DATE)
 	private Calendar optimalTørringNået;
-	@Column(length = 20)
+	@Temporal(value = TemporalType.DATE)
 	private Calendar maksimumTørringNået;
 	@ManyToOne
 	private BehandlingsTrin aktuelBehandlingsTrin;
