@@ -17,16 +17,8 @@ public class Test {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Produkttype p = new Produkttype();
-		p.setNavn("Skumbananer");
-
-		EntityManagerFactory emf = Persistence
-				.createEntityManagerFactory("Mellemvarelager");
-		EntityManager em = emf.createEntityManager();
-		em.getTransaction().begin();
-		em.persist(p);
-		em.getTransaction().commit();
-		em.close();
-		emf.close();
+		Service service = Service.getInstance();
+		Behandling b = service.createBehandling();
+		b.setNavn("Dragering");
 	}
 }
