@@ -4,7 +4,7 @@ import java.util.List;
 import javax.persistence.*;
 
 public class Service {
-	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("Service");
+	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("Mellemvarelager");
 	private EntityManager em = emf.createEntityManager();
 	private static Service thisInstance;
 	
