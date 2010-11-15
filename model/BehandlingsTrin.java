@@ -9,11 +9,11 @@ public class BehandlingsTrin {
 	@Id
 	@GeneratedValue
 	int ID;
-	@Column(length=20)
+	@Temporal(value = TemporalType.DATE)
 	private Calendar start;
-	@Column(length=20)
+	@Temporal(value = TemporalType.DATE)
 	private Calendar slut;
-	@Column(length=20)
+	@Temporal(value = TemporalType.DATE)
 	private Calendar tørringStart;
 	@ManyToOne
 	private Delbehandling delbehandling;
