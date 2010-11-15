@@ -28,8 +28,8 @@ public class LagerPanel extends JPanel {
 	private JButton registrerNyMellemvareButton = null;
 	private JLabel klarListeLabel = null;
 	private JList klarList = null;
-	private JLabel næfOverskredetListeLabel = null;
-	private JList næfOverskredetList = null;
+	private JLabel nærOverskredetListeLabel = null;
+	private JList nærOverskredetList = null;
 	private JTextField batchnummerTextField = null;
 	private JTextArea håndterMellemvareInfoTextArea = null;
 	private JButton startTørringButton = null;
@@ -59,7 +59,7 @@ public class LagerPanel extends JPanel {
 		this.setSize(new Dimension(800, 500));
 		this.setLayout(gridLayout);
 		this.add(getRegistrerNyMellemvarePanel(), new GridBagConstraints());
-		this.add(gethåndterMellemvarePanel(), null);
+		this.add(getHåndterMellemvarePanel(), null);
 		this.add(getVisListerPanel(), new GridBagConstraints());
 	}
 
@@ -119,7 +119,7 @@ public class LagerPanel extends JPanel {
 	 * 	
 	 * @return javax.swing.JPanel	
 	 */
-	private JPanel gethåndterMellemvarePanel() {
+	private JPanel getHåndterMellemvarePanel() {
 		if (håndterMellemvarePanel == null) {
 			GridBagConstraints gridBagConstraints12 = new GridBagConstraints();
 			gridBagConstraints12.gridx = 0;
@@ -170,7 +170,7 @@ public class LagerPanel extends JPanel {
 			håndterMellemvarePanel = new JPanel();
 			håndterMellemvarePanel.setLayout(new GridBagLayout());
 			håndterMellemvarePanel.add(getBatchnummerTextField(), gridBagConstraints6);
-			håndterMellemvarePanel.add(gethåndterMellemvareInfoTextArea(), gridBagConstraints8);
+			håndterMellemvarePanel.add(getHåndterMellemvareInfoTextArea(), gridBagConstraints8);
 			håndterMellemvarePanel.add(getStartTørringButton(), gridBagConstraints9);
 			håndterMellemvarePanel.add(getSendTilDelbehandlingButton(), gridBagConstraints10);
 			håndterMellemvarePanel.add(getSendTilPakningButton(), gridBagConstraints11);
@@ -207,8 +207,8 @@ public class LagerPanel extends JPanel {
 			gridBagConstraints4.ipady = 2;
 			gridBagConstraints4.anchor = GridBagConstraints.WEST;
 			gridBagConstraints4.gridy = 2;
-			næfOverskredetListeLabel = new JLabel();
-			næfOverskredetListeLabel.setText("næf maksimal tørretid : ");
+			nærOverskredetListeLabel = new JLabel();
+			nærOverskredetListeLabel.setText("nær maksimal tørretid : ");
 			GridBagConstraints gridBagConstraints3 = new GridBagConstraints();
 			gridBagConstraints3.fill = GridBagConstraints.BOTH;
 			gridBagConstraints3.gridy = 1;
@@ -224,8 +224,8 @@ public class LagerPanel extends JPanel {
 			visListerPanel.setLayout(new GridBagLayout());
 			visListerPanel.add(klarListeLabel, gridBagConstraints7);
 			visListerPanel.add(getKlarList(), gridBagConstraints3);
-			visListerPanel.add(næfOverskredetListeLabel, gridBagConstraints4);
-			visListerPanel.add(getnæfOverskredetList(), gridBagConstraints5);
+			visListerPanel.add(nærOverskredetListeLabel, gridBagConstraints4);
+			visListerPanel.add(getnærOverskredetList(), gridBagConstraints5);
 		}
 		return visListerPanel;
 	}
@@ -282,16 +282,16 @@ public class LagerPanel extends JPanel {
 	}
 
 	/**
-	 * This method initializes næfOverskredetList	
+	 * This method initializes nærOverskredetList	
 	 * 	
 	 * @return javax.swing.JList	
 	 */
-	private JList getnæfOverskredetList() {
-		if (næfOverskredetList == null) {
-			næfOverskredetList = new JList();
-			næfOverskredetList.setBorder(border);
+	private JList getnærOverskredetList() {
+		if (nærOverskredetList == null) {
+			nærOverskredetList = new JList();
+			nærOverskredetList.setBorder(border);
 		}
-		return næfOverskredetList;
+		return nærOverskredetList;
 	}
 
 	/**
@@ -311,7 +311,7 @@ public class LagerPanel extends JPanel {
 	 * 	
 	 * @return javax.swing.JTextArea	
 	 */
-	private JTextArea gethåndterMellemvareInfoTextArea() {
+	private JTextArea getHåndterMellemvareInfoTextArea() {
 		if (håndterMellemvareInfoTextArea == null) {
 			håndterMellemvareInfoTextArea = new JTextArea();
 			håndterMellemvareInfoTextArea.setBorder(border);
