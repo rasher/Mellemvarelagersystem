@@ -1,8 +1,11 @@
 package model;
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name="Produkttype")
+@NamedQuery(name="findProdukttyper", query="Select p from Produkttype p")
 public class Produkttype {
 	@Id
 	@GeneratedValue
@@ -26,5 +29,10 @@ public class Produkttype {
 
 	public void setBehandling(Behandling behandling) {
 		this.behandling = behandling;
+	}
+	
+	public List<Delbehandling> getDelbehandlinger()
+	{
+		return behandling.getDelbehandlinger();
 	}
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.*;
 @Entity
 @Table(name="Mellemvare")
+@NamedQuery(name="findAlleMellemvarer", query="Select mv from Mellemvare mv")
 public class Mellemvare {
 	@Id
 	@GeneratedValue
@@ -51,7 +52,7 @@ public class Mellemvare {
 		
 	}
 	
-	private void addBehandlingsTrin(BehandlingsTrin behandlingsTrin)
+	public void addBehandlingsTrin(BehandlingsTrin behandlingsTrin)
 	{
 		this.behandlingsTrin.add(behandlingsTrin);
 	}
