@@ -9,7 +9,7 @@ public class LagerPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private RegistrerNyMellemvarePanel registrerNyMellemvarePanel = null;
-	private HåndterMellemvarePanel håndterMellemvarePanel = null;
+	private HaandterMellemvarePanel håndterMellemvarePanel = null;
 	private VisListPanel visListPanel = null;
 
 	/**
@@ -53,9 +53,9 @@ public class LagerPanel extends JPanel {
 	 * 	
 	 * @return gui.HåndterMellemvarePanel	
 	 */
-	private HåndterMellemvarePanel getHåndterMellemvarePanel() {
+	private HaandterMellemvarePanel getHåndterMellemvarePanel() {
 		if (håndterMellemvarePanel == null) {
-			håndterMellemvarePanel = new HåndterMellemvarePanel();
+			håndterMellemvarePanel = new HaandterMellemvarePanel();
 			håndterMellemvarePanel.setBorder(MainFrame.getBorder());
 		}
 		return håndterMellemvarePanel;

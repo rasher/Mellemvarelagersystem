@@ -22,7 +22,8 @@ public class MainFrame extends JFrame {
 	private JMenuItem DagligLagerHåndteringMenuItem = null;
 	private JMenuItem OpretNyeProdukterMenuItem = null;
 	private JMenuItem StatistikMenuItem = null;
-	private LagerPanel lagerPanel = null;  //  @jve:decl-index=0:visual-constraint="408,82"  //  @jve:decl-index=0:
+	private LagerPanel lagerPanel = null;  //  @jve:decl-index=0:visual-constraint="342,13"//  @jve:decl-index=0:
+	private AdministrationPanel administrationPanel = null;  //  @jve:decl-index=0:visual-constraint="339,226"
 	
 	/**
 	 * This method initializes CarlettiMenuBar	
@@ -96,6 +97,13 @@ public class MainFrame extends JFrame {
 		if (OpretNyeProdukterMenuItem == null) {
 			OpretNyeProdukterMenuItem = new JMenuItem();
 			OpretNyeProdukterMenuItem.setText("Opret Nye Produkter");
+			OpretNyeProdukterMenuItem
+					.addActionListener(new java.awt.event.ActionListener() {
+						public void actionPerformed(java.awt.event.ActionEvent e) {
+							setContentPane(getAdministrationPanel());
+							System.out.println("actionPerformed()"); // TODO Auto-generated Event stub actionPerformed()
+						}
+					});
 		}
 		return OpretNyeProdukterMenuItem;
 	}
@@ -123,6 +131,18 @@ public class MainFrame extends JFrame {
 			lagerPanel = new LagerPanel();
 		}
 		return lagerPanel;
+	}
+
+	/**
+	 * This method initializes administrationPanel	
+	 * 	
+	 * @return gui.AdministrationPanel	
+	 */
+	private AdministrationPanel getAdministrationPanel() {
+		if (administrationPanel == null) {
+			administrationPanel = new AdministrationPanel();
+		}
+		return administrationPanel;
 	}
 
 	/**

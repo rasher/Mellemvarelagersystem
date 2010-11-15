@@ -4,6 +4,10 @@ import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import java.awt.Dimension;
 
 public class ButtonPanel extends JPanel {
 
@@ -26,13 +30,28 @@ public class ButtonPanel extends JPanel {
 	 * @return void
 	 */
 	private void initialize() {
-		GridLayout gridLayout = new GridLayout();
-		gridLayout.setRows(1);
-		this.setLayout(gridLayout);
-		this.setSize(366, 39);
-		this.add(getOpretButton(), null);
-		this.add(getGemButton(), null);
-		this.add(getSletButton(), null);
+		GridBagConstraints gridBagConstraints2 = new GridBagConstraints();
+		gridBagConstraints2.gridx = 2;
+		gridBagConstraints2.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraints2.insets = new Insets(5, 5, 5, 5);
+		gridBagConstraints2.anchor = GridBagConstraints.EAST;
+		gridBagConstraints2.gridy = 0;
+		GridBagConstraints gridBagConstraints1 = new GridBagConstraints();
+		gridBagConstraints1.gridx = 1;
+		gridBagConstraints1.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraints1.insets = new Insets(5, 5, 5, 0);
+		gridBagConstraints1.gridy = 0;
+		GridBagConstraints gridBagConstraints = new GridBagConstraints();
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.insets = new Insets(5, 5, 5, 0);
+		gridBagConstraints.anchor = GridBagConstraints.WEST;
+		gridBagConstraints.gridy = 0;
+		this.setLayout(new GridBagLayout());
+		this.setSize(246, 39);
+		this.add(getOpretButton(), gridBagConstraints);
+		this.add(getGemButton(), gridBagConstraints1);
+		this.add(getSletButton(), gridBagConstraints2);
 	}
 
 	/**

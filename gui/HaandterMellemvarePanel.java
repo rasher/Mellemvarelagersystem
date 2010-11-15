@@ -9,7 +9,7 @@ import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.Insets;
 
-public class HåndterMellemvarePanel extends JPanel {
+public class HaandterMellemvarePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JLabel batchnummerLabel = null;
@@ -23,7 +23,7 @@ public class HåndterMellemvarePanel extends JPanel {
 	/**
 	 * This is the default constructor
 	 */
-	public HåndterMellemvarePanel() {
+	public HaandterMellemvarePanel() {
 		super();
 		initialize();
 	}
