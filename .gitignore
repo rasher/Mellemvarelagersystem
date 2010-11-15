@@ -3,3 +3,4 @@
 .settings/*
 .settings
 *.class
+META-INF/persistence.xml
