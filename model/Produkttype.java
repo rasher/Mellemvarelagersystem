@@ -5,6 +5,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="Produkttype")
+@NamedQuery(name="findProdukttyper", query="Select p from Produkttype p")
 public class Produkttype {
 	@Id
 	@GeneratedValue
