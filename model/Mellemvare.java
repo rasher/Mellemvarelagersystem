@@ -97,4 +97,11 @@ public class Mellemvare {
 	public List<BehandlingsTrin> getBehandlingsTrin() {
 		return behandlingsTrin;
 	}
+
+	/**
+	 * @return Mellemvarens batchnummer
+	 */
+	public int getBatchNummer() {
+		return batchNummer;
+	}
 }
