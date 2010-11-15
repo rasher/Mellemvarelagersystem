@@ -5,7 +5,7 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
     version="2.0">
 
-    <persistence-unit name="Groups" transaction-type="RESOURCE_LOCAL">
+    <persistence-unit name="Mellemvarelager" transaction-type="RESOURCE_LOCAL">
         <class>model.Behandling</class>
         <class>model.BehandlingsTrin</class>
         <class>model.Delbehandling</class>
