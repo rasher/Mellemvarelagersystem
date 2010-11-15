@@ -1,9 +1,10 @@
 package gui;
 
 
-import javax.swing.JPanel;
 import java.awt.GridLayout;
 import java.awt.Dimension;
+
+import javax.swing.JPanel;
 
 
 public class LagerPanel extends JPanel {
