@@ -21,18 +21,18 @@ public class LagerPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel registrerNyMellemvarePanel = null;
-	private JPanel håndterMellemvarePanel = null;
+	private JPanel hÃ¥ndterMellemvarePanel = null;
 	private JPanel visListerPanel = null;
-	private JComboBox vælgProdukttypeComboBox = null;
+	private JComboBox vÃ¦lgProdukttypeComboBox = null;
 	private JTextArea produkttypeInfoTextArea = null;
 	private JButton registrerNyMellemvareButton = null;
 	private JLabel klarListeLabel = null;
 	private JList klarList = null;
-	private JLabel nærOverskredetListeLabel = null;
-	private JList nærOverskredetList = null;
+	private JLabel nÃ¦fOverskredetListeLabel = null;
+	private JList nÃ¦fOverskredetList = null;
 	private JTextField batchnummerTextField = null;
-	private JTextArea håndterMellemvareInfoTextArea = null;
-	private JButton startTørringButton = null;
+	private JTextArea hÃ¥ndterMellemvareInfoTextArea = null;
+	private JButton startTÃ¸rringButton = null;
 	private JButton SendTilDelbehandlingButton = null;
 	private JButton SendTilPakningButton = null;
 	private JLabel BatchnummerLabel = null;
@@ -59,7 +59,7 @@ public class LagerPanel extends JPanel {
 		this.setSize(new Dimension(800, 500));
 		this.setLayout(gridLayout);
 		this.add(getRegistrerNyMellemvarePanel(), new GridBagConstraints());
-		this.add(getHåndterMellemvarePanel(), null);
+		this.add(gethÃ¥ndterMellemvarePanel(), null);
 		this.add(getVisListerPanel(), new GridBagConstraints());
 	}
 
@@ -106,7 +106,7 @@ public class LagerPanel extends JPanel {
 			gridBagConstraints.weightx = 1.0;
 			registrerNyMellemvarePanel = new JPanel();
 			registrerNyMellemvarePanel.setLayout(new GridBagLayout());
-			registrerNyMellemvarePanel.add(getVælgProdukttypeComboBox(), gridBagConstraints);
+			registrerNyMellemvarePanel.add(getVÃ¦lgProdukttypeComboBox(), gridBagConstraints);
 			registrerNyMellemvarePanel.add(getProdukttypeInfoTextArea(), gridBagConstraints1);
 			registrerNyMellemvarePanel.add(getRegistrerNyMellemvareButton(), gridBagConstraints2);
 			registrerNyMellemvarePanel.add(produkttypeLabel, gridBagConstraints13);
@@ -115,12 +115,12 @@ public class LagerPanel extends JPanel {
 	}
 
 	/**
-	 * This method initializes håndterMellemvarePanel	
+	 * This method initializes hÃ¥ndterMellemvarePanel	
 	 * 	
 	 * @return javax.swing.JPanel	
 	 */
-	private JPanel getHåndterMellemvarePanel() {
-		if (håndterMellemvarePanel == null) {
+	private JPanel gethÃ¥ndterMellemvarePanel() {
+		if (hÃ¥ndterMellemvarePanel == null) {
 			GridBagConstraints gridBagConstraints12 = new GridBagConstraints();
 			gridBagConstraints12.gridx = 0;
 			gridBagConstraints12.insets = new Insets(5, 5, 1, 5);
@@ -167,16 +167,16 @@ public class LagerPanel extends JPanel {
 			gridBagConstraints6.ipady = 2;
 			gridBagConstraints6.gridy = 1;
 			gridBagConstraints6.weightx = 1.0;
-			håndterMellemvarePanel = new JPanel();
-			håndterMellemvarePanel.setLayout(new GridBagLayout());
-			håndterMellemvarePanel.add(getBatchnummerTextField(), gridBagConstraints6);
-			håndterMellemvarePanel.add(getHåndterMellemvareInfoTextArea(), gridBagConstraints8);
-			håndterMellemvarePanel.add(getStartTørringButton(), gridBagConstraints9);
-			håndterMellemvarePanel.add(getSendTilDelbehandlingButton(), gridBagConstraints10);
-			håndterMellemvarePanel.add(getSendTilPakningButton(), gridBagConstraints11);
-			håndterMellemvarePanel.add(BatchnummerLabel, gridBagConstraints12);
+			hÃ¥ndterMellemvarePanel = new JPanel();
+			hÃ¥ndterMellemvarePanel.setLayout(new GridBagLayout());
+			hÃ¥ndterMellemvarePanel.add(getBatchnummerTextField(), gridBagConstraints6);
+			hÃ¥ndterMellemvarePanel.add(gethÃ¥ndterMellemvareInfoTextArea(), gridBagConstraints8);
+			hÃ¥ndterMellemvarePanel.add(getStartTÃ¸rringButton(), gridBagConstraints9);
+			hÃ¥ndterMellemvarePanel.add(getSendTilDelbehandlingButton(), gridBagConstraints10);
+			hÃ¥ndterMellemvarePanel.add(getSendTilPakningButton(), gridBagConstraints11);
+			hÃ¥ndterMellemvarePanel.add(BatchnummerLabel, gridBagConstraints12);
 		}
-		return håndterMellemvarePanel;
+		return hÃ¥ndterMellemvarePanel;
 	}
 
 	/**
@@ -207,8 +207,8 @@ public class LagerPanel extends JPanel {
 			gridBagConstraints4.ipady = 2;
 			gridBagConstraints4.anchor = GridBagConstraints.WEST;
 			gridBagConstraints4.gridy = 2;
-			nærOverskredetListeLabel = new JLabel();
-			nærOverskredetListeLabel.setText("Nær maksimal tørretid : ");
+			nÃ¦fOverskredetListeLabel = new JLabel();
+			nÃ¦fOverskredetListeLabel.setText("nÃ¦f maksimal tÃ¸rretid : ");
 			GridBagConstraints gridBagConstraints3 = new GridBagConstraints();
 			gridBagConstraints3.fill = GridBagConstraints.BOTH;
 			gridBagConstraints3.gridy = 1;
@@ -224,22 +224,22 @@ public class LagerPanel extends JPanel {
 			visListerPanel.setLayout(new GridBagLayout());
 			visListerPanel.add(klarListeLabel, gridBagConstraints7);
 			visListerPanel.add(getKlarList(), gridBagConstraints3);
-			visListerPanel.add(nærOverskredetListeLabel, gridBagConstraints4);
-			visListerPanel.add(getNærOverskredetList(), gridBagConstraints5);
+			visListerPanel.add(nÃ¦fOverskredetListeLabel, gridBagConstraints4);
+			visListerPanel.add(getnÃ¦fOverskredetList(), gridBagConstraints5);
 		}
 		return visListerPanel;
 	}
 
 	/**
-	 * This method initializes vælgProdukttypeComboBox	
+	 * This method initializes vÃ¦lgProdukttypeComboBox	
 	 * 	
 	 * @return javax.swing.JComboBox	
 	 */
-	private JComboBox getVælgProdukttypeComboBox() {
-		if (vælgProdukttypeComboBox == null) {
-			vælgProdukttypeComboBox = new JComboBox();
+	private JComboBox getVÃ¦lgProdukttypeComboBox() {
+		if (vÃ¦lgProdukttypeComboBox == null) {
+			vÃ¦lgProdukttypeComboBox = new JComboBox();
 		}
-		return vælgProdukttypeComboBox;
+		return vÃ¦lgProdukttypeComboBox;
 	}
 
 	/**
@@ -282,16 +282,16 @@ public class LagerPanel extends JPanel {
 	}
 
 	/**
-	 * This method initializes nærOverskredetList	
+	 * This method initializes nÃ¦fOverskredetList	
 	 * 	
 	 * @return javax.swing.JList	
 	 */
-	private JList getNærOverskredetList() {
-		if (nærOverskredetList == null) {
-			nærOverskredetList = new JList();
-			nærOverskredetList.setBorder(border);
+	private JList getnÃ¦fOverskredetList() {
+		if (nÃ¦fOverskredetList == null) {
+			nÃ¦fOverskredetList = new JList();
+			nÃ¦fOverskredetList.setBorder(border);
 		}
-		return nærOverskredetList;
+		return nÃ¦fOverskredetList;
 	}
 
 	/**
@@ -307,29 +307,29 @@ public class LagerPanel extends JPanel {
 	}
 
 	/**
-	 * This method initializes håndterMellemvareInfoTextArea	
+	 * This method initializes hÃ¥ndterMellemvareInfoTextArea	
 	 * 	
 	 * @return javax.swing.JTextArea	
 	 */
-	private JTextArea getHåndterMellemvareInfoTextArea() {
-		if (håndterMellemvareInfoTextArea == null) {
-			håndterMellemvareInfoTextArea = new JTextArea();
-			håndterMellemvareInfoTextArea.setBorder(border);
+	private JTextArea gethÃ¥ndterMellemvareInfoTextArea() {
+		if (hÃ¥ndterMellemvareInfoTextArea == null) {
+			hÃ¥ndterMellemvareInfoTextArea = new JTextArea();
+			hÃ¥ndterMellemvareInfoTextArea.setBorder(border);
 		}
-		return håndterMellemvareInfoTextArea;
+		return hÃ¥ndterMellemvareInfoTextArea;
 	}
 
 	/**
-	 * This method initializes startTørringButton	
+	 * This method initializes startTÃ¸rringButton	
 	 * 	
 	 * @return javax.swing.JButton	
 	 */
-	private JButton getStartTørringButton() {
-		if (startTørringButton == null) {
-			startTørringButton = new JButton();
-			startTørringButton.setText("Start Tørring");
+	private JButton getStartTÃ¸rringButton() {
+		if (startTÃ¸rringButton == null) {
+			startTÃ¸rringButton = new JButton();
+			startTÃ¸rringButton.setText("Start TÃ¸rring");
 		}
-		return startTørringButton;
+		return startTÃ¸rringButton;
 	}
 
 	/**

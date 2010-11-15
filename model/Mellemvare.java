@@ -2,7 +2,7 @@ package model;
 
 /**
  * 
- * @author Johnny S. Sørensen
+ * @author Johnny S. SÃ¸rensen
  *
  */
 public class Mellemvare {
