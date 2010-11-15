@@ -17,5 +17,6 @@ public class Test {
 		Service service = Service.getInstance();
 		Behandling b = service.createBehandling();
 		b.setNavn("Dragering");
+		service.gemIDatabase(b);
 	}
 }

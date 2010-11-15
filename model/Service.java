@@ -29,34 +29,22 @@ public class Service {
 			nytBehandlingsTrin.setDelbehandling(delbehandling);
 			nyMellemvare.addBehandlingsTrin(nytBehandlingsTrin);
 		}
-		em.getTransaction().begin();
-		em.persist(nyMellemvare);
-		em.getTransaction().commit();
 		return nyMellemvare;
 	}
 	public Produkttype createProdukttype(Behandling behandling)
 	{
 		Produkttype nyProdukttype = new Produkttype();
 		nyProdukttype.setBehandling(behandling);
-		em.getTransaction().begin();
-		em.persist(nyProdukttype);
-		em.getTransaction().commit();
 		return nyProdukttype;
 	}
 	public Behandling createBehandling()
 	{
 		Behandling nyBehandling = new Behandling();
-		em.getTransaction().begin();
-		em.persist(nyBehandling);
-		em.getTransaction().commit();
 		return nyBehandling;
 	}
 	public Delbehandling createDelbehandling()
 	{
 		Delbehandling nyDelbehandling = new Delbehandling();
-		em.getTransaction().begin();
-		em.persist(nyDelbehandling);
-		em.getTransaction().commit();
 		return nyDelbehandling;
 	}
 	public List<Mellemvare> getKlar()
@@ -66,6 +54,13 @@ public class Service {
 	public List<Mellemvare> getNærOverskredet()
 	{
 		return null;
+	}
+	
+	public void gemIDatabase(Object o)
+	{
+		em.getTransaction().begin();
+		em.persist(o);
+		em.getTransaction().commit();
 	}
 
 }
