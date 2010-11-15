@@ -34,11 +34,13 @@ public class Mellemvare {
 	}
 
 	/**
-	 * Start næste delbehandling. Den aktuelle delbehandling afsluttes.
+	 * Start næste delbehandling. Den aktuelle delbehandling afsluttes og den næste sættes igang.
 	 * @throws Exception 
 	 */
 	public void startDelbehandling() throws Exception {
-		aktuelBehandlingsTrin.setSlut(new GregorianCalendar());
+		if (aktuelBehandlingsTrin != null) {
+			aktuelBehandlingsTrin.setSlut(new GregorianCalendar());
+		}
 		for (BehandlingsTrin b: behandlingsTrin) {
 			if (b.getStart() == null) {
 				b.setStart(new GregorianCalendar());
@@ -49,14 +51,19 @@ public class Mellemvare {
 		throw new Exception("Ingen uafsluttet delbehandling");
 	}
 	
-	public void startTørring()
-	{
-		
+	/*
+	 * Påbegynd tørring for den nuværende delbehandling.
+	 */
+	public void startTørring() {
+		aktuelBehandlingsTrin.setTørringStart(new GregorianCalendar());
 	}
 	
+	/*
+	 * Send til pakning. Den nuværende delbehandling afsluttes.
+	 */
 	public void sendTilPakning()
 	{
-		
+		aktuelBehandlingsTrin.setSlut(new GregorianCalendar());
 	}
 	
 	private void beregnTørringsTider()
