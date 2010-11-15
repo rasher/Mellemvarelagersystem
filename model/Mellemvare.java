@@ -51,7 +51,7 @@ public class Mellemvare {
 		
 	}
 	
-	private void addBehandlingsTrin(BehandlingsTrin behandlingsTrin)
+	public void addBehandlingsTrin(BehandlingsTrin behandlingsTrin)
 	{
 		this.behandlingsTrin.add(behandlingsTrin);
 	}

@@ -1,4 +1,6 @@
 package model;
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -26,5 +28,10 @@ public class Produkttype {
 
 	public void setBehandling(Behandling behandling) {
 		this.behandling = behandling;
+	}
+	
+	public List<Delbehandling> getDelbehandlinger()
+	{
+		return behandling.getDelbehandlinger();
 	}
 }

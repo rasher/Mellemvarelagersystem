@@ -8,19 +8,27 @@ public class Service {
 	{
 		Mellemvare nyMellemvare = new Mellemvare();
 		nyMellemvare.setProdukttype(produkttype);
-		return null;
+		for(Delbehandling delbehandling : produkttype.getDelbehandlinger())
+		{
+			BehandlingsTrin nytBehandlingsTrin = new BehandlingsTrin();
+			nytBehandlingsTrin.setDelbehandling(delbehandling);
+			nyMellemvare.addBehandlingsTrin(nytBehandlingsTrin);
+		}
+		return nyMellemvare;
 	}
 	public Produkttype createProdukttype(Behandling behandling)
 	{
-		return null;
+		Produkttype nyProdukttype = new Produkttype();
+		nyProdukttype.setBehandling(behandling);
+		return nyProdukttype;
 	}
 	public Behandling createBehandling()
 	{
-		return null;
+		return new Behandling();
 	}
 	public Delbehandling createDelbehandling()
 	{
-		return null;
+		return new Delbehandling();
 	}
 	public List<Mellemvare> getKlar()
 	{
