@@ -9,7 +9,7 @@ public class LagerPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private RegistrerNyMellemvarePanel registrerNyMellemvarePanel = null;
-	private HåndterMellemvarePanel håndterMellemvarePanel = null;
+	private HÃ¥ndterMellemvarePanel hÃ¥ndterMellemvarePanel = null;
 	private VisListPanel visListPanel = null;
 
 	/**
@@ -31,7 +31,7 @@ public class LagerPanel extends JPanel {
 		this.setLayout(gridLayout);
 		this.setSize(457, 265);
 		this.add(getRegistrerNyMellemvarePanel(), null);
-		this.add(getHåndterMellemvarePanel(), null);
+		this.add(getHÃ¥ndterMellemvarePanel(), null);
 		this.add(getVisListPanel(), null);
 	}
 
@@ -49,16 +49,16 @@ public class LagerPanel extends JPanel {
 	}
 
 	/**
-	 * This method initializes håndterMellemvarePanel	
+	 * This method initializes hÃ¥ndterMellemvarePanel	
 	 * 	
-	 * @return gui.HåndterMellemvarePanel	
+	 * @return gui.HÃ¥ndterMellemvarePanel	
 	 */
-	private HåndterMellemvarePanel getHåndterMellemvarePanel() {
-		if (håndterMellemvarePanel == null) {
-			håndterMellemvarePanel = new HåndterMellemvarePanel();
-			håndterMellemvarePanel.setBorder(MainFrame.getBorder());
+	private HÃ¥ndterMellemvarePanel getHÃ¥ndterMellemvarePanel() {
+		if (hÃ¥ndterMellemvarePanel == null) {
+			hÃ¥ndterMellemvarePanel = new HÃ¥ndterMellemvarePanel();
+			hÃ¥ndterMellemvarePanel.setBorder(MainFrame.getBorder());
 		}
-		return håndterMellemvarePanel;
+		return hÃ¥ndterMellemvarePanel;
 	}
 
 	/**

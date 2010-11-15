@@ -12,9 +12,9 @@ public class VisListPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JList klarList = null;
-	private JList nærOverskredetList = null;
+	private JList nÃ¦rOverskredetList = null;
 	private JLabel klarListLabel = null;
-	private JLabel nærOverskredetLabel = null;
+	private JLabel nÃ¦rOverskredetLabel = null;
 	/**
 	 * This is the default constructor
 	 */
@@ -41,8 +41,8 @@ public class VisListPanel extends JPanel {
 		gridBagConstraints2.anchor = GridBagConstraints.WEST;
 		gridBagConstraints2.insets = new Insets(5, 5, 1, 5);
 		gridBagConstraints2.gridy = 2;
-		nærOverskredetLabel = new JLabel();
-		nærOverskredetLabel.setText("Nær maksimal tørringstid : ");
+		nÃ¦rOverskredetLabel = new JLabel();
+		nÃ¦rOverskredetLabel.setText("NÃ¦r maksimal tÃ¸rringstid : ");
 		GridBagConstraints gridBagConstraints1 = new GridBagConstraints();
 		gridBagConstraints1.fill = GridBagConstraints.BOTH;
 		gridBagConstraints1.gridy = 1;
@@ -61,8 +61,8 @@ public class VisListPanel extends JPanel {
 		this.setSize(300, 200);
 		this.add(klarListLabel, gridBagConstraints);
 		this.add(getKlarList(), gridBagConstraints1);
-		this.add(nærOverskredetLabel, gridBagConstraints2);
-		this.add(getNærOverskredetList(), gridBagConstraints3);
+		this.add(nÃ¦rOverskredetLabel, gridBagConstraints2);
+		this.add(getNÃ¦rOverskredetList(), gridBagConstraints3);
 	}
 
 	/**
@@ -79,16 +79,16 @@ public class VisListPanel extends JPanel {
 	}
 
 	/**
-	 * This method initializes nærOverskredetList	
+	 * This method initializes nÃ¦rOverskredetList	
 	 * 	
 	 * @return javax.swing.JList	
 	 */
-	private JList getNærOverskredetList() {
-		if (nærOverskredetList == null) {
-			nærOverskredetList = new JList();
-			nærOverskredetList.setBorder(MainFrame.getBorder());
+	private JList getNÃ¦rOverskredetList() {
+		if (nÃ¦rOverskredetList == null) {
+			nÃ¦rOverskredetList = new JList();
+			nÃ¦rOverskredetList.setBorder(MainFrame.getBorder());
 		}
-		return nærOverskredetList;
+		return nÃ¦rOverskredetList;
 	}
 
 }  //  @jve:decl-index=0:visual-constraint="-11,7"
