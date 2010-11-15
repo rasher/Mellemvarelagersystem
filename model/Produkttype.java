@@ -1,12 +1,30 @@
-/**
- * 
- */
 package model;
+import javax.persistence.*;
 
-/**
- * @author Jonas Häggqvist (10dm10v1)
- *
- */
+@Entity
+@Table(name="Produkttype")
 public class Produkttype {
+	@Id
+	@GeneratedValue
+	private int id;
+	@Column(length=20)
 	private String navn;
+	@ManyToOne
+	private Behandling behandling;
+	
+	public String getNavn() {
+		return navn;
+	}
+
+	public void setNavn(String navn) {
+		this.navn = navn;
+	}
+
+	public Behandling getBehandling() {
+		return behandling;
+	}
+
+	public void setBehandling(Behandling behandling) {
+		this.behandling = behandling;
+	}
 }
