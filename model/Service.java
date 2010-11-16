@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 import javax.persistence.*;
 
@@ -47,13 +49,24 @@ public class Service {
 		Delbehandling nyDelbehandling = new Delbehandling();
 		return nyDelbehandling;
 	}
-	public List<Mellemvare> getKlar()
+	public List<Mellemvare> getTørringsDatoListe(int antalTimerFraMaks, boolean klarListe)
 	{
-		return null;
+		em.getTransaction().begin();
+		List<Mellemvare> minOpnået = em.createNamedQuery("findMinimumstidOpnået").getResultList();
+		List<Mellemvare> resultatListe = new ArrayList<Mellemvare>();
+		GregorianCalendar skæringsPunkt = new GregorianCalendar();
+		skæringsPunkt.add(GregorianCalendar.HOUR, antalTimerFraMaks);
+		for(Mellemvare m : minOpnået)
+		{
+			if(m.getMaksimumTørringNået().after(skæringsPunkt) == klarListe)
+				resultatListe.add(m);
+		}
+		return resultatListe;
 	}
 	public List<Mellemvare> getNærOverskredet()
 	{
-		return null;
+		em.getTransaction().begin();
+		return em.createNamedQuery("findNærOverskredet").getResultList();
 	}
 	
 	public void gemIDatabase(Object o)
@@ -61,6 +74,30 @@ public class Service {
 		em.getTransaction().begin();
 		em.persist(o);
 		em.getTransaction().commit();
+	}
+	
+	public List<Mellemvare> getMellemvarer()
+	{
+		em.getTransaction().begin();
+		return em.createNamedQuery("findAlleMellemvare").getResultList();
+	}
+	
+	public List<Produkttype> getProdukttype()
+	{
+		em.getTransaction().begin();
+		return em.createNamedQuery("findProdukttyper").getResultList();
+	}
+	
+	public List<Behandling> getBehandlinger()
+	{
+		em.getTransaction().begin();
+		return em.createNamedQuery("findAlleBehandlinger").getResultList();
+	}
+	
+	public List<Delbehandling> getDelbehandlinger()
+	{
+		em.getTransaction().begin();
+		return em.createNamedQuery("findDelbehandlinger").getResultList();
 	}
 
 }

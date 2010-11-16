@@ -12,11 +12,11 @@ public class Delbehandling {
 	private String navn;
 	@Column(length=20)
 	private String behandlingsSted;
-	@Column(length=12)
+	@Column(length=4)
 	private int minimumTørringsTid;
-	@Column(length=12)
+	@Column(length=4)
 	private int optimalTørringsTid;
-	@Column(length=12)
+	@Column(length=4)
 	private int maksimumTørringsTid;
 	public String getNavn() {
 		return navn;
