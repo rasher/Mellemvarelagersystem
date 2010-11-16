@@ -22,8 +22,9 @@ public class OpdaterTørreListerThread extends Thread {
 	}
 	
 	public void opdaterLister() {
-		klarList.setListData(Service.getInstance().getKlar().toArray());
-		nærOverskredetList.setListData(Service.getInstance().getNærOverskredet().toArray());
+		int timerFraMaks = 8;
+		klarList.setListData(Service.getInstance().getKlar(timerFraMaks).toArray());
+		nærOverskredetList.setListData(Service.getInstance(timerFraMaks).getNærOverskredet().toArray());
 	}
 	
 	public void run() {
