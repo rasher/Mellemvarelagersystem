@@ -101,7 +101,7 @@ public class VisListPanel extends JPanel {
 	 * 	
 	 * @return javax.swing.JList	
 	 */
-	private JList getKlarList() {
+	public JList getKlarList() {
 		if (klarList == null) {
 			klarList = new JList();
 			klarList.setBorder(MainFrame.getBorder());
@@ -114,7 +114,7 @@ public class VisListPanel extends JPanel {
 	 * 	
 	 * @return javax.swing.JList	
 	 */
-	private JList getNærOverskredetList() {
+	public JList getNærOverskredetList() {
 		if (nærOverskredetList == null) {
 			nærOverskredetList = new JList();
 			nærOverskredetList.setBorder(MainFrame.getBorder());
@@ -127,7 +127,7 @@ public class VisListPanel extends JPanel {
 	 * 	
 	 * @return javax.swing.JSlider	
 	 */
-	private JSlider getAntalTimerFraMaxToerringsSlider() {
+	public JSlider getAntalTimerFraMaxToerringsSlider() {
 		if (antalTimerFraMaxToerringsSlider == null) {
 			antalTimerFraMaxToerringsSlider = new JSlider();
 			antalTimerFraMaxToerringsSlider.setMaximum(15);
