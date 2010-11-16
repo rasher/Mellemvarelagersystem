@@ -71,6 +71,7 @@ public class Service {
 			if(m.getMaksimumTørringNået().after(skæringsPunkt) == klarListe)
 				resultatListe.add(m);
 		}
+		em.getTransaction().commit();
 		return resultatListe;
 	}
 	
