@@ -49,7 +49,17 @@ public class Service {
 		Delbehandling nyDelbehandling = new Delbehandling();
 		return nyDelbehandling;
 	}
-	public List<Mellemvare> getTørringsDatoListe(int antalTimerFraMaks, boolean klarListe)
+	public List<Mellemvare> getKlarListe(int antalTimerFraMaks)
+	{
+		return getTørringsDatoListe(antalTimerFraMaks, true);
+	}
+	
+	public List<Mellemvare> getNærOverskredet(int antalTimerFraMaks)
+	{
+		return getTørringsDatoListe(antalTimerFraMaks, false);
+	}
+	
+	private List<Mellemvare> getTørringsDatoListe(int antalTimerFraMaks, boolean klarListe)
 	{
 		em.getTransaction().begin();
 		List<Mellemvare> minOpnået = em.createNamedQuery("findMinimumstidOpnået").getResultList();
