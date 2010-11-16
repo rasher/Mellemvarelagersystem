@@ -49,11 +49,13 @@ public class Service {
 	}
 	public List<Mellemvare> getKlar()
 	{
-		return null;
+		em.getTransaction().begin();
+		return em.createNamedQuery("findMinimumstidOpnået").getResultList();
 	}
 	public List<Mellemvare> getNærOverskredet()
 	{
-		return null;
+		em.getTransaction().begin();
+		return em.createNamedQuery("find")
 	}
 	
 	public void gemIDatabase(Object o)
