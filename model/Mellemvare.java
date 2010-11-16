@@ -151,4 +151,25 @@ public class Mellemvare {
 	public int getBatchNummer() {
 		return batchNummer;
 	}
+
+	/**
+	 * @return the minimumTørringNået
+	 */
+	public Calendar getMinimumTørringNået() {
+		return minimumTørringNået;
+	}
+
+	/**
+	 * @return the optimalTørringNået
+	 */
+	public Calendar getOptimalTørringNået() {
+		return optimalTørringNået;
+	}
+
+	/**
+	 * @return the maksimumTørringNået
+	 */
+	public Calendar getMaksimumTørringNået() {
+		return maksimumTørringNået;
+	}
 }
