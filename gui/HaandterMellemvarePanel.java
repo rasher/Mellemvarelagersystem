@@ -7,9 +7,12 @@ import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
+
+import model.Mellemvare;
+
 import java.awt.Insets;
 
-public class HaandterMellemvarePanel extends JPanel {
+public class HaandterMellemvarePanel extends JPanel implements MellemvareOprettetObserver {
 
 	private static final long serialVersionUID = 1L;
 	private JLabel batchnummerLabel = null;
@@ -92,7 +95,7 @@ public class HaandterMellemvarePanel extends JPanel {
 	 * 	
 	 * @return javax.swing.JTextField	
 	 */
-	private JTextField getBatchnummerTextField() {
+	protected JTextField getBatchnummerTextField() {
 		if (batchnummerTextField == null) {
 			batchnummerTextField = new JTextField();
 		}
@@ -149,6 +152,12 @@ public class HaandterMellemvarePanel extends JPanel {
 			sendTilPakningButton.setText("Send Til Pakning");
 		}
 		return sendTilPakningButton;
+	}
+
+	@Override
+	public void mellemvareOprettet(Mellemvare mellemvare) {
+		getBatchnummerTextField().setText(mellemvare.getBatchNummer() + "");
+		
 	}
 
 }
