@@ -49,7 +49,7 @@ public class Service {
 		Delbehandling nyDelbehandling = new Delbehandling();
 		return nyDelbehandling;
 	}
-	public List<Mellemvare> getKlarListe(int antalTimerFraMaks)
+	public List<Mellemvare> getKlar(int antalTimerFraMaks)
 	{
 		return getTørringsDatoListe(antalTimerFraMaks, true);
 	}
@@ -72,11 +72,6 @@ public class Service {
 				resultatListe.add(m);
 		}
 		return resultatListe;
-	}
-	public List<Mellemvare> getNærOverskredet()
-	{
-		em.getTransaction().begin();
-		return em.createNamedQuery("findNærOverskredet").getResultList();
 	}
 	
 	public void gemIDatabase(Object o)
