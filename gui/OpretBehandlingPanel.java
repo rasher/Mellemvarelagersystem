@@ -3,11 +3,16 @@ package gui;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.util.List;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+
+import model.Behandling;
+import model.Delbehandling;
+import model.Service;
 
 public class OpretBehandlingPanel extends JPanel {
 
@@ -118,7 +123,8 @@ public class OpretBehandlingPanel extends JPanel {
 	 */
 	private JComboBox getVælgBehandlingComboBox() {
 		if (vælgBehandlingComboBox == null) {
-			vælgBehandlingComboBox = new JComboBox();
+			List<Behandling> behandlinger = Service.getInstance().getBehandlinger();
+			vælgBehandlingComboBox = new JComboBox(behandlinger.toArray());
 		}
 		return vælgBehandlingComboBox;
 	}
@@ -143,7 +149,8 @@ public class OpretBehandlingPanel extends JPanel {
 	 */
 	private JList getMuligeDelbehandlingerList() {
 		if (muligeDelbehandlingerList == null) {
-			muligeDelbehandlingerList = new JList();
+			List<Delbehandling> delbehandlinger = Service.getInstance().getDelbehandlinger();
+			muligeDelbehandlingerList = new JList(delbehandlinger.toArray());
 			muligeDelbehandlingerList.setBorder(MainFrame.getBorder());
 		}
 		return muligeDelbehandlingerList;
