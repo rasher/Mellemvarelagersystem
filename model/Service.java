@@ -62,5 +62,29 @@ public class Service {
 		em.persist(o);
 		em.getTransaction().commit();
 	}
+	
+	public List<Mellemvare> getMellemvarer()
+	{
+		em.getTransaction().begin();
+		return em.createNamedQuery("findAlleMellemvare").getResultList();
+	}
+	
+	public List<Produkttype> getProdukttype()
+	{
+		em.getTransaction().begin();
+		return em.createNamedQuery("findProdukttyper").getResultList();
+	}
+	
+	public List<Behandling> getBehandlinger()
+	{
+		em.getTransaction().begin();
+		return em.createNamedQuery("findAlleBehandlinger").getResultList();
+	}
+	
+	public List<Delbehandling> getDelbehandlinger()
+	{
+		em.getTransaction().begin();
+		return em.createNamedQuery("findDelbehandlinger").getResultList();
+	}
 
 }
