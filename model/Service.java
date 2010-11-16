@@ -49,18 +49,19 @@ public class Service {
 		Delbehandling nyDelbehandling = new Delbehandling();
 		return nyDelbehandling;
 	}
-	public List<Mellemvare> getKlar(int antalTimerFraMaks)
+	public List<Mellemvare> getTørringsDatoListe(int antalTimerFraMaks, boolean klarListe)
 	{
 		em.getTransaction().begin();
 		List<Mellemvare> minOpnået = em.createNamedQuery("findMinimumstidOpnået").getResultList();
-		List<Mellemvare> minOpnåetEksMaks = new ArrayList<Mellemvare>();
+		List<Mellemvare> resultatListe = new ArrayList<Mellemvare>();
 		GregorianCalendar skæringsPunkt = new GregorianCalendar();
 		skæringsPunkt.add(GregorianCalendar.HOUR, antalTimerFraMaks);
 		for(Mellemvare m : minOpnået)
 		{
-			
+			if(m.getMaksimumTørringNået().after(skæringsPunkt) == klarListe)
+				resultatListe.add(m);
 		}
-		return minOpnåetEksMaks;
+		return resultatListe;
 	}
 	public List<Mellemvare> getNærOverskredet()
 	{
