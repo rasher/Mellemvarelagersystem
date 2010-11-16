@@ -13,7 +13,12 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "Mellemvare")
-@NamedQuery(name = "findAlleMellemvarer", query = "Select mv from Mellemvare mv")
+
+@NamedQueries({
+	@NamedQuery(name = "findAlleMellemvarer", query = "Select mv from mellemvare mv"),
+	@NamedQuery(name = "findMinimumstidOpnået", query = "Select mv from mellemvare mv where mv.aktuelBehandlingsTrin is not null and mv.minimumTørringNået < CURRENT_DATE() order by mv.maksimumTørringNået desc")
+})
+
 public class Mellemvare {
 	@Id
 	@GeneratedValue
@@ -86,6 +91,10 @@ public class Mellemvare {
 	 */
 	public void sendTilPakning() {
 		aktuelBehandlingsTrin.setSlut(new GregorianCalendar());
+		minimumTørringNået = null;
+		optimalTørringNået = null;
+		maksimumTørringNået = null;
+		aktuelBehandlingsTrin = null;
 	}
 
 	/**
