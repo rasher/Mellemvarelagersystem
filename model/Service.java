@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 import javax.persistence.*;
 
@@ -47,10 +49,18 @@ public class Service {
 		Delbehandling nyDelbehandling = new Delbehandling();
 		return nyDelbehandling;
 	}
-	public List<Mellemvare> getKlar()
+	public List<Mellemvare> getKlar(int antalTimerFraMaks)
 	{
 		em.getTransaction().begin();
-		return em.createNamedQuery("findMinimumstidOpnået").getResultList();
+		List<Mellemvare> minOpnået = em.createNamedQuery("findMinimumstidOpnået").getResultList();
+		List<Mellemvare> minOpnåetEksMaks = new ArrayList<Mellemvare>();
+		GregorianCalendar skæringsPunkt = new GregorianCalendar();
+		skæringsPunkt.add(GregorianCalendar.HOUR, antalTimerFraMaks);
+		for(Mellemvare m : minOpnået)
+		{
+			
+		}
+		return minOpnåetEksMaks;
 	}
 	public List<Mellemvare> getNærOverskredet()
 	{
