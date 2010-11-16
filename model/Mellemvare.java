@@ -64,6 +64,9 @@ public class Mellemvare {
 			if (b.getStart() == null) {
 				b.setStart(new GregorianCalendar());
 				aktuelBehandlingsTrin = b;
+				minimumTørringNået = null;
+				optimalTørringNået = null;
+				maksimumTørringNået = null;
 				return;
 			}
 		}
