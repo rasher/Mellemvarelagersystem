@@ -180,10 +180,11 @@ public class MainFrame extends JFrame {
 		this.setJMenuBar(getCarlettiMenuBar());
 		this.setContentPane(getJContentPane());
 		this.setTitle("JFrame");
+		VisListPanel visListPanel = getLagerPanel().getVisListPanel();
 		opdaterTørreListerThread = new OpdaterToerreListerThread(
-				getLagerPanel().getVisListPanel().getKlarList(),
-				getLagerPanel().getVisListPanel().getNærOverskredetList(),
-				getLagerPanel().getVisListPanel().getAntalTimerFraMaxToerringsSlider());
+				visListPanel.getKlarList(),
+				visListPanel.getNærOverskredetList(),
+				visListPanel.getAntalTimerFraMaxToerringsSlider());
 		opdaterTørreListerThread.start();
 	}
 
