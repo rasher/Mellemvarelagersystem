@@ -49,7 +49,17 @@ public class Service {
 		Delbehandling nyDelbehandling = new Delbehandling();
 		return nyDelbehandling;
 	}
-	public List<Mellemvare> getTørringsDatoListe(int antalTimerFraMaks, boolean klarListe)
+	public List<Mellemvare> getKlar(int antalTimerFraMaks)
+	{
+		return getTørringsDatoListe(antalTimerFraMaks, true);
+	}
+	
+	public List<Mellemvare> getNærOverskredet(int antalTimerFraMaks)
+	{
+		return getTørringsDatoListe(antalTimerFraMaks, false);
+	}
+	
+	private List<Mellemvare> getTørringsDatoListe(int antalTimerFraMaks, boolean klarListe)
 	{
 		em.getTransaction().begin();
 		List<Mellemvare> minOpnået = em.createNamedQuery("findMinimumstidOpnået").getResultList();
@@ -62,11 +72,6 @@ public class Service {
 				resultatListe.add(m);
 		}
 		return resultatListe;
-	}
-	public List<Mellemvare> getNærOverskredet()
-	{
-		em.getTransaction().begin();
-		return em.createNamedQuery("findNærOverskredet").getResultList();
 	}
 	
 	public void gemIDatabase(Object o)
