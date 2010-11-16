@@ -1,13 +1,20 @@
 package gui;
 
-import java.awt.GridBagLayout;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
-import javax.swing.JComboBox;
-import javax.swing.JTextArea;
-import javax.swing.JButton;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+
+import model.Mellemvare;
+import model.Produkttype;
 
 public class RegistrerNyMellemvarePanel extends JPanel {
 
@@ -17,6 +24,7 @@ public class RegistrerNyMellemvarePanel extends JPanel {
 	private JLabel produkttypeInfoLabel = null;
 	private JTextArea produkttypeInfoTextArea = null;
 	private JButton registrerNyMellemvareButton = null;
+	private List<MellemvareOprettetObserver> mellemvareOprettetObservers = new ArrayList<MellemvareOprettetObserver>();
 
 	/**
 	 * This is the default constructor
@@ -81,6 +89,22 @@ public class RegistrerNyMellemvarePanel extends JPanel {
 	private JComboBox getProdukttypeComboBox() {
 		if (produkttypeComboBox == null) {
 			produkttypeComboBox = new JComboBox();
+			produkttypeComboBox.addItemListener(new java.awt.event.ItemListener() {
+				public void itemStateChanged(java.awt.event.ItemEvent e) {
+					if(!((Produkttype) getProdukttypeComboBox().getSelectedItem()).getDelbehandlinger().isEmpty())
+					{
+						Produkttype aktuel = (Produkttype) getProdukttypeComboBox().getSelectedItem();
+						getRegistrerNyMellemvareButton().setEnabled(true);
+						getProdukttypeInfoTextArea().setText("Produkttype navn: \t" + aktuel.getNavn() + "\r\n\n"
+															 + "Tilknyttet behandling: \t" + aktuel.getBehandling().getNavn());
+					}
+					else
+					{
+						getProdukttypeInfoTextArea().setText("");
+						getRegistrerNyMellemvareButton().setEnabled(false);
+					}
+				}
+			});
 		}
 		return produkttypeComboBox;
 	}
@@ -107,8 +131,29 @@ public class RegistrerNyMellemvarePanel extends JPanel {
 		if (registrerNyMellemvareButton == null) {
 			registrerNyMellemvareButton = new JButton();
 			registrerNyMellemvareButton.setText("Registrer");
+			registrerNyMellemvareButton.setEnabled(false);
+			registrerNyMellemvareButton
+					.addActionListener(new java.awt.event.ActionListener() {
+						public void actionPerformed(java.awt.event.ActionEvent e) {
+							if(!((Produkttype) getProdukttypeComboBox().getSelectedItem()).getDelbehandlinger().isEmpty())
+							{
+								Mellemvare aktuelMellemvare = model.Service.getInstance().createMellemvare((Produkttype) getProdukttypeComboBox().getSelectedItem());
+								JOptionPane.showMessageDialog(null, "Mellemvare er oprettet med batchnummer: " + aktuelMellemvare.getBatchNummer(), "Mellemvare opretelse", JOptionPane.PLAIN_MESSAGE);
+								for (MellemvareOprettetObserver observer : mellemvareOprettetObservers) {
+									observer.mellemvareOprettet(aktuelMellemvare);
+								}
+							}
+						}
+					});
 		}
 		return registrerNyMellemvareButton;
+	}
+
+	public void registerMellemvareOprettetObserver(
+			MellemvareOprettetObserver observer) {
+		mellemvareOprettetObservers.add(observer);
+		// TODO Auto-generated method stub
+		
 	}
 
 }
