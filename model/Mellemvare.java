@@ -15,8 +15,8 @@ import javax.persistence.*;
 @Table(name = "Mellemvare")
 
 @NamedQueries({
-	@NamedQuery(name = "findAlleMellemvarer", query = "Select mv from mellemvare mv"),
-	@NamedQuery(name = "findMinimumstidOpnået", query = "Select mv from mellemvare mv where mv.aktuelBehandlingsTrin is not null and mv.minimumTørringNået < CURRENT_DATE() order by mv.maksimumTørringNået desc")
+	@NamedQuery(name = "findAlleMellemvarer", query = "Select mv from Mellemvare mv"),
+	@NamedQuery(name = "findMinimumstidOpnået", query = "Select mv from Mellemvare mv where mv.aktuelBehandlingsTrin is not null and mv.minimumTørringNået < CURRENT_DATE order by mv.maksimumTørringNået desc")
 })
 
 public class Mellemvare {
