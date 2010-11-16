@@ -12,12 +12,12 @@ import model.Service;
  * @author Jonas Häggqvist (10dm10v1)
  *
  */
-public class OpdaterTørreListerThread extends Thread {
+public class OpdaterToerreListerThread extends Thread {
 	private JList klarList;
 	private JList nærOverskredetList;
 	private JSlider antalTimerFraMaxToerringsSlider;
 	
-	public OpdaterTørreListerThread(JList klarList, JList nærOverskredetList, JSlider antalTimerFraMaxToerringsSlider) {
+	public OpdaterToerreListerThread(JList klarList, JList nærOverskredetList, JSlider antalTimerFraMaxToerringsSlider) {
 		super();
 		this.klarList = klarList;
 		this.nærOverskredetList = nærOverskredetList;
