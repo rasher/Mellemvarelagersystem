@@ -69,7 +69,7 @@ public class LagerPanel extends JPanel {
 	 * 	
 	 * @return gui.VisListPanel	
 	 */
-	private VisListPanel getVisListPanel() {
+	public VisListPanel getVisListPanel() {
 		if (visListPanel == null) {
 			visListPanel = new VisListPanel();
 			visListPanel.setBorder(MainFrame.getBorder());
