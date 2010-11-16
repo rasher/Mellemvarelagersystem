@@ -55,7 +55,7 @@ public class Service {
 	public List<Mellemvare> getNærOverskredet()
 	{
 		em.getTransaction().begin();
-		return em.createNamedQuery("find")
+		return em.createNamedQuery("findNærOverskredet").getResultList();
 	}
 	
 	public void gemIDatabase(Object o)
