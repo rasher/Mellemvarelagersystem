@@ -42,19 +42,19 @@ public class BehandlingsTrin {
 		this.delbehandling = delbehandling;
 	}
 	/**
-	 * @return Delbehandlingens minimale tørringstid i hele minutter
+	 * @return Delbehandlingens minimale tørringstid i hele timer
 	 */
 	public int getMinimumTørringstid() {
 		return delbehandling.getMinimumTørringsTid();
 	}
 	/**
-	 * @return Delbehandlingens minimale tørringstid i hele minutter
+	 * @return Delbehandlingens minimale tørringstid i hele timer
 	 */
 	public int getOptimalTørringstid() {
 		return delbehandling.getOptimalTørringsTid();
 	}
 	/**
-	 * @return Delbehandlingens minimale tørringstid i hele minutter
+	 * @return Delbehandlingens minimale tørringstid i hele timer
 	 */
 	public int getMaksimumTørringstid() {
 		return delbehandling.getMaksimumTørringsTid();

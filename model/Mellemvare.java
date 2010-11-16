@@ -13,7 +13,12 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "Mellemvare")
-@NamedQuery(name = "findAlleMellemvarer", query = "Select mv from Mellemvare mv")
+
+@NamedQueries({
+	@NamedQuery(name = "findAlleMellemvarer", query = "Select mv from mellemvare mv"),
+	@NamedQuery(name = "findMinimumstidOpnået", query = "Select mv from mellemvare mv where mv.aktuelBehandlingsTrin is not null and mv.minimumTørringNået < CURRENT_DATE() order by mv.maksimumTørringNået desc")
+})
+
 public class Mellemvare {
 	@Id
 	@GeneratedValue
@@ -86,6 +91,10 @@ public class Mellemvare {
 	 */
 	public void sendTilPakning() {
 		aktuelBehandlingsTrin.setSlut(new GregorianCalendar());
+		minimumTørringNået = null;
+		optimalTørringNået = null;
+		maksimumTørringNået = null;
+		aktuelBehandlingsTrin = null;
 	}
 
 	/**
@@ -95,13 +104,13 @@ public class Mellemvare {
 	private void beregnTørringsTider() {
 		if (aktuelBehandlingsTrin != null) {
 			minimumTørringNået = aktuelBehandlingsTrin.getStart();
-			minimumTørringNået.add(GregorianCalendar.MINUTE,
+			minimumTørringNået.add(GregorianCalendar.HOUR,
 					aktuelBehandlingsTrin.getMinimumTørringstid());
 			optimalTørringNået = aktuelBehandlingsTrin.getStart();
-			optimalTørringNået.add(GregorianCalendar.MINUTE,
+			optimalTørringNået.add(GregorianCalendar.HOUR,
 					aktuelBehandlingsTrin.getOptimalTørringstid());
 			maksimumTørringNået = aktuelBehandlingsTrin.getStart();
-			maksimumTørringNået.add(GregorianCalendar.MINUTE,
+			maksimumTørringNået.add(GregorianCalendar.HOUR,
 					aktuelBehandlingsTrin.getMaksimumTørringstid());
 
 		}
@@ -141,5 +150,26 @@ public class Mellemvare {
 	 */
 	public int getBatchNummer() {
 		return batchNummer;
+	}
+
+	/**
+	 * @return the minimumTørringNået
+	 */
+	public Calendar getMinimumTørringNået() {
+		return minimumTørringNået;
+	}
+
+	/**
+	 * @return the optimalTørringNået
+	 */
+	public Calendar getOptimalTørringNået() {
+		return optimalTørringNået;
+	}
+
+	/**
+	 * @return the maksimumTørringNået
+	 */
+	public Calendar getMaksimumTørringNået() {
+		return maksimumTørringNået;
 	}
 }
