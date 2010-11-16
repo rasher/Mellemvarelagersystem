@@ -7,6 +7,7 @@ import java.awt.Insets;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JSlider;
 
 public class VisListPanel extends JPanel {
 
@@ -15,6 +16,9 @@ public class VisListPanel extends JPanel {
 	private JList nærOverskredetList = null;
 	private JLabel klarListLabel = null;
 	private JLabel nærOverskredetLabel = null;
+	private JLabel antalTimerTilMaxToerringNåetLabel = null;
+	private JSlider antalTimerFraMaxToerringsSlider = null;
+	private JLabel taellerLabel = null;
 	/**
 	 * This is the default constructor
 	 */
@@ -29,12 +33,35 @@ public class VisListPanel extends JPanel {
 	 * @return void
 	 */
 	private void initialize() {
+		GridBagConstraints gridBagConstraints31 = new GridBagConstraints();
+		gridBagConstraints31.gridx = 1;
+		gridBagConstraints31.anchor = GridBagConstraints.EAST;
+		gridBagConstraints31.insets = new Insets(0, 0, 0, 5);
+		gridBagConstraints31.gridy = 4;
+		taellerLabel = new JLabel();
+		taellerLabel.setText("15");
+		GridBagConstraints gridBagConstraints21 = new GridBagConstraints();
+		gridBagConstraints21.fill = GridBagConstraints.BOTH;
+		gridBagConstraints21.gridy = 5;
+		gridBagConstraints21.weightx = 1.0;
+		gridBagConstraints21.anchor = GridBagConstraints.WEST;
+		gridBagConstraints21.insets = new Insets(0, 5, 0, 5);
+		gridBagConstraints21.gridwidth = 2;
+		gridBagConstraints21.gridx = 0;
+		GridBagConstraints gridBagConstraints11 = new GridBagConstraints();
+		gridBagConstraints11.gridx = 0;
+		gridBagConstraints11.anchor = GridBagConstraints.WEST;
+		gridBagConstraints11.insets = new Insets(5, 5, 1, 0);
+		gridBagConstraints11.gridy = 4;
+		antalTimerTilMaxToerringNåetLabel = new JLabel();
+		antalTimerTilMaxToerringNåetLabel.setText("Antal timer til max er nået : ");
 		GridBagConstraints gridBagConstraints3 = new GridBagConstraints();
 		gridBagConstraints3.fill = GridBagConstraints.BOTH;
 		gridBagConstraints3.gridy = 3;
 		gridBagConstraints3.weightx = 1.0;
 		gridBagConstraints3.weighty = 1.0;
 		gridBagConstraints3.insets = new Insets(0, 5, 0, 5);
+		gridBagConstraints3.gridwidth = 2;
 		gridBagConstraints3.gridx = 0;
 		GridBagConstraints gridBagConstraints2 = new GridBagConstraints();
 		gridBagConstraints2.gridx = 0;
@@ -49,6 +76,7 @@ public class VisListPanel extends JPanel {
 		gridBagConstraints1.weightx = 1.0;
 		gridBagConstraints1.weighty = 1.0;
 		gridBagConstraints1.insets = new Insets(0, 5, 0, 5);
+		gridBagConstraints1.gridwidth = 2;
 		gridBagConstraints1.gridx = 0;
 		GridBagConstraints gridBagConstraints = new GridBagConstraints();
 		gridBagConstraints.gridx = 0;
@@ -63,6 +91,9 @@ public class VisListPanel extends JPanel {
 		this.add(getKlarList(), gridBagConstraints1);
 		this.add(nærOverskredetLabel, gridBagConstraints2);
 		this.add(getNærOverskredetList(), gridBagConstraints3);
+		this.add(antalTimerTilMaxToerringNåetLabel, gridBagConstraints11);
+		this.add(getAntalTimerFraMaxToerringsSlider(), gridBagConstraints21);
+		this.add(taellerLabel, gridBagConstraints31);
 	}
 
 	/**
@@ -89,6 +120,30 @@ public class VisListPanel extends JPanel {
 			nærOverskredetList.setBorder(MainFrame.getBorder());
 		}
 		return nærOverskredetList;
+	}
+
+	/**
+	 * This method initializes antalTimerFraMaxToerringsSlider	
+	 * 	
+	 * @return javax.swing.JSlider	
+	 */
+	private JSlider getAntalTimerFraMaxToerringsSlider() {
+		if (antalTimerFraMaxToerringsSlider == null) {
+			antalTimerFraMaxToerringsSlider = new JSlider();
+			antalTimerFraMaxToerringsSlider.setMaximum(15);
+			antalTimerFraMaxToerringsSlider.setMinorTickSpacing(1);
+			antalTimerFraMaxToerringsSlider.setPaintTicks(true);
+			antalTimerFraMaxToerringsSlider.setSnapToTicks(true);
+			antalTimerFraMaxToerringsSlider.setMinimum(1);
+			antalTimerFraMaxToerringsSlider
+					.addChangeListener(new javax.swing.event.ChangeListener() {
+						public void stateChanged(javax.swing.event.ChangeEvent e) {
+							taellerLabel.setText(antalTimerFraMaxToerringsSlider.getValue() + "");
+							System.out.println("stateChanged()"); // TODO Auto-generated Event stub stateChanged()
+						}
+					});
+		}
+		return antalTimerFraMaxToerringsSlider;
 	}
 
 }  //  @jve:decl-index=0:visual-constraint="-11,7"
