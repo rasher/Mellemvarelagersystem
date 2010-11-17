@@ -10,6 +10,7 @@ public class RaekkefoelgeDelbehandlingerButtonPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JButton rykOPButton = null;
 	private JButton rykNedButton = null;
+	private OpretBehandlingPanel opretBehandlingPanel;
 
 	/**
 	 * This is the default constructor
@@ -32,6 +33,13 @@ public class RaekkefoelgeDelbehandlingerButtonPanel extends JPanel {
 		this.setSize(65, 100);
 		this.add(getRykOPButton(), null);
 		this.add(getRykNedButton(), null);
+	}
+
+	/**
+	 * @param opretBehandlingPanel the opretBehandlingPanel to set
+	 */
+	public void setOpretBehandlingPanel(OpretBehandlingPanel opretBehandlingPanel) {
+		this.opretBehandlingPanel = opretBehandlingPanel;
 	}
 
 	/**
