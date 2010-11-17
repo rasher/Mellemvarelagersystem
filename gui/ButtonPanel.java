@@ -3,6 +3,8 @@ package gui;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -13,6 +15,7 @@ public class ButtonPanel extends JPanel {
 	private JButton opretButton = null;
 	private JButton gemButton = null;
 	private JButton sletButton = null;
+	private List<OpretGemSletObserver> opretGemSletObservers = new ArrayList<OpretGemSletObserver>();
 
 	/**
 	 * This is the default constructor
@@ -89,6 +92,14 @@ public class ButtonPanel extends JPanel {
 			sletButton.setText("Slet");
 		}
 		return sletButton;
+	}
+
+	/**
+	 * @param opretBehandlingPanel
+	 */
+	public void registerOpretGemSletObserver(
+			OpretGemSletObserver observer) {
+		opretGemSletObservers.add(observer);
 	}
 
 }  //  @jve:decl-index=0:visual-constraint="10,10"

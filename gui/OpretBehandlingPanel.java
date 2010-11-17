@@ -9,12 +9,13 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.ListModel;
 
 import model.Behandling;
 import model.Delbehandling;
 import model.Service;
 
-public class OpretBehandlingPanel extends JPanel {
+public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver {
 
 	private static final long serialVersionUID = 1L;
 	private JLabel vælgBehandlingLabel = null;
@@ -171,6 +172,7 @@ public class OpretBehandlingPanel extends JPanel {
 	private ButtonPanel getBehandlingButtonPanel() {
 		if (behandlingButtonPanel == null) {
 			behandlingButtonPanel = new ButtonPanel();
+			behandlingButtonPanel.registerOpretGemSletObserver(this);
 		}
 		return behandlingButtonPanel;
 	}
@@ -197,6 +199,38 @@ public class OpretBehandlingPanel extends JPanel {
 			rækkefølgeDelbehandlingerPanel = new RaekkefoelgeDelbehandlingerButtonPanel();
 		}
 		return rækkefølgeDelbehandlingerPanel;
+	}
+
+	/* (non-Javadoc)
+	 * @see gui.OpretGemSletObserver#gem()
+	 */
+	@Override
+	public void gem() {
+		// TODO Auto-generated method stub
+		System.out.println("Gem");
+		Behandling valgtBehandling = (Behandling) getVælgBehandlingComboBox().getSelectedItem();
+		ListModel delbehSelModel = getVlagteDelbehandlingerList().getModel();
+		for (int i = 0; i < delbehSelModel.getSize(); i++) {
+			valgtBehandling.addDelbehandling((Delbehandling) delbehSelModel.getElementAt(i));
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see gui.OpretGemSletObserver#opret()
+	 */
+	@Override
+	public void opret() {
+		// TODO Auto-generated method stub
+		System.out.println("Opret");
+	}
+
+	/* (non-Javadoc)
+	 * @see gui.OpretGemSletObserver#slet()
+	 */
+	@Override
+	public void slet() {
+		// TODO Auto-generated method stub
+		System.out.println("Slet");
 	}
 
 }  //  @jve:decl-index=0:visual-constraint="10,10"
