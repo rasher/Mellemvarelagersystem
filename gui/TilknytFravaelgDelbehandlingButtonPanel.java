@@ -10,6 +10,7 @@ public class TilknytFravaelgDelbehandlingButtonPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JButton tilknytButton = null;
 	private JButton fravælgButton = null;
+	private OpretBehandlingPanel opretBehandlingPanel;
 
 	/**
 	 * This is the default constructor
@@ -43,6 +44,11 @@ public class TilknytFravaelgDelbehandlingButtonPanel extends JPanel {
 		if (tilknytButton == null) {
 			tilknytButton = new JButton();
 			tilknytButton.setText("Λ");
+			tilknytButton.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					opretBehandlingPanel.tilknytValgtDelbehandling();
+				}
+			});
 		}
 		return tilknytButton;
 	}
@@ -56,8 +62,24 @@ public class TilknytFravaelgDelbehandlingButtonPanel extends JPanel {
 		if (fravælgButton == null) {
 			fravælgButton = new JButton();
 			fravælgButton.setText("V");
+			fravælgButton.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					opretBehandlingPanel.fravælgValgtDelbehandling();
+
+				}
+			});
 		}
 		return fravælgButton;
+	}
+
+	/**
+	 * @param opretBehandlingPanel
+	 */
+	public void setOpretBehandlingPanel(
+			OpretBehandlingPanel opretBehandlingPanel) {
+		this.opretBehandlingPanel = opretBehandlingPanel;
+		// TODO Auto-generated method stub
+		
 	}
 
 }  //  @jve:decl-index=0:visual-constraint="10,10"

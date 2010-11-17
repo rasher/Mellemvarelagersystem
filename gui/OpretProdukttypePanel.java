@@ -12,6 +12,7 @@ import javax.swing.JTextArea;
 import model.Behandling;
 import model.Delbehandling;
 import model.Produkttype;
+import javax.swing.JTextField;
 
 public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserver {
 
@@ -25,6 +26,8 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 	private JTextArea produkttypeInfoTextArea = null;
 	private Produkttype aktuelProdukttype;
 	private Behandling aktuelBehandling;
+	private JLabel produkttypeNavnLabel = null;
+	private JTextField produkttypeNavnTextField = null;
 	/**
 	 * This is the default constructor
 	 */
@@ -39,9 +42,22 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 	 * @return void
 	 */
 	private void initialize() {
+		GridBagConstraints gridBagConstraints51 = new GridBagConstraints();
+		gridBagConstraints51.fill = GridBagConstraints.BOTH;
+		gridBagConstraints51.gridy = 3;
+		gridBagConstraints51.weightx = 1.0;
+		gridBagConstraints51.insets = new Insets(0, 5, 0, 5);
+		gridBagConstraints51.gridx = 0;
+		GridBagConstraints gridBagConstraints41 = new GridBagConstraints();
+		gridBagConstraints41.gridx = 0;
+		gridBagConstraints41.anchor = GridBagConstraints.WEST;
+		gridBagConstraints41.insets = new Insets(0, 5, 1, 0);
+		gridBagConstraints41.gridy = 2;
+		produkttypeNavnLabel = new JLabel();
+		produkttypeNavnLabel.setText("Produkttypenavn :");
 		GridBagConstraints gridBagConstraints6 = new GridBagConstraints();
 		gridBagConstraints6.fill = GridBagConstraints.BOTH;
-		gridBagConstraints6.gridy = 5;
+		gridBagConstraints6.gridy = 7;
 		gridBagConstraints6.weightx = 1.0;
 		gridBagConstraints6.weighty = 1.0;
 		gridBagConstraints6.insets = new Insets(0, 5, 0, 5);
@@ -50,7 +66,7 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 		gridBagConstraints5.gridx = 0;
 		gridBagConstraints5.anchor = GridBagConstraints.WEST;
 		gridBagConstraints5.insets = new Insets(5, 5, 1, 0);
-		gridBagConstraints5.gridy = 4;
+		gridBagConstraints5.gridy = 6;
 		produkttypeInfoLabel = new JLabel();
 		produkttypeInfoLabel.setText("Info : ");
 		GridBagConstraints gridBagConstraints4 = new GridBagConstraints();
@@ -58,7 +74,7 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 		gridBagConstraints4.anchor = GridBagConstraints.WEST;
 		gridBagConstraints4.insets = new Insets(5, 5, 1, 0);
 		gridBagConstraints4.fill = GridBagConstraints.NONE;
-		gridBagConstraints4.gridy = 2;
+		gridBagConstraints4.gridy = 4;
 		tilknytBehandlingLabel = new JLabel();
 		tilknytBehandlingLabel.setText("Behandling : ");
 		GridBagConstraints gridBagConstraints3 = new GridBagConstraints();
@@ -70,7 +86,7 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 		vælgProdukttypeLabel.setText("Produkttype : ");
 		GridBagConstraints gridBagConstraints2 = new GridBagConstraints();
 		gridBagConstraints2.fill = GridBagConstraints.BOTH;
-		gridBagConstraints2.gridy = 3;
+		gridBagConstraints2.gridy = 5;
 		gridBagConstraints2.weightx = 1.0;
 		gridBagConstraints2.insets = new Insets(0, 5, 0, 5);
 		gridBagConstraints2.gridx = 0;
@@ -86,7 +102,7 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 		gridBagConstraints.anchor = GridBagConstraints.SOUTH;
 		gridBagConstraints.insets = new Insets(0, 0, 0, 0);
 		gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-		gridBagConstraints.gridy = 6;
+		gridBagConstraints.gridy = 8;
 		this.setLayout(new GridBagLayout());
 		this.setSize(297, 295);
 		this.add(getButtonPanel1(), gridBagConstraints);
@@ -96,6 +112,8 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 		this.add(tilknytBehandlingLabel, gridBagConstraints4);
 		this.add(produkttypeInfoLabel, gridBagConstraints5);
 		this.add(getProdukttypeInfoTextArea(), gridBagConstraints6);
+		this.add(produkttypeNavnLabel, gridBagConstraints41);
+		this.add(getProdukttypeNavnTextField(), gridBagConstraints51);
 	}
 
 	/**
@@ -182,6 +200,18 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 	public void slet() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	/**
+	 * This method initializes produkttypeNavnTextField	
+	 * 	
+	 * @return javax.swing.JTextField	
+	 */
+	private JTextField getProdukttypeNavnTextField() {
+		if (produkttypeNavnTextField == null) {
+			produkttypeNavnTextField = new JTextField();
+		}
+		return produkttypeNavnTextField;
 	}
 
 }  //  @jve:decl-index=0:visual-constraint="29,22"

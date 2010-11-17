@@ -10,6 +10,7 @@ public class RaekkefoelgeDelbehandlingerButtonPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JButton rykOPButton = null;
 	private JButton rykNedButton = null;
+	private OpretBehandlingPanel opretBehandlingPanel;
 
 	/**
 	 * This is the default constructor
@@ -35,6 +36,13 @@ public class RaekkefoelgeDelbehandlingerButtonPanel extends JPanel {
 	}
 
 	/**
+	 * @param opretBehandlingPanel the opretBehandlingPanel to set
+	 */
+	public void setOpretBehandlingPanel(OpretBehandlingPanel opretBehandlingPanel) {
+		this.opretBehandlingPanel = opretBehandlingPanel;
+	}
+
+	/**
 	 * This method initializes rykOPButton	
 	 * 	
 	 * @return javax.swing.JButton	
@@ -43,6 +51,11 @@ public class RaekkefoelgeDelbehandlingerButtonPanel extends JPanel {
 		if (rykOPButton == null) {
 			rykOPButton = new JButton();
 			rykOPButton.setText("↑");
+			rykOPButton.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					opretBehandlingPanel.flytDelbehandlingOp();
+				}
+			});
 		}
 		return rykOPButton;
 	}
@@ -56,7 +69,11 @@ public class RaekkefoelgeDelbehandlingerButtonPanel extends JPanel {
 		if (rykNedButton == null) {
 			rykNedButton = new JButton();
 			rykNedButton.setText("↓");
-		}
+			rykNedButton.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					opretBehandlingPanel.flytDelbehandlingNed();
+				}
+			});		}
 		return rykNedButton;
 	}
 

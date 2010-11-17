@@ -8,9 +8,9 @@ public class Delbehandling {
 	@Id
 	@GeneratedValue
 	int id;
-	@Column(length=20)
+	@Column(length=128)
 	private String navn;
-	@Column(length=20)
+	@Column(length=128)
 	private String behandlingsSted;
 	@Column(length=4)
 	private int minimumTørringsTid;

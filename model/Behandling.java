@@ -11,7 +11,7 @@ public class Behandling {
 	@Id
 	@GeneratedValue
 	private int nr;
-	@Column(length=20)
+	@Column(length=128)
 	private String navn;
 	@OneToMany
 	private List<Delbehandling> delbehandlinger = new ArrayList<Delbehandling>();

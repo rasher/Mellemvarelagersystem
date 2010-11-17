@@ -16,7 +16,9 @@ public class Test {
 	public static void main(String[] args) {
 		Service service = Service.getInstance();
 		Behandling b = service.createBehandling();
+		b.setNavn("Drage");
 		Behandling b1 = service.createBehandling();
+		b1.setNavn("Chokoladeovertrukket skum");
 		Delbehandling d1 = service.createDelbehandling();
 		d1.setNavn("Første sukkerlag");
 		d1.setBehandlingsSted("Hal 1");
@@ -53,9 +55,9 @@ public class Test {
 		service.gemIDatabase(b);
 		service.gemIDatabase(b1);
 		Produkttype p = service.createProdukttype(b);
-		p.setNavn("Chokolade Knapper");
+		p.setNavn("Bolcheting");
 		Produkttype p1 = service.createProdukttype(b1);
-		p1.setNavn("Skumbananer");
+		p1.setNavn("Skumbanan");
 		service.gemIDatabase(p);
 		service.gemIDatabase(p1);
 		Mellemvare m = service.createMellemvare(p);
