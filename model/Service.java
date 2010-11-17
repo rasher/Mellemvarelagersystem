@@ -92,7 +92,7 @@ public class Service {
 
 	}
 	
-	public List<Produkttype> getProdukttype()
+	public List<Produkttype> getProdukttyper()
 	{
 		em.getTransaction().begin();
 		List<Produkttype> produkttyper = em.createNamedQuery("findProdukttyper").getResultList();

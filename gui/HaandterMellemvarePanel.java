@@ -167,6 +167,10 @@ public class HaandterMellemvarePanel extends JPanel {
 									}
 								}
 							}
+							else
+							{
+								getBatchInfoTextArea().setText("Batchnummer findes ikke");
+							}
 						}
 					}
 					
