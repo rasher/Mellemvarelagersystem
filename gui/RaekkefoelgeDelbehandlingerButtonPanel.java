@@ -51,6 +51,11 @@ public class RaekkefoelgeDelbehandlingerButtonPanel extends JPanel {
 		if (rykOPButton == null) {
 			rykOPButton = new JButton();
 			rykOPButton.setText("↑");
+			rykOPButton.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					opretBehandlingPanel.flytDelbehandlingOp();
+				}
+			});
 		}
 		return rykOPButton;
 	}
@@ -64,7 +69,11 @@ public class RaekkefoelgeDelbehandlingerButtonPanel extends JPanel {
 		if (rykNedButton == null) {
 			rykNedButton = new JButton();
 			rykNedButton.setText("↓");
-		}
+			rykNedButton.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					opretBehandlingPanel.flytDelbehandlingNed();
+				}
+			});		}
 		return rykNedButton;
 	}
 
