@@ -112,6 +112,11 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 	private JComboBox getVælgProdukttypeComboBox() {
 		if (vælgProdukttypeComboBox == null) {
 			vælgProdukttypeComboBox = new JComboBox();
+			vælgProdukttypeComboBox.addItemListener(new java.awt.event.ItemListener() {
+				public void itemStateChanged(java.awt.event.ItemEvent e) {
+					System.out.println("itemStateChanged()"); // TODO Auto-generated Event stub itemStateChanged()
+				}
+			});
 		}
 		return vælgProdukttypeComboBox;
 	}
@@ -124,6 +129,11 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 	private JComboBox getTilknytBehandlingComboBox() {
 		if (tilknytBehandlingComboBox == null) {
 			tilknytBehandlingComboBox = new JComboBox();
+			tilknytBehandlingComboBox.addItemListener(new java.awt.event.ItemListener() {
+				public void itemStateChanged(java.awt.event.ItemEvent e) {
+					System.out.println("itemStateChanged()"); // TODO Auto-generated Event stub itemStateChanged()
+				}
+			});
 		}
 		return tilknytBehandlingComboBox;
 	}
