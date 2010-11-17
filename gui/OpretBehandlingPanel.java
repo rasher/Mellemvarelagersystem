@@ -9,13 +9,12 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.ListModel;
 
 import model.Behandling;
 import model.Delbehandling;
 import model.Service;
-import javax.swing.JTextField;
-import javax.swing.JButton;
 
 public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver {
 
@@ -31,6 +30,7 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	private JLabel behandlingsNavnLabel = null;
 	private JTextField behandlingsNavnTextField = null;
 	private RaekkefoelgeDelbehandlingerButtonPanel raekkefoelgeDelbehandlingerButtonPanel = null;
+	private Service service = Service.getInstance();  //  @jve:decl-index=0:
 	/**
 	 * This is the default constructor
 	 */
@@ -144,7 +144,7 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	 */
 	private JComboBox getVælgBehandlingComboBox() {
 		if (vælgBehandlingComboBox == null) {
-			List<Behandling> behandlinger = Service.getInstance().getBehandlinger();
+			List<Behandling> behandlinger = service.getBehandlinger();
 			vælgBehandlingComboBox = new JComboBox(behandlinger.toArray());
 			vælgBehandlingComboBox.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -182,7 +182,7 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	 */
 	private JList getMuligeDelbehandlingerList() {
 		if (muligeDelbehandlingerList == null) {
-			List<Delbehandling> delbehandlinger = Service.getInstance().getDelbehandlinger();
+			List<Delbehandling> delbehandlinger = service.getDelbehandlinger();
 			muligeDelbehandlingerList = new JList(delbehandlinger.toArray());
 			muligeDelbehandlingerList.setBorder(MainFrame.getBorder());
 		}
@@ -210,6 +210,7 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	private TilknytFravaelgDelbehandlingButtonPanel getTilknytFravælgDelbehandlingButtonPanel() {
 		if (tilknytFravælgDelbehandlingButtonPanel == null) {
 			tilknytFravælgDelbehandlingButtonPanel = new TilknytFravaelgDelbehandlingButtonPanel();
+			tilknytFravælgDelbehandlingButtonPanel.setOpretBehandlingPanel(this);
 		}
 		return tilknytFravælgDelbehandlingButtonPanel;
 	}
@@ -219,14 +220,14 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	 */
 	@Override
 	public void gem() {
-		// TODO Auto-generated method stub
-		System.out.println("Gem");
 		Behandling valgtBehandling = (Behandling) getVælgBehandlingComboBox().getSelectedItem();
 		System.out.println("Gem " + valgtBehandling);
 		ListModel delbehSelModel = getValgteDelbehandlingerList().getModel();
 		for (int i = 0; i < delbehSelModel.getSize(); i++) {
 			valgtBehandling.addDelbehandling((Delbehandling) delbehSelModel.getElementAt(i));
 		}
+		valgtBehandling.setNavn(getBehandlingsNavnTextField().getText());
+		service.gemIDatabase(valgtBehandling);
 	}
 
 	/* (non-Javadoc)
@@ -234,7 +235,6 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	 */
 	@Override
 	public void opret() {
-		// TODO Auto-generated method stub
 		System.out.println("Opret");
 	}
 
@@ -243,7 +243,6 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	 */
 	@Override
 	public void slet() {
-		// TODO Auto-generated method stub
 		System.out.println("Slet");
 	}
 
@@ -267,8 +266,37 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	private RaekkefoelgeDelbehandlingerButtonPanel getRaekkefoelgeDelbehandlingerButtonPanel() {
 		if (raekkefoelgeDelbehandlingerButtonPanel == null) {
 			raekkefoelgeDelbehandlingerButtonPanel = new RaekkefoelgeDelbehandlingerButtonPanel();
+			raekkefoelgeDelbehandlingerButtonPanel.setOpretBehandlingPanel(this);
 		}
 		return raekkefoelgeDelbehandlingerButtonPanel;
+	}
+
+	/**
+	 * 
+	 */
+	public void flytDelbehandlingOp() {
+		System.out.println("Flyt delbehandling op");
+	}
+
+	/**
+	 * 
+	 */
+	public void flytDelbehandlingNed() {
+		System.out.println("Flyt delbehandling ned");		
+	}
+
+	/**
+	 * 
+	 */
+	public void fravælgValgtDelbehandling() {
+		System.out.println("Fravælg valgt delbehandling");
+	}
+
+	/**
+	 * 
+	 */
+	public void tilknytValgtDelbehandling() {
+		System.out.println("Tilknyt valgt delbehandling");
 	}
 
 }  //  @jve:decl-index=0:visual-constraint="10,10"
