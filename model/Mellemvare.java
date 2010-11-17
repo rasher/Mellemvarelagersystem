@@ -23,11 +23,11 @@ public class Mellemvare {
 	@Id
 	@GeneratedValue
 	private int batchNummer;
-	@Temporal(value = TemporalType.DATE)
+	@Temporal(value = TemporalType.TIMESTAMP)
 	private Calendar minimumTørringNået;
-	@Temporal(value = TemporalType.DATE)
+	@Temporal(value = TemporalType.TIMESTAMP)
 	private Calendar optimalTørringNået;
-	@Temporal(value = TemporalType.DATE)
+	@Temporal(value = TemporalType.TIMESTAMP)
 	private Calendar maksimumTørringNået;
 	@ManyToOne
 	private BehandlingsTrin aktuelBehandlingsTrin;
@@ -171,5 +171,10 @@ public class Mellemvare {
 	 */
 	public Calendar getMaksimumTørringNået() {
 		return maksimumTørringNået;
+	}
+	
+	public BehandlingsTrin getAktueltBehandlingTrin()
+	{
+		return aktuelBehandlingsTrin;
 	}
 }
