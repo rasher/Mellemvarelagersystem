@@ -9,6 +9,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import model.Behandling;
+import model.Delbehandling;
+import model.Produkttype;
+
 public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserver {
 
 	private static final long serialVersionUID = 1L;
@@ -19,6 +23,8 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 	private JLabel tilknytBehandlingLabel = null;
 	private JLabel produkttypeInfoLabel = null;
 	private JTextArea produkttypeInfoTextArea = null;
+	private Produkttype aktuelProdukttype;
+	private Behandling aktuelBehandling;
 	/**
 	 * This is the default constructor
 	 */
@@ -114,7 +120,9 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 			vælgProdukttypeComboBox = new JComboBox();
 			vælgProdukttypeComboBox.addItemListener(new java.awt.event.ItemListener() {
 				public void itemStateChanged(java.awt.event.ItemEvent e) {
-					System.out.println("itemStateChanged()"); // TODO Auto-generated Event stub itemStateChanged()
+					aktuelProdukttype = (Produkttype) vælgProdukttypeComboBox.getSelectedItem();
+					getProdukttypeInfoTextArea().setText("Produkttype: \t" + aktuelProdukttype.getNavn() + 
+							"\r\n" + aktuelProdukttype.getBehandling().getNavn() + "\r\n");
 				}
 			});
 		}
@@ -131,7 +139,14 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 			tilknytBehandlingComboBox = new JComboBox();
 			tilknytBehandlingComboBox.addItemListener(new java.awt.event.ItemListener() {
 				public void itemStateChanged(java.awt.event.ItemEvent e) {
-					System.out.println("itemStateChanged()"); // TODO Auto-generated Event stub itemStateChanged()
+					aktuelBehandling = (Behandling) tilknytBehandlingComboBox.getSelectedItem();
+					for(Delbehandling d : aktuelBehandling.getDelbehandlinger())
+					{
+						getProdukttypeInfoTextArea().append("Navn: \t" + d.getNavn() + "\n\r BehandlingsSted: \t" 
+								+ d.getBehandlingsSted() + "\n\r Min. Tørringstid:\t" + d.getMinimumTørringsTid()
+								+ "\n\r Opt. Tørringstid:\t" + d.getOptimalTørringsTid() + "\n\r " +
+										"Maks. Tørringstid:\t" + d.getMaksimumTørringsTid() + "\n\n\r");
+					}
 				}
 			});
 		}
