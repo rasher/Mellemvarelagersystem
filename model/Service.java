@@ -115,5 +115,12 @@ public class Service {
 		em.getTransaction().commit();
 		return behandlinger;
 	}
+	
+	public void fjernFraDatabase(Object o)
+	{
+		em.getTransaction().begin();
+		em.remove(o);
+		em.getTransaction().commit();
+	}
 
 }

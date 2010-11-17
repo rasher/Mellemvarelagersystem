@@ -12,6 +12,8 @@ import javax.swing.JTextArea;
 import model.Behandling;
 import model.Delbehandling;
 import model.Produkttype;
+import model.Service;
+
 import javax.swing.JTextField;
 
 public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserver {
@@ -28,6 +30,7 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 	private Behandling aktuelBehandling;
 	private JLabel produkttypeNavnLabel = null;
 	private JTextField produkttypeNavnTextField = null;
+	private Service service = Service.getInstance();
 	/**
 	 * This is the default constructor
 	 */
@@ -114,6 +117,7 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 		this.add(getProdukttypeInfoTextArea(), gridBagConstraints6);
 		this.add(produkttypeNavnLabel, gridBagConstraints41);
 		this.add(getProdukttypeNavnTextField(), gridBagConstraints51);
+		getButtonPanel1().registerOpretGemSletObserver(this);
 	}
 
 	/**
@@ -139,6 +143,8 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 			vælgProdukttypeComboBox.addItemListener(new java.awt.event.ItemListener() {
 				public void itemStateChanged(java.awt.event.ItemEvent e) {
 					aktuelProdukttype = (Produkttype) vælgProdukttypeComboBox.getSelectedItem();
+					getProdukttypeNavnTextField().setText(aktuelProdukttype.getNavn());
+					getTilknytBehandlingComboBox().setSelectedItem(aktuelProdukttype.getBehandling());
 					getProdukttypeInfoTextArea().setText("Produkttype: \t" + aktuelProdukttype.getNavn() + 
 							"\r\n" + aktuelProdukttype.getBehandling().getNavn() + "\r\n");
 				}
@@ -186,20 +192,43 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 
 	@Override
 	public void opret() {
-		
-		
+		if(aktuelBehandling != null && !getProdukttypeNavnTextField().getText().isEmpty())
+		{
+			aktuelProdukttype = service.createProdukttype(aktuelBehandling);
+			aktuelProdukttype.setNavn(getProdukttypeNavnTextField().getText());
+			service.gemIDatabase(aktuelProdukttype);
+		}
+		opdaterComboBox();
 	}
 
 	@Override
 	public void gem() {
-		// TODO Auto-generated method stub
-		
+		if(aktuelProdukttype != null)
+		{
+			aktuelProdukttype.setNavn(getProdukttypeNavnTextField().getText());
+			aktuelProdukttype.setBehandling((Behandling)getTilknytBehandlingComboBox().getSelectedItem());
+			service.gemIDatabase(aktuelProdukttype);
+		}
+		opdaterComboBox();
 	}
 
 	@Override
 	public void slet() {
-		// TODO Auto-generated method stub
-		
+		if(aktuelProdukttype != null)
+			service.fjernFraDatabase(aktuelProdukttype);
+		opdaterComboBox();
+	}
+	
+	public void opdaterComboBox()
+	{
+		aktuelBehandling = null;
+		aktuelProdukttype = null;
+		getVælgProdukttypeComboBox().removeAllItems();
+		getTilknytBehandlingComboBox().removeAllItems();
+		for(Produkttype p : service.getProdukttype())
+			getVælgProdukttypeComboBox().addItem(p);
+		for(Behandling b : service.getBehandlinger())
+			getTilknytBehandlingComboBox().addItem(b);
 	}
 
 	/**
