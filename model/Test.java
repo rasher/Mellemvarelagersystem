@@ -53,7 +53,9 @@ public class Test {
 		service.gemIDatabase(b);
 		service.gemIDatabase(b1);
 		Produkttype p = service.createProdukttype(b);
+		p.setNavn("Chokolade Knapper");
 		Produkttype p1 = service.createProdukttype(b1);
+		p1.setNavn("Skumbananer");
 		service.gemIDatabase(p);
 		service.gemIDatabase(p1);
 		Mellemvare m = service.createMellemvare(p);

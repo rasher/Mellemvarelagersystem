@@ -35,4 +35,8 @@ public class Produkttype {
 	{
 		return behandling.getDelbehandlinger();
 	}
+	
+	public String toString(){
+		return navn;
+	}
 }

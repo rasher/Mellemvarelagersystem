@@ -4,6 +4,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
+import javax.swing.ComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -13,6 +14,7 @@ import javax.swing.JTextArea;
 
 import model.Mellemvare;
 import model.Produkttype;
+import model.Service;
 
 public class RegistrerNyMellemvarePanel extends JPanel {
 
@@ -86,15 +88,15 @@ public class RegistrerNyMellemvarePanel extends JPanel {
 	 */
 	private JComboBox getProdukttypeComboBox() {
 		if (produkttypeComboBox == null) {
-			produkttypeComboBox = new JComboBox();
+			produkttypeComboBox = new JComboBox(Service.getInstance().getProdukttyper().toArray());
 			produkttypeComboBox.addItemListener(new java.awt.event.ItemListener() {
 				public void itemStateChanged(java.awt.event.ItemEvent e) {
 					if(!((Produkttype) getProdukttypeComboBox().getSelectedItem()).getDelbehandlinger().isEmpty())
 					{
 						Produkttype aktuel = (Produkttype) getProdukttypeComboBox().getSelectedItem();
 						getRegistrerNyMellemvareButton().setEnabled(true);
-						getProdukttypeInfoTextArea().setText("Produkttype navn: \t" + aktuel.getNavn() + "\r\n\n"
-															 + "Tilknyttet behandling: \t" + aktuel.getBehandling().getNavn());
+						getProdukttypeInfoTextArea().setText("Produkttype navn: \n\t" + aktuel.getNavn() + "\r\n\n"
+															 + "Tilknyttet behandling: \n\t" + aktuel.getBehandling().getNavn());
 					}
 					else
 					{

@@ -177,4 +177,8 @@ public class Mellemvare {
 	{
 		return aktuelBehandlingsTrin;
 	}
+	
+	public String toString(){
+		return produkttype + " (" + batchNummer + ")";
+	}
 }
