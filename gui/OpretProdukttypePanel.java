@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-public class OpretProdukttypePanel extends JPanel {
+public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserver {
 
 	private static final long serialVersionUID = 1L;
 	private ButtonPanel buttonPanel1 = null;
@@ -139,6 +139,24 @@ public class OpretProdukttypePanel extends JPanel {
 			produkttypeInfoTextArea.setBorder(MainFrame.getBorder());
 		}
 		return produkttypeInfoTextArea;
+	}
+
+	@Override
+	public void opret() {
+		
+		
+	}
+
+	@Override
+	public void gem() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void slet() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }  //  @jve:decl-index=0:visual-constraint="29,22"
