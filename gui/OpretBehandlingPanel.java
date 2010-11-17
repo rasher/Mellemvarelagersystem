@@ -20,7 +20,7 @@ public class OpretBehandlingPanel extends JPanel {
 	private JLabel vælgBehandlingLabel = null;
 	private JComboBox vælgBehandlingComboBox = null;
 	private JLabel valgteDelbehandlingerLabel = null;
-	private JList vlagteDelbehandlingerList = null;
+	private JList valgteDelbehandlingerList = null;
 	private JLabel muligeDelbehandlingerLabel = null;
 	private JList muligeDelbehandlingerList = null;
 	private ButtonPanel behandlingButtonPanel = null;
@@ -137,16 +137,16 @@ public class OpretBehandlingPanel extends JPanel {
 	}
 
 	/**
-	 * This method initializes vlagteDelbehandlingerList	
+	 * This method initializes valgteDelbehandlingerList	
 	 * 	
 	 * @return javax.swing.JList	
 	 */
 	private JList getVlagteDelbehandlingerList() {
-		if (vlagteDelbehandlingerList == null) {
-			vlagteDelbehandlingerList = new JList();
-			vlagteDelbehandlingerList.setBorder(MainFrame.getBorder());
+		if (valgteDelbehandlingerList == null) {
+			valgteDelbehandlingerList = new JList();
+			valgteDelbehandlingerList.setBorder(MainFrame.getBorder());
 		}
-		return vlagteDelbehandlingerList;
+		return valgteDelbehandlingerList;
 	}
 
 	/**
