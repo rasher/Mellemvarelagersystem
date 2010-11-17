@@ -225,7 +225,7 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 		aktuelProdukttype = null;
 		getVælgProdukttypeComboBox().removeAllItems();
 		getTilknytBehandlingComboBox().removeAllItems();
-		for(Produkttype p : service.getProdukttype())
+		for(Produkttype p : service.getProdukttyper())
 			getVælgProdukttypeComboBox().addItem(p);
 		for(Behandling b : service.getBehandlinger())
 			getTilknytBehandlingComboBox().addItem(b);
