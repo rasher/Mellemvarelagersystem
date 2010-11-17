@@ -3,19 +3,25 @@ package gui;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.util.List;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.ListModel;
 
-public class OpretBehandlingPanel extends JPanel {
+import model.Behandling;
+import model.Delbehandling;
+import model.Service;
+
+public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver {
 
 	private static final long serialVersionUID = 1L;
 	private JLabel vælgBehandlingLabel = null;
 	private JComboBox vælgBehandlingComboBox = null;
 	private JLabel valgteDelbehandlingerLabel = null;
-	private JList vlagteDelbehandlingerList = null;
+	private JList valgteDelbehandlingerList = null;
 	private JLabel muligeDelbehandlingerLabel = null;
 	private JList muligeDelbehandlingerList = null;
 	private ButtonPanel behandlingButtonPanel = null;
@@ -118,22 +124,30 @@ public class OpretBehandlingPanel extends JPanel {
 	 */
 	private JComboBox getVælgBehandlingComboBox() {
 		if (vælgBehandlingComboBox == null) {
-			vælgBehandlingComboBox = new JComboBox();
+			List<Behandling> behandlinger = Service.getInstance().getBehandlinger();
+			vælgBehandlingComboBox = new JComboBox(behandlinger.toArray());
+			vælgBehandlingComboBox.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					JComboBox source = (JComboBox) e.getSource();
+					Behandling valgtBehandling = (Behandling) source.getSelectedItem();
+					getVlagteDelbehandlingerList().setListData(valgtBehandling.getDelbehandlinger().toArray());
+				}
+			});
 		}
 		return vælgBehandlingComboBox;
 	}
 
 	/**
-	 * This method initializes vlagteDelbehandlingerList	
+	 * This method initializes valgteDelbehandlingerList	
 	 * 	
 	 * @return javax.swing.JList	
 	 */
 	private JList getVlagteDelbehandlingerList() {
-		if (vlagteDelbehandlingerList == null) {
-			vlagteDelbehandlingerList = new JList();
-			vlagteDelbehandlingerList.setBorder(MainFrame.getBorder());
+		if (valgteDelbehandlingerList == null) {
+			valgteDelbehandlingerList = new JList();
+			valgteDelbehandlingerList.setBorder(MainFrame.getBorder());
 		}
-		return vlagteDelbehandlingerList;
+		return valgteDelbehandlingerList;
 	}
 
 	/**
@@ -143,7 +157,8 @@ public class OpretBehandlingPanel extends JPanel {
 	 */
 	private JList getMuligeDelbehandlingerList() {
 		if (muligeDelbehandlingerList == null) {
-			muligeDelbehandlingerList = new JList();
+			List<Delbehandling> delbehandlinger = Service.getInstance().getDelbehandlinger();
+			muligeDelbehandlingerList = new JList(delbehandlinger.toArray());
 			muligeDelbehandlingerList.setBorder(MainFrame.getBorder());
 		}
 		return muligeDelbehandlingerList;
@@ -157,6 +172,7 @@ public class OpretBehandlingPanel extends JPanel {
 	private ButtonPanel getBehandlingButtonPanel() {
 		if (behandlingButtonPanel == null) {
 			behandlingButtonPanel = new ButtonPanel();
+			behandlingButtonPanel.registerOpretGemSletObserver(this);
 		}
 		return behandlingButtonPanel;
 	}
@@ -183,6 +199,38 @@ public class OpretBehandlingPanel extends JPanel {
 			rækkefølgeDelbehandlingerPanel = new RaekkefoelgeDelbehandlingerButtonPanel();
 		}
 		return rækkefølgeDelbehandlingerPanel;
+	}
+
+	/* (non-Javadoc)
+	 * @see gui.OpretGemSletObserver#gem()
+	 */
+	@Override
+	public void gem() {
+		// TODO Auto-generated method stub
+		System.out.println("Gem");
+		Behandling valgtBehandling = (Behandling) getVælgBehandlingComboBox().getSelectedItem();
+		ListModel delbehSelModel = getVlagteDelbehandlingerList().getModel();
+		for (int i = 0; i < delbehSelModel.getSize(); i++) {
+			valgtBehandling.addDelbehandling((Delbehandling) delbehSelModel.getElementAt(i));
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see gui.OpretGemSletObserver#opret()
+	 */
+	@Override
+	public void opret() {
+		// TODO Auto-generated method stub
+		System.out.println("Opret");
+	}
+
+	/* (non-Javadoc)
+	 * @see gui.OpretGemSletObserver#slet()
+	 */
+	@Override
+	public void slet() {
+		// TODO Auto-generated method stub
+		System.out.println("Slet");
 	}
 
 }  //  @jve:decl-index=0:visual-constraint="10,10"

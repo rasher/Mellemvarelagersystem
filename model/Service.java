@@ -61,7 +61,6 @@ public class Service {
 	
 	private List<Mellemvare> getTørringsDatoListe(int antalTimerFraMaks, boolean klarListe)
 	{
-		em.getTransaction().begin();
 		List<Mellemvare> minOpnået = em.createNamedQuery("findMinimumstidOpnået").getResultList();
 		List<Mellemvare> resultatListe = new ArrayList<Mellemvare>();
 		GregorianCalendar skæringsPunkt = new GregorianCalendar();
@@ -71,7 +70,6 @@ public class Service {
 			if(m.getMaksimumTørringNået().after(skæringsPunkt) == klarListe)
 				resultatListe.add(m);
 		}
-		em.getTransaction().commit();
 		return resultatListe;
 	}
 	
@@ -84,25 +82,21 @@ public class Service {
 	
 	public List<Mellemvare> getMellemvarer()
 	{
-		em.getTransaction().begin();
 		return em.createNamedQuery("findAlleMellemvare").getResultList();
 	}
 	
 	public List<Produkttype> getProdukttype()
 	{
-		em.getTransaction().begin();
 		return em.createNamedQuery("findProdukttyper").getResultList();
 	}
 	
 	public List<Behandling> getBehandlinger()
 	{
-		em.getTransaction().begin();
 		return em.createNamedQuery("findAlleBehandlinger").getResultList();
 	}
 	
 	public List<Delbehandling> getDelbehandlinger()
 	{
-		em.getTransaction().begin();
 		return em.createNamedQuery("findDelbehandlinger").getResultList();
 	}
 
