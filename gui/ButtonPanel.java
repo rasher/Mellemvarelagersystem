@@ -125,5 +125,29 @@ public class ButtonPanel extends JPanel {
 			OpretGemSletObserver observer) {
 		opretGemSletObservers.add(observer);
 	}
+	
+	public void disableSletButton(boolean disable)
+	{
+		if(disable)
+			getSletButton().setEnabled(false);
+		else
+			getSletButton().setEnabled(true);
+	}
+	
+	public void disableGemButton(boolean disable)
+	{
+		if(disable)
+			getGemButton().setEnabled(false);
+		else
+			getGemButton().setEnabled(true);
+	}
+	
+	public void disableOpretButton(boolean disable)
+	{
+		if(disable)
+			getOpretButton().setEnabled(false);
+		else
+			getOpretButton().setEnabled(true);
+	} 
 
 }  //  @jve:decl-index=0:visual-constraint="10,10"
