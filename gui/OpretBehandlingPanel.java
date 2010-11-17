@@ -125,6 +125,13 @@ public class OpretBehandlingPanel extends JPanel {
 		if (vælgBehandlingComboBox == null) {
 			List<Behandling> behandlinger = Service.getInstance().getBehandlinger();
 			vælgBehandlingComboBox = new JComboBox(behandlinger.toArray());
+			vælgBehandlingComboBox.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					JComboBox source = (JComboBox) e.getSource();
+					Behandling valgtBehandling = (Behandling) source.getSelectedItem();
+					getVlagteDelbehandlingerList().setListData(valgtBehandling.getDelbehandlinger().toArray());
+				}
+			});
 		}
 		return vælgBehandlingComboBox;
 	}
