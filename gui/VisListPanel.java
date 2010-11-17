@@ -3,11 +3,15 @@ package gui;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
+
+import model.Mellemvare;
 
 public class VisListPanel extends JPanel {
 
@@ -19,6 +23,7 @@ public class VisListPanel extends JPanel {
 	private JLabel antalTimerTilMaxToerringNåetLabel = null;
 	private JSlider antalTimerFraMaxToerringsSlider = null;
 	private JLabel taellerLabel = null;
+	private List<MellemvareValgtObserver> mellemvareValgtObservers = new ArrayList<MellemvareValgtObserver>();  //  @jve:decl-index=0:
 	/**
 	 * This is the default constructor
 	 */
@@ -105,6 +110,16 @@ public class VisListPanel extends JPanel {
 		if (klarList == null) {
 			klarList = new JList();
 			klarList.setBorder(MainFrame.getBorder());
+			klarList
+					.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+						public void valueChanged(javax.swing.event.ListSelectionEvent e) {
+							Mellemvare aktuelValgtKlarMellemvare = (Mellemvare) getKlarList().getSelectedValue();
+							for (MellemvareValgtObserver observer : mellemvareValgtObservers) {
+								observer.mellemvareValgt(aktuelValgtKlarMellemvare);
+							}
+							System.out.println("valueChanged()"); // TODO Auto-generated Event stub valueChanged()
+						}
+					});
 		}
 		return klarList;
 	}
@@ -118,6 +133,16 @@ public class VisListPanel extends JPanel {
 		if (nærOverskredetList == null) {
 			nærOverskredetList = new JList();
 			nærOverskredetList.setBorder(MainFrame.getBorder());
+			nærOverskredetList
+					.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+						public void valueChanged(javax.swing.event.ListSelectionEvent e) {
+							Mellemvare aktuelValgtNærOverskredetMellemvare = (Mellemvare) getKlarList().getSelectedValue();
+							for (MellemvareValgtObserver observer : mellemvareValgtObservers) {
+								observer.mellemvareValgt(aktuelValgtNærOverskredetMellemvare);
+							}
+							System.out.println("valueChanged()"); // TODO Auto-generated Event stub valueChanged()
+						}
+					});
 		}
 		return nærOverskredetList;
 	}
@@ -144,6 +169,11 @@ public class VisListPanel extends JPanel {
 					});
 		}
 		return antalTimerFraMaxToerringsSlider;
+	}
+	
+	public void registerMellemvareValgtObserver(MellemvareValgtObserver observer) {
+		mellemvareValgtObservers.add(observer);
+		// TODO Auto-generated method stub
 	}
 
 }  //  @jve:decl-index=0:visual-constraint="-11,7"
