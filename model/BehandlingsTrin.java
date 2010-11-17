@@ -9,11 +9,11 @@ public class BehandlingsTrin {
 	@Id
 	@GeneratedValue
 	int ID;
-	@Temporal(value = TemporalType.DATE)
+	@Temporal(value = TemporalType.TIMESTAMP)
 	private Calendar start;
-	@Temporal(value = TemporalType.DATE)
+	@Temporal(value = TemporalType.TIMESTAMP)
 	private Calendar slut;
-	@Temporal(value = TemporalType.DATE)
+	@Temporal(value = TemporalType.TIMESTAMP)
 	private Calendar tørringStart;
 	@ManyToOne
 	private Delbehandling delbehandling;
@@ -30,10 +30,12 @@ public class BehandlingsTrin {
 		this.slut = slut;
 	}
 	public Calendar getTørringStart() {
+		System.out.println("hej hej "+ tørringStart);
 		return tørringStart;
 	}
 	public void setTørringStart(Calendar tørringStart) {
 		this.tørringStart = tørringStart;
+		
 	}
 	public Delbehandling getDelbehandling() {
 		return delbehandling;

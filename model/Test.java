@@ -58,6 +58,7 @@ public class Test {
 		service.gemIDatabase(p1);
 		Mellemvare m = service.createMellemvare(p);
 		Mellemvare m1 = service.createMellemvare(p1);
+
 	
 		
 		try {
@@ -69,12 +70,14 @@ public class Test {
 		}
 		m.startTørring();
 		m1.startTørring();
+		System.out.println("Din mama" + m.getAktueltBehandlingTrin().getTørringStart());
 		service.gemIDatabase(m);
 		service.gemIDatabase(m1);
 		
 		for(Mellemvare mg : service.getMellemvarer())
 		{
 			System.out.println(mg.getMinimumTørringNået());
+			System.out.println(mg.getAktueltBehandlingTrin().getTørringStart());
 		}
 	}
 }
