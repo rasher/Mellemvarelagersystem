@@ -61,6 +61,7 @@ public class Service {
 	
 	private List<Mellemvare> getTørringsDatoListe(int antalTimerFraMaks, boolean klarListe)
 	{
+		em.getTransaction().begin();
 		List<Mellemvare> minOpnået = em.createNamedQuery("findMinimumstidOpnået").getResultList();
 		List<Mellemvare> resultatListe = new ArrayList<Mellemvare>();
 		GregorianCalendar skæringsPunkt = new GregorianCalendar();
@@ -70,6 +71,7 @@ public class Service {
 			if(m.getMaksimumTørringNået().after(skæringsPunkt) == klarListe)
 				resultatListe.add(m);
 		}
+		em.getTransaction().commit();
 		return resultatListe;
 	}
 	
@@ -82,22 +84,34 @@ public class Service {
 	
 	public List<Mellemvare> getMellemvarer()
 	{
-		return em.createNamedQuery("findAlleMellemvare").getResultList();
+		em.getTransaction().begin();
+		List<Mellemvare> mellemvarer = em.createNamedQuery("findAlleMellemvare").getResultList();
+		em.getTransaction().commit();
+		return mellemvarer;
 	}
 	
 	public List<Produkttype> getProdukttype()
 	{
-		return em.createNamedQuery("findProdukttyper").getResultList();
+		em.getTransaction().begin();
+		List<Produkttype> produkttyper = em.createNamedQuery("findProdukttyper").getResultList();
+		em.getTransaction().commit();
+		return produkttyper;
 	}
 	
 	public List<Behandling> getBehandlinger()
 	{
-		return em.createNamedQuery("findAlleBehandlinger").getResultList();
+		em.getTransaction().begin();
+		List<Behandling> behandlinger =  em.createNamedQuery("findAlleBehandlinger").getResultList();
+		em.getTransaction().commit();
+		return behandlinger;
 	}
 	
 	public List<Delbehandling> getDelbehandlinger()
 	{
-		return em.createNamedQuery("findDelbehandlinger").getResultList();
+		em.getTransaction().begin();
+		List<Delbehandling> behandlinger = em.createNamedQuery("findDelbehandlinger").getResultList();
+		em.getTransaction().commit();
+		return behandlinger;
 	}
 
 }
