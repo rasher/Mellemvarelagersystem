@@ -103,13 +103,13 @@ public class Mellemvare {
 	 */
 	private void beregnTørringsTider() {
 		if (aktuelBehandlingsTrin != null) {
-			minimumTørringNået = aktuelBehandlingsTrin.getStart();
+			minimumTørringNået = aktuelBehandlingsTrin.getTørringStart();
 			minimumTørringNået.add(GregorianCalendar.HOUR,
 					aktuelBehandlingsTrin.getMinimumTørringstid());
-			optimalTørringNået = aktuelBehandlingsTrin.getStart();
+			optimalTørringNået = aktuelBehandlingsTrin.getTørringStart();
 			optimalTørringNået.add(GregorianCalendar.HOUR,
 					aktuelBehandlingsTrin.getOptimalTørringstid());
-			maksimumTørringNået = aktuelBehandlingsTrin.getStart();
+			maksimumTørringNået = aktuelBehandlingsTrin.getTørringStart();
 			maksimumTørringNået.add(GregorianCalendar.HOUR,
 					aktuelBehandlingsTrin.getMaksimumTørringstid());
 

@@ -49,6 +49,8 @@ public class Test {
 		Produkttype p1 = service.createProdukttype(b1);
 		Mellemvare m = service.createMellemvare(p);
 		Mellemvare m1 = service.createMellemvare(p1);
+		m.startTørring();
+		m1.startTørring();
 		
 	}
 }
