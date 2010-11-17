@@ -10,7 +10,7 @@ public class Produkttype {
 	@Id
 	@GeneratedValue
 	private int id;
-	@Column(length=20)
+	@Column(length=128)
 	private String navn;
 	@ManyToOne
 	private Behandling behandling;
