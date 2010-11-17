@@ -92,7 +92,7 @@ public class Service {
 
 	}
 	
-	public List<Produkttype> getProdukttype()
+	public List<Produkttype> getProdukttyper()
 	{
 		em.getTransaction().begin();
 		List<Produkttype> produkttyper = em.createNamedQuery("findProdukttyper").getResultList();
@@ -114,6 +114,13 @@ public class Service {
 		List<Delbehandling> behandlinger = em.createNamedQuery("findDelbehandlinger").getResultList();
 		em.getTransaction().commit();
 		return behandlinger;
+	}
+	
+	public void fjernFraDatabase(Object o)
+	{
+		em.getTransaction().begin();
+		em.remove(o);
+		em.getTransaction().commit();
 	}
 
 }
