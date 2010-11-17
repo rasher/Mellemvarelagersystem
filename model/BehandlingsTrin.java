@@ -30,7 +30,6 @@ public class BehandlingsTrin {
 		this.slut = slut;
 	}
 	public Calendar getTørringStart() {
-		System.out.println("hej hej "+ tørringStart);
 		return tørringStart;
 	}
 	public void setTørringStart(Calendar tørringStart) {

@@ -70,14 +70,7 @@ public class Test {
 		}
 		m.startTørring();
 		m1.startTørring();
-		System.out.println("Din mama" + m.getAktueltBehandlingTrin().getTørringStart());
 		service.gemIDatabase(m);
 		service.gemIDatabase(m1);
-		
-		for(Mellemvare mg : service.getMellemvarer())
-		{
-			System.out.println(mg.getMinimumTørringNået());
-			System.out.println(mg.getAktueltBehandlingTrin().getTørringStart());
-		}
 	}
 }
