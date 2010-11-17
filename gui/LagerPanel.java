@@ -36,9 +36,8 @@ public class LagerPanel extends JPanel {
 		this.add(getRegistrerNyMellemvarePanel(), null);
 		this.add(getHåndterMellemvarePanel(), null);
 		this.add(getVisListPanel(), null);
-		getRegistrerNyMellemvarePanel().registerMellemvareOprettetObserver(
-				getHåndterMellemvarePanel()
-				);
+		getRegistrerNyMellemvarePanel().setHaandterMellemvarePanel(håndterMellemvarePanel);
+		getVisListPanel().setHaandterMellemvarePanel(håndterMellemvarePanel);
 	}
 
 	/**

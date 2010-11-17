@@ -3,8 +3,6 @@ package gui;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -24,7 +22,7 @@ public class RegistrerNyMellemvarePanel extends JPanel {
 	private JLabel produkttypeInfoLabel = null;
 	private JTextArea produkttypeInfoTextArea = null;
 	private JButton registrerNyMellemvareButton = null;
-	private List<MellemvareOprettetObserver> mellemvareOprettetObservers = new ArrayList<MellemvareOprettetObserver>();
+	private HaandterMellemvarePanel haandterMellemvarePanel;
 
 	/**
 	 * This is the default constructor
@@ -132,28 +130,23 @@ public class RegistrerNyMellemvarePanel extends JPanel {
 			registrerNyMellemvareButton = new JButton();
 			registrerNyMellemvareButton.setText("Registrer");
 			registrerNyMellemvareButton.setEnabled(false);
-			registrerNyMellemvareButton
-					.addActionListener(new java.awt.event.ActionListener() {
+			registrerNyMellemvareButton.addActionListener(new java.awt.event.ActionListener() {
 						public void actionPerformed(java.awt.event.ActionEvent e) {
 							if(!((Produkttype) getProdukttypeComboBox().getSelectedItem()).getDelbehandlinger().isEmpty())
 							{
 								Mellemvare aktuelMellemvare = model.Service.getInstance().createMellemvare((Produkttype) getProdukttypeComboBox().getSelectedItem());
 								JOptionPane.showMessageDialog(null, "Mellemvare er oprettet med batchnummer: " + aktuelMellemvare.getBatchNummer(), "Mellemvare oprettelse", JOptionPane.PLAIN_MESSAGE);
-								for (MellemvareOprettetObserver observer : mellemvareOprettetObservers) {
-									observer.mellemvareOprettet(aktuelMellemvare);
-								}
+								haandterMellemvarePanel.getBatchnummerTextField().setText(aktuelMellemvare.getBatchNummer()+"");
 							}
 						}
 					});
 		}
 		return registrerNyMellemvareButton;
 	}
-
-	public void registerMellemvareOprettetObserver(
-			MellemvareOprettetObserver observer) {
-		mellemvareOprettetObservers.add(observer);
-		// TODO Auto-generated method stub
-		
+	
+	public void setHaandterMellemvarePanel(
+			HaandterMellemvarePanel haandterMellemvarePanel) {
+		this.haandterMellemvarePanel = haandterMellemvarePanel;
 	}
 
 }

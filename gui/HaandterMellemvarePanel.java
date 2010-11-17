@@ -7,6 +7,8 @@ import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import model.BehandlingsTrin;
 import model.Mellemvare;
@@ -100,55 +102,75 @@ public class HaandterMellemvarePanel extends JPanel implements MellemvareOprette
 	protected JTextField getBatchnummerTextField() {
 		if (batchnummerTextField == null) {
 			batchnummerTextField = new JTextField();
-			batchnummerTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-				public void keyTyped(java.awt.event.KeyEvent e) {
-					for(Mellemvare m : Service.getInstance().getMellemvarer())
-					{
-						if(m.getBatchNummer() == Integer.parseInt(getBatchnummerTextField().getText()))
+				batchnummerTextField.getDocument().addDocumentListener(new DocumentListener(){
+
+					@Override
+					public void changedUpdate(DocumentEvent arg0) {
+						updateBatchnummerTextField();
+						
+					}
+
+					@Override
+					public void insertUpdate(DocumentEvent arg0) {
+						updateBatchnummerTextField();
+						
+					}
+
+					@Override
+					public void removeUpdate(DocumentEvent arg0) {
+						updateBatchnummerTextField();
+						
+					}
+					
+					private void updateBatchnummerTextField(){
+						for(Mellemvare m : Service.getInstance().getMellemvarer())
 						{
-							getBatchInfoTextArea().setText("Produkttype: \t" + m.getProdukttype().getNavn() + "\r\n\n"
-															+ "Delbehandlinger: \n\n");
-							for(BehandlingsTrin trin : m.getBehandlingsTrin())
+							if((m.getBatchNummer() + "").equals(getBatchnummerTextField().getText()))
 							{
-								if(trin.getSlut() != null){
-									getBatchInfoTextArea().append(trin.getDelbehandling().getNavn() + "Afsluttet\n");
-									getStartTørringButton().setEnabled(false);
-									getSendTilDelbehandlingButton().setEnabled(true);
-									getSendTilPakningButton().setEnabled(false);
-									if(m.getBehandlingsTrin().get(m.getBehandlingsTrin().size()).getSlut() != null){
+								getBatchInfoTextArea().setText("Produkttype: \t" + m.getProdukttype().getNavn() + "\r\n\n"
+																+ "Delbehandlinger: \n\n");
+								for(BehandlingsTrin trin : m.getBehandlingsTrin())
+								{
+									if(trin.getSlut() != null){
+										getBatchInfoTextArea().append(trin.getDelbehandling().getNavn() + "(Afsluttet)\n");
 										getStartTørringButton().setEnabled(false);
-										getSendTilDelbehandlingButton().setEnabled(false);
-										getSendTilPakningButton().setEnabled(true);
+										getSendTilDelbehandlingButton().setEnabled(true);
+										getSendTilPakningButton().setEnabled(false);
+										if(m.getBehandlingsTrin().get(m.getBehandlingsTrin().size()-1).getSlut() != null){
+											getStartTørringButton().setEnabled(false);
+											getSendTilDelbehandlingButton().setEnabled(false);
+											getSendTilPakningButton().setEnabled(true);
+										}
 									}
-								}
-								else if(trin.getTørringStart() != null){
-									getBatchInfoTextArea().append(trin.getDelbehandling().getNavn() + "(Tørrer)\n");
-									getStartTørringButton().setEnabled(false);
-									getSendTilDelbehandlingButton().setEnabled(true);
-									getSendTilPakningButton().setEnabled(false);
-									if(m.getBehandlingsTrin().get(m.getBehandlingsTrin().size()).getTørringStart() != null){
+									else if(trin.getTørringStart() != null){
+										getBatchInfoTextArea().append(trin.getDelbehandling().getNavn() + "(Tørrer)\n");
 										getStartTørringButton().setEnabled(false);
-										getSendTilDelbehandlingButton().setEnabled(false);
-										getSendTilPakningButton().setEnabled(true);
+										getSendTilDelbehandlingButton().setEnabled(true);
+										getSendTilPakningButton().setEnabled(false);
+										if(m.getBehandlingsTrin().get(m.getBehandlingsTrin().size()-1).getTørringStart() != null){
+											getStartTørringButton().setEnabled(false);
+											getSendTilDelbehandlingButton().setEnabled(false);
+											getSendTilPakningButton().setEnabled(true);
+										}
 									}
-								}
-								else if(trin.getStart() != null){
-									getBatchInfoTextArea().append(trin.getDelbehandling().getNavn() + "(Behandler)\n");
-									getStartTørringButton().setEnabled(true);
-									getSendTilDelbehandlingButton().setEnabled(false);
-									getSendTilPakningButton().setEnabled(false);
-								}
-								else{
-									getBatchInfoTextArea().append(trin.getDelbehandling().getNavn() + "\n");
-									getStartTørringButton().setEnabled(true);
-									getSendTilDelbehandlingButton().setEnabled(true);
-									getSendTilPakningButton().setEnabled(false);
+									else if(trin.getStart() != null){
+										getBatchInfoTextArea().append(trin.getDelbehandling().getNavn() + "(Behandler)\n");
+										getStartTørringButton().setEnabled(true);
+										getSendTilDelbehandlingButton().setEnabled(false);
+										getSendTilPakningButton().setEnabled(false);
+									}
+									else{
+										getBatchInfoTextArea().append(trin.getDelbehandling().getNavn() + "\n");
+										getStartTørringButton().setEnabled(true);
+										getSendTilDelbehandlingButton().setEnabled(true);
+										getSendTilPakningButton().setEnabled(false);
+									}
 								}
 							}
 						}
 					}
-				}
-			});
+					
+				});
 		}
 		return batchnummerTextField;
 	}
@@ -206,6 +228,10 @@ public class HaandterMellemvarePanel extends JPanel implements MellemvareOprette
 			sendTilPakningButton.setEnabled(false);
 		}
 		return sendTilPakningButton;
+	}
+	
+	public void setBatchnummerText(String batchnummer){
+		getBatchnummerTextField().setText(batchnummer);
 	}
 
 	@Override
