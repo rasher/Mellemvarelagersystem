@@ -188,7 +188,7 @@ public class MainFrame extends JFrame {
 		opdaterTørreListerThread.start();
 	}
 
-	/**
+	/**	
 	 * This method initializes jContentPane
 	 * 
 	 * @return javax.swing.JPanel
