@@ -64,6 +64,14 @@ public class ButtonPanel extends JPanel {
 		if (opretButton == null) {
 			opretButton = new JButton();
 			opretButton.setText("Opret");
+			opretButton.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					System.out.println("actionPerformed()"); // TODO Auto-generated Event stub actionPerformed()
+					for (OpretGemSletObserver observer: opretGemSletObservers) {
+						observer.opret();
+					}
+				}
+			});
 		}
 		return opretButton;
 	}
@@ -77,6 +85,14 @@ public class ButtonPanel extends JPanel {
 		if (gemButton == null) {
 			gemButton = new JButton();
 			gemButton.setText("Gem");
+			gemButton.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					System.out.println("actionPerformed()"); // TODO Auto-generated Event stub actionPerformed()
+					for (OpretGemSletObserver observer: opretGemSletObservers) {
+						observer.gem();
+					}
+				}
+			});
 		}
 		return gemButton;
 	}
@@ -90,6 +106,14 @@ public class ButtonPanel extends JPanel {
 		if (sletButton == null) {
 			sletButton = new JButton();
 			sletButton.setText("Slet");
+			sletButton.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					System.out.println("actionPerformed()"); // TODO Auto-generated Event stub actionPerformed()
+					for (OpretGemSletObserver observer: opretGemSletObservers) {
+						observer.slet();
+					}
+				}
+			});
 		}
 		return sletButton;
 	}
