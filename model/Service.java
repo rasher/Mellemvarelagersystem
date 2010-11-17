@@ -30,6 +30,7 @@ public class Service {
 			BehandlingsTrin nytBehandlingsTrin = new BehandlingsTrin();
 			nytBehandlingsTrin.setDelbehandling(delbehandling);
 			nyMellemvare.addBehandlingsTrin(nytBehandlingsTrin);
+			gemIDatabase(nytBehandlingsTrin);
 		}
 		return nyMellemvare;
 	}
@@ -82,7 +83,7 @@ public class Service {
 	
 	public List<Mellemvare> getMellemvarer()
 	{
-		return em.createNamedQuery("findAlleMellemvare").getResultList();
+		return em.createNamedQuery("findAlleMellemvarer").getResultList();
 	}
 	
 	public List<Produkttype> getProdukttype()

@@ -45,12 +45,36 @@ public class Test {
 		b.addDelbehandling(d2);
 		b1.addDelbehandling(d3);
 		b1.addDelbehandling(d4);
+		
+		service.gemIDatabase(d1);
+		service.gemIDatabase(d2);
+		service.gemIDatabase(d3);
+		service.gemIDatabase(d4);
+		service.gemIDatabase(b);
+		service.gemIDatabase(b1);
 		Produkttype p = service.createProdukttype(b);
 		Produkttype p1 = service.createProdukttype(b1);
+		service.gemIDatabase(p);
+		service.gemIDatabase(p1);
 		Mellemvare m = service.createMellemvare(p);
 		Mellemvare m1 = service.createMellemvare(p1);
+	
+		
+		try {
+			m.startDelbehandling();
+			m1.startDelbehandling();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		m.startTørring();
 		m1.startTørring();
+		service.gemIDatabase(m);
+		service.gemIDatabase(m1);
 		
+		for(Mellemvare mg : service.getMellemvarer())
+		{
+			System.out.println(mg.getMinimumTørringNået());
+		}
 	}
 }
