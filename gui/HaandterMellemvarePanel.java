@@ -16,7 +16,7 @@ import model.Service;
 
 import java.awt.Insets;
 
-public class HaandterMellemvarePanel extends JPanel implements MellemvareOprettetObserver, MellemvareValgtObserver {
+public class HaandterMellemvarePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JLabel batchnummerLabel = null;
@@ -232,17 +232,6 @@ public class HaandterMellemvarePanel extends JPanel implements MellemvareOprette
 	
 	public void setBatchnummerText(String batchnummer){
 		getBatchnummerTextField().setText(batchnummer);
-	}
-
-	@Override
-	public void mellemvareOprettet(Mellemvare mellemvare) {
-		getBatchnummerTextField().setText(mellemvare.getBatchNummer() + "");
-		
-	}
-	
-	@Override
-	public void mellemvareValgt(Mellemvare mellemvare) {
-		getBatchnummerTextField().setText(mellemvare.getBatchNummer() + "");
 	}
 
 }
