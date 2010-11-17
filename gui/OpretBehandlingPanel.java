@@ -14,6 +14,8 @@ import javax.swing.ListModel;
 import model.Behandling;
 import model.Delbehandling;
 import model.Service;
+import javax.swing.JTextField;
+import javax.swing.JButton;
 
 public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver {
 
@@ -26,7 +28,9 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	private JList muligeDelbehandlingerList = null;
 	private ButtonPanel behandlingButtonPanel = null;
 	private TilknytFravaelgDelbehandlingButtonPanel tilknytFravælgDelbehandlingButtonPanel = null;
-	private RaekkefoelgeDelbehandlingerButtonPanel rækkefølgeDelbehandlingerPanel = null;
+	private JLabel behandlingsNavnLabel = null;
+	private JTextField behandlingsNavnTextField = null;
+	private RaekkefoelgeDelbehandlingerButtonPanel raekkefoelgeDelbehandlingerButtonPanel = null;
 	/**
 	 * This is the default constructor
 	 */
@@ -41,25 +45,38 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	 * @return void
 	 */
 	private void initialize() {
+		GridBagConstraints gridBagConstraints32 = new GridBagConstraints();
+		gridBagConstraints32.gridx = 1;
+		gridBagConstraints32.insets = new Insets(0, 0, 0, 5);
+		gridBagConstraints32.gridy = 6;
+		GridBagConstraints gridBagConstraints31 = new GridBagConstraints();
+		gridBagConstraints31.fill = GridBagConstraints.BOTH;
+		gridBagConstraints31.gridy = 3;
+		gridBagConstraints31.weightx = 1.0;
+		gridBagConstraints31.insets = new Insets(0, 5, 0, 5);
+		gridBagConstraints31.gridwidth = 2;
+		gridBagConstraints31.gridx = 0;
+		GridBagConstraints gridBagConstraints21 = new GridBagConstraints();
+		gridBagConstraints21.gridx = 0;
+		gridBagConstraints21.anchor = GridBagConstraints.WEST;
+		gridBagConstraints21.insets = new Insets(0, 5, 1, 0);
+		gridBagConstraints21.gridy = 2;
+		behandlingsNavnLabel = new JLabel();
+		behandlingsNavnLabel.setText("Behandlingsnavn :");
 		GridBagConstraints gridBagConstraints6 = new GridBagConstraints();
 		gridBagConstraints6.gridx = 0;
 		gridBagConstraints6.gridwidth = 2;
 		gridBagConstraints6.fill = GridBagConstraints.HORIZONTAL;
 		gridBagConstraints6.insets = new Insets(0, 0, 0, 0);
-		gridBagConstraints6.gridy = 7;
-		GridBagConstraints gridBagConstraints8 = new GridBagConstraints();
-		gridBagConstraints8.gridx = 1;
-		gridBagConstraints8.fill = GridBagConstraints.NONE;
-		gridBagConstraints8.insets = new Insets(0, 0, 0, 5);
-		gridBagConstraints8.gridy = 3;
+		gridBagConstraints6.gridy = 11;
 		GridBagConstraints gridBagConstraints7 = new GridBagConstraints();
 		gridBagConstraints7.gridx = 0;
 		gridBagConstraints7.insets = new Insets(5, 0, 0, 0);
 		gridBagConstraints7.gridwidth = 2;
-		gridBagConstraints7.gridy = 4;
+		gridBagConstraints7.gridy = 8;
 		GridBagConstraints gridBagConstraints5 = new GridBagConstraints();
 		gridBagConstraints5.fill = GridBagConstraints.BOTH;
-		gridBagConstraints5.gridy = 6;
+		gridBagConstraints5.gridy = 10;
 		gridBagConstraints5.weightx = 1.0;
 		gridBagConstraints5.weighty = 1.0;
 		gridBagConstraints5.insets = new Insets(0, 5, 0, 5);
@@ -71,22 +88,23 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 		gridBagConstraints4.anchor = GridBagConstraints.WEST;
 		gridBagConstraints4.insets = new Insets(5, 5, 1, 0);
 		gridBagConstraints4.gridwidth = 1;
-		gridBagConstraints4.gridy = 5;
+		gridBagConstraints4.gridy = 9;
 		muligeDelbehandlingerLabel = new JLabel();
 		muligeDelbehandlingerLabel.setText("Mulige delbehandlinger : ");
 		GridBagConstraints gridBagConstraints3 = new GridBagConstraints();
 		gridBagConstraints3.fill = GridBagConstraints.BOTH;
-		gridBagConstraints3.gridy = 3;
+		gridBagConstraints3.gridy = 5;
 		gridBagConstraints3.weightx = 1.0;
 		gridBagConstraints3.weighty = 1.0;
 		gridBagConstraints3.insets = new Insets(0, 5, 0, 5);
+		gridBagConstraints3.gridheight = 2;
 		gridBagConstraints3.gridx = 0;
 		GridBagConstraints gridBagConstraints2 = new GridBagConstraints();
 		gridBagConstraints2.gridx = 0;
 		gridBagConstraints2.anchor = GridBagConstraints.WEST;
 		gridBagConstraints2.insets = new Insets(5, 5, 1, 0);
 		gridBagConstraints2.gridwidth = 1;
-		gridBagConstraints2.gridy = 2;
+		gridBagConstraints2.gridy = 4;
 		valgteDelbehandlingerLabel = new JLabel();
 		valgteDelbehandlingerLabel.setText("Valgte delbehandlinger : ");
 		GridBagConstraints gridBagConstraints1 = new GridBagConstraints();
@@ -109,12 +127,14 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 		this.add(vælgBehandlingLabel, gridBagConstraints);
 		this.add(getVælgBehandlingComboBox(), gridBagConstraints1);
 		this.add(valgteDelbehandlingerLabel, gridBagConstraints2);
-		this.add(getVlagteDelbehandlingerList(), gridBagConstraints3);
+		this.add(getValgteDelbehandlingerList(), gridBagConstraints3);
 		this.add(muligeDelbehandlingerLabel, gridBagConstraints4);
 		this.add(getMuligeDelbehandlingerList(), gridBagConstraints5);
 		this.add(getTilknytFravælgDelbehandlingButtonPanel(), gridBagConstraints7);
-		this.add(getRækkefølgeDelbehandlingerPanel(), gridBagConstraints8);
 		this.add(getBehandlingButtonPanel(), gridBagConstraints6);
+		this.add(behandlingsNavnLabel, gridBagConstraints21);
+		this.add(getBehandlingsNavnTextField(), gridBagConstraints31);
+		this.add(getRaekkefoelgeDelbehandlingerButtonPanel(), gridBagConstraints32);
 	}
 
 	/**
@@ -130,11 +150,16 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					JComboBox source = (JComboBox) e.getSource();
 					Behandling valgtBehandling = (Behandling) source.getSelectedItem();
-					getVlagteDelbehandlingerList().setListData(valgtBehandling.getDelbehandlinger().toArray());
+					opdaterFelter(valgtBehandling);
 				}
 			});
+			opdaterFelter((Behandling) vælgBehandlingComboBox.getSelectedItem());
 		}
 		return vælgBehandlingComboBox;
+	}
+	private void opdaterFelter(Behandling valgtBehandling) {
+		getValgteDelbehandlingerList().setListData(valgtBehandling.getDelbehandlinger().toArray());
+		getBehandlingsNavnTextField().setText(((Behandling) vælgBehandlingComboBox.getSelectedItem()).getNavn());
 	}
 
 	/**
@@ -142,7 +167,7 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	 * 	
 	 * @return javax.swing.JList	
 	 */
-	private JList getVlagteDelbehandlingerList() {
+	private JList getValgteDelbehandlingerList() {
 		if (valgteDelbehandlingerList == null) {
 			valgteDelbehandlingerList = new JList();
 			valgteDelbehandlingerList.setBorder(MainFrame.getBorder());
@@ -189,18 +214,6 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 		return tilknytFravælgDelbehandlingButtonPanel;
 	}
 
-	/**
-	 * This method initializes rækkefølgeDelbehandlingerPanel	
-	 * 	
-	 * @return gui.RækkefølgeDelbehandlingerPanel	
-	 */
-	private RaekkefoelgeDelbehandlingerButtonPanel getRækkefølgeDelbehandlingerPanel() {
-		if (rækkefølgeDelbehandlingerPanel == null) {
-			rækkefølgeDelbehandlingerPanel = new RaekkefoelgeDelbehandlingerButtonPanel();
-		}
-		return rækkefølgeDelbehandlingerPanel;
-	}
-
 	/* (non-Javadoc)
 	 * @see gui.OpretGemSletObserver#gem()
 	 */
@@ -209,7 +222,8 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 		// TODO Auto-generated method stub
 		System.out.println("Gem");
 		Behandling valgtBehandling = (Behandling) getVælgBehandlingComboBox().getSelectedItem();
-		ListModel delbehSelModel = getVlagteDelbehandlingerList().getModel();
+		System.out.println("Gem " + valgtBehandling);
+		ListModel delbehSelModel = getValgteDelbehandlingerList().getModel();
 		for (int i = 0; i < delbehSelModel.getSize(); i++) {
 			valgtBehandling.addDelbehandling((Delbehandling) delbehSelModel.getElementAt(i));
 		}
@@ -231,6 +245,30 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	public void slet() {
 		// TODO Auto-generated method stub
 		System.out.println("Slet");
+	}
+
+	/**
+	 * This method initializes behandlingsNavnTextField	
+	 * 	
+	 * @return javax.swing.JTextField	
+	 */
+	private JTextField getBehandlingsNavnTextField() {
+		if (behandlingsNavnTextField == null) {
+			behandlingsNavnTextField = new JTextField();
+		}
+		return behandlingsNavnTextField;
+	}
+
+	/**
+	 * This method initializes raekkefoelgeDelbehandlingerButtonPanel	
+	 * 	
+	 * @return gui.RaekkefoelgeDelbehandlingerButtonPanel	
+	 */
+	private RaekkefoelgeDelbehandlingerButtonPanel getRaekkefoelgeDelbehandlingerButtonPanel() {
+		if (raekkefoelgeDelbehandlingerButtonPanel == null) {
+			raekkefoelgeDelbehandlingerButtonPanel = new RaekkefoelgeDelbehandlingerButtonPanel();
+		}
+		return raekkefoelgeDelbehandlingerButtonPanel;
 	}
 
 }  //  @jve:decl-index=0:visual-constraint="10,10"
