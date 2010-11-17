@@ -5,6 +5,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.util.List;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -169,7 +170,8 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	 */
 	private JList getValgteDelbehandlingerList() {
 		if (valgteDelbehandlingerList == null) {
-			valgteDelbehandlingerList = new JList();
+			DefaultListModel model = new DefaultListModel();
+			valgteDelbehandlingerList = new JList(model);
 			valgteDelbehandlingerList.setBorder(MainFrame.getBorder());
 		}
 		return valgteDelbehandlingerList;
@@ -183,7 +185,9 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	private JList getMuligeDelbehandlingerList() {
 		if (muligeDelbehandlingerList == null) {
 			List<Delbehandling> delbehandlinger = service.getDelbehandlinger();
-			muligeDelbehandlingerList = new JList(delbehandlinger.toArray());
+			DefaultListModel model = new DefaultListModel(); 
+			muligeDelbehandlingerList = new JList(model);
+			muligeDelbehandlingerList.setListData(delbehandlinger.toArray());
 			muligeDelbehandlingerList.setBorder(MainFrame.getBorder());
 		}
 		return muligeDelbehandlingerList;
@@ -289,14 +293,19 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	 * 
 	 */
 	public void fravælgValgtDelbehandling() {
-		System.out.println("Fravælg valgt delbehandling");
+		Delbehandling valgtDelbehandling = (Delbehandling) getValgteDelbehandlingerList().getSelectedValue();
+		System.out.println("Fravælg valgt delbehandling: " + valgtDelbehandling);
 	}
 
 	/**
 	 * 
 	 */
 	public void tilknytValgtDelbehandling() {
-		System.out.println("Tilknyt valgt delbehandling");
+		Delbehandling valgtDelbehandling = (Delbehandling) getMuligeDelbehandlingerList().getSelectedValue();
+		if (valgtDelbehandling != null) {
+			//
+		}
+		System.out.println("Tilknyt valgt delbehandling: " + valgtDelbehandling);
 	}
 
 }  //  @jve:decl-index=0:visual-constraint="10,10"
