@@ -8,11 +8,13 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 
+import model.BehandlingsTrin;
 import model.Mellemvare;
+import model.Service;
 
 import java.awt.Insets;
 
-public class HaandterMellemvarePanel extends JPanel implements MellemvareOprettetObserver {
+public class HaandterMellemvarePanel extends JPanel implements MellemvareOprettetObserver, MellemvareValgtObserver {
 
 	private static final long serialVersionUID = 1L;
 	private JLabel batchnummerLabel = null;
@@ -98,6 +100,55 @@ public class HaandterMellemvarePanel extends JPanel implements MellemvareOprette
 	protected JTextField getBatchnummerTextField() {
 		if (batchnummerTextField == null) {
 			batchnummerTextField = new JTextField();
+			batchnummerTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+				public void keyTyped(java.awt.event.KeyEvent e) {
+					for(Mellemvare m : Service.getInstance().getMellemvarer())
+					{
+						if(m.getBatchNummer() == Integer.parseInt(getBatchnummerTextField().getText()))
+						{
+							getBatchInfoTextArea().setText("Produkttype: \t" + m.getProdukttype().getNavn() + "\r\n\n"
+															+ "Delbehandlinger: \n\n");
+							for(BehandlingsTrin trin : m.getBehandlingsTrin())
+							{
+								if(trin.getSlut() != null){
+									getBatchInfoTextArea().append(trin.getDelbehandling().getNavn() + "Afsluttet\n");
+									getStartTørringButton().setEnabled(false);
+									getSendTilDelbehandlingButton().setEnabled(true);
+									getSendTilPakningButton().setEnabled(false);
+									if(m.getBehandlingsTrin().get(m.getBehandlingsTrin().size()).getSlut() != null){
+										getStartTørringButton().setEnabled(false);
+										getSendTilDelbehandlingButton().setEnabled(false);
+										getSendTilPakningButton().setEnabled(true);
+									}
+								}
+								else if(trin.getTørringStart() != null){
+									getBatchInfoTextArea().append(trin.getDelbehandling().getNavn() + "(Tørrer)\n");
+									getStartTørringButton().setEnabled(false);
+									getSendTilDelbehandlingButton().setEnabled(true);
+									getSendTilPakningButton().setEnabled(false);
+									if(m.getBehandlingsTrin().get(m.getBehandlingsTrin().size()).getTørringStart() != null){
+										getStartTørringButton().setEnabled(false);
+										getSendTilDelbehandlingButton().setEnabled(false);
+										getSendTilPakningButton().setEnabled(true);
+									}
+								}
+								else if(trin.getStart() != null){
+									getBatchInfoTextArea().append(trin.getDelbehandling().getNavn() + "(Behandler)\n");
+									getStartTørringButton().setEnabled(true);
+									getSendTilDelbehandlingButton().setEnabled(false);
+									getSendTilPakningButton().setEnabled(false);
+								}
+								else{
+									getBatchInfoTextArea().append(trin.getDelbehandling().getNavn() + "\n");
+									getStartTørringButton().setEnabled(true);
+									getSendTilDelbehandlingButton().setEnabled(true);
+									getSendTilPakningButton().setEnabled(false);
+								}
+							}
+						}
+					}
+				}
+			});
 		}
 		return batchnummerTextField;
 	}
@@ -124,6 +175,7 @@ public class HaandterMellemvarePanel extends JPanel implements MellemvareOprette
 		if (startTørringButton == null) {
 			startTørringButton = new JButton();
 			startTørringButton.setText("Start Tørring");
+			startTørringButton.setEnabled(false);
 		}
 		return startTørringButton;
 	}
@@ -137,6 +189,7 @@ public class HaandterMellemvarePanel extends JPanel implements MellemvareOprette
 		if (sendTilDelbehandlingButton == null) {
 			sendTilDelbehandlingButton = new JButton();
 			sendTilDelbehandlingButton.setText("Send Til Delbehandling");
+			sendTilDelbehandlingButton.setEnabled(false);
 		}
 		return sendTilDelbehandlingButton;
 	}
@@ -150,6 +203,7 @@ public class HaandterMellemvarePanel extends JPanel implements MellemvareOprette
 		if (sendTilPakningButton == null) {
 			sendTilPakningButton = new JButton();
 			sendTilPakningButton.setText("Send Til Pakning");
+			sendTilPakningButton.setEnabled(false);
 		}
 		return sendTilPakningButton;
 	}
@@ -158,6 +212,11 @@ public class HaandterMellemvarePanel extends JPanel implements MellemvareOprette
 	public void mellemvareOprettet(Mellemvare mellemvare) {
 		getBatchnummerTextField().setText(mellemvare.getBatchNummer() + "");
 		
+	}
+	
+	@Override
+	public void mellemvareValgt(Mellemvare mellemvare) {
+		getBatchnummerTextField().setText(mellemvare.getBatchNummer() + "");
 	}
 
 }
