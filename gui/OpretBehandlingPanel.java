@@ -165,6 +165,9 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	}
 
 	private void opdaterFelter(Behandling valgtBehandling) {
+		if (valgtBehandling == null) {
+			return;
+		}
 		for (Delbehandling d: valgtBehandling.getDelbehandlinger()) {
 			valgteDelbehandlingerModel.addElement(d);			
 		}
@@ -260,6 +263,10 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	@Override
 	public void slet() {
 		System.out.println("Slet");
+		Behandling valgtBehandling = (Behandling) getVælgBehandlingComboBox().getSelectedItem();
+		if (valgtBehandling != null) {
+			service.fjernFraDatabase(valgtBehandling);
+		}
 	}
 
 	/**
