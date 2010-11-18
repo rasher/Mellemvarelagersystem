@@ -86,8 +86,9 @@ public class Test {
 	}
 	
 	public static void main(String[] args) {
-		søgMellemvare(13);
-		søgMellemvare(14);
-		søgMellemvare(-60);
+		opretTestData();
+//		søgMellemvare(13);
+//		søgMellemvare(14);
+//		søgMellemvare(-60);
 	}
 }
