@@ -130,7 +130,10 @@ public class HaandterMellemvarePanel extends JPanel {
 						}
 						Mellemvare m = Service.getInstance().søgMellemvare(input);
 						if(m == null){
-							getBatchInfoTextArea().setText("");
+							if(!getBatchnummerTextField().getText().isEmpty())
+								getBatchInfoTextArea().setText("Batchnummer findes ikke!");
+							else
+								getBatchInfoTextArea().setText("");
 							}
 						else
 						
