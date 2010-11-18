@@ -36,4 +36,10 @@ public class Behandling {
 	{
 		return delbehandlinger;
 	}
+	/**
+	 * @param arrayList
+	 */
+	public void setDelbehandlinger(List<Delbehandling> delbehandlinger) {
+		this.delbehandlinger = delbehandlinger;
+	}
 }

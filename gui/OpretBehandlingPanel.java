@@ -3,6 +3,7 @@ package gui;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.DefaultListModel;
@@ -10,6 +11,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListModel;
 
@@ -32,6 +34,9 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	private JTextField behandlingsNavnTextField = null;
 	private RaekkefoelgeDelbehandlingerButtonPanel raekkefoelgeDelbehandlingerButtonPanel = null;
 	private Service service = Service.getInstance();  //  @jve:decl-index=0:
+	private DefaultListModel valgteDelbehandlingerModel;
+	private JScrollPane valgteDelbehandlingerScrollpane = null;
+	private JScrollPane muligeDelbehandlingerScrollpane = null;
 	/**
 	 * This is the default constructor
 	 */
@@ -46,8 +51,24 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	 * @return void
 	 */
 	private void initialize() {
+		GridBagConstraints gridBagConstraints22 = new GridBagConstraints();
+		gridBagConstraints22.fill = GridBagConstraints.BOTH;
+		gridBagConstraints22.gridy = 11;
+		gridBagConstraints22.weightx = 1.0;
+		gridBagConstraints22.weighty = 1.0;
+		gridBagConstraints22.gridwidth = 3;
+		gridBagConstraints22.insets = new Insets(0, 5, 0, 5);
+		gridBagConstraints22.gridx = 0;
+		GridBagConstraints gridBagConstraints11 = new GridBagConstraints();
+		gridBagConstraints11.fill = GridBagConstraints.BOTH;
+		gridBagConstraints11.gridy = 6;
+		gridBagConstraints11.weightx = 1.0;
+		gridBagConstraints11.weighty = 1.0;
+		gridBagConstraints11.insets = new Insets(0, 5, 0, 5);
+		gridBagConstraints11.gridwidth = 1;
+		gridBagConstraints11.gridx = 0;
 		GridBagConstraints gridBagConstraints32 = new GridBagConstraints();
-		gridBagConstraints32.gridx = 1;
+		gridBagConstraints32.gridx = 2;
 		gridBagConstraints32.insets = new Insets(0, 0, 0, 5);
 		gridBagConstraints32.gridy = 6;
 		GridBagConstraints gridBagConstraints31 = new GridBagConstraints();
@@ -55,7 +76,7 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 		gridBagConstraints31.gridy = 3;
 		gridBagConstraints31.weightx = 1.0;
 		gridBagConstraints31.insets = new Insets(0, 5, 0, 5);
-		gridBagConstraints31.gridwidth = 2;
+		gridBagConstraints31.gridwidth = 3;
 		gridBagConstraints31.gridx = 0;
 		GridBagConstraints gridBagConstraints21 = new GridBagConstraints();
 		gridBagConstraints21.gridx = 0;
@@ -66,40 +87,23 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 		behandlingsNavnLabel.setText("Behandlingsnavn :");
 		GridBagConstraints gridBagConstraints6 = new GridBagConstraints();
 		gridBagConstraints6.gridx = 0;
-		gridBagConstraints6.gridwidth = 2;
+		gridBagConstraints6.gridwidth = 3;
 		gridBagConstraints6.fill = GridBagConstraints.HORIZONTAL;
 		gridBagConstraints6.insets = new Insets(0, 0, 0, 0);
-		gridBagConstraints6.gridy = 11;
+		gridBagConstraints6.gridy = 12;
 		GridBagConstraints gridBagConstraints7 = new GridBagConstraints();
 		gridBagConstraints7.gridx = 0;
 		gridBagConstraints7.insets = new Insets(5, 0, 0, 0);
 		gridBagConstraints7.gridwidth = 2;
-		gridBagConstraints7.gridy = 8;
-		GridBagConstraints gridBagConstraints5 = new GridBagConstraints();
-		gridBagConstraints5.fill = GridBagConstraints.BOTH;
-		gridBagConstraints5.gridy = 10;
-		gridBagConstraints5.weightx = 1.0;
-		gridBagConstraints5.weighty = 1.0;
-		gridBagConstraints5.insets = new Insets(0, 5, 0, 5);
-		gridBagConstraints5.gridwidth = 2;
-		gridBagConstraints5.gridheight = 1;
-		gridBagConstraints5.gridx = 0;
+		gridBagConstraints7.gridy = 9;
 		GridBagConstraints gridBagConstraints4 = new GridBagConstraints();
 		gridBagConstraints4.gridx = 0;
 		gridBagConstraints4.anchor = GridBagConstraints.WEST;
 		gridBagConstraints4.insets = new Insets(5, 5, 1, 0);
 		gridBagConstraints4.gridwidth = 1;
-		gridBagConstraints4.gridy = 9;
+		gridBagConstraints4.gridy = 10;
 		muligeDelbehandlingerLabel = new JLabel();
 		muligeDelbehandlingerLabel.setText("Mulige delbehandlinger : ");
-		GridBagConstraints gridBagConstraints3 = new GridBagConstraints();
-		gridBagConstraints3.fill = GridBagConstraints.BOTH;
-		gridBagConstraints3.gridy = 5;
-		gridBagConstraints3.weightx = 1.0;
-		gridBagConstraints3.weighty = 1.0;
-		gridBagConstraints3.insets = new Insets(0, 5, 0, 5);
-		gridBagConstraints3.gridheight = 2;
-		gridBagConstraints3.gridx = 0;
 		GridBagConstraints gridBagConstraints2 = new GridBagConstraints();
 		gridBagConstraints2.gridx = 0;
 		gridBagConstraints2.anchor = GridBagConstraints.WEST;
@@ -113,7 +117,7 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 		gridBagConstraints1.gridy = 1;
 		gridBagConstraints1.weightx = 1.0;
 		gridBagConstraints1.insets = new Insets(0, 5, 0, 5);
-		gridBagConstraints1.gridwidth = 2;
+		gridBagConstraints1.gridwidth = 3;
 		gridBagConstraints1.gridx = 0;
 		GridBagConstraints gridBagConstraints = new GridBagConstraints();
 		gridBagConstraints.gridx = 0;
@@ -128,14 +132,14 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 		this.add(vælgBehandlingLabel, gridBagConstraints);
 		this.add(getVælgBehandlingComboBox(), gridBagConstraints1);
 		this.add(valgteDelbehandlingerLabel, gridBagConstraints2);
-		this.add(getValgteDelbehandlingerList(), gridBagConstraints3);
 		this.add(muligeDelbehandlingerLabel, gridBagConstraints4);
-		this.add(getMuligeDelbehandlingerList(), gridBagConstraints5);
 		this.add(getTilknytFravælgDelbehandlingButtonPanel(), gridBagConstraints7);
 		this.add(getBehandlingButtonPanel(), gridBagConstraints6);
 		this.add(behandlingsNavnLabel, gridBagConstraints21);
 		this.add(getBehandlingsNavnTextField(), gridBagConstraints31);
 		this.add(getRaekkefoelgeDelbehandlingerButtonPanel(), gridBagConstraints32);
+		this.add(getValgteDelbehandlingerScrollpane(), gridBagConstraints11);
+		this.add(getMuligeDelbehandlingerScrollpane(), gridBagConstraints22);
 	}
 
 	/**
@@ -147,6 +151,7 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 		if (vælgBehandlingComboBox == null) {
 			List<Behandling> behandlinger = service.getBehandlinger();
 			vælgBehandlingComboBox = new JComboBox(behandlinger.toArray());
+			vælgBehandlingComboBox.setRenderer(new BehandlingListCellRenderer());
 			vælgBehandlingComboBox.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					JComboBox source = (JComboBox) e.getSource();
@@ -158,8 +163,11 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 		}
 		return vælgBehandlingComboBox;
 	}
+
 	private void opdaterFelter(Behandling valgtBehandling) {
-		getValgteDelbehandlingerList().setListData(valgtBehandling.getDelbehandlinger().toArray());
+		for (Delbehandling d: valgtBehandling.getDelbehandlinger()) {
+			valgteDelbehandlingerModel.addElement(d);			
+		}
 		getBehandlingsNavnTextField().setText(((Behandling) vælgBehandlingComboBox.getSelectedItem()).getNavn());
 	}
 
@@ -170,9 +178,11 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	 */
 	private JList getValgteDelbehandlingerList() {
 		if (valgteDelbehandlingerList == null) {
-			DefaultListModel model = new DefaultListModel();
-			valgteDelbehandlingerList = new JList(model);
+			valgteDelbehandlingerList = new JList();
 			valgteDelbehandlingerList.setBorder(MainFrame.getBorder());
+			valgteDelbehandlingerModel = new DefaultListModel();
+			valgteDelbehandlingerList.setModel(valgteDelbehandlingerModel);
+			valgteDelbehandlingerList.setCellRenderer(new DelbehandlingListCellRenderer());
 		}
 		return valgteDelbehandlingerList;
 	}
@@ -185,10 +195,11 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	private JList getMuligeDelbehandlingerList() {
 		if (muligeDelbehandlingerList == null) {
 			List<Delbehandling> delbehandlinger = service.getDelbehandlinger();
-			DefaultListModel model = new DefaultListModel(); 
-			muligeDelbehandlingerList = new JList(model);
+			muligeDelbehandlingerList = new JList();
+			muligeDelbehandlingerList.setModel(new DefaultListModel());
 			muligeDelbehandlingerList.setListData(delbehandlinger.toArray());
 			muligeDelbehandlingerList.setBorder(MainFrame.getBorder());
+			muligeDelbehandlingerList.setCellRenderer(new DelbehandlingListCellRenderer());
 		}
 		return muligeDelbehandlingerList;
 	}
@@ -226,12 +237,13 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	public void gem() {
 		Behandling valgtBehandling = (Behandling) getVælgBehandlingComboBox().getSelectedItem();
 		System.out.println("Gem " + valgtBehandling);
-		ListModel delbehSelModel = getValgteDelbehandlingerList().getModel();
-		for (int i = 0; i < delbehSelModel.getSize(); i++) {
-			valgtBehandling.addDelbehandling((Delbehandling) delbehSelModel.getElementAt(i));
+		valgtBehandling.setDelbehandlinger(new ArrayList<Delbehandling>());
+		ListModel model = getValgteDelbehandlingerList().getModel();
+		for (int i = 0; i < model.getSize(); i++) {
+			valgtBehandling.addDelbehandling((Delbehandling) model.getElementAt(i));
 		}
 		valgtBehandling.setNavn(getBehandlingsNavnTextField().getText());
-		service.gemIDatabase(valgtBehandling);
+		// Gør det
 	}
 
 	/* (non-Javadoc)
@@ -279,14 +291,28 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	 * 
 	 */
 	public void flytDelbehandlingOp() {
-		System.out.println("Flyt delbehandling op");
+		DefaultListModel model = valgteDelbehandlingerModel;
+		int valgtIndex = getValgteDelbehandlingerList().getSelectedIndex();
+		if (valgtIndex > 0) {
+			Object temp = model.get(valgtIndex);
+			model.insertElementAt(temp, valgtIndex - 1); // Indsæt over
+			model.remove(valgtIndex + 1); // Fjern den gamle
+			valgteDelbehandlingerList.setSelectedIndex(valgtIndex - 1);
+		}
 	}
 
 	/**
 	 * 
 	 */
 	public void flytDelbehandlingNed() {
-		System.out.println("Flyt delbehandling ned");		
+		DefaultListModel model = valgteDelbehandlingerModel;
+		int valgtIndex = getValgteDelbehandlingerList().getSelectedIndex();
+		if (valgtIndex < model.getSize()-1) {
+			Object temp = model.get(valgtIndex);
+			model.insertElementAt(temp, valgtIndex + 2); // Indsæt under
+			model.remove(valgtIndex); // Fjern den gamle
+			valgteDelbehandlingerList.setSelectedIndex(valgtIndex + 1);
+		}
 	}
 
 	/**
@@ -295,6 +321,11 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	public void fravælgValgtDelbehandling() {
 		Delbehandling valgtDelbehandling = (Delbehandling) getValgteDelbehandlingerList().getSelectedValue();
 		System.out.println("Fravælg valgt delbehandling: " + valgtDelbehandling);
+		int valgtIndex = getValgteDelbehandlingerList().getSelectedIndex();
+		if (valgtIndex > -1) {
+			valgteDelbehandlingerModel.remove(valgtIndex);
+			getValgteDelbehandlingerList().setSelectedIndex(Math.max(valgtIndex, valgteDelbehandlingerModel.getSize()-1));
+		}
 	}
 
 	/**
@@ -303,9 +334,35 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	public void tilknytValgtDelbehandling() {
 		Delbehandling valgtDelbehandling = (Delbehandling) getMuligeDelbehandlingerList().getSelectedValue();
 		if (valgtDelbehandling != null) {
-			//
+			valgteDelbehandlingerModel.addElement(valgtDelbehandling);
 		}
 		System.out.println("Tilknyt valgt delbehandling: " + valgtDelbehandling);
 	}
 
-}  //  @jve:decl-index=0:visual-constraint="10,10"
+	/**
+	 * This method initializes valgteDelbehandlingerScrollpane	
+	 * 	
+	 * @return javax.swing.JScrollPane	
+	 */
+	private JScrollPane getValgteDelbehandlingerScrollpane() {
+		if (valgteDelbehandlingerScrollpane == null) {
+			valgteDelbehandlingerScrollpane = new JScrollPane();
+			valgteDelbehandlingerScrollpane.setViewportView(getValgteDelbehandlingerList());
+		}
+		return valgteDelbehandlingerScrollpane;
+	}
+
+	/**
+	 * This method initializes muligeDelbehandlingerScrollpane	
+	 * 	
+	 * @return javax.swing.JScrollPane	
+	 */
+	private JScrollPane getMuligeDelbehandlingerScrollpane() {
+		if (muligeDelbehandlingerScrollpane == null) {
+			muligeDelbehandlingerScrollpane = new JScrollPane();
+			muligeDelbehandlingerScrollpane.setViewportView(getMuligeDelbehandlingerList());
+		}
+		return muligeDelbehandlingerScrollpane;
+	}
+
+}  //  @jve:decl-index=0:visual-constraint="151,143"
