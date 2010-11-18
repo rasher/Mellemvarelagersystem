@@ -11,6 +11,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -272,8 +273,12 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 		System.out.println("Slet");
 		Behandling valgtBehandling = (Behandling) getVælgBehandlingComboBox().getSelectedItem();
 		if (valgtBehandling != null) {
-			service.fjernFraDatabase(valgtBehandling);
-			vælgBehandlingModel.removeElement(valgtBehandling);
+			try {
+				service.fjernFraDatabase(valgtBehandling);
+				vælgBehandlingModel.removeElement(valgtBehandling);
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(this, "Du kan ikke slette denne behandling mens der findes produkttyper der benytter den", "Behandling ikke slettet", JOptionPane.ERROR_MESSAGE);
+			}
 			opdaterFelter();
 		}
 	}
