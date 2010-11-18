@@ -124,8 +124,9 @@ public class Service {
 	}
 
 	/**
+	 * Slå en mellemvare op i databasen.
 	 * @param batchNummer
-	 * @return
+	 * @return Mellemvaren med det givne batchNummer, eller null hvis ingen findes
 	 */
 	public Mellemvare søgMellemvare(int batchNummer) {
 		// TODO Auto-generated method stub
