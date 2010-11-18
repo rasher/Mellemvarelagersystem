@@ -48,5 +48,16 @@ public class Delbehandling {
 	public void setMaksimumTørringsTid(int maksimumTørringsTid) {
 		this.maksimumTørringsTid = maksimumTørringsTid;
 	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return String
+				.format(
+						"Delbehandling [navn=%s, id=%s, behandlingsSted=%s, maksimumTørringsTid=%s, minimumTørringsTid=%s, optimalTørringsTid=%s]",
+						navn, id, behandlingsSted, maksimumTørringsTid,
+						minimumTørringsTid, optimalTørringsTid);
+	}
 	
 }

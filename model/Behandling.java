@@ -42,4 +42,13 @@ public class Behandling {
 	public void setDelbehandlinger(List<Delbehandling> delbehandlinger) {
 		this.delbehandlinger = delbehandlinger;
 	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return String.format("Behandling [navn=%s, nr=%s, delbehandlinger=%s]",
+				navn, nr, delbehandlinger);
+	}
 }
