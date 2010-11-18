@@ -89,6 +89,7 @@ public class RegistrerNyMellemvarePanel extends JPanel {
 	private JComboBox getProdukttypeComboBox() {
 		if (produkttypeComboBox == null) {
 			produkttypeComboBox = new JComboBox(Service.getInstance().getProdukttyper().toArray());
+			produkttypeComboBox.setSelectedItem(null);
 			produkttypeComboBox.addItemListener(new java.awt.event.ItemListener() {
 				public void itemStateChanged(java.awt.event.ItemEvent e) {
 					if(!((Produkttype) getProdukttypeComboBox().getSelectedItem()).getDelbehandlinger().isEmpty())

@@ -22,6 +22,7 @@ public class VisListPanel extends JPanel {
 	private JSlider antalTimerFraMaxToerringsSlider = null;
 	private JLabel taellerLabel = null;
 	private HaandterMellemvarePanel haandterMellemvarePanel;
+	private OpdaterToerreListerThread thread;  //  @jve:decl-index=0:
 	/**
 	 * This is the default constructor
 	 */
@@ -155,6 +156,9 @@ public class VisListPanel extends JPanel {
 					.addChangeListener(new javax.swing.event.ChangeListener() {
 						public void stateChanged(javax.swing.event.ChangeEvent e) {
 							taellerLabel.setText(antalTimerFraMaxToerringsSlider.getValue() + "");
+							if(thread != null){
+							thread.opdaterLister();
+							}
 						}
 					});
 		}
@@ -164,6 +168,10 @@ public class VisListPanel extends JPanel {
 	public void setHaandterMellemvarePanel(
 			HaandterMellemvarePanel håndterMellemvarePanel) {
 		this.haandterMellemvarePanel = håndterMellemvarePanel;
+	}
+	
+	public void setThread(OpdaterToerreListerThread thread){
+		this.thread = thread;
 	}
 
 }  //  @jve:decl-index=0:visual-constraint="-11,7"
