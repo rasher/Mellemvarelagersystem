@@ -13,6 +13,7 @@ public class LagerPanel extends JPanel {
 	private RegistrerNyMellemvarePanel registrerNyMellemvarePanel = null;
 	private HaandterMellemvarePanel håndterMellemvarePanel = null;
 	private VisListPanel visListPanel = null;
+	private MainFrame mainFrame;
 
 	/**
 	 * This is the default constructor
@@ -77,6 +78,11 @@ public class LagerPanel extends JPanel {
 			visListPanel.setBorder(MainFrame.getBorder());
 		}
 		return visListPanel;
+	}
+	
+	public void setMainFrame(MainFrame main){
+		this.mainFrame = main;
+		visListPanel.setThread(mainFrame.getOpdaterToerreListerThread());
 	}
 
 }  //  @jve:decl-index=0:visual-constraint="9,20"
