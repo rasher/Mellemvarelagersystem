@@ -165,6 +165,9 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	}
 
 	private void opdaterFelter(Behandling valgtBehandling) {
+		if (valgtBehandling == null) {
+			return;
+		}
 		for (Delbehandling d: valgtBehandling.getDelbehandlinger()) {
 			valgteDelbehandlingerModel.addElement(d);			
 		}
