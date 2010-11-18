@@ -131,50 +131,17 @@ public class HaandterMellemvarePanel extends JPanel {
 							input = -1;
 						}
 						Mellemvare m = Service.getInstance().søgMellemvare(input);
-						if(m != null)
-						{
+						if(m != null){
 							getBatchInfoTextArea().setText("Produkttype: \t" + m.getProdukttype().getNavn() + "\r\n\n"
 															+ "Delbehandlinger: \n\n");
-							for(BehandlingsTrin trin : m.getBehandlingsTrin())
-							{
-								if(trin.getSlut() != null){
-									getBatchInfoTextArea().append(trin.getDelbehandling().getNavn() + "(Afsluttet)\n");
-									getStartTørringButton().setEnabled(false);
-									getSendTilDelbehandlingButton().setEnabled(true);
-									getSendTilPakningButton().setEnabled(false);
-									if(m.getBehandlingsTrin().get(m.getBehandlingsTrin().size()-1).getSlut() != null){
-										getStartTørringButton().setEnabled(false);
-										getSendTilDelbehandlingButton().setEnabled(false);
-										getSendTilPakningButton().setEnabled(true);
-									}
-								}
-								else if(trin.getTørringStart() != null){
-									getBatchInfoTextArea().append(trin.getDelbehandling().getNavn() + "(Tørrer)\n");
-									getStartTørringButton().setEnabled(false);
-									getSendTilDelbehandlingButton().setEnabled(true);
-									getSendTilPakningButton().setEnabled(false);
-									if(m.getBehandlingsTrin().get(m.getBehandlingsTrin().size()-1).getTørringStart() != null){
-										getStartTørringButton().setEnabled(false);
-										getSendTilDelbehandlingButton().setEnabled(false);
-										getSendTilPakningButton().setEnabled(true);
-									}
-								}
-								else if(trin.getStart() != null){
-									getBatchInfoTextArea().append(trin.getDelbehandling().getNavn() + "(Behandler)\n");
-									getStartTørringButton().setEnabled(true);
-									getSendTilDelbehandlingButton().setEnabled(false);
-									getSendTilPakningButton().setEnabled(false);
-								}
-								else{
-									getBatchInfoTextArea().append(trin.getDelbehandling().getNavn() + "\n");
-									getStartTørringButton().setEnabled(true);
-									getSendTilDelbehandlingButton().setEnabled(true);
-									getSendTilPakningButton().setEnabled(false);
+							for(BehandlingsTrin trin : m.getBehandlingsTrin()){
+								setBatchInfoTextArea(trin);
+								if(trin.getStart() != null){
+									setButtonStatus(trin, m);
 								}
 							}
 						}
 					}
-					
 				});
 		}
 		return batchnummerTextField;
@@ -265,5 +232,52 @@ public class HaandterMellemvarePanel extends JPanel {
 	public void setBatchnummerText(String batchnummer){
 		getBatchnummerTextField().setText(batchnummer);
 	}
-
+	
+	private void setBatchInfoTextArea(BehandlingsTrin trin){
+		if(trin.getSlut() != null){
+			getBatchInfoTextArea().append(trin.getDelbehandling().getNavn() + "(Afsluttet)\n");
+		}
+		else if(trin.getTørringStart() != null){
+			getBatchInfoTextArea().append(trin.getDelbehandling().getNavn() + "(Tørrer)\n");
+		}
+		else if(trin.getStart() != null){
+			getBatchInfoTextArea().append(trin.getDelbehandling().getNavn() + "(Behandler)\n");
+		}
+		else{
+			getBatchInfoTextArea().append(trin.getDelbehandling().getNavn() + "\n");
+		}
+	}
+	
+	private void setButtonStatus(BehandlingsTrin trin, Mellemvare m){
+		if(trin.getSlut() != null){
+			getStartTørringButton().setEnabled(false);
+			getSendTilDelbehandlingButton().setEnabled(true);
+			getSendTilPakningButton().setEnabled(false);
+			if(m.getBehandlingsTrin().get(m.getBehandlingsTrin().size()-1).getSlut() != null){
+				getStartTørringButton().setEnabled(false);
+				getSendTilDelbehandlingButton().setEnabled(false);
+				getSendTilPakningButton().setEnabled(true);
+			}
+		}
+		else if(trin.getTørringStart() != null){
+			getStartTørringButton().setEnabled(false);
+			getSendTilDelbehandlingButton().setEnabled(true);
+			getSendTilPakningButton().setEnabled(false);
+			if(m.getBehandlingsTrin().get(m.getBehandlingsTrin().size()-1).getTørringStart() != null){
+				getStartTørringButton().setEnabled(false);
+				getSendTilDelbehandlingButton().setEnabled(false);
+				getSendTilPakningButton().setEnabled(true);
+			}
+		}
+		else if(trin.getStart() != null){
+			getStartTørringButton().setEnabled(true);
+			getSendTilDelbehandlingButton().setEnabled(false);
+			getSendTilPakningButton().setEnabled(false);
+		}
+		else{
+			getStartTørringButton().setEnabled(true);
+			getSendTilDelbehandlingButton().setEnabled(true);
+			getSendTilPakningButton().setEnabled(false);
+		}
+	}
 }
