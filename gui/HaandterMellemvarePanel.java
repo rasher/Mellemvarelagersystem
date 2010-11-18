@@ -108,7 +108,6 @@ public class HaandterMellemvarePanel extends JPanel {
 					@Override
 					public void changedUpdate(DocumentEvent arg0) {
 						updateBatchnummerTextField();
-						System.out.println(arg0);
 					}
 
 					@Override
@@ -119,7 +118,6 @@ public class HaandterMellemvarePanel extends JPanel {
 					@Override
 					public void removeUpdate(DocumentEvent arg0) {
 						updateBatchnummerTextField();
-						System.out.println(arg0);
 					}
 					
 					private void updateBatchnummerTextField(){
@@ -131,7 +129,11 @@ public class HaandterMellemvarePanel extends JPanel {
 							input = -1;
 						}
 						Mellemvare m = Service.getInstance().søgMellemvare(input);
-						if(m != null)
+						if(m == null){
+							getBatchInfoTextArea().setText("");
+							}
+						else
+						
 						{
 							getBatchInfoTextArea().setText("Produkttype: \t" + m.getProdukttype().getNavn() + "\r\n\n"
 															+ "Delbehandlinger: \n\n");
