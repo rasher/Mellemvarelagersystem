@@ -249,14 +249,14 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	@Override
 	public void gem() {
 		Behandling valgtBehandling = (Behandling) getVælgBehandlingComboBox().getSelectedItem();
-		System.out.println("Gem " + valgtBehandling);
 		valgtBehandling.setDelbehandlinger(new ArrayList<Delbehandling>());
 		ListModel model = getValgteDelbehandlingerList().getModel();
 		for (int i = 0; i < model.getSize(); i++) {
 			valgtBehandling.addDelbehandling((Delbehandling) model.getElementAt(i));
 		}
 		valgtBehandling.setNavn(getBehandlingsNavnTextField().getText());
-		// Gør det
+		service.gemIDatabase(valgtBehandling);
+		vælgBehandlingComboBox.repaint();
 	}
 
 	/* (non-Javadoc)
@@ -271,8 +271,9 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 			behandling.addDelbehandling((Delbehandling) model.getElementAt(i));
 		}
 		service.gemIDatabase(behandling);
-		opdaterFelter();
+		vælgBehandlingModel.addElement(behandling);
 		vælgBehandlingComboBox.setSelectedItem(behandling);
+		opdaterFelter();
 	}
 
 	/* (non-Javadoc)
