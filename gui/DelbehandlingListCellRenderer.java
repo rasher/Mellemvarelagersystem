@@ -36,7 +36,7 @@ public class DelbehandlingListCellRenderer extends JLabel implements ListCellRen
 			int index, boolean isSelected, boolean cellHasFocus) {
 		Delbehandling delbehandling = (Delbehandling) value;
 		if (delbehandling != null) {
-			setText(delbehandling.getNavn() + " " + delbehandling.toString());
+			setText(delbehandling.getNavn());
 		}
 		
 		if (isSelected) {
