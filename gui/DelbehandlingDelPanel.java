@@ -102,6 +102,7 @@ public class DelbehandlingDelPanel extends JPanel {
 		this.add(getTørretidsPanel(), gridBagConstraints5);
 		this.add(getDelbehandlingNavn(), gridBagConstraints11);
 		this.add(delbehandlingsNavnlbl, gridBagConstraints21);
+		getVælgDelbehandlingComboBox().setRenderer(new DelbehandlingListCellRenderer());
 
 	}
 
