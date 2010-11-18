@@ -129,7 +129,7 @@ public class Service {
 	 * @return Mellemvaren med det givne batchNummer, eller null hvis ingen findes
 	 */
 	public Mellemvare søgMellemvare(int batchNummer) {
-		// TODO Auto-generated method stub
+		
 		em.getTransaction().begin();
 		Query nq = em.createNamedQuery("søgMellemvareFraBatchNummer");
 		nq.setParameter("batchNummer", batchNummer);
