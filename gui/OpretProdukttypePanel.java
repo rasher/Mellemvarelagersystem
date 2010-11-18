@@ -118,6 +118,9 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 		this.add(produkttypeNavnLabel, gridBagConstraints41);
 		this.add(getProdukttypeNavnTextField(), gridBagConstraints51);
 		getButtonPanel1().registerOpretGemSletObserver(this);
+		getButtonPanel1().enableOpretButton(false);
+		getButtonPanel1().enableGemButton(false);
+		getButtonPanel1().enableSletButton(false);
 	}
 
 	/**
@@ -194,10 +197,13 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 	public void opret() {
 		if(aktuelBehandling != null && !getProdukttypeNavnTextField().getText().isEmpty())
 		{
+			getButtonPanel1().enableOpretButton(true);
 			aktuelProdukttype = service.createProdukttype(aktuelBehandling);
 			aktuelProdukttype.setNavn(getProdukttypeNavnTextField().getText());
 			service.gemIDatabase(aktuelProdukttype);
 		}
+		else
+			getButtonPanel1().enableOpretButton(false);
 		opdaterComboBox();
 	}
 
@@ -205,17 +211,25 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 	public void gem() {
 		if(aktuelProdukttype != null)
 		{
+			getButtonPanel1().enableGemButton(true);
 			aktuelProdukttype.setNavn(getProdukttypeNavnTextField().getText());
 			aktuelProdukttype.setBehandling((Behandling)getTilknytBehandlingComboBox().getSelectedItem());
 			service.gemIDatabase(aktuelProdukttype);
 		}
+		else
+			getButtonPanel1().enableGemButton(false);
 		opdaterComboBox();
 	}
 
 	@Override
 	public void slet() {
 		if(aktuelProdukttype != null)
+		{
+			getButtonPanel1().enableSletButton(true);
 			service.fjernFraDatabase(aktuelProdukttype);
+		}
+		else
+			getButtonPanel1().enableSletButton(false);
 		opdaterComboBox();
 	}
 	
