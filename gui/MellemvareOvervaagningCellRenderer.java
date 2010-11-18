@@ -16,7 +16,7 @@ import model.Mellemvare;
  * @author Jonas Häggqvist (10dm10v1)
  *
  */
-public class MellemvareOvervågningCellRenderer extends JLabel implements
+public class MellemvareOvervaagningCellRenderer extends JLabel implements
 		ListCellRenderer {
 
 	/* (non-Javadoc)
