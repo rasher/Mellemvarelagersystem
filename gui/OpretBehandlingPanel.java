@@ -260,6 +260,10 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	@Override
 	public void slet() {
 		System.out.println("Slet");
+		Behandling valgtBehandling = (Behandling) getVælgBehandlingComboBox().getSelectedItem();
+		if (valgtBehandling != null) {
+			service.fjernFraDatabase(valgtBehandling);
+		}
 	}
 
 	/**
