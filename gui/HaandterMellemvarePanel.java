@@ -129,8 +129,15 @@ public class HaandterMellemvarePanel extends JPanel {
 							input = -1;
 						}
 						Mellemvare m = Service.getInstance().søgMellemvare(input);
-
-						if(m != null){
+						if(m == null){
+							if(!getBatchnummerTextField().getText().isEmpty())
+								getBatchInfoTextArea().setText("Batchnummer findes ikke!");
+							else
+								getBatchInfoTextArea().setText("");
+							}
+						else
+						
+						{
 							getBatchInfoTextArea().setText("Produkttype: \t" + m.getProdukttype().getNavn() + "\r\n\n"
 															+ "Delbehandlinger: \n\n");
 							for(BehandlingsTrin trin : m.getBehandlingsTrin()){
@@ -139,9 +146,6 @@ public class HaandterMellemvarePanel extends JPanel {
 									setButtonStatus(trin, m);
 								}
 							}
-						}
-						if(m == null){
-							getBatchInfoTextArea().setText("");
 						}
 					}
 				});

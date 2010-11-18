@@ -108,6 +108,7 @@ public class VisListPanel extends JPanel {
 	public JList getKlarList() {
 		if (klarList == null) {
 			klarList = new JList();
+			klarList.setCellRenderer(new MellemvareOvervågningCellRenderer());
 			klarList.setBorder(MainFrame.getBorder());
 			klarList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
 						public void valueChanged(javax.swing.event.ListSelectionEvent e) {
@@ -126,6 +127,7 @@ public class VisListPanel extends JPanel {
 	public JList getNærOverskredetList() {
 		if (nærOverskredetList == null) {
 			nærOverskredetList = new JList();
+			nærOverskredetList.setCellRenderer(new MellemvareOvervågningCellRenderer());
 			nærOverskredetList.setBorder(MainFrame.getBorder());
 			nærOverskredetList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
 						public void valueChanged(javax.swing.event.ListSelectionEvent e) {
