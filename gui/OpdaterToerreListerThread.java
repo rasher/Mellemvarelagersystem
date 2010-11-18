@@ -17,11 +17,8 @@ public class OpdaterToerreListerThread extends Thread {
 	private JList nærOverskredetList;
 	private JSlider antalTimerFraMaxToerringsSlider;
 	
-	public OpdaterToerreListerThread(JList klarList, JList nærOverskredetList, JSlider antalTimerFraMaxToerringsSlider) {
+	public OpdaterToerreListerThread() {
 		super();
-		this.klarList = klarList;
-		this.nærOverskredetList = nærOverskredetList;
-		this.antalTimerFraMaxToerringsSlider = antalTimerFraMaxToerringsSlider;
 	}
 	
 	public void opdaterLister() {
@@ -30,7 +27,20 @@ public class OpdaterToerreListerThread extends Thread {
 		klarList.setListData(Service.getInstance().getKlar(timerFraMaks).toArray());
 		nærOverskredetList.setListData(Service.getInstance().getNærOverskredet(timerFraMaks).toArray());
 	}
-	
+
+	public void setKlarList(JList klarList) {
+		this.klarList = klarList;
+	}
+
+	public void setNærOverskredetList(JList nærOverskredetList) {
+		this.nærOverskredetList = nærOverskredetList;
+	}
+
+	public void setAntalTimerFraMaxToerringsSlider(
+			JSlider antalTimerFraMaxToerringsSlider) {
+		this.antalTimerFraMaxToerringsSlider = antalTimerFraMaxToerringsSlider;
+	}
+
 	public void run() {
 		while (true) {
 			try {
