@@ -169,6 +169,7 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	}
 
 	private void opdaterFelter() {
+		getValgteDelbehandlingerList(); // Sørg for at listen er oprettet før vi gør mere.
 		Behandling valgtBehandling = (Behandling) vælgBehandlingComboBox.getSelectedItem();
 		if (valgtBehandling != null) {
 			for (Delbehandling d: valgtBehandling.getDelbehandlinger()) {
