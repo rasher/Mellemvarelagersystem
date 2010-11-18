@@ -5,11 +5,16 @@ import java.awt.Rectangle;
 
 import javax.swing.JPanel;
 
-public class OpretDelbehandlingPanel extends JPanel {
+import model.Delbehandling;
+import model.Service;
+
+public class OpretDelbehandlingPanel extends JPanel implements OpretGemSletObserver {
 
 	private static final long serialVersionUID = 1L;
 	private ButtonPanel buttonPanel1 = null;
 	private DelbehandlingDelPanel delbehandlingDelPanel = null;
+	private Service service = Service.getInstance();
+	private Delbehandling nyDelbehandling;
 	/**
 	 * This is the default constructor
 	 */
@@ -52,6 +57,65 @@ public class OpretDelbehandlingPanel extends JPanel {
 			delbehandlingDelPanel = new DelbehandlingDelPanel();
 		}
 		return delbehandlingDelPanel;
+	}
+
+	@Override
+	public void opret() {
+		if(!getDelbehandlingDelPanel().getDelbehandlingsNavn().isEmpty() && 
+				!getDelbehandlingDelPanel().getBehandlingSted().isEmpty() && 
+				!getDelbehandlingDelPanel().getMaksTørringstid().isEmpty() &&
+				!getDelbehandlingDelPanel().getMinTørringstid().isEmpty() &&
+				!getDelbehandlingDelPanel().getOptTørringstid().isEmpty())
+		{
+
+			nyDelbehandling = service.createDelbehandling();
+			nyDelbehandling.setNavn(getDelbehandlingDelPanel().getDelbehandlingsNavn());
+			nyDelbehandling.setBehandlingsSted(getDelbehandlingDelPanel().getBehandlingSted());
+			nyDelbehandling.setMaksimumTørringsTid(Integer.parseInt(getDelbehandlingDelPanel().
+					getMaksTørringstid()));
+			nyDelbehandling.setMinimumTørringsTid(Integer.parseInt(getDelbehandlingDelPanel().
+					getMinTørringstid()));
+			nyDelbehandling.setOptimalTørringsTid(Integer.parseInt(getDelbehandlingDelPanel().
+					getOptTørringstid()));
+			service.gemIDatabase(nyDelbehandling);
+			getDelbehandlingDelPanel().opdaterPanel(service.getDelbehandlinger());
+		}
+
+	}
+
+	@Override
+	public void gem() {
+		if(!getDelbehandlingDelPanel().getDelbehandlingsNavn().isEmpty() && 
+				!getDelbehandlingDelPanel().getBehandlingSted().isEmpty() && 
+				!getDelbehandlingDelPanel().getMaksTørringstid().isEmpty() &&
+				!getDelbehandlingDelPanel().getMinTørringstid().isEmpty() &&
+				!getDelbehandlingDelPanel().getOptTørringstid().isEmpty() &&
+				getDelbehandlingDelPanel().getAktuelDebehandling() != null)
+		{
+			getDelbehandlingDelPanel().getAktuelDebehandling().
+			setNavn(getDelbehandlingDelPanel().getDelbehandlingsNavn());
+			getDelbehandlingDelPanel().getAktuelDebehandling().
+			setBehandlingsSted(getDelbehandlingDelPanel().getBehandlingSted());
+			getDelbehandlingDelPanel().getAktuelDebehandling().
+			setMaksimumTørringsTid(Integer.parseInt(getDelbehandlingDelPanel().
+					getMaksTørringstid()));
+			getDelbehandlingDelPanel().getAktuelDebehandling().
+			setMinimumTørringsTid(Integer.parseInt(getDelbehandlingDelPanel().
+					getMinTørringstid()));
+			getDelbehandlingDelPanel().getAktuelDebehandling().
+			setOptimalTørringsTid(Integer.parseInt(getDelbehandlingDelPanel().
+					getOptTørringstid()));
+			service.gemIDatabase(getDelbehandlingDelPanel().getAktuelDebehandling());
+			getDelbehandlingDelPanel().opdaterPanel(service.getDelbehandlinger());
+		}
+
+	}
+
+	@Override
+	public void slet() {
+		if(getDelbehandlingDelPanel().getAktuelDebehandling() != null)
+			service.fjernFraDatabase(getDelbehandlingDelPanel().getAktuelDebehandling());
+			getDelbehandlingDelPanel().opdaterPanel(service.getDelbehandlinger());
 	}
 
 

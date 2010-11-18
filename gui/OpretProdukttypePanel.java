@@ -121,6 +121,7 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 		getButtonPanel1().enableOpretButton(false);
 		getButtonPanel1().enableGemButton(false);
 		getButtonPanel1().enableSletButton(false);
+		opdaterComboBox();
 	}
 
 	/**
@@ -146,10 +147,13 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 			vælgProdukttypeComboBox.addItemListener(new java.awt.event.ItemListener() {
 				public void itemStateChanged(java.awt.event.ItemEvent e) {
 					aktuelProdukttype = (Produkttype) vælgProdukttypeComboBox.getSelectedItem();
-					getProdukttypeNavnTextField().setText(aktuelProdukttype.getNavn());
-					getTilknytBehandlingComboBox().setSelectedItem(aktuelProdukttype.getBehandling());
-					getProdukttypeInfoTextArea().setText("Produkttype: \t" + aktuelProdukttype.getNavn() + 
-							"\r\n" + aktuelProdukttype.getBehandling().getNavn() + "\r\n");
+					if(aktuelProdukttype != null)
+					{
+						getProdukttypeNavnTextField().setText(aktuelProdukttype.getNavn());
+						getTilknytBehandlingComboBox().setSelectedItem(aktuelProdukttype.getBehandling());
+						getProdukttypeInfoTextArea().setText("Produkttype: \t" + aktuelProdukttype.getNavn() + 
+								"\r\n" + aktuelProdukttype.getBehandling().getNavn() + "\r\n");
+					}
 				}
 			});
 		}
@@ -167,12 +171,15 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 			tilknytBehandlingComboBox.addItemListener(new java.awt.event.ItemListener() {
 				public void itemStateChanged(java.awt.event.ItemEvent e) {
 					aktuelBehandling = (Behandling) tilknytBehandlingComboBox.getSelectedItem();
-					for(Delbehandling d : aktuelBehandling.getDelbehandlinger())
+					if(aktuelBehandling != null)
 					{
-						getProdukttypeInfoTextArea().append("Navn: \t" + d.getNavn() + "\n\r BehandlingsSted: \t" 
-								+ d.getBehandlingsSted() + "\n\r Min. Tørringstid:\t" + d.getMinimumTørringsTid()
-								+ "\n\r Opt. Tørringstid:\t" + d.getOptimalTørringsTid() + "\n\r " +
-										"Maks. Tørringstid:\t" + d.getMaksimumTørringsTid() + "\n\n\r");
+						for(Delbehandling d : aktuelBehandling.getDelbehandlinger())
+						{
+							getProdukttypeInfoTextArea().append("Navn: \t" + d.getNavn() + "\n\r BehandlingsSted: \t" 
+									+ d.getBehandlingsSted() + "\n\r Min. Tørringstid:\t" + d.getMinimumTørringsTid()
+									+ "\n\r Opt. Tørringstid:\t" + d.getOptimalTørringsTid() + "\n\r " +
+									"Maks. Tørringstid:\t" + d.getMaksimumTørringsTid() + "\n\n\r");
+						}
 					}
 				}
 			});
@@ -197,13 +204,10 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 	public void opret() {
 		if(aktuelBehandling != null && !getProdukttypeNavnTextField().getText().isEmpty())
 		{
-			getButtonPanel1().enableOpretButton(true);
 			aktuelProdukttype = service.createProdukttype(aktuelBehandling);
 			aktuelProdukttype.setNavn(getProdukttypeNavnTextField().getText());
 			service.gemIDatabase(aktuelProdukttype);
 		}
-		else
-			getButtonPanel1().enableOpretButton(false);
 		opdaterComboBox();
 	}
 
@@ -211,13 +215,10 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 	public void gem() {
 		if(aktuelProdukttype != null)
 		{
-			getButtonPanel1().enableGemButton(true);
 			aktuelProdukttype.setNavn(getProdukttypeNavnTextField().getText());
 			aktuelProdukttype.setBehandling((Behandling)getTilknytBehandlingComboBox().getSelectedItem());
 			service.gemIDatabase(aktuelProdukttype);
 		}
-		else
-			getButtonPanel1().enableGemButton(false);
 		opdaterComboBox();
 	}
 
@@ -225,14 +226,11 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 	public void slet() {
 		if(aktuelProdukttype != null)
 		{
-			getButtonPanel1().enableSletButton(true);
 			service.fjernFraDatabase(aktuelProdukttype);
 		}
-		else
-			getButtonPanel1().enableSletButton(false);
 		opdaterComboBox();
 	}
-	
+
 	public void opdaterComboBox()
 	{
 		aktuelBehandling = null;
@@ -243,6 +241,9 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 			getVælgProdukttypeComboBox().addItem(p);
 		for(Behandling b : service.getBehandlinger())
 			getTilknytBehandlingComboBox().addItem(b);
+		getProdukttypeNavnTextField().setText("");
+		getProdukttypeInfoTextArea().setText("");
+
 	}
 
 	/**

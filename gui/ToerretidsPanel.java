@@ -112,5 +112,34 @@ public class ToerretidsPanel extends JPanel {
 		}
 		return maksimalTørretidTextField;
 	}
+	
+	public String getMaksTørretid()
+	{
+		return getMaksimalTørretidTextField().getText();
+	}
+	
+	public String getOptTørretid()
+	{
+		return getOptimalTørretidTextField().getText();
+	}
+	
+	public String getMinTørretid()
+	{
+		return getMinimalTørretidTextField().getText();
+	}
+	public void setMaksTørretid(String maks)
+	{
+		getMaksimalTørretidTextField().setText(maks);
+	}
+	
+	public void setOptTørretid(String opt)
+	{
+		getOptimalTørretidTextField().setText(opt);
+	}
+	
+	public void setMinTørretid(String min)
+	{
+		getMinimalTørretidTextField().setText(min);
+	}
 
 }
