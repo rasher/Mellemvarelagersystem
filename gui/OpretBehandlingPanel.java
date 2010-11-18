@@ -6,10 +6,12 @@ import java.awt.Insets;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -37,6 +39,7 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	private DefaultListModel valgteDelbehandlingerModel;
 	private JScrollPane valgteDelbehandlingerScrollpane = null;
 	private JScrollPane muligeDelbehandlingerScrollpane = null;
+	private DefaultComboBoxModel vælgBehandlingModel;
 	/**
 	 * This is the default constructor
 	 */
@@ -149,29 +152,34 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	 */
 	private JComboBox getVælgBehandlingComboBox() {
 		if (vælgBehandlingComboBox == null) {
-			List<Behandling> behandlinger = service.getBehandlinger();
-			vælgBehandlingComboBox = new JComboBox(behandlinger.toArray());
+			vælgBehandlingModel = new DefaultComboBoxModel();
+			vælgBehandlingComboBox = new JComboBox(vælgBehandlingModel);
+			for (Behandling behandling: service.getBehandlinger()) {
+				vælgBehandlingModel.addElement(behandling);
+			}
 			vælgBehandlingComboBox.setRenderer(new BehandlingListCellRenderer());
 			vælgBehandlingComboBox.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					JComboBox source = (JComboBox) e.getSource();
-					Behandling valgtBehandling = (Behandling) source.getSelectedItem();
-					opdaterFelter(valgtBehandling);
+					opdaterFelter();
 				}
 			});
-			opdaterFelter((Behandling) vælgBehandlingComboBox.getSelectedItem());
+			opdaterFelter();
 		}
 		return vælgBehandlingComboBox;
 	}
 
-	private void opdaterFelter(Behandling valgtBehandling) {
-		if (valgtBehandling == null) {
-			return;
+	private void opdaterFelter() {
+		Behandling valgtBehandling = (Behandling) vælgBehandlingComboBox.getSelectedItem();
+		if (valgtBehandling != null) {
+			for (Delbehandling d: valgtBehandling.getDelbehandlinger()) {
+				valgteDelbehandlingerModel.addElement(d);			
+			}
+			getBehandlingsNavnTextField().setText(((Behandling) vælgBehandlingComboBox.getSelectedItem()).getNavn());
 		}
-		for (Delbehandling d: valgtBehandling.getDelbehandlinger()) {
-			valgteDelbehandlingerModel.addElement(d);			
+		else {
+			getBehandlingsNavnTextField().setText("");
+			valgteDelbehandlingerModel.removeAllElements();
 		}
-		getBehandlingsNavnTextField().setText(((Behandling) vælgBehandlingComboBox.getSelectedItem()).getNavn());
 	}
 
 	/**
@@ -265,7 +273,13 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 		System.out.println("Slet");
 		Behandling valgtBehandling = (Behandling) getVælgBehandlingComboBox().getSelectedItem();
 		if (valgtBehandling != null) {
-			service.fjernFraDatabase(valgtBehandling);
+			try {
+				service.fjernFraDatabase(valgtBehandling);
+				vælgBehandlingModel.removeElement(valgtBehandling);
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(this, "Du kan ikke slette denne behandling mens der findes produkttyper der benytter den", "Behandling ikke slettet", JOptionPane.ERROR_MESSAGE);
+			}
+			opdaterFelter();
 		}
 	}
 

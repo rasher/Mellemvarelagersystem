@@ -108,67 +108,68 @@ public class HaandterMellemvarePanel extends JPanel {
 					@Override
 					public void changedUpdate(DocumentEvent arg0) {
 						updateBatchnummerTextField();
-						
+						System.out.println(arg0);
 					}
 
 					@Override
 					public void insertUpdate(DocumentEvent arg0) {
 						updateBatchnummerTextField();
-						
 					}
 
 					@Override
 					public void removeUpdate(DocumentEvent arg0) {
 						updateBatchnummerTextField();
-						
+						System.out.println(arg0);
 					}
 					
 					private void updateBatchnummerTextField(){
-						for(Mellemvare m : Service.getInstance().getMellemvarer())
+						int input;
+						try {
+							input = Integer.parseInt(getBatchnummerTextField().getText());
+						}
+						catch (NumberFormatException e) {
+							input = -1;
+						}
+						Mellemvare m = Service.getInstance().søgMellemvare(input);
+						if(m != null)
 						{
-//							if(!(m.getBatchNummer() + "").equals(getBatchnummerTextField().getText())){
-//								getBatchInfoTextArea().setText("Batchnummer findes ikke");
-//							}
-							if((m.getBatchNummer() + "").equals(getBatchnummerTextField().getText()))
+							getBatchInfoTextArea().setText("Produkttype: \t" + m.getProdukttype().getNavn() + "\r\n\n"
+															+ "Delbehandlinger: \n\n");
+							for(BehandlingsTrin trin : m.getBehandlingsTrin())
 							{
-								getBatchInfoTextArea().setText("Produkttype: \t" + m.getProdukttype().getNavn() + "\r\n\n"
-																+ "Delbehandlinger: \n\n");
-								for(BehandlingsTrin trin : m.getBehandlingsTrin())
-								{
-									if(trin.getSlut() != null){
-										getBatchInfoTextArea().append(trin.getDelbehandling().getNavn() + "(Afsluttet)\n");
+								if(trin.getSlut() != null){
+									getBatchInfoTextArea().append(trin.getDelbehandling().getNavn() + "(Afsluttet)\n");
+									getStartTørringButton().setEnabled(false);
+									getSendTilDelbehandlingButton().setEnabled(true);
+									getSendTilPakningButton().setEnabled(false);
+									if(m.getBehandlingsTrin().get(m.getBehandlingsTrin().size()-1).getSlut() != null){
 										getStartTørringButton().setEnabled(false);
-										getSendTilDelbehandlingButton().setEnabled(true);
-										getSendTilPakningButton().setEnabled(false);
-										if(m.getBehandlingsTrin().get(m.getBehandlingsTrin().size()-1).getSlut() != null){
-											getStartTørringButton().setEnabled(false);
-											getSendTilDelbehandlingButton().setEnabled(false);
-											getSendTilPakningButton().setEnabled(true);
-										}
-									}
-									else if(trin.getTørringStart() != null){
-										getBatchInfoTextArea().append(trin.getDelbehandling().getNavn() + "(Tørrer)\n");
-										getStartTørringButton().setEnabled(false);
-										getSendTilDelbehandlingButton().setEnabled(true);
-										getSendTilPakningButton().setEnabled(false);
-										if(m.getBehandlingsTrin().get(m.getBehandlingsTrin().size()-1).getTørringStart() != null){
-											getStartTørringButton().setEnabled(false);
-											getSendTilDelbehandlingButton().setEnabled(false);
-											getSendTilPakningButton().setEnabled(true);
-										}
-									}
-									else if(trin.getStart() != null){
-										getBatchInfoTextArea().append(trin.getDelbehandling().getNavn() + "(Behandler)\n");
-										getStartTørringButton().setEnabled(true);
 										getSendTilDelbehandlingButton().setEnabled(false);
-										getSendTilPakningButton().setEnabled(false);
+										getSendTilPakningButton().setEnabled(true);
 									}
-									else{
-										getBatchInfoTextArea().append(trin.getDelbehandling().getNavn() + "\n");
-										getStartTørringButton().setEnabled(true);
-										getSendTilDelbehandlingButton().setEnabled(true);
-										getSendTilPakningButton().setEnabled(false);
+								}
+								else if(trin.getTørringStart() != null){
+									getBatchInfoTextArea().append(trin.getDelbehandling().getNavn() + "(Tørrer)\n");
+									getStartTørringButton().setEnabled(false);
+									getSendTilDelbehandlingButton().setEnabled(true);
+									getSendTilPakningButton().setEnabled(false);
+									if(m.getBehandlingsTrin().get(m.getBehandlingsTrin().size()-1).getTørringStart() != null){
+										getStartTørringButton().setEnabled(false);
+										getSendTilDelbehandlingButton().setEnabled(false);
+										getSendTilPakningButton().setEnabled(true);
 									}
+								}
+								else if(trin.getStart() != null){
+									getBatchInfoTextArea().append(trin.getDelbehandling().getNavn() + "(Behandler)\n");
+									getStartTørringButton().setEnabled(true);
+									getSendTilDelbehandlingButton().setEnabled(false);
+									getSendTilPakningButton().setEnabled(false);
+								}
+								else{
+									getBatchInfoTextArea().append(trin.getDelbehandling().getNavn() + "\n");
+									getStartTørringButton().setEnabled(true);
+									getSendTilDelbehandlingButton().setEnabled(true);
+									getSendTilPakningButton().setEnabled(false);
 								}
 							}
 						}
@@ -206,6 +207,7 @@ public class HaandterMellemvarePanel extends JPanel {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					Mellemvare aktuelmellemvare = Service.getInstance().søgMellemvare(Integer.parseInt(getBatchnummerTextField().getText()));
 					aktuelmellemvare.startTørring();
+					getBatchnummerTextField().setText(aktuelmellemvare.getBatchNummer() + "");
 				}
 			});
 		}
@@ -228,6 +230,7 @@ public class HaandterMellemvarePanel extends JPanel {
 							Mellemvare aktuelmellemvare = Service.getInstance().søgMellemvare(Integer.parseInt(getBatchnummerTextField().getText()));
 							try {
 								aktuelmellemvare.startDelbehandling();
+								getBatchnummerTextField().setText(aktuelmellemvare.getBatchNummer() + "");
 							} catch (Exception e1) {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
@@ -252,6 +255,7 @@ public class HaandterMellemvarePanel extends JPanel {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					Mellemvare aktuelmellemvare = Service.getInstance().søgMellemvare(Integer.parseInt(getBatchnummerTextField().getText()));
 					aktuelmellemvare.sendTilPakning();
+					getBatchnummerTextField().setText(aktuelmellemvare.getBatchNummer() + "");
 				}
 			});
 		}
