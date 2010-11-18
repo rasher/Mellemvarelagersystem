@@ -31,7 +31,9 @@ public class BehandlingListCellRenderer extends JLabel implements ListCellRender
 	public Component getListCellRendererComponent(JList list, Object value,
 			int index, boolean isSelected, boolean cellHasFocus) {
 		Behandling behandling = (Behandling) value;
-		setText(behandling.getNavn() + " " + behandling.toString());
+		if (behandling != null) {
+			setText(behandling.getNavn() + " " + behandling.toString());
+		}
         
 		if (isSelected) {
 			setBackground(list.getSelectionBackground());
