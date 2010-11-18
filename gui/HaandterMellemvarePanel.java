@@ -207,6 +207,7 @@ public class HaandterMellemvarePanel extends JPanel {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					Mellemvare aktuelmellemvare = Service.getInstance().søgMellemvare(Integer.parseInt(getBatchnummerTextField().getText()));
 					aktuelmellemvare.startTørring();
+					getBatchnummerTextField().setText(aktuelmellemvare.getBatchNummer() + "");
 				}
 			});
 		}
@@ -229,6 +230,7 @@ public class HaandterMellemvarePanel extends JPanel {
 							Mellemvare aktuelmellemvare = Service.getInstance().søgMellemvare(Integer.parseInt(getBatchnummerTextField().getText()));
 							try {
 								aktuelmellemvare.startDelbehandling();
+								getBatchnummerTextField().setText(aktuelmellemvare.getBatchNummer() + "");
 							} catch (Exception e1) {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
@@ -253,6 +255,7 @@ public class HaandterMellemvarePanel extends JPanel {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					Mellemvare aktuelmellemvare = Service.getInstance().søgMellemvare(Integer.parseInt(getBatchnummerTextField().getText()));
 					aktuelmellemvare.sendTilPakning();
+					getBatchnummerTextField().setText(aktuelmellemvare.getBatchNummer() + "");
 				}
 			});
 		}
