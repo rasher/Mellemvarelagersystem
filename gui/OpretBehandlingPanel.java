@@ -172,6 +172,7 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 		getValgteDelbehandlingerList(); // Sørg for at listen er oprettet før vi gør mere.
 		Behandling valgtBehandling = (Behandling) vælgBehandlingComboBox.getSelectedItem();
 		if (valgtBehandling != null) {
+			valgteDelbehandlingerModel.removeAllElements();
 			for (Delbehandling d: valgtBehandling.getDelbehandlinger()) {
 				valgteDelbehandlingerModel.addElement(d);			
 			}
@@ -263,7 +264,15 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	 */
 	@Override
 	public void opret() {
-		System.out.println("Opret");
+		Behandling behandling = service.createBehandling();
+		behandling.setNavn(getBehandlingsNavnTextField().getText());
+		ListModel model = getValgteDelbehandlingerList().getModel();
+		for (int i = 0; i < model.getSize(); i++) {
+			behandling.addDelbehandling((Delbehandling) model.getElementAt(i));
+		}
+		service.gemIDatabase(behandling);
+		opdaterFelter();
+		vælgBehandlingComboBox.setSelectedItem(behandling);
 	}
 
 	/* (non-Javadoc)

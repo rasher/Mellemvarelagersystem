@@ -23,6 +23,7 @@ public class Service {
 	}
 	public Mellemvare createMellemvare(Produkttype produkttype)
 	{
+		em.getTransaction().begin();
 		Mellemvare nyMellemvare = new Mellemvare();
 		nyMellemvare.setProdukttype(produkttype);
 		for(Delbehandling delbehandling : produkttype.getDelbehandlinger())
@@ -30,8 +31,10 @@ public class Service {
 			BehandlingsTrin nytBehandlingsTrin = new BehandlingsTrin();
 			nytBehandlingsTrin.setDelbehandling(delbehandling);
 			nyMellemvare.addBehandlingsTrin(nytBehandlingsTrin);
-			gemIDatabase(nytBehandlingsTrin);
+			em.persist(nytBehandlingsTrin);
 		}
+		em.persist(nyMellemvare);
+		em.getTransaction().commit();
 		return nyMellemvare;
 	}
 	public Produkttype createProdukttype(Behandling behandling)

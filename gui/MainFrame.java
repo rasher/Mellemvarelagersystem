@@ -133,6 +133,7 @@ public class MainFrame extends JFrame {
 		if (lagerPanel == null) {
 			lagerPanel = new LagerPanel();
 			lagerPanel.setSize(750, 500);
+			lagerPanel.setMainFrame(this);
 		}
 		return lagerPanel;
 	}
@@ -204,6 +205,10 @@ public class MainFrame extends JFrame {
 	
 	public static Border getBorder(){
 		return BorderFactory.createLineBorder(Color.GRAY);
+	}
+	
+	public OpdaterToerreListerThread getOpdaterToerreListerThread(){
+		return opdaterTørreListerThread;
 	}
 
 }
