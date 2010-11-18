@@ -123,4 +123,21 @@ public class Service {
 		em.getTransaction().commit();
 	}
 
+	/**
+	 * @param batchNummer
+	 * @return
+	 */
+	public Mellemvare søgMellemvare(int batchNummer) {
+		// TODO Auto-generated method stub
+		em.getTransaction().begin();
+		Query nq = em.createNamedQuery("søgMellemvareFraBatchNummer");
+		nq.setParameter("batchNummer", batchNummer);
+		List<Mellemvare> mellemvarer = nq.getResultList();
+		em.getTransaction().commit();
+		if (mellemvarer.size() > 0) {
+			return mellemvarer.get(0);
+		}
+		return null;
+	}
+
 }

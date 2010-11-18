@@ -13,7 +13,8 @@ public class Test {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	
+	public static void opretTestData() {
 		Service service = Service.getInstance();
 		Behandling b = service.createBehandling();
 		b.setNavn("Drage");
@@ -76,5 +77,17 @@ public class Test {
 		m1.startTørring();
 		service.gemIDatabase(m);
 		service.gemIDatabase(m1);
+	}
+	
+	public static void søgMellemvare(int batchNummer) {
+		Service service = Service.getInstance();
+		Mellemvare mv = service.søgMellemvare(batchNummer);
+		System.out.println(mv);
+	}
+	
+	public static void main(String[] args) {
+		søgMellemvare(13);
+		søgMellemvare(14);
+		søgMellemvare(-60);
 	}
 }
