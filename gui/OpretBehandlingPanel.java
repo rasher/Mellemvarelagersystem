@@ -264,6 +264,13 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	@Override
 	public void opret() {
 		System.out.println("Opret");
+		Behandling behandling = service.createBehandling();
+		behandling.setNavn(getBehandlingsNavnTextField().getText());
+		ListModel model = getValgteDelbehandlingerList().getModel();
+		for (int i = 0; i < model.getSize(); i++) {
+			behandling.addDelbehandling((Delbehandling) model.getElementAt(i));
+		}
+		service.gemIDatabase(behandling);
 	}
 
 	/* (non-Javadoc)
