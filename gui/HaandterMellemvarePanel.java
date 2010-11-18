@@ -15,6 +15,7 @@ import model.Mellemvare;
 import model.Service;
 
 import java.awt.Insets;
+import java.util.GregorianCalendar;
 
 public class HaandterMellemvarePanel extends JPanel {
 
@@ -125,6 +126,9 @@ public class HaandterMellemvarePanel extends JPanel {
 					private void updateBatchnummerTextField(){
 						for(Mellemvare m : Service.getInstance().getMellemvarer())
 						{
+//							if(!(m.getBatchNummer() + "").equals(getBatchnummerTextField().getText())){
+//								getBatchInfoTextArea().setText("Batchnummer findes ikke");
+//							}
 							if((m.getBatchNummer() + "").equals(getBatchnummerTextField().getText()))
 							{
 								getBatchInfoTextArea().setText("Produkttype: \t" + m.getProdukttype().getNavn() + "\r\n\n"
@@ -167,10 +171,6 @@ public class HaandterMellemvarePanel extends JPanel {
 									}
 								}
 							}
-							else
-							{
-								getBatchInfoTextArea().setText("Batchnummer findes ikke");
-							}
 						}
 					}
 					
@@ -202,6 +202,12 @@ public class HaandterMellemvarePanel extends JPanel {
 			startTørringButton = new JButton();
 			startTørringButton.setText("Start Tørring");
 			startTørringButton.setEnabled(false);
+			startTørringButton.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					Mellemvare aktuelmellemvare = Service.getInstance().søgMellemvare(Integer.parseInt(getBatchnummerTextField().getText()));
+					aktuelmellemvare.startTørring();
+				}
+			});
 		}
 		return startTørringButton;
 	}
@@ -216,6 +222,18 @@ public class HaandterMellemvarePanel extends JPanel {
 			sendTilDelbehandlingButton = new JButton();
 			sendTilDelbehandlingButton.setText("Send Til Delbehandling");
 			sendTilDelbehandlingButton.setEnabled(false);
+			sendTilDelbehandlingButton
+					.addActionListener(new java.awt.event.ActionListener() {
+						public void actionPerformed(java.awt.event.ActionEvent e) {
+							Mellemvare aktuelmellemvare = Service.getInstance().søgMellemvare(Integer.parseInt(getBatchnummerTextField().getText()));
+							try {
+								aktuelmellemvare.startDelbehandling();
+							} catch (Exception e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
+					});
 		}
 		return sendTilDelbehandlingButton;
 	}
@@ -230,6 +248,12 @@ public class HaandterMellemvarePanel extends JPanel {
 			sendTilPakningButton = new JButton();
 			sendTilPakningButton.setText("Send Til Pakning");
 			sendTilPakningButton.setEnabled(false);
+			sendTilPakningButton.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					Mellemvare aktuelmellemvare = Service.getInstance().søgMellemvare(Integer.parseInt(getBatchnummerTextField().getText()));
+					aktuelmellemvare.sendTilPakning();
+				}
+			});
 		}
 		return sendTilPakningButton;
 	}

@@ -107,7 +107,6 @@ public class MainFrame extends JFrame {
 							MainFrame.this.setSize(800,500);
 							setContentPane(getAdministrationPanel());
 							MainFrame.this.setVisible(true);
-							System.out.println("actionPerformed()"); // TODO Auto-generated Event stub actionPerformed()
 						}
 					});
 		}
@@ -157,7 +156,6 @@ public class MainFrame extends JFrame {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				MainFrame thisClass = new MainFrame();

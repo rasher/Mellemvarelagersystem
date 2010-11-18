@@ -43,7 +43,7 @@ public class RegistrerNyMellemvarePanel extends JPanel {
 		GridBagConstraints gridBagConstraints4 = new GridBagConstraints();
 		gridBagConstraints4.gridx = 0;
 		gridBagConstraints4.fill = GridBagConstraints.HORIZONTAL;
-		gridBagConstraints4.insets = new Insets(0, 5, 0, 5);
+		gridBagConstraints4.insets = new Insets(5, 5, 5, 5);
 		gridBagConstraints4.gridy = 4;
 		GridBagConstraints gridBagConstraints3 = new GridBagConstraints();
 		gridBagConstraints3.fill = GridBagConstraints.BOTH;
