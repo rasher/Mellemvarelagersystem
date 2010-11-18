@@ -23,7 +23,7 @@ public class MainFrame extends JFrame {
 	private JMenuItem StatistikMenuItem = null;
 	private LagerPanel lagerPanel = null;  //  @jve:decl-index=0:visual-constraint="342,13"//  @jve:decl-index=0:
 	private AdministrationPanel administrationPanel = null;  //  @jve:decl-index=0:visual-constraint="339,226"
-	private OpdaterToerreListerThread opdaterTørreListerThread;
+	private OpdaterToerreListerThread opdaterTørreListerThread = new OpdaterToerreListerThread();
 	
 	/**
 	 * This method initializes CarlettiMenuBar	
@@ -183,10 +183,9 @@ public class MainFrame extends JFrame {
 		this.setContentPane(getJContentPane());
 		this.setTitle("JFrame");
 		VisListPanel visListPanel = getLagerPanel().getVisListPanel();
-		opdaterTørreListerThread = new OpdaterToerreListerThread(
-				visListPanel.getKlarList(),
-				visListPanel.getNærOverskredetList(),
-				visListPanel.getAntalTimerFraMaxToerringsSlider());
+		opdaterTørreListerThread.setKlarList(visListPanel.getKlarList());
+		opdaterTørreListerThread.setNærOverskredetList(visListPanel.getNærOverskredetList());
+		opdaterTørreListerThread.setAntalTimerFraMaxToerringsSlider(visListPanel.getAntalTimerFraMaxToerringsSlider());
 		opdaterTørreListerThread.start();
 	}
 
