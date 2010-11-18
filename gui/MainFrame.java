@@ -81,9 +81,7 @@ public class MainFrame extends JFrame {
 			DagligLagerHåndteringMenuItem
 					.addActionListener(new java.awt.event.ActionListener() {
 						public void actionPerformed(java.awt.event.ActionEvent e) {
-//							getContentPane().setSize(getLagerPanel().getPreferredSize());
-						setContentPane(getLagerPanel());
-							System.out.println("actionPerformed()"); // TODO Auto-generated Event stub actionPerformed()
+							setContentPane(getLagerPanel());
 						}
 					});
 		}
@@ -104,7 +102,6 @@ public class MainFrame extends JFrame {
 						public void actionPerformed(java.awt.event.ActionEvent e) {
 							MainFrame.this.setSize(getAdministrationPanel().getSize());
 							setContentPane(getAdministrationPanel());
-							System.out.println("actionPerformed()"); // TODO Auto-generated Event stub actionPerformed()
 						}
 					});
 		}
@@ -152,7 +149,6 @@ public class MainFrame extends JFrame {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				MainFrame thisClass = new MainFrame();
