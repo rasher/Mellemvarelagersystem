@@ -3,6 +3,7 @@ package gui;
 import javax.swing.SwingUtilities;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
@@ -81,8 +82,9 @@ public class MainFrame extends JFrame {
 			DagligLagerHåndteringMenuItem
 					.addActionListener(new java.awt.event.ActionListener() {
 						public void actionPerformed(java.awt.event.ActionEvent e) {
-//							getContentPane().setSize(getLagerPanel().getPreferredSize());
+						MainFrame.this.setSize(800,500);
 						setContentPane(getLagerPanel());
+						MainFrame.this.setVisible(true);
 							System.out.println("actionPerformed()"); // TODO Auto-generated Event stub actionPerformed()
 						}
 					});
@@ -102,8 +104,9 @@ public class MainFrame extends JFrame {
 			OpretNyeProdukterMenuItem
 					.addActionListener(new java.awt.event.ActionListener() {
 						public void actionPerformed(java.awt.event.ActionEvent e) {
-							MainFrame.this.setSize(getAdministrationPanel().getSize());
+							MainFrame.this.setSize(800,500);
 							setContentPane(getAdministrationPanel());
+							MainFrame.this.setVisible(true);
 							System.out.println("actionPerformed()"); // TODO Auto-generated Event stub actionPerformed()
 						}
 					});
@@ -132,6 +135,7 @@ public class MainFrame extends JFrame {
 	private LagerPanel getLagerPanel() {
 		if (lagerPanel == null) {
 			lagerPanel = new LagerPanel();
+			lagerPanel.setSize(750, 500);
 		}
 		return lagerPanel;
 	}
@@ -144,6 +148,7 @@ public class MainFrame extends JFrame {
 	private AdministrationPanel getAdministrationPanel() {
 		if (administrationPanel == null) {
 			administrationPanel = new AdministrationPanel();
+			administrationPanel.setSize(750,500);
 		}
 		return administrationPanel;
 	}
