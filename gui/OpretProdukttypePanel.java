@@ -118,9 +118,9 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 		this.add(produkttypeNavnLabel, gridBagConstraints41);
 		this.add(getProdukttypeNavnTextField(), gridBagConstraints51);
 		getButtonPanel1().registerOpretGemSletObserver(this);
-		getButtonPanel1().enableOpretButton(false);
 		getButtonPanel1().enableGemButton(false);
 		getButtonPanel1().enableSletButton(false);
+		getButtonPanel1().enableOpretButton(false);
 		opdaterComboBox();
 	}
 
@@ -149,10 +149,17 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 					aktuelProdukttype = (Produkttype) vælgProdukttypeComboBox.getSelectedItem();
 					if(aktuelProdukttype != null)
 					{
+						getButtonPanel1().enableGemButton(true);
+						getButtonPanel1().enableSletButton(true);
 						getProdukttypeNavnTextField().setText(aktuelProdukttype.getNavn());
 						getTilknytBehandlingComboBox().setSelectedItem(aktuelProdukttype.getBehandling());
 						getProdukttypeInfoTextArea().setText("Produkttype: \t" + aktuelProdukttype.getNavn() + 
 								"\r\n" + aktuelProdukttype.getBehandling().getNavn() + "\r\n");
+					}
+					else
+					{
+						getButtonPanel1().enableGemButton(false);
+						getButtonPanel1().enableSletButton(false);
 					}
 				}
 			});
@@ -173,6 +180,7 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 					aktuelBehandling = (Behandling) tilknytBehandlingComboBox.getSelectedItem();
 					if(aktuelBehandling != null)
 					{
+						getButtonPanel1().enableOpretButton(true);
 						for(Delbehandling d : aktuelBehandling.getDelbehandlinger())
 						{
 							getProdukttypeInfoTextArea().append("Navn: \t" + d.getNavn() + "\n\r BehandlingsSted: \t" 
@@ -181,6 +189,8 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 									"Maks. Tørringstid:\t" + d.getMaksimumTørringsTid() + "\n\n\r");
 						}
 					}
+					else
+						getButtonPanel1().enableOpretButton(false);
 				}
 			});
 		}
