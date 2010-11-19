@@ -339,7 +339,7 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	public void flytDelbehandlingNed() {
 		DefaultListModel model = valgteDelbehandlingerModel;
 		int valgtIndex = getValgteDelbehandlingerList().getSelectedIndex();
-		if (valgtIndex < model.getSize()-1) {
+		if (valgtIndex > 0 && valgtIndex < model.getSize()-1) {
 			Object temp = model.get(valgtIndex);
 			model.insertElementAt(temp, valgtIndex + 2); // Indsæt under
 			model.remove(valgtIndex); // Fjern den gamle
