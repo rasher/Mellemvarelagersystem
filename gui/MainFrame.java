@@ -4,6 +4,7 @@ import javax.swing.SwingUtilities;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
@@ -188,6 +189,7 @@ public class MainFrame extends JFrame {
 			testMenuOpretTestData.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					Test.getInstance().opretTestData();
+					JOptionPane.showMessageDialog(null, "Test data oprettet", "Oprettet", JOptionPane.INFORMATION_MESSAGE);
 				}
 			});
 		}
@@ -205,7 +207,10 @@ public class MainFrame extends JFrame {
 			testMenuSletAltData.setText("Slet alt data");
 			testMenuSletAltData.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					Test.getInstance().sletAlt();
+					if (JOptionPane.showConfirmDialog(null, "Vil du slette alt data?", "Pas på", JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+						Test.getInstance().sletAlt();
+						JOptionPane.showMessageDialog(null, "Alt data slettet", "Slettet", JOptionPane.INFORMATION_MESSAGE);
+					}
 				}
 			});
 		}
