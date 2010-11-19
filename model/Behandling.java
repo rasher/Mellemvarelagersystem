@@ -13,7 +13,7 @@ public class Behandling {
 	private int nr;
 	@Column(length=128)
 	private String navn;
-	@OneToMany
+	@ManyToMany
 	private List<Delbehandling> delbehandlinger = new ArrayList<Delbehandling>();
 	public String getNavn() {
 		return navn;
