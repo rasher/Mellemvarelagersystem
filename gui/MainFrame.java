@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.UIManager;
 import javax.swing.border.Border;
 
 import model.Test;
@@ -272,6 +273,11 @@ public class MainFrame extends JFrame {
 	 * @return void
 	 */
 	private void initialize() {
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (Exception e) {
+			System.out.println("Fejl ved indstilling af udseende: " + e.getMessage());
+		}
 		this.setSize(920, 500);
 		this.setJMenuBar(getCarlettiMenuBar());
 		this.setContentPane(getJContentPane());
