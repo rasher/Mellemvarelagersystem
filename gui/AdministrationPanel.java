@@ -33,6 +33,8 @@ public class AdministrationPanel extends JPanel {
 		this.add(getOpretProdukttypePanel(), null);
 		this.add(getOpretBehandlingPanel(), null);
 		this.add(getOpretDelbehandlingPanel(), null);
+		getOpretBehandlingPanel().setOpretProdukttypePanel(getOpretProdukttypePanel());
+		getOpretDelbehandlingPanel().setOpretBehandlingPanel(getOpretBehandlingPanel());
 	}
 
 	/**
