@@ -81,6 +81,7 @@ public class OpretDelbehandlingPanel extends JPanel implements OpretGemSletObser
 					getOptTørringstid()));
 			service.gemIDatabase(nyDelbehandling);
 			getDelbehandlingDelPanel().opdaterPanel(service.getDelbehandlinger());
+			opretBehandlingPanel.opdaterMuligeDelbehandlinger();
 		}
 
 	}
@@ -109,6 +110,7 @@ public class OpretDelbehandlingPanel extends JPanel implements OpretGemSletObser
 					getOptTørringstid()));
 			service.gemIDatabase(getDelbehandlingDelPanel().getAktuelDebehandling());
 			getDelbehandlingDelPanel().opdaterPanel(service.getDelbehandlinger());
+			opretBehandlingPanel.opdaterMuligeDelbehandlinger();
 		}
 
 	}
@@ -118,6 +120,7 @@ public class OpretDelbehandlingPanel extends JPanel implements OpretGemSletObser
 		if(getDelbehandlingDelPanel().getAktuelDebehandling() != null)
 			service.fjernFraDatabase(getDelbehandlingDelPanel().getAktuelDebehandling());
 			getDelbehandlingDelPanel().opdaterPanel(service.getDelbehandlinger());
+			opretBehandlingPanel.opdaterMuligeDelbehandlinger();
 	}
 
 	/**

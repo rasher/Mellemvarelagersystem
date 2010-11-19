@@ -184,6 +184,10 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 			valgteDelbehandlingerModel.removeAllElements();
 		}
 	}
+	
+	public void opdaterMuligeDelbehandlinger() {
+		getMuligeDelbehandlingerList().setListData(service.getDelbehandlinger().toArray());
+	}
 
 	/**
 	 * This method initializes valgteDelbehandlingerList	
@@ -208,12 +212,10 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	 */
 	private JList getMuligeDelbehandlingerList() {
 		if (muligeDelbehandlingerList == null) {
-			List<Delbehandling> delbehandlinger = service.getDelbehandlinger();
 			muligeDelbehandlingerList = new JList();
-			muligeDelbehandlingerList.setModel(new DefaultListModel());
-			muligeDelbehandlingerList.setListData(delbehandlinger.toArray());
 			muligeDelbehandlingerList.setBorder(MainFrame.getBorder());
 			muligeDelbehandlingerList.setCellRenderer(new DelbehandlingListCellRenderer());
+			opdaterMuligeDelbehandlinger();
 		}
 		return muligeDelbehandlingerList;
 	}
