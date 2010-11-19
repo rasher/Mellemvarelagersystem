@@ -20,6 +20,11 @@ import model.Mellemvare;
 public class MellemvareOvervaagningCellRenderer extends JLabel implements
 		ListCellRenderer {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public MellemvareOvervaagningCellRenderer() {
         setOpaque(true);
         setHorizontalAlignment(LEFT);

@@ -7,6 +7,7 @@ import javax.persistence.*;
 @Table(name="Produkttype")
 @NamedQuery(name="findProdukttyper", query="Select p from Produkttype p")
 public class Produkttype {
+	@SuppressWarnings("unused")
 	@Id
 	@GeneratedValue
 	private int id;
