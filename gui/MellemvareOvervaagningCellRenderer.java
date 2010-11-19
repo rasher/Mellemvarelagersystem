@@ -3,6 +3,7 @@
  */
 package gui;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.util.GregorianCalendar;
 
@@ -19,6 +20,12 @@ import model.Mellemvare;
 public class MellemvareOvervaagningCellRenderer extends JLabel implements
 		ListCellRenderer {
 
+	public MellemvareOvervaagningCellRenderer() {
+        setOpaque(true);
+        setHorizontalAlignment(LEFT);
+        setVerticalAlignment(CENTER);
+	}
+	
 	/* (non-Javadoc)
 	 * @see javax.swing.ListCellRenderer#getListCellRendererComponent(javax.swing.JList, java.lang.Object, int, boolean, boolean)
 	 */
@@ -29,8 +36,8 @@ public class MellemvareOvervaagningCellRenderer extends JLabel implements
 		if (mellemvare != null) {
 			String text;
 			int sekTilOverskredet = (int) ((mellemvare.getMaksimumTørringNået().getTimeInMillis() - new GregorianCalendar().getTimeInMillis())/1000);
-			int timerTilOverskredet = sekTilOverskredet % 3600;
-			int minTilOverskredet = (sekTilOverskredet - (timerTilOverskredet*3600)) % 60;
+			int timerTilOverskredet = sekTilOverskredet / 3600;
+			int minTilOverskredet = (sekTilOverskredet - (timerTilOverskredet*3600)) / 60;
 			if (sekTilOverskredet < 0) {
 				text = String.format("%s batch %d (OVERSKREDET)",
 					mellemvare.getProdukttype().getNavn(),
@@ -54,6 +61,9 @@ public class MellemvareOvervaagningCellRenderer extends JLabel implements
 		} else {
 			setBackground(list.getBackground());
 			setForeground(list.getForeground());
+		}
+		if (mellemvare != null && mellemvare.getMaksimumTørringNået().before(new GregorianCalendar())) {
+			setForeground(Color.RED);
 		}
 
 		return this;
