@@ -40,6 +40,7 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	private JScrollPane valgteDelbehandlingerScrollpane = null;
 	private JScrollPane muligeDelbehandlingerScrollpane = null;
 	private DefaultComboBoxModel vælgBehandlingModel;
+	private OpretProdukttypePanel opretProdukttypePanel;
 	/**
 	 * This is the default constructor
 	 */
@@ -183,6 +184,10 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 			valgteDelbehandlingerModel.removeAllElements();
 		}
 	}
+	
+	public void opdaterMuligeDelbehandlinger() {
+		getMuligeDelbehandlingerList().setListData(service.getDelbehandlinger().toArray());
+	}
 
 	/**
 	 * This method initializes valgteDelbehandlingerList	
@@ -207,12 +212,10 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	 */
 	private JList getMuligeDelbehandlingerList() {
 		if (muligeDelbehandlingerList == null) {
-			List<Delbehandling> delbehandlinger = service.getDelbehandlinger();
 			muligeDelbehandlingerList = new JList();
-			muligeDelbehandlingerList.setModel(new DefaultListModel());
-			muligeDelbehandlingerList.setListData(delbehandlinger.toArray());
 			muligeDelbehandlingerList.setBorder(MainFrame.getBorder());
 			muligeDelbehandlingerList.setCellRenderer(new DelbehandlingListCellRenderer());
+			opdaterMuligeDelbehandlinger();
 		}
 		return muligeDelbehandlingerList;
 	}
@@ -257,6 +260,7 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 		valgtBehandling.setNavn(getBehandlingsNavnTextField().getText());
 		service.gemIDatabase(valgtBehandling);
 		vælgBehandlingComboBox.repaint();
+		opretProdukttypePanel.opdaterComboBox();
 	}
 
 	/* (non-Javadoc)
@@ -274,6 +278,7 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 		vælgBehandlingModel.addElement(behandling);
 		vælgBehandlingComboBox.setSelectedItem(behandling);
 		opdaterFelter();
+		opretProdukttypePanel.opdaterComboBox();
 	}
 
 	/* (non-Javadoc)
@@ -291,6 +296,7 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 				JOptionPane.showMessageDialog(this, "Du kan ikke slette denne behandling mens der findes produkttyper der benytter den", "Behandling ikke slettet", JOptionPane.ERROR_MESSAGE);
 			}
 			opdaterFelter();
+			opretProdukttypePanel.opdaterComboBox();
 		}
 	}
 
@@ -339,7 +345,7 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	public void flytDelbehandlingNed() {
 		DefaultListModel model = valgteDelbehandlingerModel;
 		int valgtIndex = getValgteDelbehandlingerList().getSelectedIndex();
-		if (valgtIndex < model.getSize()-1) {
+		if (valgtIndex > 0 && valgtIndex < model.getSize()-1) {
 			Object temp = model.get(valgtIndex);
 			model.insertElementAt(temp, valgtIndex + 2); // Indsæt under
 			model.remove(valgtIndex); // Fjern den gamle
@@ -395,6 +401,14 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 			muligeDelbehandlingerScrollpane.setViewportView(getMuligeDelbehandlingerList());
 		}
 		return muligeDelbehandlingerScrollpane;
+	}
+
+	/**
+	 * @param opretProdukttypePanel
+	 */
+	public void setOpretProdukttypePanel(
+			OpretProdukttypePanel opretProdukttypePanel) {
+		this.opretProdukttypePanel = opretProdukttypePanel;
 	}
 
 }  //  @jve:decl-index=0:visual-constraint="151,143"

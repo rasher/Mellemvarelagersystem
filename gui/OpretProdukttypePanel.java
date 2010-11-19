@@ -15,6 +15,7 @@ import model.Produkttype;
 import model.Service;
 
 import javax.swing.JTextField;
+import javax.swing.JScrollPane;
 
 public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserver {
 
@@ -31,6 +32,7 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 	private JLabel produkttypeNavnLabel = null;
 	private JTextField produkttypeNavnTextField = null;
 	private Service service = Service.getInstance();
+	private JScrollPane infoScrollPane = null;
 	/**
 	 * This is the default constructor
 	 */
@@ -45,6 +47,13 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 	 * @return void
 	 */
 	private void initialize() {
+		GridBagConstraints gridBagConstraints11 = new GridBagConstraints();
+		gridBagConstraints11.fill = GridBagConstraints.BOTH;
+		gridBagConstraints11.gridy = 7;
+		gridBagConstraints11.weightx = 1.0;
+		gridBagConstraints11.weighty = 1.0;
+		gridBagConstraints11.insets = new Insets(0, 5, 0, 5);
+		gridBagConstraints11.gridx = 0;
 		GridBagConstraints gridBagConstraints51 = new GridBagConstraints();
 		gridBagConstraints51.fill = GridBagConstraints.BOTH;
 		gridBagConstraints51.gridy = 3;
@@ -58,13 +67,6 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 		gridBagConstraints41.gridy = 2;
 		produkttypeNavnLabel = new JLabel();
 		produkttypeNavnLabel.setText("Produkttypenavn :");
-		GridBagConstraints gridBagConstraints6 = new GridBagConstraints();
-		gridBagConstraints6.fill = GridBagConstraints.BOTH;
-		gridBagConstraints6.gridy = 7;
-		gridBagConstraints6.weightx = 1.0;
-		gridBagConstraints6.weighty = 1.0;
-		gridBagConstraints6.insets = new Insets(0, 5, 0, 5);
-		gridBagConstraints6.gridx = 0;
 		GridBagConstraints gridBagConstraints5 = new GridBagConstraints();
 		gridBagConstraints5.gridx = 0;
 		gridBagConstraints5.anchor = GridBagConstraints.WEST;
@@ -105,7 +107,7 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 		gridBagConstraints.anchor = GridBagConstraints.SOUTH;
 		gridBagConstraints.insets = new Insets(0, 0, 0, 0);
 		gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-		gridBagConstraints.gridy = 8;
+		gridBagConstraints.gridy = 9;
 		this.setLayout(new GridBagLayout());
 		this.setSize(297, 295);
 		this.add(getButtonPanel1(), gridBagConstraints);
@@ -114,13 +116,13 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 		this.add(vælgProdukttypeLabel, gridBagConstraints3);
 		this.add(tilknytBehandlingLabel, gridBagConstraints4);
 		this.add(produkttypeInfoLabel, gridBagConstraints5);
-		this.add(getProdukttypeInfoTextArea(), gridBagConstraints6);
+		this.add(getInfoScrollPane(), gridBagConstraints11);
 		this.add(produkttypeNavnLabel, gridBagConstraints41);
 		this.add(getProdukttypeNavnTextField(), gridBagConstraints51);
 		getButtonPanel1().registerOpretGemSletObserver(this);
-		getButtonPanel1().enableOpretButton(false);
 		getButtonPanel1().enableGemButton(false);
 		getButtonPanel1().enableSletButton(false);
+		getButtonPanel1().enableOpretButton(false);
 		opdaterComboBox();
 	}
 
@@ -149,10 +151,17 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 					aktuelProdukttype = (Produkttype) vælgProdukttypeComboBox.getSelectedItem();
 					if(aktuelProdukttype != null)
 					{
+						getButtonPanel1().enableGemButton(true);
+						getButtonPanel1().enableSletButton(true);
 						getProdukttypeNavnTextField().setText(aktuelProdukttype.getNavn());
 						getTilknytBehandlingComboBox().setSelectedItem(aktuelProdukttype.getBehandling());
 						getProdukttypeInfoTextArea().setText("Produkttype: \t" + aktuelProdukttype.getNavn() + 
 								"\r\n" + aktuelProdukttype.getBehandling().getNavn() + "\r\n");
+					}
+					else
+					{
+						getButtonPanel1().enableGemButton(false);
+						getButtonPanel1().enableSletButton(false);
 					}
 				}
 			});
@@ -168,11 +177,18 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 	private JComboBox getTilknytBehandlingComboBox() {
 		if (tilknytBehandlingComboBox == null) {
 			tilknytBehandlingComboBox = new JComboBox();
+			tilknytBehandlingComboBox.setRenderer(new BehandlingListCellRenderer());
 			tilknytBehandlingComboBox.addItemListener(new java.awt.event.ItemListener() {
 				public void itemStateChanged(java.awt.event.ItemEvent e) {
 					aktuelBehandling = (Behandling) tilknytBehandlingComboBox.getSelectedItem();
 					if(aktuelBehandling != null)
 					{
+						if(aktuelProdukttype != null)
+							getProdukttypeInfoTextArea().setText("Produkttype: \t" + aktuelProdukttype.getNavn() + 
+									"\r\n" + aktuelProdukttype.getBehandling().getNavn() + "\r\n");
+						else
+							getProdukttypeInfoTextArea().setText("");
+						getButtonPanel1().enableOpretButton(true);
 						for(Delbehandling d : aktuelBehandling.getDelbehandlinger())
 						{
 							getProdukttypeInfoTextArea().append("Navn: \t" + d.getNavn() + "\n\r BehandlingsSted: \t" 
@@ -181,6 +197,8 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 									"Maks. Tørringstid:\t" + d.getMaksimumTørringsTid() + "\n\n\r");
 						}
 					}
+					else
+						getButtonPanel1().enableOpretButton(false);
 				}
 			});
 		}
@@ -256,6 +274,19 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 			produkttypeNavnTextField = new JTextField();
 		}
 		return produkttypeNavnTextField;
+	}
+
+	/**
+	 * This method initializes infoScrollPane	
+	 * 	
+	 * @return javax.swing.JScrollPane	
+	 */
+	private JScrollPane getInfoScrollPane() {
+		if (infoScrollPane == null) {
+			infoScrollPane = new JScrollPane();
+			infoScrollPane.setViewportView(getProdukttypeInfoTextArea());
+		}
+		return infoScrollPane;
 	}
 
 }  //  @jve:decl-index=0:visual-constraint="29,22"

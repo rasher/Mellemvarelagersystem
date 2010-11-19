@@ -3,18 +3,34 @@
  */
 package model;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 
 /**
  * @author Jonas Häggqvist (10dm10v1)
  * 
  */
 public class Test {
+	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("Mellemvarelager");
+	private EntityManager em = emf.createEntityManager();
 
-	/**
-	 * @param args
-	 */
+	private static Test thisInstance;
 	
-	public static void opretTestData() {
+	public static Test getInstance()
+	{
+		if(thisInstance == null)
+			thisInstance = new Test();
+		return thisInstance;
+	}
+	
+	private Test()
+	{
+		
+	}
+	
+	public void opretTestData() {
 		Service service = Service.getInstance();
 		Behandling b = service.createBehandling();
 		b.setNavn("Drage");
@@ -79,14 +95,8 @@ public class Test {
 		service.gemIDatabase(m1);
 	}
 	
-	public static void søgMellemvare(int batchNummer) {
-		Service service = Service.getInstance();
-		Mellemvare mv = service.søgMellemvare(batchNummer);
-		System.out.println(mv);
-	}
-	
 	public static void main(String[] args) {
-		opretTestData();
+		getInstance().opretTestData();
 //		søgMellemvare(13);
 //		søgMellemvare(14);
 //		søgMellemvare(-60);

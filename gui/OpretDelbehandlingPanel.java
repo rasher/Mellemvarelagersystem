@@ -15,6 +15,7 @@ public class OpretDelbehandlingPanel extends JPanel implements OpretGemSletObser
 	private DelbehandlingDelPanel delbehandlingDelPanel = null;
 	private Service service = Service.getInstance();
 	private Delbehandling nyDelbehandling;
+	private OpretBehandlingPanel opretBehandlingPanel;
 	/**
 	 * This is the default constructor
 	 */
@@ -34,6 +35,7 @@ public class OpretDelbehandlingPanel extends JPanel implements OpretGemSletObser
 		this.add(getDelbehandlingDelPanel(), BorderLayout.NORTH);
 		this.add(getButtonPanel1(), BorderLayout.SOUTH);
 		getButtonPanel1().registerOpretGemSletObserver(this);
+		getDelbehandlingDelPanel().opdaterPanel(service.getDelbehandlinger());
 	}
 
 	/**
@@ -80,6 +82,7 @@ public class OpretDelbehandlingPanel extends JPanel implements OpretGemSletObser
 					getOptTørringstid()));
 			service.gemIDatabase(nyDelbehandling);
 			getDelbehandlingDelPanel().opdaterPanel(service.getDelbehandlinger());
+			opretBehandlingPanel.opdaterMuligeDelbehandlinger();
 		}
 
 	}
@@ -108,6 +111,7 @@ public class OpretDelbehandlingPanel extends JPanel implements OpretGemSletObser
 					getOptTørringstid()));
 			service.gemIDatabase(getDelbehandlingDelPanel().getAktuelDebehandling());
 			getDelbehandlingDelPanel().opdaterPanel(service.getDelbehandlinger());
+			opretBehandlingPanel.opdaterMuligeDelbehandlinger();
 		}
 
 	}
@@ -117,6 +121,15 @@ public class OpretDelbehandlingPanel extends JPanel implements OpretGemSletObser
 		if(getDelbehandlingDelPanel().getAktuelDebehandling() != null)
 			service.fjernFraDatabase(getDelbehandlingDelPanel().getAktuelDebehandling());
 			getDelbehandlingDelPanel().opdaterPanel(service.getDelbehandlinger());
+			opretBehandlingPanel.opdaterMuligeDelbehandlinger();
+	}
+
+	/**
+	 * @param opretBehandlingPanel
+	 */
+	public void setOpretBehandlingPanel(
+			OpretBehandlingPanel opretBehandlingPanel) {
+		this.opretBehandlingPanel = opretBehandlingPanel;
 	}
 
 

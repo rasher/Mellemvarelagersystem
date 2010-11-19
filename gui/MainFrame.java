@@ -11,6 +11,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.border.Border;
 
+import model.Test;
+
 public class MainFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -24,6 +26,11 @@ public class MainFrame extends JFrame {
 	private LagerPanel lagerPanel = null;  //  @jve:decl-index=0:visual-constraint="342,13"//  @jve:decl-index=0:
 	private AdministrationPanel administrationPanel = null;  //  @jve:decl-index=0:visual-constraint="339,226"
 	private OpdaterToerreListerThread opdaterTørreListerThread = new OpdaterToerreListerThread();
+	private JMenu testMenu = null;
+	private JMenuItem testMenuOpretTestData = null;
+	private JMenuItem testMenuSletAltData = null;
+	private JMenuItem testMenuSætAlleVarerKlar = null;
+	private JMenuItem testMenuSætEnVareOverskredet = null;
 	
 	/**
 	 * This method initializes CarlettiMenuBar	
@@ -35,6 +42,7 @@ public class MainFrame extends JFrame {
 			CarlettiMenuBar = new JMenuBar();
 			CarlettiMenuBar.add(getLagerMenu());
 			CarlettiMenuBar.add(getAdministrationMenu());
+			CarlettiMenuBar.add(getTestMenu());
 		}
 		return CarlettiMenuBar;
 	}
@@ -152,6 +160,83 @@ public class MainFrame extends JFrame {
 	}
 
 	/**
+	 * This method initializes testMenu	
+	 * 	
+	 * @return javax.swing.JMenu	
+	 */
+	private JMenu getTestMenu() {
+		if (testMenu == null) {
+			testMenu = new JMenu();
+			testMenu.setText("Test");
+			testMenu.add(getTestMenuOpretTestData());
+			testMenu.add(getTestMenuSletAltData());
+			testMenu.add(getTestMenuSætAlleVarerKlar());
+			testMenu.add(getTestMenuSætEnVareOverskredet());
+		}
+		return testMenu;
+	}
+
+	/**
+	 * This method initializes testMenuOpretTestData	
+	 * 	
+	 * @return javax.swing.JMenuItem	
+	 */
+	private JMenuItem getTestMenuOpretTestData() {
+		if (testMenuOpretTestData == null) {
+			testMenuOpretTestData = new JMenuItem();
+			testMenuOpretTestData.setText("Opret testdata");
+			testMenuOpretTestData.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					Test.getInstance().opretTestData();
+				}
+			});
+		}
+		return testMenuOpretTestData;
+	}
+
+	/**
+	 * This method initializes testMenuSletAltData	
+	 * 	
+	 * @return javax.swing.JMenuItem	
+	 */
+	private JMenuItem getTestMenuSletAltData() {
+		if (testMenuSletAltData == null) {
+			testMenuSletAltData = new JMenuItem();
+			testMenuSletAltData.setEnabled(false);
+			testMenuSletAltData.setText("Slet alt data");
+		}
+		return testMenuSletAltData;
+	}
+
+	/**
+	 * This method initializes testMenuSætAlleVarerKlar	
+	 * 	
+	 * @return javax.swing.JMenuItem	
+	 */
+	private JMenuItem getTestMenuSætAlleVarerKlar() {
+		if (testMenuSætAlleVarerKlar == null) {
+			testMenuSætAlleVarerKlar = new JMenuItem();
+			testMenuSætAlleVarerKlar.setEnabled(false);
+			testMenuSætAlleVarerKlar.setText("Sæt alle varer klar");
+		}
+		return testMenuSætAlleVarerKlar;
+	}
+
+	/**
+	 * This method initializes testMenuSætEnVareOverskredet	
+	 * 	
+	 * @return javax.swing.JMenuItem	
+	 */
+	private JMenuItem getTestMenuSætEnVareOverskredet() {
+		if (testMenuSætEnVareOverskredet == null) {
+			testMenuSætEnVareOverskredet = new JMenuItem();
+			testMenuSætEnVareOverskredet.setEnabled(false);
+			testMenuSætEnVareOverskredet.setText("Sæt en vare overskredet");
+		}
+		return testMenuSætEnVareOverskredet;
+	}
+
+	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
@@ -181,7 +266,7 @@ public class MainFrame extends JFrame {
 		this.setSize(800, 500);
 		this.setJMenuBar(getCarlettiMenuBar());
 		this.setContentPane(getJContentPane());
-		this.setTitle("JFrame");
+		this.setTitle("Mellemvarelager");
 		VisListPanel visListPanel = getLagerPanel().getVisListPanel();
 		opdaterTørreListerThread.setKlarList(visListPanel.getKlarList());
 		opdaterTørreListerThread.setNærOverskredetList(visListPanel.getNærOverskredetList());
