@@ -258,6 +258,7 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 		valgtBehandling.setNavn(getBehandlingsNavnTextField().getText());
 		service.gemIDatabase(valgtBehandling);
 		vælgBehandlingComboBox.repaint();
+		opretProdukttypePanel.opdaterComboBox();
 	}
 
 	/* (non-Javadoc)
@@ -275,6 +276,7 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 		vælgBehandlingModel.addElement(behandling);
 		vælgBehandlingComboBox.setSelectedItem(behandling);
 		opdaterFelter();
+		opretProdukttypePanel.opdaterComboBox();
 	}
 
 	/* (non-Javadoc)
@@ -292,6 +294,7 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 				JOptionPane.showMessageDialog(this, "Du kan ikke slette denne behandling mens der findes produkttyper der benytter den", "Behandling ikke slettet", JOptionPane.ERROR_MESSAGE);
 			}
 			opdaterFelter();
+			opretProdukttypePanel.opdaterComboBox();
 		}
 	}
 
