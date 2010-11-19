@@ -183,8 +183,11 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 					aktuelBehandling = (Behandling) tilknytBehandlingComboBox.getSelectedItem();
 					if(aktuelBehandling != null)
 					{
-						getProdukttypeInfoTextArea().setText("Produkttype: \t" + aktuelProdukttype.getNavn() + 
-								"\r\n" + aktuelProdukttype.getBehandling().getNavn() + "\r\n");
+						if(aktuelProdukttype != null)
+							getProdukttypeInfoTextArea().setText("Produkttype: \t" + aktuelProdukttype.getNavn() + 
+									"\r\n" + aktuelProdukttype.getBehandling().getNavn() + "\r\n");
+						else
+							getProdukttypeInfoTextArea().setText("");
 						getButtonPanel1().enableOpretButton(true);
 						for(Delbehandling d : aktuelBehandling.getDelbehandlinger())
 						{
