@@ -96,8 +96,8 @@ public class RegistrerNyMellemvarePanel extends JPanel {
 					{
 						Produkttype aktuel = (Produkttype) getProdukttypeComboBox().getSelectedItem();
 						getRegistrerNyMellemvareButton().setEnabled(true);
-						getProdukttypeInfoTextArea().setText("Produkttype navn: \n\t" + aktuel.getNavn() + "\r\n\n"
-															 + "Tilknyttet behandling: \n\t" + aktuel.getBehandling().getNavn());
+						getProdukttypeInfoTextArea().setText("Produkttype navn: \t" + aktuel.getNavn() + "\r\n\n"
+															 + "Tilknyttet behandling: \t" + aktuel.getBehandling().getNavn());
 					}
 					else
 					{
