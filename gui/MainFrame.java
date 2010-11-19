@@ -202,8 +202,12 @@ public class MainFrame extends JFrame {
 	private JMenuItem getTestMenuSletAltData() {
 		if (testMenuSletAltData == null) {
 			testMenuSletAltData = new JMenuItem();
-			testMenuSletAltData.setEnabled(false);
 			testMenuSletAltData.setText("Slet alt data");
+			testMenuSletAltData.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					Test.getInstance().sletAlt();
+				}
+			});
 		}
 		return testMenuSletAltData;
 	}

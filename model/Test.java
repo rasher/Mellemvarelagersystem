@@ -95,6 +95,16 @@ public class Test {
 		service.gemIDatabase(m1);
 	}
 	
+	public void sletAlt() {
+		em.getTransaction().begin();
+		em.createQuery("delete from Mellemvare").executeUpdate();
+		em.createQuery("delete from BehandlingsTrin").executeUpdate();
+		em.createQuery("delete from Produkttype").executeUpdate();
+		em.createQuery("delete from Behandling").executeUpdate();
+		em.createQuery("delete from BehandlingsTrin").executeUpdate();
+		em.getTransaction().commit();
+	}
+	
 	public static void main(String[] args) {
 		getInstance().opretTestData();
 //		søgMellemvare(13);
