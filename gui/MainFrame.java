@@ -88,7 +88,7 @@ public class MainFrame extends JFrame {
 			DagligLagerHåndteringMenuItem
 					.addActionListener(new java.awt.event.ActionListener() {
 						public void actionPerformed(java.awt.event.ActionEvent e) {
-						MainFrame.this.setSize(800,500);
+						MainFrame.this.setSize(920,500);
 						setContentPane(getLagerPanel());
 						MainFrame.this.setVisible(true);
 							System.out.println("actionPerformed()"); // TODO Auto-generated Event stub actionPerformed()
@@ -110,7 +110,7 @@ public class MainFrame extends JFrame {
 			OpretNyeProdukterMenuItem
 					.addActionListener(new java.awt.event.ActionListener() {
 						public void actionPerformed(java.awt.event.ActionEvent e) {
-							MainFrame.this.setSize(800,500);
+							MainFrame.this.setSize(920,500);
 							setContentPane(getAdministrationPanel());
 							MainFrame.this.setVisible(true);
 						}
@@ -140,7 +140,7 @@ public class MainFrame extends JFrame {
 	private LagerPanel getLagerPanel() {
 		if (lagerPanel == null) {
 			lagerPanel = new LagerPanel();
-			lagerPanel.setSize(750, 500);
+			lagerPanel.setSize(920, 500);
 			lagerPanel.setMainFrame(this);
 		}
 		return lagerPanel;
@@ -154,7 +154,7 @@ public class MainFrame extends JFrame {
 	private AdministrationPanel getAdministrationPanel() {
 		if (administrationPanel == null) {
 			administrationPanel = new AdministrationPanel();
-			administrationPanel.setSize(750,500);
+			administrationPanel.setSize(920,500);
 		}
 		return administrationPanel;
 	}
@@ -263,7 +263,7 @@ public class MainFrame extends JFrame {
 	 * @return void
 	 */
 	private void initialize() {
-		this.setSize(800, 500);
+		this.setSize(920, 500);
 		this.setJMenuBar(getCarlettiMenuBar());
 		this.setContentPane(getJContentPane());
 		this.setTitle("Mellemvarelager");
