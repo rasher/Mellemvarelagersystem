@@ -15,6 +15,7 @@ public class OpretDelbehandlingPanel extends JPanel implements OpretGemSletObser
 	private DelbehandlingDelPanel delbehandlingDelPanel = null;
 	private Service service = Service.getInstance();
 	private Delbehandling nyDelbehandling;
+	private OpretBehandlingPanel opretProdukttypePanel;
 	/**
 	 * This is the default constructor
 	 */
@@ -117,6 +118,14 @@ public class OpretDelbehandlingPanel extends JPanel implements OpretGemSletObser
 		if(getDelbehandlingDelPanel().getAktuelDebehandling() != null)
 			service.fjernFraDatabase(getDelbehandlingDelPanel().getAktuelDebehandling());
 			getDelbehandlingDelPanel().opdaterPanel(service.getDelbehandlinger());
+	}
+
+	/**
+	 * @param opretBehandlingPanel
+	 */
+	public void setOpretBehandlingPanel(
+			OpretBehandlingPanel opretProdukttypePanel) {
+		this.opretProdukttypePanel = opretProdukttypePanel;
 	}
 
 

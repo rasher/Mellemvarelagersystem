@@ -40,6 +40,7 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	private JScrollPane valgteDelbehandlingerScrollpane = null;
 	private JScrollPane muligeDelbehandlingerScrollpane = null;
 	private DefaultComboBoxModel vælgBehandlingModel;
+	private OpretProdukttypePanel opretProdukttypePanel;
 	/**
 	 * This is the default constructor
 	 */
@@ -395,6 +396,14 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 			muligeDelbehandlingerScrollpane.setViewportView(getMuligeDelbehandlingerList());
 		}
 		return muligeDelbehandlingerScrollpane;
+	}
+
+	/**
+	 * @param opretProdukttypePanel
+	 */
+	public void setOpretProdukttypePanel(
+			OpretProdukttypePanel opretProdukttypePanel) {
+		this.opretProdukttypePanel = opretProdukttypePanel;
 	}
 
 }  //  @jve:decl-index=0:visual-constraint="151,143"
