@@ -29,8 +29,8 @@ public class MellemvareOvervaagningCellRenderer extends JLabel implements
 		if (mellemvare != null) {
 			String text;
 			int sekTilOverskredet = (int) ((mellemvare.getMaksimumTørringNået().getTimeInMillis() - new GregorianCalendar().getTimeInMillis())/1000);
-			int timerTilOverskredet = sekTilOverskredet % 3600;
-			int minTilOverskredet = (sekTilOverskredet - (timerTilOverskredet*3600)) % 60;
+			int timerTilOverskredet = sekTilOverskredet / 3600;
+			int minTilOverskredet = (sekTilOverskredet - (timerTilOverskredet*3600)) / 60;
 			if (sekTilOverskredet < 0) {
 				text = String.format("%s batch %d (OVERSKREDET)",
 					mellemvare.getProdukttype().getNavn(),
@@ -48,6 +48,7 @@ public class MellemvareOvervaagningCellRenderer extends JLabel implements
 			setText(text);
 		}
         
+		System.out.println(getText() + " - selected: " + isSelected); 
 		if (isSelected) {
 			setBackground(list.getSelectionBackground());
 			setForeground(list.getSelectionForeground());
