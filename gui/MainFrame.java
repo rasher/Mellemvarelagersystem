@@ -183,6 +183,7 @@ public class MainFrame extends JFrame {
 		if (testMenuOpretTestData == null) {
 			testMenuOpretTestData = new JMenuItem();
 			testMenuOpretTestData.setEnabled(false);
+			testMenuOpretTestData.setText("Opret testdata");
 		}
 		return testMenuOpretTestData;
 	}
@@ -196,6 +197,7 @@ public class MainFrame extends JFrame {
 		if (testMenuSletAltData == null) {
 			testMenuSletAltData = new JMenuItem();
 			testMenuSletAltData.setEnabled(false);
+			testMenuSletAltData.setText("Slet alt data");
 		}
 		return testMenuSletAltData;
 	}
@@ -209,6 +211,7 @@ public class MainFrame extends JFrame {
 		if (testMenuSætAlleVarerKlar == null) {
 			testMenuSætAlleVarerKlar = new JMenuItem();
 			testMenuSætAlleVarerKlar.setEnabled(false);
+			testMenuSætAlleVarerKlar.setText("Sæt alle varer klar");
 		}
 		return testMenuSætAlleVarerKlar;
 	}
@@ -222,6 +225,7 @@ public class MainFrame extends JFrame {
 		if (testMenuSætEnVareOverskredet == null) {
 			testMenuSætEnVareOverskredet = new JMenuItem();
 			testMenuSætEnVareOverskredet.setEnabled(false);
+			testMenuSætEnVareOverskredet.setText("Sæt en vare overskredet");
 		}
 		return testMenuSætEnVareOverskredet;
 	}
