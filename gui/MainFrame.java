@@ -266,7 +266,7 @@ public class MainFrame extends JFrame {
 		this.setSize(800, 500);
 		this.setJMenuBar(getCarlettiMenuBar());
 		this.setContentPane(getJContentPane());
-		this.setTitle("JFrame");
+		this.setTitle("Mellemvarelager");
 		VisListPanel visListPanel = getLagerPanel().getVisListPanel();
 		opdaterTørreListerThread.setKlarList(visListPanel.getKlarList());
 		opdaterTørreListerThread.setNærOverskredetList(visListPanel.getNærOverskredetList());
