@@ -27,12 +27,24 @@ public class MellemvareOvervaagningCellRenderer extends JLabel implements
 			int index, boolean isSelected, boolean cellHasFocus) {
 		Mellemvare mellemvare = (Mellemvare) value;
 		if (mellemvare != null) {
-			String text = String.format("%s batch %d (%f timer til overskredet - %tR)",
+			String text;
+			int sekTilOverskredet = (int) ((mellemvare.getMaksimumTørringNået().getTimeInMillis() - new GregorianCalendar().getTimeInMillis())/1000);
+			int timerTilOverskredet = sekTilOverskredet % 3600;
+			int minTilOverskredet = (sekTilOverskredet - (timerTilOverskredet*3600)) % 60;
+			if (sekTilOverskredet < 0) {
+				text = String.format("%s batch %d (OVERSKREDET)",
 					mellemvare.getProdukttype().getNavn(),
-					mellemvare.getBatchNummer(),
-					((float) mellemvare.getMaksimumTørringNået().getTimeInMillis() - new GregorianCalendar().getTimeInMillis())/(3600*1000),
-					mellemvare.getMaksimumTørringNået()
-			);
+					mellemvare.getBatchNummer()
+				);
+			}
+			else {
+				text = String.format("%s batch %d (%d:%02d timer til overskredet - %tR)",
+						mellemvare.getProdukttype().getNavn(),
+						mellemvare.getBatchNummer(),
+						timerTilOverskredet, minTilOverskredet,
+						mellemvare.getMaksimumTørringNået()
+				);
+			}
 			setText(text);
 		}
         
