@@ -34,6 +34,7 @@ public class OpretDelbehandlingPanel extends JPanel implements OpretGemSletObser
 		this.add(getDelbehandlingDelPanel(), BorderLayout.NORTH);
 		this.add(getButtonPanel1(), BorderLayout.SOUTH);
 		getButtonPanel1().registerOpretGemSletObserver(this);
+		getDelbehandlingDelPanel().opdaterPanel(service.getDelbehandlinger());
 	}
 
 	/**
