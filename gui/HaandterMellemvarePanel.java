@@ -4,6 +4,8 @@ import java.awt.GridBagLayout;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
+
+import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
@@ -15,7 +17,7 @@ import model.Mellemvare;
 import model.Service;
 
 import java.awt.Insets;
-import java.util.GregorianCalendar;
+import java.text.NumberFormat;
 
 public class HaandterMellemvarePanel extends JPanel {
 
@@ -102,7 +104,7 @@ public class HaandterMellemvarePanel extends JPanel {
 	 */
 	protected JTextField getBatchnummerTextField() {
 		if (batchnummerTextField == null) {
-			batchnummerTextField = new JTextField();
+			batchnummerTextField = new JFormattedTextField(NumberFormat.getInstance());
 				batchnummerTextField.getDocument().addDocumentListener(new DocumentListener(){
 
 					@Override

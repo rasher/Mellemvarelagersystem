@@ -1,11 +1,14 @@
 package gui;
 
-import java.awt.GridBagLayout;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
-import javax.swing.JTextField;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.text.NumberFormat;
+
+import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class ToerretidsPanel extends JPanel {
 
@@ -84,7 +87,7 @@ public class ToerretidsPanel extends JPanel {
 	 */
 	private JTextField getMinimalTørretidTextField() {
 		if (minimalTørretidTextField == null) {
-			minimalTørretidTextField = new JTextField();
+			minimalTørretidTextField = new JFormattedTextField(NumberFormat.getInstance());
 		}
 		return minimalTørretidTextField;
 	}
@@ -96,7 +99,7 @@ public class ToerretidsPanel extends JPanel {
 	 */
 	private JTextField getOptimalTørretidTextField() {
 		if (optimalTørretidTextField == null) {
-			optimalTørretidTextField = new JTextField();
+			optimalTørretidTextField = new JFormattedTextField(NumberFormat.getInstance());
 		}
 		return optimalTørretidTextField;
 	}
@@ -108,7 +111,7 @@ public class ToerretidsPanel extends JPanel {
 	 */
 	private JTextField getMaksimalTørretidTextField() {
 		if (maksimalTørretidTextField == null) {
-			maksimalTørretidTextField = new JTextField();
+			maksimalTørretidTextField = new JFormattedTextField(NumberFormat.getInstance());
 		}
 		return maksimalTørretidTextField;
 	}
