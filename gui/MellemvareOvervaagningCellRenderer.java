@@ -48,7 +48,6 @@ public class MellemvareOvervaagningCellRenderer extends JLabel implements
 			setText(text);
 		}
         
-		System.out.println(getText() + " - selected: " + isSelected); 
 		if (isSelected) {
 			setBackground(list.getSelectionBackground());
 			setForeground(list.getSelectionForeground());
