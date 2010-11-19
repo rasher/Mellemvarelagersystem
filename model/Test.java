@@ -30,7 +30,7 @@ public class Test {
 		
 	}
 	
-	public static void opretTestData() {
+	public void opretTestData() {
 		Service service = Service.getInstance();
 		Behandling b = service.createBehandling();
 		b.setNavn("Drage");
@@ -96,7 +96,7 @@ public class Test {
 	}
 	
 	public static void main(String[] args) {
-		opretTestData();
+		getInstance().opretTestData();
 //		søgMellemvare(13);
 //		søgMellemvare(14);
 //		søgMellemvare(-60);

@@ -11,6 +11,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.border.Border;
 
+import model.Test;
+
 public class MainFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -182,8 +184,12 @@ public class MainFrame extends JFrame {
 	private JMenuItem getTestMenuOpretTestData() {
 		if (testMenuOpretTestData == null) {
 			testMenuOpretTestData = new JMenuItem();
-			testMenuOpretTestData.setEnabled(false);
 			testMenuOpretTestData.setText("Opret testdata");
+			testMenuOpretTestData.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					Test.getInstance().opretTestData();
+				}
+			});
 		}
 		return testMenuOpretTestData;
 	}
