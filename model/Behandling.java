@@ -13,8 +13,9 @@ public class Behandling {
 	private int nr;
 	@Column(length=128)
 	private String navn;
-	@ManyToMany
-	private List<Delbehandling> delbehandlinger = new ArrayList<Delbehandling>();
+	@OneToMany(cascade = CascadeType.REMOVE)
+	private List<BehandlingDelbehandlingRelation> behandlingDelbehandlingRelationer = 
+		new ArrayList<BehandlingDelbehandlingRelation>();
 	public String getNavn() {
 		return navn;
 	}
@@ -22,33 +23,29 @@ public class Behandling {
 		this.navn = navn;
 	}
 	
-	public void addDelbehandling(Delbehandling delbehandling)
-	{
-		delbehandlinger.add(delbehandling);
-	}
 	
-	public void removeDelbehandling(Delbehandling delbehandling)
+	public void addBehandlingDelbehandlingRelation(BehandlingDelbehandlingRelation bdr)
 	{
-		delbehandlinger.remove(delbehandling);
+		this.behandlingDelbehandlingRelationer.add(bdr);
 	}
-	
-	public List<Delbehandling> getDelbehandlinger()
+	public List<BehandlingDelbehandlingRelation> getBehandlingDelbehandlingRelation() {
+		return behandlingDelbehandlingRelationer;
+	}
+	public void setBehandlingDelbehandlingRelation(
+			List<BehandlingDelbehandlingRelation> behandlingDelbehandlingRelation) {
+		this.behandlingDelbehandlingRelationer = behandlingDelbehandlingRelation;
+	}
+	public void removeBehandlingDelbehandlingRelation(BehandlingDelbehandlingRelation bdr)
 	{
-		return delbehandlinger;
+		this.behandlingDelbehandlingRelationer.remove(bdr);
 	}
-	/**
-	 * @param arrayList
-	 */
-	public void setDelbehandlinger(List<Delbehandling> delbehandlinger) {
-		this.delbehandlinger = delbehandlinger;
-	}
-	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
 		return String.format("Behandling [navn=%s, nr=%s, delbehandlinger=%s]",
-				navn, nr, delbehandlinger);
+				navn, nr);
+		
 	}
 }
