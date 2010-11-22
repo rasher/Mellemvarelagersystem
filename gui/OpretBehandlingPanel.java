@@ -175,8 +175,8 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 		Behandling valgtBehandling = (Behandling) vælgBehandlingComboBox.getSelectedItem();
 		if (valgtBehandling != null) {
 			valgteDelbehandlingerModel.removeAllElements();
-			for (Delbehandling d: valgtBehandling.getDelbehandlinger()) {
-				valgteDelbehandlingerModel.addElement(d);			
+			for (BehandlingDelbehandlingRelation bdr: valgtBehandling.getBehandlingDelbehandlingRelationer()) {
+				valgteDelbehandlingerModel.addElement(bdr);			
 			}
 			getBehandlingsNavnTextField().setText(((Behandling) vælgBehandlingComboBox.getSelectedItem()).getNavn());
 		}
