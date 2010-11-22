@@ -10,6 +10,7 @@ private int ID;
 private Behandling behandling;
 @ManyToOne
 private Delbehandling delbehandling;
+private int rækkeFølge;
 public Behandling getBehandling() {
 	return behandling;
 }

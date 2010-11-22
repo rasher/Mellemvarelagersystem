@@ -34,7 +34,7 @@ public class Mellemvare {
 	private BehandlingsTrin aktuelBehandlingsTrin;
 	@OneToMany(cascade = CascadeType.REMOVE)
 	private List<BehandlingsTrin> behandlingsTrin = new ArrayList<BehandlingsTrin>();
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.DETACH)
 	private Produkttype produkttype;
 
 	/**

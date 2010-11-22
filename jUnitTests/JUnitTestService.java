@@ -2,9 +2,6 @@ package jUnitTests;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import model.Behandling;
 import model.Delbehandling;
 import model.Mellemvare;
@@ -51,9 +48,10 @@ public class JUnitTestService {
 		assertEquals(produkttype, aktuel.getProdukttype());
 		assertEquals(behandling, aktuel.getProdukttype().getBehandling());
 		
-		Service.getInstance().fjernFraDatabase(aktuel);
+		
 		Service.getInstance().fjernFraDatabase(produkttype);
 		Service.getInstance().fjernFraDatabase(behandling);
+		Service.getInstance().fjernFraDatabase(aktuel);
 	}
 	
 	/**
@@ -84,8 +82,8 @@ public class JUnitTestService {
 		assertEquals(behandling, aktuel.getProdukttype().getBehandling());
 		assertEquals(delbehandling, aktuel.getBehandlingsTrin().get(0).getDelbehandling());
 		
-		Service.getInstance().fjernFraDatabase(aktuel);
 		Service.getInstance().fjernFraDatabase(produkttype);
+		Service.getInstance().fjernFraDatabase(aktuel);
 		Service.getInstance().fjernFraDatabase(behandling);
 		Service.getInstance().fjernFraDatabase(delbehandling);
 	}
@@ -108,8 +106,8 @@ public class JUnitTestService {
 		
 		assertEquals(aktuel, Service.getInstance().søgMellemvare(aktuel.getBatchNummer()));
 		
-		Service.getInstance().fjernFraDatabase(aktuel);
 		Service.getInstance().fjernFraDatabase(produkttype);
+		Service.getInstance().fjernFraDatabase(aktuel);
 		Service.getInstance().fjernFraDatabase(behandling);
 	}
 	
