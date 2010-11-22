@@ -91,11 +91,13 @@ public class Mellemvare {
 	 * Send til pakning. Den nuværende delbehandling afsluttes.
 	 */
 	public void sendTilPakning() {
+		if (aktuelBehandlingsTrin != null) {
 		aktuelBehandlingsTrin.setSlut(new GregorianCalendar());
 		minimumTørringNået = null;
 		optimalTørringNået = null;
 		maksimumTørringNået = null;
 		aktuelBehandlingsTrin = null;
+		}
 	}
 
 	/**
