@@ -3,6 +3,7 @@ package jUnitTests;
 import static org.junit.Assert.*;
 
 import model.Behandling;
+import model.BehandlingDelbehandlingRelation;
 import model.Delbehandling;
 import model.Mellemvare;
 import model.Produkttype;
@@ -68,7 +69,15 @@ public class JUnitTestService {
 		Service.getInstance().gemIDatabase(delbehandling);
 		
 		Behandling behandling = Service.getInstance().createBehandling();
-		behandling.addDelbehandling(delbehandling);
+		Service.getInstance().gemIDatabase(behandling);
+		
+		BehandlingDelbehandlingRelation bdr = new BehandlingDelbehandlingRelation();
+		bdr.setRækkefølge(0);
+		bdr.setDelbehandling(delbehandling);
+		bdr.setBehandling(behandling);
+		Service.getInstance().gemIDatabase(bdr);
+		
+		behandling.getBehandlingDelbehandlingRelationer().add(bdr);
 		Service.getInstance().gemIDatabase(behandling);
 		
 		Produkttype produkttype = Service.getInstance().createProdukttype(behandling);
@@ -82,6 +91,7 @@ public class JUnitTestService {
 		assertEquals(behandling, aktuel.getProdukttype().getBehandling());
 		assertEquals(delbehandling, aktuel.getBehandlingsTrin().get(0).getDelbehandling());
 		
+		Service.getInstance().fjernFraDatabase(bdr);
 		Service.getInstance().fjernFraDatabase(produkttype);
 		Service.getInstance().fjernFraDatabase(aktuel);
 		Service.getInstance().fjernFraDatabase(behandling);
