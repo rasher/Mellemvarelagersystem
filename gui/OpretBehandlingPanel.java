@@ -17,8 +17,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListModel;
 
-import org.eclipse.persistence.exceptions.DatabaseException;
-
 import model.Behandling;
 import model.Delbehandling;
 import model.Service;
