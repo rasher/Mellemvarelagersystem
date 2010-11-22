@@ -187,7 +187,7 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 					{
 						if(aktuelProdukttype != null)
 							getProdukttypeInfoTextArea().setText("Produkttype: \t" + aktuelProdukttype.getNavn() + 
-									"\r\n" + aktuelProdukttype.getBehandling().getNavn() + "\r\n");
+									"\r\n" + aktuelBehandling.getNavn() + "\r\n");
 						else
 							getProdukttypeInfoTextArea().setText("");
 						getButtonPanel1().enableOpretButton(true);
