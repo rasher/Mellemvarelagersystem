@@ -29,5 +29,15 @@ public Delbehandling getDelbehandling() {
 public void setDelbehandling(Delbehandling delbehandling) {
 	this.delbehandling = delbehandling;
 }
+/* (non-Javadoc)
+ * @see java.lang.Object#toString()
+ */
+@Override
+public String toString() {
+	return String
+			.format(
+					"BehandlingDelbehandlingRelation [ID=%s, rækkefølge=%s, behandling=%s, delbehandling=%s]",
+					ID, rækkefølge, behandling, delbehandling);
+}
 
 }
