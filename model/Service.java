@@ -23,18 +23,22 @@ public class Service {
 	}
 	public Mellemvare createMellemvare(Produkttype produkttype)
 	{
-		em.getTransaction().begin();
-		Mellemvare nyMellemvare = new Mellemvare();
-		nyMellemvare.setProdukttype(produkttype);
-		for(Delbehandling delbehandling : produkttype.getDelbehandlinger())
-		{
-			BehandlingsTrin nytBehandlingsTrin = new BehandlingsTrin();
-			nytBehandlingsTrin.setDelbehandling(delbehandling);
-			nyMellemvare.addBehandlingsTrin(nytBehandlingsTrin);
-			em.persist(nytBehandlingsTrin);
+		Mellemvare nyMellemvare = null;
+
+		if(produkttype != null){
+			em.getTransaction().begin();
+			nyMellemvare = new Mellemvare();
+			nyMellemvare.setProdukttype(produkttype);
+			for(Delbehandling delbehandling : produkttype.getDelbehandlinger())
+			{
+				BehandlingsTrin nytBehandlingsTrin = new BehandlingsTrin();
+				nytBehandlingsTrin.setDelbehandling(delbehandling);
+				nyMellemvare.addBehandlingsTrin(nytBehandlingsTrin);
+				em.persist(nytBehandlingsTrin);
+			}
+			em.persist(nyMellemvare);
+			em.getTransaction().commit();
 		}
-		em.persist(nyMellemvare);
-		em.getTransaction().commit();
 		return nyMellemvare;
 	}
 	public Produkttype createProdukttype(Behandling behandling)

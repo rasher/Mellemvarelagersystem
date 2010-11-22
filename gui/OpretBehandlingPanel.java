@@ -5,6 +5,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.util.ArrayList;
 
+import javax.persistence.RollbackException;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
@@ -291,7 +292,7 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 			try {
 				service.fjernFraDatabase(valgtBehandling);
 				vælgBehandlingModel.removeElement(valgtBehandling);
-			} catch (Exception e) {
+			} catch (RollbackException e) {
 				JOptionPane.showMessageDialog(this, "Du kan ikke slette denne behandling mens der findes produkttyper der benytter den", "Behandling ikke slettet", JOptionPane.ERROR_MESSAGE);
 			}
 			opdaterFelter();

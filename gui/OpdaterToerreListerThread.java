@@ -22,7 +22,6 @@ public class OpdaterToerreListerThread extends Thread {
 	}
 	
 	public void opdaterLister() {
-		System.out.println("Opdater lister");
 		int timerFraMaks = antalTimerFraMaxToerringsSlider.getValue();
 		klarList.setListData(Service.getInstance().getKlar(timerFraMaks).toArray());
 		nærOverskredetList.setListData(Service.getInstance().getNærOverskredet(timerFraMaks).toArray());
