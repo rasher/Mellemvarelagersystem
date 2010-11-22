@@ -29,11 +29,11 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 	private JLabel tilknytBehandlingLabel = null;
 	private JLabel produkttypeInfoLabel = null;
 	private JTextArea produkttypeInfoTextArea = null;
-	private Produkttype aktuelProdukttype;
-	private Behandling aktuelBehandling;
+	private Produkttype aktuelProdukttype;  //  @jve:decl-index=0:
+	private Behandling aktuelBehandling;  //  @jve:decl-index=0:
 	private JLabel produkttypeNavnLabel = null;
 	private JTextField produkttypeNavnTextField = null;
-	private Service service = Service.getInstance();
+	private Service service = Service.getInstance();  //  @jve:decl-index=0:
 	private JScrollPane infoScrollPane = null;
 	/**
 	 * This is the default constructor
@@ -158,7 +158,7 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 						getProdukttypeNavnTextField().setText(aktuelProdukttype.getNavn());
 						getTilknytBehandlingComboBox().setSelectedItem(aktuelProdukttype.getBehandling());
 						getProdukttypeInfoTextArea().setText("Produkttype: \t" + aktuelProdukttype.getNavn() + 
-								"\r\n" + aktuelProdukttype.getBehandling().getNavn() + "\r\n");
+								"\r\n" + aktuelBehandling.getNavn() + "\r\n");
 					}
 					else
 					{
