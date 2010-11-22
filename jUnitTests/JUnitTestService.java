@@ -15,6 +15,13 @@ import org.junit.Test;
 
 public class JUnitTestService {
 	
+	/**
+	 * Johnny Sønderskov Sørensen
+	 * 
+	 * Tester på om createMellemvare i Service klassen returnerer null,
+	 * hvis den køres med produkttype = null som parameter
+	 * 
+	 */
 	@Test
 	public void testCreateMellemvareTC1(){
 		
@@ -23,6 +30,13 @@ public class JUnitTestService {
 		assertNull(Service.getInstance().createMellemvare(produkttype));
 	}
 	
+	/**
+	 * Johnny Sønderskov Sørensen
+	 * 
+	 * Tester på om createMellemvare i Service klassen opretter en ny mellemvare med tilknyttet produkttype og behandling,
+	 * hvis den køres med en produkttype som parameter, og denne produkttype har en behandling tilknyttet
+	 * 
+	 */
 	@Test
 	public void testCreateMellemvareTC2(){
 		Behandling behandling = Service.getInstance().createBehandling();
@@ -42,6 +56,13 @@ public class JUnitTestService {
 		Service.getInstance().fjernFraDatabase(behandling);
 	}
 	
+	/**
+	 * Johnny Sønderskov Sørensen
+	 * 
+	 * Tester på om createMellemvare i Service klassen opretter en ny mellemvare med tilknyttet produkttype, behandling og delbehandling,
+	 * hvis den køres med en produkttype som parameter, og denne produkttype har en behandling tilknyttet og behandlingen har en delbehandling tilknyttet
+	 * 
+	 */
 	@Test
 	public void testCreateMellemvareTC3(){
 		
@@ -69,6 +90,13 @@ public class JUnitTestService {
 		Service.getInstance().fjernFraDatabase(delbehandling);
 	}
 	
+	/**
+	 * Johnny Sønderskov Sørensen
+	 * 
+	 * Tester på om søgMellemvare i Service klassen returnerer den søgte mellemvare
+	 * med det valgte batchnummer
+	 * 
+	 */
 	@Test
 	public void søgMellemvareTC1(){
 		Behandling behandling = Service.getInstance().createBehandling();
@@ -85,6 +113,13 @@ public class JUnitTestService {
 		Service.getInstance().fjernFraDatabase(behandling);
 	}
 	
+	/**
+	 * Johnny Sønderskov Sørensen
+	 * 
+	 * Tester på om søgMellemvare i Service klassen returnerer null,
+	 * hvis der søges på et batchnummer som ikke findes
+	 * 
+	 */
 	@Test
 	public void søgMellemvareTC2(){
 		assertNull(Service.getInstance().søgMellemvare(-1));
