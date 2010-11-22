@@ -45,7 +45,6 @@ public class Behandling {
 	@Override
 	public String toString() {
 		return String.format("Behandling [navn=%s, nr=%s, delbehandlinger=%s]",
-				navn, nr);
-		
+				navn, nr, behandlingDelbehandlingRelationer);
 	}
 }
