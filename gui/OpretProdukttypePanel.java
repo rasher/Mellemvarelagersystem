@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 import model.Behandling;
+import model.BehandlingDelbehandlingRelation;
 import model.Delbehandling;
 import model.Produkttype;
 import model.Service;
@@ -190,12 +191,12 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 						else
 							getProdukttypeInfoTextArea().setText("");
 						getButtonPanel1().enableOpretButton(true);
-						for(Delbehandling d : aktuelBehandling.getDelbehandlinger())
+						for(BehandlingDelbehandlingRelation bdr : aktuelBehandling.getBehandlingDelbehandlingRelation())
 						{
-							getProdukttypeInfoTextArea().append("Navn: \t" + d.getNavn() + "\n\r BehandlingsSted: \t" 
-									+ d.getBehandlingsSted() + "\n\r Min. Tørringstid:\t" + d.getMinimumTørringsTid()
-									+ "\n\r Opt. Tørringstid:\t" + d.getOptimalTørringsTid() + "\n\r " +
-									"Maks. Tørringstid:\t" + d.getMaksimumTørringsTid() + "\n\n\r");
+							getProdukttypeInfoTextArea().append("Navn: \t" + bdr.getDelbehandling().getNavn() + "\n\r BehandlingsSted: \t" 
+									+ bdr.getDelbehandling().getBehandlingsSted() + "\n\r Min. Tørringstid:\t" + bdr.getDelbehandling().getMinimumTørringsTid()
+									+ "\n\r Opt. Tørringstid:\t" + bdr.getDelbehandling().getOptimalTørringsTid() + "\n\r " +
+									"Maks. Tørringstid:\t" + bdr.getDelbehandling().getMaksimumTørringsTid() + "\n\n\r");
 						}
 					}
 					else
