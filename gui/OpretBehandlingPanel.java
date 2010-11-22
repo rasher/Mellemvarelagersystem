@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.ListModel;
 
 import model.Behandling;
+import model.BehandlingDelbehandlingRelation;
 import model.Delbehandling;
 import model.Service;
 
@@ -200,7 +201,7 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 			valgteDelbehandlingerList.setBorder(MainFrame.getBorder());
 			valgteDelbehandlingerModel = new DefaultListModel();
 			valgteDelbehandlingerList.setModel(valgteDelbehandlingerModel);
-			valgteDelbehandlingerList.setCellRenderer(new DelbehandlingListCellRenderer());
+			valgteDelbehandlingerList.setCellRenderer(new BehandlingDelbehandlingRelationListCellRenderer());
 		}
 		return valgteDelbehandlingerList;
 	}
@@ -252,11 +253,14 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	@Override
 	public void gem() {
 		Behandling valgtBehandling = (Behandling) getVælgBehandlingComboBox().getSelectedItem();
-		valgtBehandling.setDelbehandlinger(new ArrayList<Delbehandling>());
 		ListModel model = getValgteDelbehandlingerList().getModel();
+		ArrayList<BehandlingDelbehandlingRelation> behandlingDelbehandlingRelationer = new ArrayList<BehandlingDelbehandlingRelation>();
 		for (int i = 0; i < model.getSize(); i++) {
-			valgtBehandling.addDelbehandling((Delbehandling) model.getElementAt(i));
+			BehandlingDelbehandlingRelation behandlingDelbehandlingRelation = (BehandlingDelbehandlingRelation) model.getElementAt(i);
+			behandlingDelbehandlingRelation.setRækkefølge(i + 1);
+			behandlingDelbehandlingRelationer.add(behandlingDelbehandlingRelation);
 		}
+		valgtBehandling.setBehandlingDelbehandlingRelationer(behandlingDelbehandlingRelationer);
 		valgtBehandling.setNavn(getBehandlingsNavnTextField().getText());
 		service.gemIDatabase(valgtBehandling);
 		vælgBehandlingComboBox.repaint();
@@ -357,7 +361,7 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	 * 
 	 */
 	public void fravælgValgtDelbehandling() {
-		Delbehandling valgtDelbehandling = (Delbehandling) getValgteDelbehandlingerList().getSelectedValue();
+		BehandlingDelbehandlingRelation valgtDelbehandling = (BehandlingDelbehandlingRelation) getValgteDelbehandlingerList().getSelectedValue();
 		System.out.println("Fravælg valgt delbehandling: " + valgtDelbehandling);
 		int valgtIndex = getValgteDelbehandlingerList().getSelectedIndex();
 		if (valgtIndex > -1) {
@@ -371,8 +375,12 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	 */
 	public void tilknytValgtDelbehandling() {
 		Delbehandling valgtDelbehandling = (Delbehandling) getMuligeDelbehandlingerList().getSelectedValue();
-		if (valgtDelbehandling != null) {
-			valgteDelbehandlingerModel.addElement(valgtDelbehandling);
+		Behandling valgtBehandling = (Behandling) getVælgBehandlingComboBox().getSelectedItem();
+		if (valgtDelbehandling != null && valgtBehandling != null) {
+			BehandlingDelbehandlingRelation nyDelbehandlingRelation = new BehandlingDelbehandlingRelation();
+			nyDelbehandlingRelation.setDelbehandling(valgtDelbehandling);
+			nyDelbehandlingRelation.setBehandling(valgtBehandling);
+			valgteDelbehandlingerModel.addElement(nyDelbehandlingRelation);
 		}
 		System.out.println("Tilknyt valgt delbehandling: " + valgtDelbehandling);
 	}
