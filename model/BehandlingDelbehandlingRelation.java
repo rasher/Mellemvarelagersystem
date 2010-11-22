@@ -10,12 +10,12 @@ private int ID;
 private Behandling behandling;
 @ManyToOne
 private Delbehandling delbehandling;
-private int rækkeFølge;
-public int getRækkeFølge() {
-	return rækkeFølge;
+private int rækkefølge;
+public int getRækkefølge() {
+	return rækkefølge;
 }
-public void setRækkeFølge(int rækkeFølge) {
-	this.rækkeFølge = rækkeFølge;
+public void setRækkefølge(int rækkefølge) {
+	this.rækkefølge = rækkefølge;
 }
 public Behandling getBehandling() {
 	return behandling;
