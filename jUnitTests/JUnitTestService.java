@@ -90,11 +90,11 @@ public class JUnitTestService {
 		assertEquals(produkttype, aktuel.getProdukttype());
 		assertEquals(behandling, aktuel.getProdukttype().getBehandling());
 		assertEquals(delbehandling, aktuel.getBehandlingsTrin().get(0).getDelbehandling());
-		
-		Service.getInstance().fjernFraDatabase(bdr);
+
 		Service.getInstance().fjernFraDatabase(produkttype);
 		Service.getInstance().fjernFraDatabase(aktuel);
 		Service.getInstance().fjernFraDatabase(behandling);
+		Service.getInstance().fjernFraDatabase(bdr);
 		Service.getInstance().fjernFraDatabase(delbehandling);
 	}
 	
