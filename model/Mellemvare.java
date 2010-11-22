@@ -32,7 +32,7 @@ public class Mellemvare {
 	private Calendar maksimumTørringNået;
 	@ManyToOne
 	private BehandlingsTrin aktuelBehandlingsTrin;
-	@OneToMany(cascade = CascadeType.REMOVE)
+	@OneToMany(cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
 	private List<BehandlingsTrin> behandlingsTrin = new ArrayList<BehandlingsTrin>();
 	@ManyToOne(cascade = CascadeType.DETACH)
 	private Produkttype produkttype;
