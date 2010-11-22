@@ -28,10 +28,10 @@ public class Behandling {
 	{
 		this.behandlingDelbehandlingRelationer.add(bdr);
 	}
-	public List<BehandlingDelbehandlingRelation> getBehandlingDelbehandlingRelation() {
+	public List<BehandlingDelbehandlingRelation> getBehandlingDelbehandlingRelationer() {
 		return behandlingDelbehandlingRelationer;
 	}
-	public void setBehandlingDelbehandlingRelation(
+	public void setBehandlingDelbehandlingRelationer(
 			List<BehandlingDelbehandlingRelation> behandlingDelbehandlingRelation) {
 		this.behandlingDelbehandlingRelationer = behandlingDelbehandlingRelation;
 	}
