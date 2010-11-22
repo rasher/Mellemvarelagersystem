@@ -47,6 +47,11 @@ public class Service {
 		nyProdukttype.setBehandling(behandling);
 		return nyProdukttype;
 	}
+	public BehandlingDelbehandlingRelation createBehandlingDelbehandlingRelation()
+	{
+		return new BehandlingDelbehandlingRelation();
+	}
+	
 	public Behandling createBehandling()
 	{
 		Behandling nyBehandling = new Behandling();
