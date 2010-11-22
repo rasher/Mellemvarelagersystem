@@ -158,7 +158,7 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 						getProdukttypeNavnTextField().setText(aktuelProdukttype.getNavn());
 						getTilknytBehandlingComboBox().setSelectedItem(aktuelProdukttype.getBehandling());
 						getProdukttypeInfoTextArea().setText("Produkttype: \t" + aktuelProdukttype.getNavn() + 
-								"\r\n" + aktuelBehandling.getNavn() + "\r\n");
+								"\r\n" + aktuelProdukttype.getBehandling().getNavn() + "\r\n");
 					}
 					else
 					{
