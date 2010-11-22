@@ -60,10 +60,31 @@ public class Test {
 		d4.setMinimumTørringsTid(1);
 		d4.setOptimalTørringsTid(2);
 		d4.setMaksimumTørringsTid(3);
-		b.addDelbehandling(d1);
-		b.addDelbehandling(d2);
-		b1.addDelbehandling(d3);
-		b1.addDelbehandling(d4);
+		BehandlingDelbehandlingRelation bdr1 = service.createBehandlingDelbehandlingRelation();
+		BehandlingDelbehandlingRelation bdr2 = service.createBehandlingDelbehandlingRelation();
+		BehandlingDelbehandlingRelation bdr3 = service.createBehandlingDelbehandlingRelation();
+		BehandlingDelbehandlingRelation bdr4 = service.createBehandlingDelbehandlingRelation();
+		BehandlingDelbehandlingRelation bdr5 = service.createBehandlingDelbehandlingRelation();
+		BehandlingDelbehandlingRelation bdr6 = service.createBehandlingDelbehandlingRelation();
+		bdr1.setBehandling(b1);
+		bdr1.setDelbehandling(d1);
+		bdr2.setBehandling(b1);
+		bdr2.setDelbehandling(d1);
+		bdr3.setBehandling(b1);
+		bdr3.setDelbehandling(d2);
+		bdr4.setBehandling(b);
+		bdr4.setDelbehandling(d3);
+		bdr5.setBehandling(b);
+		bdr5.setDelbehandling(d4);
+		bdr6.setBehandling(b);
+		bdr6.setDelbehandling(d4);
+		b1.addBehandlingDelbehandlingRelation(bdr1);
+		b1.addBehandlingDelbehandlingRelation(bdr2);
+		b1.addBehandlingDelbehandlingRelation(bdr3);
+		b.addBehandlingDelbehandlingRelation(bdr4);
+		b.addBehandlingDelbehandlingRelation(bdr5);
+		b.addBehandlingDelbehandlingRelation(bdr6);
+		
 		
 		service.gemIDatabase(d1);
 		service.gemIDatabase(d2);
@@ -71,6 +92,13 @@ public class Test {
 		service.gemIDatabase(d4);
 		service.gemIDatabase(b);
 		service.gemIDatabase(b1);
+		service.gemIDatabase(bdr1);
+		service.gemIDatabase(bdr2);
+		service.gemIDatabase(bdr3);
+		service.gemIDatabase(bdr4);
+		service.gemIDatabase(bdr5);
+		service.gemIDatabase(bdr6);
+		
 		Produkttype p = service.createProdukttype(b);
 		p.setNavn("Bolcheting");
 		Produkttype p1 = service.createProdukttype(b1);
