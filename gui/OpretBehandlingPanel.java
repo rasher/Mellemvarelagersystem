@@ -254,7 +254,6 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	public void gem() {
 		Behandling valgtBehandling = (Behandling) getVælgBehandlingComboBox().getSelectedItem();
 		valgtBehandling.setNavn(getBehandlingsNavnTextField().getText());
-		service.gemIDatabase(valgtBehandling);
 		ListModel model = getValgteDelbehandlingerList().getModel();
 		ArrayList<BehandlingDelbehandlingRelation> behandlingDelbehandlingRelationer = new ArrayList<BehandlingDelbehandlingRelation>();
 		for (int i = 0; i < model.getSize(); i++) {
@@ -262,7 +261,6 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 			behandlingDelbehandlingRelation.setRækkefølge(i + 1);
 			behandlingDelbehandlingRelation.setBehandling(valgtBehandling);
 			behandlingDelbehandlingRelationer.add(behandlingDelbehandlingRelation);
-			service.gemIDatabase(behandlingDelbehandlingRelation);
 		}
 		valgtBehandling.setBehandlingDelbehandlingRelationer(behandlingDelbehandlingRelationer);
 		service.gemIDatabase(valgtBehandling);
@@ -278,13 +276,11 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 		Behandling behandling = service.createBehandling();
 		behandling.setNavn(getBehandlingsNavnTextField().getText());
 		ListModel model = getValgteDelbehandlingerList().getModel();
-		service.gemIDatabase(behandling);
 		for (int i = 0; i < model.getSize(); i++) {
 			BehandlingDelbehandlingRelation behandlingDelbehandlingRelation = (BehandlingDelbehandlingRelation) model.getElementAt(i);
 			behandlingDelbehandlingRelation.setRækkefølge(i + 1);
 			behandlingDelbehandlingRelation.setBehandling(behandling);
 			behandling.addBehandlingDelbehandlingRelation(behandlingDelbehandlingRelation);
-			service.gemIDatabase(behandlingDelbehandlingRelation);
 		}
 		service.gemIDatabase(behandling);
 		vælgBehandlingModel.addElement(behandling);
@@ -383,8 +379,7 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	 */
 	public void tilknytValgtDelbehandling() {
 		Delbehandling valgtDelbehandling = (Delbehandling) getMuligeDelbehandlingerList().getSelectedValue();
-		Behandling valgtBehandling = (Behandling) getVælgBehandlingComboBox().getSelectedItem();
-		if (valgtDelbehandling != null && valgtBehandling != null) {
+		if (valgtDelbehandling != null) {
 			BehandlingDelbehandlingRelation nyDelbehandlingRelation = service.createBehandlingDelbehandlingRelation();
 			nyDelbehandlingRelation.setDelbehandling(valgtDelbehandling);
 			valgteDelbehandlingerModel.addElement(nyDelbehandlingRelation);

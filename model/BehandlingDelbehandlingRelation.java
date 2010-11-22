@@ -36,8 +36,8 @@ public void setDelbehandling(Delbehandling delbehandling) {
 public String toString() {
 	return String
 			.format(
-					"BehandlingDelbehandlingRelation [ID=%s, rækkefølge=%s, behandling=%s, delbehandling=%s]",
-					ID, rækkefølge, behandling, delbehandling);
+					"BehandlingDelbehandlingRelation [ID=%s, rækkefølge=%s, delbehandling=%s]",
+					ID, rækkefølge, delbehandling);
 }
 
 }
