@@ -11,6 +11,12 @@ private Behandling behandling;
 @ManyToOne
 private Delbehandling delbehandling;
 private int rækkeFølge;
+public int getRækkeFølge() {
+	return rækkeFølge;
+}
+public void setRækkeFølge(int rækkeFølge) {
+	this.rækkeFølge = rækkeFølge;
+}
 public Behandling getBehandling() {
 	return behandling;
 }

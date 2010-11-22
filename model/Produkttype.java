@@ -55,7 +55,12 @@ public class Produkttype {
 	
 	public List<Delbehandling> getDelbehandlinger()
 	{
-		return behandling.getDelbehandlinger();
+		ArrayList<Delbehandling> delbehandlinger = new ArrayList<Delbehandling>();
+		for(BehandlingDelbehandlingRelation bdr : behandling.getBehandlingDelbehandlingRelation())
+		{
+			delbehandlinger.add(bdr.getDelbehandling());
+		}
+		return delbehandlinger;
 	}
 	
 	public String toString(){
