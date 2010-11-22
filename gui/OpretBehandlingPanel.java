@@ -258,6 +258,7 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 		for (int i = 0; i < model.getSize(); i++) {
 			BehandlingDelbehandlingRelation behandlingDelbehandlingRelation = (BehandlingDelbehandlingRelation) model.getElementAt(i);
 			behandlingDelbehandlingRelation.setRækkefølge(i + 1);
+			behandlingDelbehandlingRelation.setBehandling(valgtBehandling);
 			behandlingDelbehandlingRelationer.add(behandlingDelbehandlingRelation);
 		}
 		valgtBehandling.setBehandlingDelbehandlingRelationer(behandlingDelbehandlingRelationer);
@@ -279,6 +280,7 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 		for (int i = 0; i < model.getSize(); i++) {
 			BehandlingDelbehandlingRelation behandlingDelbehandlingRelation = (BehandlingDelbehandlingRelation) model.getElementAt(i);
 			behandlingDelbehandlingRelation.setRækkefølge(i + 1);
+			behandlingDelbehandlingRelation.setBehandling(behandling);
 			behandling.addBehandlingDelbehandlingRelation(behandlingDelbehandlingRelation);
 			service.gemIDatabase(behandlingDelbehandlingRelation);
 		}
@@ -382,7 +384,6 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 		if (valgtDelbehandling != null && valgtBehandling != null) {
 			BehandlingDelbehandlingRelation nyDelbehandlingRelation = service.createBehandlingDelbehandlingRelation();
 			nyDelbehandlingRelation.setDelbehandling(valgtDelbehandling);
-			nyDelbehandlingRelation.setBehandling(valgtBehandling);
 			valgteDelbehandlingerModel.addElement(nyDelbehandlingRelation);
 		}
 		System.out.println("Tilknyt valgt delbehandling: " + valgtDelbehandling);
