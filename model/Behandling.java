@@ -13,7 +13,7 @@ public class Behandling {
 	private int nr;
 	@Column(length=128)
 	private String navn;
-	@OneToMany(cascade = CascadeType.REMOVE)
+	@OneToMany(cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
 	private List<BehandlingDelbehandlingRelation> behandlingDelbehandlingRelationer = 
 		new ArrayList<BehandlingDelbehandlingRelation>();
 	public String getNavn() {
