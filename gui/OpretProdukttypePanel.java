@@ -191,7 +191,7 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 						else
 							getProdukttypeInfoTextArea().setText("");
 						getButtonPanel1().enableOpretButton(true);
-						for(BehandlingDelbehandlingRelation bdr : aktuelBehandling.getBehandlingDelbehandlingRelation())
+						for(BehandlingDelbehandlingRelation bdr : aktuelBehandling.getBehandlingDelbehandlingRelationer())
 						{
 							getProdukttypeInfoTextArea().append("Navn: \t" + bdr.getDelbehandling().getNavn() + "\n\r BehandlingsSted: \t" 
 									+ bdr.getDelbehandling().getBehandlingsSted() + "\n\r Min. Tørringstid:\t" + bdr.getDelbehandling().getMinimumTørringsTid()
