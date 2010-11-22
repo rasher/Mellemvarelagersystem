@@ -8,6 +8,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import model.Behandling;
+import model.BehandlingDelbehandlingRelation;
 import model.BehandlingsTrin;
 import model.Delbehandling;
 import model.Mellemvare;
@@ -30,9 +31,14 @@ public class JUnitTestMellemvare {
 		d.setOptimalTørringsTid(1);
 		d.setMaksimumTørringsTid(1);
 		
+		BehandlingDelbehandlingRelation bhd = new BehandlingDelbehandlingRelation();
+		bhd.setRækkefølge(1);
+		bhd.setBehandling(b);
+		bhd.setDelbehandling(d);
+		
 		b = new Behandling();
 		b.setNavn("Test");
-		b.addDelbehandling(d);
+		b.addBehandlingDelbehandlingRelation(bhd);
 		
 		p = new Produkttype();
 		p.setNavn("Test");
