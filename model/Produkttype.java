@@ -1,4 +1,5 @@
 package model;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -15,7 +16,27 @@ public class Produkttype {
 	private String navn;
 	@ManyToOne
 	private Behandling behandling;
+	@OneToMany(cascade = CascadeType.REMOVE)
+	private List<Mellemvare> mellemvarer = new ArrayList<Mellemvare>();
 	
+	public List<Mellemvare> getMellemvarer() {
+		return mellemvarer;
+	}
+
+	public void setMellemvarer(List<Mellemvare> mellemvarer) {
+		this.mellemvarer = mellemvarer;
+	}
+	
+	public void addMellemvare(Mellemvare mellemvare)
+	{
+		this.mellemvarer.add(mellemvare);
+	}
+	
+	public void removeMellemvare(Mellemvare mellemvare)
+	{
+		this.mellemvarer.remove(mellemvare);
+	}
+
 	public String getNavn() {
 		return navn;
 	}

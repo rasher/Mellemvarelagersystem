@@ -32,7 +32,7 @@ public class Mellemvare {
 	private Calendar maksimumTørringNået;
 	@ManyToOne
 	private BehandlingsTrin aktuelBehandlingsTrin;
-	@OneToMany
+	@OneToMany(cascade = CascadeType.REMOVE)
 	private List<BehandlingsTrin> behandlingsTrin = new ArrayList<BehandlingsTrin>();
 	@ManyToOne
 	private Produkttype produkttype;
@@ -53,7 +53,10 @@ public class Mellemvare {
 	 *            produkttypen der skal sættes
 	 */
 	public void setProdukttype(Produkttype produkttype) {
+		if(this.produkttype != null)
+			this.produkttype.removeMellemvare(this);
 		this.produkttype = produkttype;
+		produkttype.addMellemvare(this);
 	}
 
 	/**

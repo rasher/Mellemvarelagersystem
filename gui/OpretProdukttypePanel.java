@@ -6,6 +6,7 @@ import java.awt.Insets;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
@@ -244,7 +245,9 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 	public void slet() {
 		if(aktuelProdukttype != null)
 		{
-			service.fjernFraDatabase(aktuelProdukttype);
+			if(JOptionPane.showConfirmDialog(null,"Sikker på du vil slette denne produkttype? " +
+					"ved at gøre dette sletter du også alle tilknyttede Mellemvare", "Sikker på du vil slette?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+				service.fjernFraDatabase(aktuelProdukttype);
 		}
 		opdaterComboBox();
 	}
