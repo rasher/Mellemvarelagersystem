@@ -92,11 +92,11 @@ public class Mellemvare {
 	 */
 	public void sendTilPakning() {
 		if (aktuelBehandlingsTrin != null) {
-		aktuelBehandlingsTrin.setSlut(new GregorianCalendar());
-		minimumTørringNået = null;
-		optimalTørringNået = null;
-		maksimumTørringNået = null;
-		aktuelBehandlingsTrin = null;
+			aktuelBehandlingsTrin.setSlut(new GregorianCalendar());
+			minimumTørringNået = null;
+			optimalTørringNået = null;
+			maksimumTørringNået = null;
+			aktuelBehandlingsTrin = null;
 		}
 	}
 
