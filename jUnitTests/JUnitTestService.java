@@ -25,33 +25,69 @@ public class JUnitTestService {
 	
 	@Test
 	public void testCreateMellemvareTC2(){
-		Produkttype produkttype = new Produkttype();
-		Behandling behandling = new Behandling();
-		produkttype.setBehandling(behandling);
+		Behandling behandling = Service.getInstance().createBehandling();
+		Service.getInstance().gemIDatabase(behandling);
 		
+		Produkttype produkttype = Service.getInstance().createProdukttype(behandling);
+		Service.getInstance().gemIDatabase(produkttype);
+
 		Mellemvare aktuel = Service.getInstance().createMellemvare(produkttype);
 		
 		assertNotNull(aktuel);
 		assertEquals(produkttype, aktuel.getProdukttype());
 		assertEquals(behandling, aktuel.getProdukttype().getBehandling());
+		
+		Service.getInstance().fjernFraDatabase(aktuel);
+		Service.getInstance().fjernFraDatabase(produkttype);
+		Service.getInstance().fjernFraDatabase(behandling);
 	}
 	
 	@Test
 	public void testCreateMellemvareTC3(){
-		Produkttype produkttype = new Produkttype();
-		Behandling behandling = new Behandling();
-		Delbehandling delbehandling = new Delbehandling();
-		List<Delbehandling> delbehandlinger = new ArrayList<Delbehandling>();
-		delbehandlinger.add(delbehandling);
-		produkttype.setBehandling(behandling);
-		behandling.setDelbehandlinger(delbehandlinger);
 		
+		Delbehandling delbehandling = Service.getInstance().createDelbehandling();
+		Service.getInstance().gemIDatabase(delbehandling);
+		
+		Behandling behandling = Service.getInstance().createBehandling();
+		behandling.addDelbehandling(delbehandling);
+		Service.getInstance().gemIDatabase(behandling);
+		
+		Produkttype produkttype = Service.getInstance().createProdukttype(behandling);
+		produkttype.setBehandling(behandling);
+		Service.getInstance().gemIDatabase(produkttype);
+	
 		Mellemvare aktuel = Service.getInstance().createMellemvare(produkttype);
 		
 		assertNotNull(aktuel);
 		assertEquals(produkttype, aktuel.getProdukttype());
 		assertEquals(behandling, aktuel.getProdukttype().getBehandling());
 		assertEquals(delbehandling, aktuel.getBehandlingsTrin().get(0).getDelbehandling());
+		
+		Service.getInstance().fjernFraDatabase(aktuel);
+		Service.getInstance().fjernFraDatabase(produkttype);
+		Service.getInstance().fjernFraDatabase(behandling);
+		Service.getInstance().fjernFraDatabase(delbehandling);
+	}
+	
+	@Test
+	public void søgMellemvareTC1(){
+		Behandling behandling = Service.getInstance().createBehandling();
+		Service.getInstance().gemIDatabase(behandling);
+		Produkttype produkttype = Service.getInstance().createProdukttype(behandling);
+		Service.getInstance().gemIDatabase(produkttype);
+		
+		Mellemvare aktuel = Service.getInstance().createMellemvare(produkttype);
+		
+		assertEquals(aktuel, Service.getInstance().søgMellemvare(aktuel.getBatchNummer()));
+		
+		Service.getInstance().fjernFraDatabase(aktuel);
+		Service.getInstance().fjernFraDatabase(produkttype);
+		Service.getInstance().fjernFraDatabase(behandling);
+	}
+	
+	@Test
+	public void søgMellemvareTC2(){
+		assertNull(Service.getInstance().søgMellemvare(-1));
 	}
 
 }
