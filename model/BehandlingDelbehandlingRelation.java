@@ -5,7 +5,7 @@ import javax.persistence.*;
 public class BehandlingDelbehandlingRelation {
 @Id
 @GeneratedValue
-private int ID;
+private int iD;
 @ManyToOne
 private Behandling behandling;
 @ManyToOne
@@ -37,7 +37,7 @@ public String toString() {
 	return String
 			.format(
 					"BehandlingDelbehandlingRelation [ID=%s, rækkefølge=%s, delbehandling=%s]",
-					ID, rækkefølge, delbehandling);
+					iD, rækkefølge, delbehandling);
 }
 
 }
