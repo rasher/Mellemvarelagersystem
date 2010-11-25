@@ -14,11 +14,11 @@ public class ToerretidsPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JLabel minimalTørretidLabel = null;
-	private JTextField minimalTørretidTextField = null;
+	private JFormattedTextField minimalTørretidTextField = null;
 	private JLabel optimalTørretidLabel = null;
-	private JTextField optimalTørretidTextField = null;
+	private JFormattedTextField optimalTørretidTextField = null;
 	private JLabel maksimalTørretidLabel = null;
-	private JTextField maksimalTørretidTextField = null;
+	private JFormattedTextField maksimalTørretidTextField = null;
 
 	/**
 	 * This is the default constructor

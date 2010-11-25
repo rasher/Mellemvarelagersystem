@@ -23,7 +23,7 @@ public class HaandterMellemvarePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JLabel batchnummerLabel = null;
-	private JTextField batchnummerTextField = null;
+	private JFormattedTextField batchnummerTextField = null;
 	private JLabel batchInfoLabel = null;
 	private JTextArea batchInfoTextArea = null;
 	private JButton startTørringButton = null;
