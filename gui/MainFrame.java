@@ -93,7 +93,7 @@ public class MainFrame extends JFrame {
 						MainFrame.this.setSize(920,500);
 						setContentPane(getLagerPanel());
 						MainFrame.this.setVisible(true);
-							System.out.println("actionPerformed()"); // TODO Auto-generated Event stub actionPerformed()
+						getLagerPanel().opdaterProduktTyper();
 						}
 					});
 		}

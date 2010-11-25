@@ -108,6 +108,13 @@ public class RegistrerNyMellemvarePanel extends JPanel {
 		}
 		return produkttypeComboBox;
 	}
+	
+	public void opdaterProdukttypeComboBox() {
+		getProdukttypeComboBox().removeAllItems();
+		for (Produkttype p: Service.getInstance().getProdukttyper()) {
+			getProdukttypeComboBox().addItem(p);
+		}
+	}
 
 	/**
 	 * This method initializes produkttypeInfoTextArea	

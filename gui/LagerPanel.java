@@ -85,4 +85,11 @@ public class LagerPanel extends JPanel {
 		visListPanel.setThread(mainFrame.getOpdaterToerreListerThread());
 	}
 
+	/**
+	 * 
+	 */
+	public void opdaterProduktTyper() {
+		getRegistrerNyMellemvarePanel().opdaterProdukttypeComboBox();
+	}
+
 }  //  @jve:decl-index=0:visual-constraint="9,20"
