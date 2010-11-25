@@ -36,7 +36,6 @@ public class BehandlingDelbehandlingRelationListCellRenderer extends JLabel impl
 	public Component getListCellRendererComponent(JList list, Object value,
 			int index, boolean isSelected, boolean cellHasFocus) {
 		Delbehandling delbehandling = ((BehandlingDelbehandlingRelation) value).getDelbehandling();
-		int rækkefølge = ((BehandlingDelbehandlingRelation) value).getRækkefølge();
 		if (delbehandling != null) {
 			setText(delbehandling.getNavn());
 		}

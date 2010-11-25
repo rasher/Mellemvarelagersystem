@@ -74,12 +74,12 @@ public class OpretDelbehandlingPanel extends JPanel implements OpretGemSletObser
 			nyDelbehandling = service.createDelbehandling();
 			nyDelbehandling.setNavn(getDelbehandlingDelPanel().getDelbehandlingsNavn());
 			nyDelbehandling.setBehandlingsSted(getDelbehandlingDelPanel().getBehandlingSted());
-			nyDelbehandling.setMaksimumTørringsTid(Integer.parseInt(getDelbehandlingDelPanel().
-					getMaksTørringstid()));
-			nyDelbehandling.setMinimumTørringsTid(Integer.parseInt(getDelbehandlingDelPanel().
-					getMinTørringstid()));
-			nyDelbehandling.setOptimalTørringsTid(Integer.parseInt(getDelbehandlingDelPanel().
-					getOptTørringstid()));
+			nyDelbehandling.setMaksimumTørringsTid(getDelbehandlingDelPanel().
+					getMaksTørringstidValue());
+			nyDelbehandling.setMinimumTørringsTid(getDelbehandlingDelPanel().
+					getMinTørringstidValue());
+			nyDelbehandling.setOptimalTørringsTid(getDelbehandlingDelPanel().
+					getOptTørringstidValue());
 			service.gemIDatabase(nyDelbehandling);
 			getDelbehandlingDelPanel().opdaterPanel(service.getDelbehandlinger());
 			opretBehandlingPanel.opdaterMuligeDelbehandlinger();
