@@ -193,6 +193,18 @@ public class DelbehandlingDelPanel extends JPanel {
 		return aktuelDelbehandling;
 	}
 	
+	public int getMaksTørringstidValue() {
+		return getTørretidsPanel().getMaksTørretidValue();
+	}
+	
+	public int getMinTørringstidValue() {
+		return getTørretidsPanel().getMinTørretidValue();
+	}
+	
+	public int getOptTørringstidValue() {
+		return getTørretidsPanel().getOptTørretidValue();
+	}
+	
 	public String getMinTørringstid()
 	{
 		return getTørretidsPanel().getMinTørretid();
