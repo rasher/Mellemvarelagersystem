@@ -119,9 +119,12 @@ public class OpretDelbehandlingPanel extends JPanel implements OpretGemSletObser
 	@Override
 	public void slet() {
 		if(getDelbehandlingDelPanel().getAktuelDebehandling() != null)
+		{
 			service.fjernFraDatabase(getDelbehandlingDelPanel().getAktuelDebehandling());
 			getDelbehandlingDelPanel().opdaterPanel(service.getDelbehandlinger());
 			opretBehandlingPanel.opdaterMuligeDelbehandlinger();
+		}
+		
 	}
 
 	/**

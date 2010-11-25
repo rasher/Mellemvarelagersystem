@@ -148,8 +148,8 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 	private JComboBox getVælgProdukttypeComboBox() {
 		if (vælgProdukttypeComboBox == null) {
 			vælgProdukttypeComboBox = new JComboBox();
-			vælgProdukttypeComboBox.addItemListener(new java.awt.event.ItemListener() {
-				public void itemStateChanged(java.awt.event.ItemEvent e) {
+			vælgProdukttypeComboBox.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
 					aktuelProdukttype = (Produkttype) vælgProdukttypeComboBox.getSelectedItem();
 					if(aktuelProdukttype != null)
 					{
@@ -159,6 +159,15 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 						getTilknytBehandlingComboBox().setSelectedItem(aktuelProdukttype.getBehandling());
 						getProdukttypeInfoTextArea().setText("Produkttype: \t" + aktuelProdukttype.getNavn() + 
 								"\r\n" + aktuelProdukttype.getBehandling().getNavn() + "\r\n");
+						if(aktuelProdukttype.getBehandling() != null)
+							for(BehandlingDelbehandlingRelation bdr : aktuelProdukttype.getBehandling().getBehandlingDelbehandlingRelationer())
+							{
+								if(bdr != null)
+									getProdukttypeInfoTextArea().append("Navn: \t" + bdr.getDelbehandling().getNavn() + "\n\r BehandlingsSted: \t" 
+											+ bdr.getDelbehandling().getBehandlingsSted() + "\n\r Min. Tørringstid:\t" + bdr.getDelbehandling().getMinimumTørringsTid()
+											+ "\n\r Opt. Tørringstid:\t" + bdr.getDelbehandling().getOptimalTørringsTid() + "\n\r " +
+											"Maks. Tørringstid:\t" + bdr.getDelbehandling().getMaksimumTørringsTid() + "\n\n\r");
+							}
 					}
 					else
 					{
@@ -180,8 +189,8 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 		if (tilknytBehandlingComboBox == null) {
 			tilknytBehandlingComboBox = new JComboBox();
 			tilknytBehandlingComboBox.setRenderer(new BehandlingListCellRenderer());
-			tilknytBehandlingComboBox.addItemListener(new java.awt.event.ItemListener() {
-				public void itemStateChanged(java.awt.event.ItemEvent e) {
+			tilknytBehandlingComboBox.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
 					aktuelBehandling = (Behandling) tilknytBehandlingComboBox.getSelectedItem();
 					if(aktuelBehandling != null)
 					{

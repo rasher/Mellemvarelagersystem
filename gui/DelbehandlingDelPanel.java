@@ -114,8 +114,8 @@ public class DelbehandlingDelPanel extends JPanel {
 	private JComboBox getVælgDelbehandlingComboBox() {
 		if (vælgDelbehandlingComboBox == null) {
 			vælgDelbehandlingComboBox = new JComboBox();
-			vælgDelbehandlingComboBox.addItemListener(new java.awt.event.ItemListener() {
-				public void itemStateChanged(java.awt.event.ItemEvent e) {
+			vælgDelbehandlingComboBox.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
 					aktuelDelbehandling = (Delbehandling) vælgDelbehandlingComboBox.getSelectedItem();
 					if(aktuelDelbehandling != null)
 					{
@@ -223,8 +223,10 @@ public class DelbehandlingDelPanel extends JPanel {
 		getVælgDelbehandlingComboBox().removeAllItems();
 		for(Delbehandling d : delbehandlinger)
 		{
-			getVælgDelbehandlingComboBox().addItem(d);
+			if(d != null)
+				getVælgDelbehandlingComboBox().addItem(d);
 		}
+		getVælgDelbehandlingComboBox().setRenderer(new DelbehandlingListCellRenderer());
 		setDelbehandlingsNavn("");
 		setBehandlingSted("");
 		setMaksTørringstid("");
