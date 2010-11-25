@@ -87,7 +87,7 @@ public class ToerretidsPanel extends JPanel {
 	 */
 	private JTextField getMinimalTørretidTextField() {
 		if (minimalTørretidTextField == null) {
-			minimalTørretidTextField = new JFormattedTextField(NumberFormat.getInstance());
+			minimalTørretidTextField = new JFormattedTextField(NumberFormat.getIntegerInstance());
 		}
 		return minimalTørretidTextField;
 	}
@@ -99,7 +99,7 @@ public class ToerretidsPanel extends JPanel {
 	 */
 	private JTextField getOptimalTørretidTextField() {
 		if (optimalTørretidTextField == null) {
-			optimalTørretidTextField = new JFormattedTextField(NumberFormat.getInstance());
+			optimalTørretidTextField = new JFormattedTextField(NumberFormat.getIntegerInstance());
 		}
 		return optimalTørretidTextField;
 	}
@@ -111,7 +111,7 @@ public class ToerretidsPanel extends JPanel {
 	 */
 	private JTextField getMaksimalTørretidTextField() {
 		if (maksimalTørretidTextField == null) {
-			maksimalTørretidTextField = new JFormattedTextField(NumberFormat.getInstance());
+			maksimalTørretidTextField = new JFormattedTextField(NumberFormat.getIntegerInstance());
 		}
 		return maksimalTørretidTextField;
 	}

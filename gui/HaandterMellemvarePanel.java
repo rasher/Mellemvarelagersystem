@@ -104,7 +104,7 @@ public class HaandterMellemvarePanel extends JPanel {
 	 */
 	protected JTextField getBatchnummerTextField() {
 		if (batchnummerTextField == null) {
-			batchnummerTextField = new JFormattedTextField(NumberFormat.getInstance());
+			batchnummerTextField = new JFormattedTextField(NumberFormat.getIntegerInstance());
 				batchnummerTextField.getDocument().addDocumentListener(new DocumentListener(){
 
 					@Override
