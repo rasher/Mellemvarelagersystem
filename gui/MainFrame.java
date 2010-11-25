@@ -191,6 +191,7 @@ public class MainFrame extends JFrame {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					Test.getInstance().opretTestData();
 					JOptionPane.showMessageDialog(null, "Test data oprettet", "Oprettet", JOptionPane.INFORMATION_MESSAGE);
+					getLagerPanel().opdaterProduktTyper();
 				}
 			});
 		}
@@ -211,6 +212,7 @@ public class MainFrame extends JFrame {
 					if (JOptionPane.showConfirmDialog(null, "Vil du slette alt data?", "Pas på", JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						Test.getInstance().sletAlt();
 						JOptionPane.showMessageDialog(null, "Alt data slettet", "Slettet", JOptionPane.INFORMATION_MESSAGE);
+						getLagerPanel().opdaterProduktTyper();
 					}
 				}
 			});
