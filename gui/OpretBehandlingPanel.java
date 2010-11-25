@@ -184,6 +184,8 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 			getBehandlingsNavnTextField().setText("");
 			valgteDelbehandlingerModel.removeAllElements();
 		}
+		// Ved at oprette en ny cellrenderer er vi sikre på at det sidste element slettes
+		getVælgBehandlingComboBox().setRenderer(new BehandlingListCellRenderer());
 	}
 	
 	public void opdaterMuligeDelbehandlinger() {
