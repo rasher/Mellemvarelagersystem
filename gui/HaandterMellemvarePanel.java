@@ -100,9 +100,9 @@ public class HaandterMellemvarePanel extends JPanel {
 	/**
 	 * This method initializes batchnummerTextField	
 	 * 	
-	 * @return javax.swing.JTextField	
+	 * @return javax.swing.JFormattedTextField	
 	 */
-	protected JTextField getBatchnummerTextField() {
+	protected JFormattedTextField getBatchnummerTextField() {
 		if (batchnummerTextField == null) {
 			batchnummerTextField = new JFormattedTextField(NumberFormat.getIntegerInstance());
 				batchnummerTextField.getDocument().addDocumentListener(new DocumentListener(){
@@ -123,14 +123,14 @@ public class HaandterMellemvarePanel extends JPanel {
 					}
 					
 					private void updateBatchnummerTextField(){
-						int input;
+						Mellemvare m;
 						try {
-							input = Integer.parseInt(getBatchnummerTextField().getText());
+							int input = ((Number)getBatchnummerTextField().getValue()).intValue();
+							m = Service.getInstance().søgMellemvare(input);
 						}
-						catch (NumberFormatException e) {
-							input = -1;
+						catch (NullPointerException e) { // Hvis textfield ikke har noget indhold
+							m = null;
 						}
-						Mellemvare m = Service.getInstance().søgMellemvare(input);
 						if(m == null){
 							if(!getBatchnummerTextField().getText().isEmpty())
 								getBatchInfoTextArea().setText("Batchnummer findes ikke!");
