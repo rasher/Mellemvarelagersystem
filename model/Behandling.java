@@ -14,6 +14,7 @@ public class Behandling {
 	@Column(length=128)
 	private String navn;
 	@OneToMany(cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
+	@OrderBy(value="rækkefølge ASC")
 	private List<BehandlingDelbehandlingRelation> behandlingDelbehandlingRelationer = 
 		new ArrayList<BehandlingDelbehandlingRelation>();
 	public String getNavn() {

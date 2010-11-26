@@ -31,6 +31,7 @@ public class Mellemvare {
 	@Temporal(value = TemporalType.TIMESTAMP)
 	private Calendar maksimumTørringNået;
 	@ManyToOne
+	@OrderBy(value="trinNr ASC")
 	private BehandlingsTrin aktuelBehandlingsTrin;
 	@OneToMany(cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
 	private List<BehandlingsTrin> behandlingsTrin = new ArrayList<BehandlingsTrin>();
