@@ -7,8 +7,6 @@ public class BehandlingDelbehandlingRelation {
 @GeneratedValue
 private int iD;
 @ManyToOne
-private Behandling behandling;
-@ManyToOne
 private Delbehandling delbehandling;
 private int rækkefølge;
 public int getRækkefølge() {
@@ -16,12 +14,6 @@ public int getRækkefølge() {
 }
 public void setRækkefølge(int rækkefølge) {
 	this.rækkefølge = rækkefølge;
-}
-public Behandling getBehandling() {
-	return behandling;
-}
-public void setBehandling(Behandling behandling) {
-	this.behandling = behandling;
 }
 public Delbehandling getDelbehandling() {
 	return delbehandling;

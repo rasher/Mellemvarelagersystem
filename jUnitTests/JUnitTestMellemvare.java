@@ -33,7 +33,6 @@ public class JUnitTestMellemvare {
 		
 		BehandlingDelbehandlingRelation bhd = new BehandlingDelbehandlingRelation();
 		bhd.setRækkefølge(1);
-		bhd.setBehandling(b);
 		bhd.setDelbehandling(d);
 		
 		b = new Behandling();

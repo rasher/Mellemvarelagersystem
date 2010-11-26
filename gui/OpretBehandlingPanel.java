@@ -261,7 +261,6 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 		for (int i = 0; i < model.getSize(); i++) {
 			BehandlingDelbehandlingRelation behandlingDelbehandlingRelation = (BehandlingDelbehandlingRelation) model.getElementAt(i);
 			behandlingDelbehandlingRelation.setRækkefølge(i + 1);
-			behandlingDelbehandlingRelation.setBehandling(valgtBehandling);
 			behandlingDelbehandlingRelationer.add(behandlingDelbehandlingRelation);
 		}
 		valgtBehandling.setBehandlingDelbehandlingRelationer(behandlingDelbehandlingRelationer);
@@ -281,7 +280,6 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 		for (int i = 0; i < model.getSize(); i++) {
 			BehandlingDelbehandlingRelation behandlingDelbehandlingRelation = (BehandlingDelbehandlingRelation) model.getElementAt(i);
 			behandlingDelbehandlingRelation.setRækkefølge(i + 1);
-			behandlingDelbehandlingRelation.setBehandling(behandling);
 			behandling.addBehandlingDelbehandlingRelation(behandlingDelbehandlingRelation);
 		}
 		service.gemIDatabase(behandling);

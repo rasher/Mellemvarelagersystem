@@ -74,7 +74,6 @@ public class JUnitTestService {
 		BehandlingDelbehandlingRelation bdr = new BehandlingDelbehandlingRelation();
 		bdr.setRækkefølge(0);
 		bdr.setDelbehandling(delbehandling);
-		bdr.setBehandling(behandling);
 		Service.getInstance().gemIDatabase(bdr);
 		
 		behandling.getBehandlingDelbehandlingRelationer().add(bdr);
