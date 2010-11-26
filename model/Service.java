@@ -75,19 +75,15 @@ public class Service {
 	private List<Mellemvare> getTørringsDatoListe(int antalTimerFraMaks, boolean klarListe)
 	{
 		em.getTransaction().begin();
-		System.out.println("Hent " + (klarListe ? "klarlisten":"næroverskredetliste") + " - mellemvarer " + (klarListe?"før":"indenfor") + " " + antalTimerFraMaks + " timer før maks");
 		List<Mellemvare> minOpnået = em.createNamedQuery("findMinimumstidOpnået").getResultList();
 		List<Mellemvare> resultatListe = new ArrayList<Mellemvare>();
 		GregorianCalendar skæringsPunkt = new GregorianCalendar();
 		skæringsPunkt.add(GregorianCalendar.HOUR, antalTimerFraMaks);
+		System.out.println(minOpnået);
 		for(Mellemvare m : minOpnået)
 		{
-			if(m.getMaksimumTørringNået().after(skæringsPunkt) == klarListe) {
+			if(m.getMaksimumTørringNået().after(skæringsPunkt) == klarListe)
 				resultatListe.add(m);
-				System.out.println("  INCL: " + m);
-			}
-			else
-				System.out.println("  EXCL: " + m);
 		}
 		em.getTransaction().commit();
 		return resultatListe;
