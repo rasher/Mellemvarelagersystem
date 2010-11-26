@@ -3,6 +3,8 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.Rectangle;
 
+import javax.persistence.RollbackException;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import model.Delbehandling;
@@ -120,7 +122,11 @@ public class OpretDelbehandlingPanel extends JPanel implements OpretGemSletObser
 	public void slet() {
 		if(getDelbehandlingDelPanel().getAktuelDebehandling() != null)
 		{
-			service.fjernFraDatabase(getDelbehandlingDelPanel().getAktuelDebehandling());
+			try {
+				service.fjernFraDatabase(getDelbehandlingDelPanel().getAktuelDebehandling());
+			} catch (RollbackException e) {
+				JOptionPane.showMessageDialog(this, "Du kan ikke slette denne delbehandling mens der findes behandlinger der benytter den", "Delbehandling ikke slettet", JOptionPane.ERROR_MESSAGE);
+			}
 			getDelbehandlingDelPanel().opdaterPanel(service.getDelbehandlinger());
 			opretBehandlingPanel.opdaterMuligeDelbehandlinger();
 		}
