@@ -129,6 +129,13 @@ public class Test {
 		service.gemIDatabase(m1);
 	}
 	
+	public void test()
+	{
+		em.getTransaction().begin();
+		System.out.println(em.createNamedQuery("findMinimumstidOpnået").getResultList());
+		System.out.println(em.createNamedQuery("findAlleMellemvarer").getResultList());
+	}
+	
 	public void sletAlt() {
 		em.getTransaction().begin();
 		em.createQuery("delete from Mellemvare").executeUpdate();
@@ -140,9 +147,10 @@ public class Test {
 	}
 	
 	public static void main(String[] args) {
-		getInstance().opretTestData();
+		//getInstance().opretTestData();
 //		søgMellemvare(13);
 //		søgMellemvare(14);
 //		søgMellemvare(-60);
+		getInstance().test();
 	}
 }
