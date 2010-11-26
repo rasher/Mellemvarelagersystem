@@ -93,9 +93,9 @@ public class RegistrerNyMellemvarePanel extends JPanel {
 			produkttypeComboBox.setSelectedItem(null);
 			produkttypeComboBox.addItemListener(new java.awt.event.ItemListener() {
 				public void itemStateChanged(java.awt.event.ItemEvent e) {
-					if(!((Produkttype) getProdukttypeComboBox().getSelectedItem()).getDelbehandlinger().isEmpty())
+					Produkttype aktuel = (Produkttype) getProdukttypeComboBox().getSelectedItem();
+					if(aktuel != null && !aktuel.getDelbehandlinger().isEmpty())
 					{
-						Produkttype aktuel = (Produkttype) getProdukttypeComboBox().getSelectedItem();
 						getRegistrerNyMellemvareButton().setEnabled(true);
 						getProdukttypeInfoTextArea().setText("Produkttype navn: \t" + aktuel.getNavn() + "\r\n\n"
 															 + "Tilknyttet behandling: \t" + aktuel.getBehandling().getNavn());
