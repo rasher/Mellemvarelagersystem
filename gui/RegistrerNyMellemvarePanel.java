@@ -14,6 +14,7 @@ import javax.swing.JTextArea;
 import model.Mellemvare;
 import model.Produkttype;
 import model.Service;
+import javax.swing.JScrollPane;
 
 public class RegistrerNyMellemvarePanel extends JPanel {
 
@@ -24,6 +25,7 @@ public class RegistrerNyMellemvarePanel extends JPanel {
 	private JTextArea produkttypeInfoTextArea = null;
 	private JButton registrerNyMellemvareButton = null;
 	private HaandterMellemvarePanel haandterMellemvarePanel;
+	private JScrollPane produkttypeInfoScrollPane = null;
 
 	/**
 	 * This is the default constructor
@@ -39,18 +41,18 @@ public class RegistrerNyMellemvarePanel extends JPanel {
 	 * @return void
 	 */
 	private void initialize() {
+		GridBagConstraints gridBagConstraints11 = new GridBagConstraints();
+		gridBagConstraints11.fill = GridBagConstraints.BOTH;
+		gridBagConstraints11.gridy = 3;
+		gridBagConstraints11.weightx = 1.0;
+		gridBagConstraints11.weighty = 1.0;
+		gridBagConstraints11.insets = new Insets(0, 5, 0, 5);
+		gridBagConstraints11.gridx = 0;
 		GridBagConstraints gridBagConstraints4 = new GridBagConstraints();
 		gridBagConstraints4.gridx = 0;
 		gridBagConstraints4.fill = GridBagConstraints.HORIZONTAL;
 		gridBagConstraints4.insets = new Insets(5, 5, 5, 5);
-		gridBagConstraints4.gridy = 4;
-		GridBagConstraints gridBagConstraints3 = new GridBagConstraints();
-		gridBagConstraints3.fill = GridBagConstraints.BOTH;
-		gridBagConstraints3.gridy = 3;
-		gridBagConstraints3.weightx = 1.0;
-		gridBagConstraints3.weighty = 1.0;
-		gridBagConstraints3.insets = new Insets(0, 5, 0, 5);
-		gridBagConstraints3.gridx = 0;
+		gridBagConstraints4.gridy = 5;
 		GridBagConstraints gridBagConstraints2 = new GridBagConstraints();
 		gridBagConstraints2.gridx = 0;
 		gridBagConstraints2.insets = new Insets(5, 5, 1, 5);
@@ -76,7 +78,7 @@ public class RegistrerNyMellemvarePanel extends JPanel {
 		this.add(produkttypeLabel, gridBagConstraints);
 		this.add(getProdukttypeComboBox(), gridBagConstraints1);
 		this.add(produkttypeInfoLabel, gridBagConstraints2);
-		this.add(getProdukttypeInfoTextArea(), gridBagConstraints3);
+		this.add(getProdukttypeInfoScrollPane(), gridBagConstraints11);
 		this.add(getRegistrerNyMellemvareButton(), gridBagConstraints4);
 	}
 
@@ -163,6 +165,19 @@ public class RegistrerNyMellemvarePanel extends JPanel {
 	public void setHaandterMellemvarePanel(
 			HaandterMellemvarePanel haandterMellemvarePanel) {
 		this.haandterMellemvarePanel = haandterMellemvarePanel;
+	}
+
+	/**
+	 * This method initializes produkttypeInfoScrollPane	
+	 * 	
+	 * @return javax.swing.JScrollPane	
+	 */
+	private JScrollPane getProdukttypeInfoScrollPane() {
+		if (produkttypeInfoScrollPane == null) {
+			produkttypeInfoScrollPane = new JScrollPane();
+			produkttypeInfoScrollPane.setViewportView(getProdukttypeInfoTextArea());
+		}
+		return produkttypeInfoScrollPane;
 	}
 
 }
