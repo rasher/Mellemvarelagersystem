@@ -18,6 +18,8 @@ import model.Service;
 
 import java.awt.Insets;
 import java.text.NumberFormat;
+import java.text.ParseException;
+
 import javax.swing.JScrollPane;
 
 public class HaandterMellemvarePanel extends JPanel {
@@ -125,13 +127,14 @@ public class HaandterMellemvarePanel extends JPanel {
 					}
 					
 					private void updateBatchnummerTextField(){
-						Mellemvare m;
+						Mellemvare m = null;
 						try {
+							getBatchnummerTextField().commitEdit();
 							int input = ((Number)getBatchnummerTextField().getValue()).intValue();
 							m = Service.getInstance().søgMellemvare(input);
 						}
 						catch (NullPointerException e) { // Hvis textfield ikke har noget indhold
-							m = null;
+						} catch (ParseException e) { // Eller hvis parseren ikke forstår input
 						}
 						if(m == null){
 							if(!getBatchnummerTextField().getText().isEmpty())
