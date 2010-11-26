@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JSlider;
 
 import model.Mellemvare;
+import javax.swing.JScrollPane;
 
 public class VisListPanel extends JPanel {
 
@@ -23,6 +24,8 @@ public class VisListPanel extends JPanel {
 	private JLabel taellerLabel = null;
 	private HaandterMellemvarePanel haandterMellemvarePanel;
 	private OpdaterToerreListerThread thread;  //  @jve:decl-index=0:
+	private JScrollPane klarListScrollPane = null;
+	private JScrollPane nærOverskredetListScrollPane = null;
 	/**
 	 * This is the default constructor
 	 */
@@ -37,16 +40,32 @@ public class VisListPanel extends JPanel {
 	 * @return void
 	 */
 	private void initialize() {
+		GridBagConstraints gridBagConstraints4 = new GridBagConstraints();
+		gridBagConstraints4.fill = GridBagConstraints.BOTH;
+		gridBagConstraints4.gridy = 4;
+		gridBagConstraints4.weightx = 1.0;
+		gridBagConstraints4.weighty = 1.0;
+		gridBagConstraints4.insets = new Insets(0, 5, 0, 5);
+		gridBagConstraints4.gridwidth = 2;
+		gridBagConstraints4.gridx = 0;
+		GridBagConstraints gridBagConstraints32 = new GridBagConstraints();
+		gridBagConstraints32.fill = GridBagConstraints.BOTH;
+		gridBagConstraints32.gridy = 1;
+		gridBagConstraints32.weightx = 1.0;
+		gridBagConstraints32.weighty = 1.0;
+		gridBagConstraints32.gridwidth = 2;
+		gridBagConstraints32.insets = new Insets(0, 5, 0, 5);
+		gridBagConstraints32.gridx = 0;
 		GridBagConstraints gridBagConstraints31 = new GridBagConstraints();
 		gridBagConstraints31.gridx = 1;
 		gridBagConstraints31.anchor = GridBagConstraints.EAST;
 		gridBagConstraints31.insets = new Insets(0, 0, 0, 5);
-		gridBagConstraints31.gridy = 4;
+		gridBagConstraints31.gridy = 6;
 		taellerLabel = new JLabel();
 		taellerLabel.setText("15");
 		GridBagConstraints gridBagConstraints21 = new GridBagConstraints();
 		gridBagConstraints21.fill = GridBagConstraints.BOTH;
-		gridBagConstraints21.gridy = 5;
+		gridBagConstraints21.gridy = 7;
 		gridBagConstraints21.weightx = 1.0;
 		gridBagConstraints21.anchor = GridBagConstraints.WEST;
 		gridBagConstraints21.insets = new Insets(0, 5, 0, 5);
@@ -56,32 +75,16 @@ public class VisListPanel extends JPanel {
 		gridBagConstraints11.gridx = 0;
 		gridBagConstraints11.anchor = GridBagConstraints.WEST;
 		gridBagConstraints11.insets = new Insets(5, 5, 1, 0);
-		gridBagConstraints11.gridy = 4;
+		gridBagConstraints11.gridy = 6;
 		antalTimerTilMaxToerringNåetLabel = new JLabel();
 		antalTimerTilMaxToerringNåetLabel.setText("Antal timer til max er nået : ");
-		GridBagConstraints gridBagConstraints3 = new GridBagConstraints();
-		gridBagConstraints3.fill = GridBagConstraints.BOTH;
-		gridBagConstraints3.gridy = 3;
-		gridBagConstraints3.weightx = 1.0;
-		gridBagConstraints3.weighty = 1.0;
-		gridBagConstraints3.insets = new Insets(0, 5, 0, 5);
-		gridBagConstraints3.gridwidth = 2;
-		gridBagConstraints3.gridx = 0;
 		GridBagConstraints gridBagConstraints2 = new GridBagConstraints();
 		gridBagConstraints2.gridx = 0;
 		gridBagConstraints2.anchor = GridBagConstraints.WEST;
 		gridBagConstraints2.insets = new Insets(5, 5, 1, 5);
-		gridBagConstraints2.gridy = 2;
+		gridBagConstraints2.gridy = 3;
 		nærOverskredetLabel = new JLabel();
 		nærOverskredetLabel.setText("Nær maksimal tørringstid : ");
-		GridBagConstraints gridBagConstraints1 = new GridBagConstraints();
-		gridBagConstraints1.fill = GridBagConstraints.BOTH;
-		gridBagConstraints1.gridy = 1;
-		gridBagConstraints1.weightx = 1.0;
-		gridBagConstraints1.weighty = 1.0;
-		gridBagConstraints1.insets = new Insets(0, 5, 0, 5);
-		gridBagConstraints1.gridwidth = 2;
-		gridBagConstraints1.gridx = 0;
 		GridBagConstraints gridBagConstraints = new GridBagConstraints();
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.anchor = GridBagConstraints.WEST;
@@ -92,9 +95,9 @@ public class VisListPanel extends JPanel {
 		this.setLayout(new GridBagLayout());
 		this.setSize(300, 200);
 		this.add(klarListLabel, gridBagConstraints);
-		this.add(getKlarList(), gridBagConstraints1);
+		this.add(getKlarListScrollPane(), gridBagConstraints32);
 		this.add(nærOverskredetLabel, gridBagConstraints2);
-		this.add(getNærOverskredetList(), gridBagConstraints3);
+		this.add(getNærOverskredetListScrollPane(), gridBagConstraints4);
 		this.add(antalTimerTilMaxToerringNåetLabel, gridBagConstraints11);
 		this.add(getAntalTimerFraMaxToerringsSlider(), gridBagConstraints21);
 		this.add(taellerLabel, gridBagConstraints31);
@@ -174,6 +177,32 @@ public class VisListPanel extends JPanel {
 	
 	public void setThread(OpdaterToerreListerThread thread){
 		this.thread = thread;
+	}
+
+	/**
+	 * This method initializes klarListScrollPane	
+	 * 	
+	 * @return javax.swing.JScrollPane	
+	 */
+	private JScrollPane getKlarListScrollPane() {
+		if (klarListScrollPane == null) {
+			klarListScrollPane = new JScrollPane();
+			klarListScrollPane.setViewportView(getKlarList());
+		}
+		return klarListScrollPane;
+	}
+
+	/**
+	 * This method initializes nærOverskredetListScrollPane	
+	 * 	
+	 * @return javax.swing.JScrollPane	
+	 */
+	private JScrollPane getNærOverskredetListScrollPane() {
+		if (nærOverskredetListScrollPane == null) {
+			nærOverskredetListScrollPane = new JScrollPane();
+			nærOverskredetListScrollPane.setViewportView(getNærOverskredetList());
+		}
+		return nærOverskredetListScrollPane;
 	}
 
 }  //  @jve:decl-index=0:visual-constraint="-11,7"
