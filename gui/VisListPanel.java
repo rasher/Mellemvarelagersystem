@@ -115,7 +115,10 @@ public class VisListPanel extends JPanel {
 			klarList.setBorder(MainFrame.getBorder());
 			klarList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
 						public void valueChanged(javax.swing.event.ListSelectionEvent e) {
-							haandterMellemvarePanel.setBatchnummerText(((Mellemvare)getKlarList().getSelectedValue()).getBatchNummer()+"");
+							Mellemvare mellemvare = (Mellemvare)getKlarList().getSelectedValue();
+							if (mellemvare != null) {
+								haandterMellemvarePanel.setBatchnummerText(""+mellemvare.getBatchNummer());
+							}
 						}
 					});
 		}
@@ -136,7 +139,10 @@ public class VisListPanel extends JPanel {
 						public void valueChanged(javax.swing.event.ListSelectionEvent e) {
 							if(getNærOverskredetList().getSelectedValue() != null)
 							{
-								haandterMellemvarePanel.setBatchnummerText(((Mellemvare)getNærOverskredetList().getSelectedValue()).getBatchNummer()+"");
+								Mellemvare mellemvare = (Mellemvare)getNærOverskredetList().getSelectedValue();
+								if (mellemvare != null) {
+									haandterMellemvarePanel.setBatchnummerText(mellemvare.getBatchNummer()+"");
+								}
 							}
 						}
 					});
