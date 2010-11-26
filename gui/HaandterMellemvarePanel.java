@@ -18,6 +18,7 @@ import model.Service;
 
 import java.awt.Insets;
 import java.text.NumberFormat;
+import javax.swing.JScrollPane;
 
 public class HaandterMellemvarePanel extends JPanel {
 
@@ -29,6 +30,7 @@ public class HaandterMellemvarePanel extends JPanel {
 	private JButton startTørringButton = null;
 	private JButton sendTilDelbehandlingButton = null;
 	private JButton sendTilPakningButton = null;
+	private JScrollPane batchInfoScrollPane = null;
 
 	/**
 	 * This is the default constructor
@@ -44,28 +46,28 @@ public class HaandterMellemvarePanel extends JPanel {
 	 * @return void
 	 */
 	private void initialize() {
+		GridBagConstraints gridBagConstraints2 = new GridBagConstraints();
+		gridBagConstraints2.fill = GridBagConstraints.BOTH;
+		gridBagConstraints2.gridy = 3;
+		gridBagConstraints2.weightx = 1.0;
+		gridBagConstraints2.weighty = 1.0;
+		gridBagConstraints2.insets = new Insets(0, 5, 0, 5);
+		gridBagConstraints2.gridx = 0;
 		GridBagConstraints gridBagConstraints7 = new GridBagConstraints();
 		gridBagConstraints7.gridx = 0;
 		gridBagConstraints7.fill = GridBagConstraints.HORIZONTAL;
 		gridBagConstraints7.insets = new Insets(5, 5, 5, 5);
-		gridBagConstraints7.gridy = 6;
+		gridBagConstraints7.gridy = 7;
 		GridBagConstraints gridBagConstraints6 = new GridBagConstraints();
 		gridBagConstraints6.gridx = 0;
 		gridBagConstraints6.fill = GridBagConstraints.HORIZONTAL;
 		gridBagConstraints6.insets = new Insets(5, 5, 5, 5);
-		gridBagConstraints6.gridy = 5;
+		gridBagConstraints6.gridy = 6;
 		GridBagConstraints gridBagConstraints5 = new GridBagConstraints();
 		gridBagConstraints5.gridx = 0;
 		gridBagConstraints5.fill = GridBagConstraints.HORIZONTAL;
 		gridBagConstraints5.insets = new Insets(5, 5, 5, 5);
-		gridBagConstraints5.gridy = 4;
-		GridBagConstraints gridBagConstraints4 = new GridBagConstraints();
-		gridBagConstraints4.fill = GridBagConstraints.BOTH;
-		gridBagConstraints4.gridy = 3;
-		gridBagConstraints4.weightx = 1.0;
-		gridBagConstraints4.weighty = 1.0;
-		gridBagConstraints4.insets = new Insets(0, 5, 0, 5);
-		gridBagConstraints4.gridx = 0;
+		gridBagConstraints5.gridy = 5;
 		GridBagConstraints gridBagConstraints3 = new GridBagConstraints();
 		gridBagConstraints3.gridx = 0;
 		gridBagConstraints3.anchor = GridBagConstraints.WEST;
@@ -91,7 +93,7 @@ public class HaandterMellemvarePanel extends JPanel {
 		this.add(batchnummerLabel, gridBagConstraints);
 		this.add(getBatchnummerTextField(), gridBagConstraints1);
 		this.add(batchInfoLabel, gridBagConstraints3);
-		this.add(getBatchInfoTextArea(), gridBagConstraints4);
+		this.add(getBatchInfoScrollPane(), gridBagConstraints2);
 		this.add(getStartTørringButton(), gridBagConstraints5);
 		this.add(getSendTilDelbehandlingButton(), gridBagConstraints6);
 		this.add(getSendTilPakningButton(), gridBagConstraints7);
@@ -290,5 +292,18 @@ public class HaandterMellemvarePanel extends JPanel {
 			getSendTilDelbehandlingButton().setEnabled(true);
 			getSendTilPakningButton().setEnabled(false);
 		}
+	}
+
+	/**
+	 * This method initializes batchInfoScrollPane	
+	 * 	
+	 * @return javax.swing.JScrollPane	
+	 */
+	private JScrollPane getBatchInfoScrollPane() {
+		if (batchInfoScrollPane == null) {
+			batchInfoScrollPane = new JScrollPane();
+			batchInfoScrollPane.setViewportView(getBatchInfoTextArea());
+		}
+		return batchInfoScrollPane;
 	}
 }
