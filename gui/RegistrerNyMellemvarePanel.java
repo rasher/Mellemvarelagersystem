@@ -152,7 +152,13 @@ public class RegistrerNyMellemvarePanel extends JPanel {
 									e1.printStackTrace();
 								}
 								aktuelMellemvare.startTørring();
-								JOptionPane.showMessageDialog(null, "Mellemvare er oprettet med batchnummer: " + aktuelMellemvare.getBatchNummer(), "Mellemvare oprettelse", JOptionPane.PLAIN_MESSAGE);
+								JOptionPane.showMessageDialog(
+										null,
+										"Mellemvare er oprettet med batchnummer: " + aktuelMellemvare.getBatchNummer()
+										+ "\n" + "Mellemvaren placeres i række " + aktuelMellemvare.getPlacering().getRække()
+										+ ", på plads " + aktuelMellemvare.getPlacering().getPladsIRække(),
+										"Mellemvare oprettelse",
+										JOptionPane.PLAIN_MESSAGE);
 								haandterMellemvarePanel.getBatchnummerTextField().setText(aktuelMellemvare.getBatchNummer()+"");
 							}
 						}
