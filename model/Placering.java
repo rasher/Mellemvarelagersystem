@@ -13,7 +13,7 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name = "Mellemvare")
+@Table(name = "Placering")
 public class Placering {
 	@Id
 	@GeneratedValue
