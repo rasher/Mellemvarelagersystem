@@ -37,6 +37,7 @@ public class Mellemvare {
 	private List<BehandlingsTrin> behandlingsTrin = new ArrayList<BehandlingsTrin>();
 	@ManyToOne(cascade = CascadeType.DETACH)
 	private Produkttype produkttype;
+	private Placering placering;
 
 	/**
 	 * Få varens produkttype
@@ -185,6 +186,20 @@ public class Mellemvare {
 		return aktuelBehandlingsTrin;
 	}
 	
+	/**
+	 * @return the placering
+	 */
+	public Placering getPlacering() {
+		return placering;
+	}
+
+	/**
+	 * @param placering the placering to set
+	 */
+	public void setPlacering(Placering placering) {
+		this.placering = placering;
+	}
+
 	public String toString(){
 		return produkttype + " (" + batchNummer + ")";
 	}
