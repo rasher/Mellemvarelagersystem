@@ -224,7 +224,9 @@ public class Service {
 	}
 	
 	public void startDelbehandling(Mellemvare mellemvare) throws Exception {
-		fjernFraRække(mellemvare);
+		if (mellemvare.getAktueltBehandlingTrin() != null) {
+			fjernFraRække(mellemvare);
+		}
 		mellemvare.startDelbehandling();
 		gemIDatabase(mellemvare);
 	}
