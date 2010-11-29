@@ -213,7 +213,6 @@ public class HaandterMellemvarePanel extends JPanel {
 								aktuelmellemvare.startDelbehandling();
 								getBatchnummerTextField().setText(aktuelmellemvare.getBatchNummer() + "");
 							} catch (Exception e1) {
-								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
 						}

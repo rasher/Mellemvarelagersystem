@@ -125,7 +125,6 @@ public class DelbehandlingDelPanel extends JPanel {
 						setOptTørringstid(aktuelDelbehandling.getOptimalTørringsTid() + "");
 						getDelbehandlingsStedTextField().setText(aktuelDelbehandling.getBehandlingsSted());
 					}
-					System.out.println("itemStateChanged()"); // TODO Auto-generated Event stub itemStateChanged()
 				}
 			});
 		}

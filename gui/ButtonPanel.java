@@ -66,7 +66,6 @@ public class ButtonPanel extends JPanel {
 			opretButton.setText("Opret");
 			opretButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					System.out.println("actionPerformed()"); // TODO Auto-generated Event stub actionPerformed()
 					for (OpretGemSletObserver observer: opretGemSletObservers) {
 						observer.opret();
 					}
@@ -87,7 +86,6 @@ public class ButtonPanel extends JPanel {
 			gemButton.setText("Gem");
 			gemButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					System.out.println("actionPerformed()"); // TODO Auto-generated Event stub actionPerformed()
 					for (OpretGemSletObserver observer: opretGemSletObservers) {
 						observer.gem();
 					}
@@ -108,7 +106,6 @@ public class ButtonPanel extends JPanel {
 			sletButton.setText("Slet");
 			sletButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					System.out.println("actionPerformed()"); // TODO Auto-generated Event stub actionPerformed()
 					for (OpretGemSletObserver observer: opretGemSletObservers) {
 						observer.slet();
 					}
