@@ -9,6 +9,8 @@ public class Service {
 	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("Mellemvarelager");
 	private EntityManager em = emf.createEntityManager();
 	private static Service thisInstance;
+	private final int antalRækker = 12;
+	private final int pladserPerRække = 6;
 	
 	public static Service getInstance()
 	{
@@ -156,6 +158,45 @@ public class Service {
 			return mellemvarer.get(0);
 		}
 		return null;
+	}
+	
+	public Placering beregnPlacering(Mellemvare mellemvare)
+	{
+		Placering optimalPlacering = null;
+		long optimalForskel = Long.MAX_VALUE;
+		em.getTransaction().begin();
+		for(int række = 1 ; række <= antalRækker ; række++)
+		{
+			Query nq = em.createNamedQuery("findVarerIRække");
+			nq.setParameter("række", række);
+			List<Mellemvare> mellemvarer = nq.getResultList();
+			if(mellemvarer.size() < 1)
+				{
+					optimalPlacering = new Placering();
+					optimalPlacering.setRække(række);
+					optimalPlacering.setPladsIRække(1);
+					optimalForskel = 0;
+					continue;
+				}
+			Mellemvare m = mellemvarer.get(mellemvarer.size() - 1);
+			if(m.getPlacering().getPladsIRække() < pladserPerRække)
+				if(m.getMaksimumTørringNået().before(mellemvare.getMinimumTørringNået()))
+				{
+					long forskel = mellemvare.getMinimumTørringNået().getTimeInMillis() - 
+						m.getMaksimumTørringNået().getTimeInMillis();
+					if(forskel < optimalForskel)
+					{
+						optimalForskel = forskel;
+						optimalPlacering = new Placering();
+						optimalPlacering.setRække(række);
+						optimalPlacering.setPladsIRække(m.getPlacering().getPladsIRække() + 1);
+					}
+				}
+					
+				
+			
+		}
+		return optimalPlacering;
 	}
 
 }
