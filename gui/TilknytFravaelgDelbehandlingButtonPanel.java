@@ -78,8 +78,6 @@ public class TilknytFravaelgDelbehandlingButtonPanel extends JPanel {
 	public void setOpretBehandlingPanel(
 			OpretBehandlingPanel opretBehandlingPanel) {
 		this.opretBehandlingPanel = opretBehandlingPanel;
-		// TODO Auto-generated method stub
-		
 	}
 
 }  //  @jve:decl-index=0:visual-constraint="10,10"
