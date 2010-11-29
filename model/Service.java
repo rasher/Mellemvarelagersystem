@@ -192,11 +192,51 @@ public class Service {
 						optimalPlacering.setPladsIRække(m.getPlacering().getPladsIRække() + 1);
 					}
 				}
-					
-				
-			
 		}
+		em.getTransaction().commit();
 		return optimalPlacering;
+	}
+	
+	public void fjernFraRække(Mellemvare mellemvare) throws Exception {
+		if (mellemvare.getPlacering() == null) {
+			throw new Exception("Mellemvare er ikke i nogen række");
+		}
+		em.getTransaction().begin();
+		
+		Query nq = em.createNamedQuery("findVarerIRække");
+		nq.setParameter("række", mellemvare.getPlacering().getRække());
+		List<Mellemvare> mellemvarer = nq.getResultList();
+		for (Mellemvare m: mellemvarer) {
+			if (m.getPlacering().getPladsIRække() > mellemvare.getPlacering().getPladsIRække()) {
+				m.getPlacering().setPladsIRække(m.getPlacering().getPladsIRække() - 1);
+				em.persist(m);
+			}
+		}
+		mellemvare.setPlacering(null);
+		em.persist(mellemvare);
+		em.getTransaction().commit();		
+	}
+	
+	public void sendTilPakning(Mellemvare mellemvare) throws Exception {
+		fjernFraRække(mellemvare);
+		mellemvare.sendTilPakning();
+	}
+	
+	public void startDelbehandling(Mellemvare mellemvare) throws Exception {
+		fjernFraRække(mellemvare);
+		mellemvare.startDelbehandling();
+	}
+	
+	public void startTørring(Mellemvare mellemvare) throws Exception {
+		Placering placering = beregnPlacering(mellemvare);
+		if (placering != null) {
+			mellemvare.setPlacering(placering);
+		}
+		else {
+			throw new Exception("Mellemvarelageret er fyldt");
+		}
+		mellemvare.setPlacering(placering);
+		mellemvare.startTørring();
 	}
 
 }
