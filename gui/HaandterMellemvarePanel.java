@@ -1,26 +1,23 @@
 package gui;
 
-import java.awt.GridBagLayout;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.text.NumberFormat;
+import java.text.ParseException;
 
-import javax.swing.JFormattedTextField;
-import javax.swing.JTextField;
-import javax.swing.JTextArea;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import model.BehandlingsTrin;
 import model.Mellemvare;
 import model.Service;
-
-import java.awt.Insets;
-import java.text.NumberFormat;
-import java.text.ParseException;
-
-import javax.swing.JScrollPane;
 
 public class HaandterMellemvarePanel extends JPanel {
 
