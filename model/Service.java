@@ -220,11 +220,13 @@ public class Service {
 	public void sendTilPakning(Mellemvare mellemvare) throws Exception {
 		fjernFraRække(mellemvare);
 		mellemvare.sendTilPakning();
+		gemIDatabase(mellemvare);
 	}
 	
 	public void startDelbehandling(Mellemvare mellemvare) throws Exception {
 		fjernFraRække(mellemvare);
 		mellemvare.startDelbehandling();
+		gemIDatabase(mellemvare);
 	}
 	
 	public void startTørring(Mellemvare mellemvare) throws Exception {
@@ -237,6 +239,7 @@ public class Service {
 		}
 		mellemvare.setPlacering(placering);
 		mellemvare.startTørring();
+		gemIDatabase(mellemvare);
 	}
 
 }
