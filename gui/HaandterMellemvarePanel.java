@@ -258,13 +258,13 @@ public class HaandterMellemvarePanel extends JPanel {
 	
 	private void setBatchInfoTextArea(BehandlingsTrin trin){
 		if(trin.getSlut() != null){
-			getBatchInfoTextArea().append(trin.getDelbehandling().getNavn() + "(Afsluttet)\n");
+			getBatchInfoTextArea().append(trin.getDelbehandling().getNavn() + " (Afsluttet)\n");
 		}
 		else if(trin.getTørringStart() != null){
-			getBatchInfoTextArea().append(trin.getDelbehandling().getNavn() + "(Tørrer)\n");
+			getBatchInfoTextArea().append(trin.getDelbehandling().getNavn() + " (Tørrer)\n");
 		}
 		else if(trin.getStart() != null){
-			getBatchInfoTextArea().append(trin.getDelbehandling().getNavn() + "(Behandler)\n");
+			getBatchInfoTextArea().append(trin.getDelbehandling().getNavn() + " (Behandler)\n");
 		}
 		else{
 			getBatchInfoTextArea().append(trin.getDelbehandling().getNavn() + "\n");
