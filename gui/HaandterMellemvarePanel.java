@@ -265,7 +265,12 @@ public class HaandterMellemvarePanel extends JPanel {
 	}
 	
 	private void setButtonStatus(BehandlingsTrin trin, Mellemvare m){
-		if(trin.getSlut() != null){
+		if(m.getBehandlingsTrin().get(m.getBehandlingsTrin().size()-1).getSlut() != null){
+			getStartTørringButton().setEnabled(false);
+			getSendTilDelbehandlingButton().setEnabled(false);
+			getSendTilPakningButton().setEnabled(false);
+		}
+		else if(trin.getSlut() != null){
 			getStartTørringButton().setEnabled(false);
 			getSendTilDelbehandlingButton().setEnabled(true);
 			getSendTilPakningButton().setEnabled(false);
