@@ -384,7 +384,6 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 			nyDelbehandlingRelation.setDelbehandling(valgtDelbehandling);
 			valgteDelbehandlingerModel.addElement(nyDelbehandlingRelation);
 		}
-		System.out.println("Tilknyt valgt delbehandling: " + valgtDelbehandling);
 	}
 
 	/**
