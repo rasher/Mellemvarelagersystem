@@ -144,9 +144,9 @@ public class HaandterMellemvarePanel extends JPanel {
 							;
 							getBatchInfoTextArea().setText("Produkttype: \t" + m.getProdukttype().getNavn() + "\r\n\n"
 															+ (m.getPlacering() == null ? "" : String.format("Placering: Række %d plads %d\r\n\n", m.getPlacering().getRække(), m.getPlacering().getPladsIRække()))
-															+ String.format("Minimums Tørring nået: \t %1$td-%1$tm-%1$tY  %1$tR\r\n", m.getMinimumTørringNået())
-															+ String.format("Optimal Tørring nået: \t %1$td-%1$tm-%1$tY  %1$tR\r\n", m.getOptimalTørringNået())
-															+ String.format("Maksimal Tørring nået: \t %1$td-%1$tm-%1$tY  %1$tR\r\n\n", m.getMaksimumTørringNået())
+															+ (m.getMinimumTørringNået() == null ? "" : String.format("Minimums Tørring nået: \t %1$td-%1$tm-%1$tY  %1$tR\r\n", m.getMinimumTørringNået()))
+															+ (m.getOptimalTørringNået() == null ? "" : String.format("Optimal Tørring nået: \t %1$td-%1$tm-%1$tY  %1$tR\r\n", m.getOptimalTørringNået()))
+															+ (m.getMaksimumTørringNået() == null ? "" : String.format("Maksimal Tørring nået: \t %1$td-%1$tm-%1$tY  %1$tR\r\n\n", m.getMaksimumTørringNået()))
 															+ "Delbehandlinger: \n\n");
 							for(BehandlingsTrin trin : m.getBehandlingsTrin()){
 								setBatchInfoTextArea(trin);
@@ -186,8 +186,13 @@ public class HaandterMellemvarePanel extends JPanel {
 			startTørringButton.setEnabled(false);
 			startTørringButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					Mellemvare aktuelmellemvare = Service.getInstance().søgMellemvare(Integer.parseInt(getBatchnummerTextField().getText()));
-					aktuelmellemvare.startTørring();
+					Mellemvare aktuelmellemvare = Service.getInstance().søgMellemvare(((Number)getBatchnummerTextField().getValue()).intValue());
+					try {
+						Service.getInstance().startTørring(aktuelmellemvare);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					getBatchnummerTextField().setText(aktuelmellemvare.getBatchNummer() + "");
 				}
 			});
@@ -208,9 +213,9 @@ public class HaandterMellemvarePanel extends JPanel {
 			sendTilDelbehandlingButton
 					.addActionListener(new java.awt.event.ActionListener() {
 						public void actionPerformed(java.awt.event.ActionEvent e) {
-							Mellemvare aktuelmellemvare = Service.getInstance().søgMellemvare(Integer.parseInt(getBatchnummerTextField().getText()));
+							Mellemvare aktuelmellemvare = Service.getInstance().søgMellemvare(((Number)getBatchnummerTextField().getValue()).intValue());
 							try {
-								aktuelmellemvare.startDelbehandling();
+								Service.getInstance().startDelbehandling(aktuelmellemvare);
 								getBatchnummerTextField().setText(aktuelmellemvare.getBatchNummer() + "");
 							} catch (Exception e1) {
 								e1.printStackTrace();
@@ -233,8 +238,13 @@ public class HaandterMellemvarePanel extends JPanel {
 			sendTilPakningButton.setEnabled(false);
 			sendTilPakningButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					Mellemvare aktuelmellemvare = Service.getInstance().søgMellemvare(Integer.parseInt(getBatchnummerTextField().getText()));
-					aktuelmellemvare.sendTilPakning();
+					Mellemvare aktuelmellemvare = Service.getInstance().søgMellemvare(((Number)getBatchnummerTextField().getValue()).intValue());
+					try {
+						Service.getInstance().sendTilPakning(aktuelmellemvare);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					getBatchnummerTextField().setText(aktuelmellemvare.getBatchNummer() + "");
 				}
 			});
