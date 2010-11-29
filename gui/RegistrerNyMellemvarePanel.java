@@ -147,11 +147,15 @@ public class RegistrerNyMellemvarePanel extends JPanel {
 							{
 								Mellemvare aktuelMellemvare = model.Service.getInstance().createMellemvare((Produkttype) getProdukttypeComboBox().getSelectedItem());
 								try {
-									aktuelMellemvare.startDelbehandling();
+									Service.getInstance().startDelbehandling(aktuelMellemvare);
 								} catch (Exception e1) {
 									e1.printStackTrace();
 								}
-								aktuelMellemvare.startTørring();
+								try {
+									Service.getInstance().startTørring(aktuelMellemvare);
+								} catch (Exception e1) {
+									e1.printStackTrace();
+								}
 								JOptionPane.showMessageDialog(
 										null,
 										"Mellemvare er oprettet med batchnummer: " + aktuelMellemvare.getBatchNummer()
