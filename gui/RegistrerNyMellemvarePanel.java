@@ -149,7 +149,6 @@ public class RegistrerNyMellemvarePanel extends JPanel {
 								try {
 									aktuelMellemvare.startDelbehandling();
 								} catch (Exception e1) {
-									// TODO Auto-generated catch block
 									e1.printStackTrace();
 								}
 								aktuelMellemvare.startTørring();

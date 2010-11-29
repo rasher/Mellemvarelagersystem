@@ -114,7 +114,6 @@ public class Test {
 			m.startDelbehandling();
 			m1.startDelbehandling();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		m.startTørring();
