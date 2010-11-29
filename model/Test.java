@@ -111,13 +111,13 @@ public class Test {
 	
 		
 		try {
-			m.startDelbehandling();
-			m1.startDelbehandling();
+			service.startDelbehandling(m);
+			service.startDelbehandling(m1);
+			service.startTørring(m);
+			service.startTørring(m1);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		m.startTørring();
-		m1.startTørring();
 		service.gemIDatabase(m);
 		service.gemIDatabase(m1);
 	}
