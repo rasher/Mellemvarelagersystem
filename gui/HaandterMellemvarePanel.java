@@ -143,6 +143,7 @@ public class HaandterMellemvarePanel extends JPanel {
 						{
 							;
 							getBatchInfoTextArea().setText("Produkttype: \t" + m.getProdukttype().getNavn() + "\r\n\n"
+															+ (m.getPlacering() == null ? "" : String.format("Placering %d x %d", m.getPlacering().getRække(), m.getPlacering().getPladsIRække()))
 															+ String.format("Minimums Tørring nået: \t %1$td-%1$tm-%1$tY  %1$tR\r\n", m.getMinimumTørringNået())
 															+ String.format("Optimal Tørring nået: \t %1$td-%1$tm-%1$tY  %1$tR\r\n", m.getOptimalTørringNået())
 															+ String.format("Maksimal Tørring nået: \t %1$td-%1$tm-%1$tY  %1$tR\r\n\n", m.getMaksimumTørringNået())
