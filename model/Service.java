@@ -170,14 +170,14 @@ public class Service {
 			Query nq = em.createNamedQuery("findVarerIRække");
 			nq.setParameter("række", række);
 			List<Mellemvare> mellemvarer = nq.getResultList();
-			if(mellemvarer.size() < 1)
-				{
-					optimalPlacering = new Placering();
-					optimalPlacering.setRække(række);
-					optimalPlacering.setPladsIRække(1);
-					optimalForskel = 0;
-					continue;
-				}
+			if(mellemvarer.size() < 1 && optimalForskel > 0)
+			{
+				optimalPlacering = new Placering();
+				optimalPlacering.setRække(række);
+				optimalPlacering.setPladsIRække(1);
+				optimalForskel = 0;
+				continue;
+			}
 			Mellemvare m = mellemvarer.get(mellemvarer.size() - 1);
 			if(m.getPlacering().getPladsIRække() < pladserPerRække)
 				if(m.getMaksimumTørringNået().before(mellemvare.getMinimumTørringNået()))
