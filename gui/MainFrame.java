@@ -228,8 +228,14 @@ public class MainFrame extends JFrame {
 	private JMenuItem getTestMenuSætAlleVarerKlar() {
 		if (testMenuSætAlleVarerKlar == null) {
 			testMenuSætAlleVarerKlar = new JMenuItem();
-			testMenuSætAlleVarerKlar.setEnabled(false);
 			testMenuSætAlleVarerKlar.setText("Sæt alle varer klar");
+			testMenuSætAlleVarerKlar.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					Test.getInstance().sætAlleKlar();
+					JOptionPane.showMessageDialog(null, "Alle varer sat til klar", "Sat til klar", JOptionPane.INFORMATION_MESSAGE);
+					getLagerPanel().opdaterProduktTyper();
+				}
+			});
 		}
 		return testMenuSætAlleVarerKlar;
 	}

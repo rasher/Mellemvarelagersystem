@@ -140,6 +140,12 @@ public class Test {
 		em.getTransaction().commit();
 	}
 	
+	public void sætAlleKlar() {
+		em.getTransaction().begin();
+		em.createQuery("update Mellemvare set minimumTørringNået=CURRENT_TIMESTAMP").executeUpdate();
+		em.getTransaction().commit();
+	}
+	
 	public static void main(String[] args) {
 		//getInstance().opretTestData();
 //		søgMellemvare(13);
