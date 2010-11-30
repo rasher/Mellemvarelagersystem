@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 import javax.persistence.*;
@@ -244,6 +245,29 @@ public class Service {
 		mellemvare.setPlacering(placering);
 		mellemvare.startTørring();
 		gemIDatabase(mellemvare);
+	}
+	
+	public Object[][] createStatistik(Calendar fraDato, Calendar tilDato, Produkttype[] produkttype)
+	{
+		Object[][] statistik = new Object[produkttype.length][4];
+		em.getTransaction().begin();
+		for(int i = 0 ; i < produkttype.length ; i++)
+		{
+			Query q = em.createNamedQuery("findVarerAfProdukttype");
+			List<Mellemvare> mellemvarer = q.setParameter("produkttype", produkttype[i]).getResultList();
+			for(int p = 0 ; p < mellemvarer.size() ; p++)
+			{
+				List<BehandlingsTrin> bt = mellemvarer.get(p).getBehandlingsTrin();
+				if(bt.get(bt.size() - 1).getSlut() != null)
+					if(bt.get(0).getStart().after(fraDato) && bt.get(bt.size() - 1).getSlut().before(tilDato))
+					{
+						statistik[i][0] = produkttype[i].getNavn();
+						
+					}
+			}
+			
+		}
+			
 	}
 
 }

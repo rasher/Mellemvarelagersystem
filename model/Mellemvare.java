@@ -18,7 +18,8 @@ import javax.persistence.*;
 	@NamedQuery(name = "findAlleMellemvarer", query = "Select mv from Mellemvare mv"),
 	@NamedQuery(name = "findMinimumstidOpnået", query = "Select mv from Mellemvare mv where mv.aktuelBehandlingsTrin is not null and mv.minimumTørringNået < CURRENT_TIMESTAMP order by mv.maksimumTørringNået desc"),
 	@NamedQuery(name = "søgMellemvareFraBatchNummer", query = "Select mv from Mellemvare mv where mv.batchNummer = :batchNummer"),
-	@NamedQuery(name = "findVarerIRække", query = "Select mv from Mellemvare mv where mv.placering.række = :række Order by mv.placering.pladsIRække")
+	@NamedQuery(name = "findVarerIRække", query = "Select mv from Mellemvare mv where mv.placering.række = :række Order by mv.placering.pladsIRække"),
+	@NamedQuery(name = "findVarerAfProdukttype", query = "Select mv from Mellemvare mv where mv.produkttype = :produkttype")
 })
 
 public class Mellemvare {
