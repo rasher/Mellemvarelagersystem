@@ -161,6 +161,12 @@ public class Service {
 	
 	/**
 	 * Find den bedst mulige placering på mellemvarelageret for en mellemvare.
+	 * Placeringen udregnes på følgende måde:
+	 * - Findes der en tom række, sættes varen på den første tomme række
+	 * - Ellers placeres varen på den række hvor forskellen på den bageste
+	 *   vares optimaltid og den nye vares optimaltid er så lille som muligt.
+	 *   Det tjekkes at den nye vares maksimaltid ikke ligger før den bageste
+	 *   vares optimaltid.
 	 * 
 	 * @param mellemvare Mellemvaren der skal placeres på mellemvarelageret
 	 * @return Den bedst fundne placering for mellemvaren, eller null hvis ingen vare er fundet
@@ -186,19 +192,20 @@ public class Service {
 				}
 				continue;
 			}
-			Mellemvare m = mellemvarer.get(mellemvarer.size() - 1);
-			if(m.getPlacering().getPladsIRække() < pladserPerRække)
+			Mellemvare iRække = mellemvarer.get(mellemvarer.size() - 1);
+			if(iRække.getPlacering().getPladsIRække() < pladserPerRække)
 			{
-				if(m.getMaksimumTørringNået().before(mellemvare.getMinimumTørringNået()))
+				if(iRække.getOptimalTørringNået().before(mellemvare.getOptimalTørringNået()) &&
+						iRække.getMaksimumTørringNået().before(mellemvare.getMaksimumTørringNået()))
 				{
-					long forskel = mellemvare.getMinimumTørringNået().getTimeInMillis() - 
-						m.getMaksimumTørringNået().getTimeInMillis();
+					long forskel = mellemvare.getOptimalTørringNået().getTimeInMillis() - 
+						iRække.getOptimalTørringNået().getTimeInMillis();
 					if(forskel < optimalForskel)
 					{
 						optimalForskel = forskel;
 						optimalPlacering = new Placering();
 						optimalPlacering.setRække(række);
-						optimalPlacering.setPladsIRække(m.getPlacering().getPladsIRække() + 1);
+						optimalPlacering.setPladsIRække(iRække.getPlacering().getPladsIRække() + 1);
 					}
 				}
 			}
