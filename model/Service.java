@@ -372,7 +372,15 @@ public class Service {
 		mellemvare.startTørring();
 		gemIDatabase(mellemvare);
 	}
-	
+	/**
+	 * Udregn statistik på alle mellemvarer af en given produkttype, 
+	 * det er muligt at beregne for flere produkttyper
+	 * @param fraDato tages fra JCalendar som er intervallets start
+	 * @param tilDato tages fra JCalendar som er intervallets slutning
+	 * @param produkttype er de produkttyper der er valgt i listen
+	 * @return et 2 dimensionelt array af statistik data, indholdende alle færdig produceret mellemvarer,
+	 * gennemsnitstider for produkttyper og spild procent.
+	 */
 	public Object[][] createStatistik(Calendar fraDato, Calendar tilDato, Object[] produkttype)
 	{
 		Object[][] statistik = new Object[produkttype.length][4];
