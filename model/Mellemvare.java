@@ -202,6 +202,24 @@ public class Mellemvare {
 	public void setPlacering(Placering placering) {
 		this.placering = placering;
 	}
+	
+	/**
+	 *  @author Johnny S. Sørensen
+	 *  
+	 *  @return om mellemvaren er blevet for gammel, dvs har overskredet maksimaltørringstid på en af sine behandlingstrin
+	 *  
+	 */
+	public boolean erForGammel(){
+		boolean forGammel = false;
+		for(BehandlingsTrin behandlingsTrin : getBehandlingsTrin()){
+			if(behandlingsTrin.getSlut() == null && behandlingsTrin.getTørringStart() != null){
+				if(this.getMaksimumTørringNået().before(new GregorianCalendar())){
+					forGammel = true;
+				}
+			}
+		}
+		return forGammel;
+	}
 
 	public String toString(){
 		return produkttype + " (" + batchNummer + ")";
