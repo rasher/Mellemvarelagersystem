@@ -1,2 +1,45 @@
-2. semesterprojekt p� datamatikerstudiet i Aarhus.
-Medlemmer: Johnny, Peter, Jonas og Lars
+2. semesterprojekt på datamatikerstudiet i Århus.
+
+Medlemmer:
+* Johnny S. Sørensen
+* Peter Runge Christensen
+* Jonas Häggqvist
+
+For at få projektet til at køre skal du have en gyldig JPA opsætning i
+filen META-INF/persistence.xml som gemmer data i en relationel database.
+Et eksempel på en sådan fil kan ses nedenfor. Ret værdierne for følgende
+properties:
+* javax.persistence.jdbc.url
+* javax.persistence.jdbc.user
+* javax.persistence.jdbc.password
+
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence 
+    xmlns="http://java.sun.com/xml/ns/persistence"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+    version="2.0">
+
+    <persistence-unit name="Mellemvarelager" transaction-type="RESOURCE_LOCAL">
+        <class>model.Behandling</class>
+        <class>model.BehandlingsTrin</class>
+        <class>model.BehandlingDelbehandlingRelation</class>
+        <class>model.Delbehandling</class>
+		<class>model.Mellemvare</class>
+		<class>model.Produkttype</class>
+		<class>model.Placering</class>
+		<properties>
+			<property name="javax.persistence.jdbc.driver"
+				value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+			<property name="javax.persistence.jdbc.url" 
+				value="jdbc:sqlserver://HOSTNAME\sqlexpress;databaseName=DATABASENAME" />
+			<property name="javax.persistence.jdbc.user" value= 'USERNAME' />
+			<property name="javax.persistence.jdbc.password" value='PASSWORD' />
+			<property name="eclipselink.logging.level" value="SEVERE"/>
+            <!-- EclipseLink should create the database schema automatically --> 			      
+			<property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
+			<property name="eclipselink.ddl-generation.output-mode" value="database"/> 
+        </properties>
+    </persistence-unit>
+</persistence>
+  
