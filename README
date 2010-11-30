@@ -13,6 +13,10 @@ properties:
 * javax.persistence.jdbc.user
 * javax.persistence.jdbc.password
 
+Slet evt. de to properties eclipselink.ddl-generation og
+eclipselink.ddl-generation.output-mode for at bevare data når programmet
+genstartes.
+
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence 
     xmlns="http://java.sun.com/xml/ns/persistence"
