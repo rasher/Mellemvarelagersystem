@@ -18,36 +18,47 @@ public class Delbehandling {
 	private int optimalTørringsTid;
 	@Column(length=4)
 	private int maksimumTørringsTid;
+	
 	public String getNavn() {
 		return navn;
 	}
+	
 	public void setNavn(String navn) {
 		this.navn = navn;
 	}
+	
 	public String getBehandlingsSted() {
 		return behandlingsSted;
 	}
+	
 	public void setBehandlingsSted(String behandlingsSted) {
 		this.behandlingsSted = behandlingsSted;
 	}
+	
 	public int getMinimumTørringsTid() {
 		return minimumTørringsTid;
 	}
+	
 	public void setMinimumTørringsTid(int minimumTørringsTid) {
 		this.minimumTørringsTid = minimumTørringsTid;
 	}
+	
 	public int getOptimalTørringsTid() {
 		return optimalTørringsTid;
 	}
+	
 	public void setOptimalTørringsTid(int optimalTørringsTid) {
 		this.optimalTørringsTid = optimalTørringsTid;
 	}
+	
 	public int getMaksimumTørringsTid() {
 		return maksimumTørringsTid;
 	}
+	
 	public void setMaksimumTørringsTid(int maksimumTørringsTid) {
 		this.maksimumTørringsTid = maksimumTørringsTid;
 	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -59,5 +70,4 @@ public class Delbehandling {
 						navn, id, behandlingsSted, maksimumTørringsTid,
 						minimumTørringsTid, optimalTørringsTid);
 	}
-	
 }
