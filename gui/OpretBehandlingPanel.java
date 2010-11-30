@@ -22,6 +22,11 @@ import model.BehandlingDelbehandlingRelation;
 import model.Delbehandling;
 import model.Service;
 
+/**
+ * Dette panel giver brugeren mulighed for at oprette Behandlinger og tilknytte
+ * delbehandlinger.
+ * @author Jonas Häggqvist (10dm10v1)
+ */
 public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver {
 
 	private static final long serialVersionUID = 1L;
@@ -170,6 +175,9 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 		return vælgBehandlingComboBox;
 	}
 
+	/**
+	 * Opdater de forskellige felter i panelet med de nuværende værdier.
+	 */
 	private void opdaterFelter() {
 		getValgteDelbehandlingerList(); // Sørg for at listen er oprettet før vi gør mere.
 		Behandling valgtBehandling = (Behandling) vælgBehandlingComboBox.getSelectedItem();
@@ -188,6 +196,9 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 		getVælgBehandlingComboBox().setRenderer(new BehandlingListCellRenderer());
 	}
 	
+	/**
+	 * Opdater listen af mulige delbehandlinger
+	 */
 	public void opdaterMuligeDelbehandlinger() {
 		getMuligeDelbehandlingerList().setListData(service.getDelbehandlinger().toArray());
 	}
