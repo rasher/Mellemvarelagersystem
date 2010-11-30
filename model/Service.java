@@ -188,6 +188,7 @@ public class Service {
 			}
 			Mellemvare m = mellemvarer.get(mellemvarer.size() - 1);
 			if(m.getPlacering().getPladsIRække() < pladserPerRække)
+			{
 				if(m.getMaksimumTørringNået().before(mellemvare.getMinimumTørringNået()))
 				{
 					long forskel = mellemvare.getMinimumTørringNået().getTimeInMillis() - 
@@ -200,6 +201,7 @@ public class Service {
 						optimalPlacering.setPladsIRække(m.getPlacering().getPladsIRække() + 1);
 					}
 				}
+			}
 		}
 		em.getTransaction().commit();
 		return optimalPlacering;
