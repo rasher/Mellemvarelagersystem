@@ -358,6 +358,7 @@ public class Service {
 	 * @throws Exception Hvis der ikke kan findes en plads til mellemvaren.
 	 */
 	public void startTørring(Mellemvare mellemvare) throws Exception {
+		mellemvare.startTørring();
 		Placering placering = beregnPlacering(mellemvare);
 		if (placering != null) {
 			mellemvare.setPlacering(placering);
@@ -366,7 +367,6 @@ public class Service {
 			throw new Exception("Mellemvarelageret er fyldt");
 		}
 		mellemvare.setPlacering(placering);
-		mellemvare.startTørring();
 		gemIDatabase(mellemvare);
 	}
 	/**
