@@ -1,6 +1,3 @@
-/**
- * 
- */
 package model;
 
 import javax.persistence.Entity;
@@ -9,8 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
+ * En Placering på lageret
  * @author Jonas Häggqvist (10dm10v1)
- *
  */
 @Entity
 @Table(name = "Placering")
@@ -22,31 +19,37 @@ public class Placering {
 	private int pladsIRække;
 
 	/**
-	 * @return the række
+	 * @return Rækken
 	 */
 	public int getRække() {
 		return række;
 	}
+	
 	/**
-	 * @param række the række to set
+	 * Sæt en ny række for Placeringen
+	 * @param række Den nye række
 	 */
 	public void setRække(int række) {
 		this.række = række;
 	}
+	
 	/**
-	 * @return the pladsIRække
+	 * @return Placeringens plads i rækken
 	 */
 	public int getPladsIRække() {
 		return pladsIRække;
 	}
+	
 	/**
-	 * @param pladsIRække the pladsIRække to set
+	 * Sæt en ny plads i rækken for Placeringen
+	 * @param pladsIRække Den nye plads i rækken
 	 */
 	public void setPladsIRække(int pladsIRække) {
 		this.pladsIRække = pladsIRække;
 	}
+	
 	/**
-	 * @return the pladsId
+	 * @return Pladsens id-nummer
 	 */
 	public int getPladsId() {
 		return pladsId;
