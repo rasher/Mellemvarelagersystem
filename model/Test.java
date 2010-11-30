@@ -1,6 +1,3 @@
-/**
- * 
- */
 package model;
 
 import javax.persistence.EntityManager;
@@ -9,8 +6,8 @@ import javax.persistence.Persistence;
 
 
 /**
- * @author Jonas Häggqvist (10dm10v1)
- * 
+ * @author Peter Runge Christensen
+ * @author Jonas Häggqvist
  */
 public class Test {
 	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("Mellemvarelager");
@@ -18,6 +15,9 @@ public class Test {
 
 	private static Test thisInstance;
 	
+	/**
+	 * @return En instans af Test klassen
+	 */
 	public static Test getInstance()
 	{
 		if(thisInstance == null)
@@ -25,11 +25,17 @@ public class Test {
 		return thisInstance;
 	}
 	
+	/**
+	 * Constructor
+	 */
 	private Test()
 	{
 		
 	}
 	
+	/**
+	 * Opret en mængde testdata i databasen.
+	 */
 	public void opretTestData() {
 		Service service = Service.getInstance();
 		Behandling b = service.createBehandling();
@@ -122,6 +128,9 @@ public class Test {
 		service.gemIDatabase(m1);
 	}
 	
+	/**
+	 * Test-metode til hurtige tests
+	 */
 	public void test()
 	{
 		em.getTransaction().begin();
@@ -129,6 +138,9 @@ public class Test {
 		System.out.println(em.createNamedQuery("findAlleMellemvarer").getResultList());
 	}
 	
+	/**
+	 * Slet alle objekter i databasen.
+	 */
 	public void sletAlt() {
 		em.getTransaction().begin();
 		em.createQuery("delete from Mellemvare").executeUpdate();
@@ -139,12 +151,19 @@ public class Test {
 		em.getTransaction().commit();
 	}
 	
+	/**
+	 * Sæt alle mellemvarer i databasen til at have opnået deres minimums tørringstid.
+	 */
 	public void sætAlleKlar() {
 		em.getTransaction().begin();
 		em.createQuery("update Mellemvare set minimumTørringNået=CURRENT_TIMESTAMP").executeUpdate();
 		em.getTransaction().commit();
 	}
 	
+	/**
+	 * Main-metode, brugt under test
+	 * @param args kommandolinje parametre
+	 */
 	public static void main(String[] args) {
 		//getInstance().opretTestData();
 //		søgMellemvare(13);
