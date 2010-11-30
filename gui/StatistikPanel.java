@@ -8,10 +8,18 @@ import javax.swing.JLabel;
 import java.awt.Insets;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import javax.swing.JList;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
+
+import model.Produkttype;
+import model.Service;
 
 public class StatistikPanel extends JPanel {
 
@@ -29,6 +37,9 @@ public class StatistikPanel extends JPanel {
 	private JButton resetButton = null;
 	private JScrollPane statistikScroll = null;
 	private JTable statistikTable = null;
+	private Service service = Service.getInstance();
+	private GregorianCalendar fraDato = new GregorianCalendar();
+	private String[] columnNames = {"Produkttype","Antal mellemvarer produceret","Gennemsnitstid på lager","spild %"};
 	/**
 	 * This is the default constructor
 	 */
@@ -43,16 +54,14 @@ public class StatistikPanel extends JPanel {
 	 * @return void
 	 */
 	private void initialize() {
-		GridLayout gridLayout = new GridLayout();
-		gridLayout.setRows(1);
 		GridBagConstraints gridBagConstraints2 = new GridBagConstraints();
 		gridBagConstraints2.gridx = 0;
 		gridBagConstraints2.insets = new Insets(0, 0, 0, 0);
 		gridBagConstraints2.gridy = 1;
-		this.setLayout(gridLayout);
+		this.setLayout(new BorderLayout());
 		this.setSize(300, 200);
-		this.add(getStatistikVælgPanel(), null);
-		this.add(getStatistikVisPanel(), null);
+		this.add(getStatistikVælgPanel(), BorderLayout.WEST);
+		this.add(getStatistikVisPanel(), BorderLayout.CENTER);
 	}
 
 	/**
@@ -63,6 +72,8 @@ public class StatistikPanel extends JPanel {
 	private JDateChooser getJFraDateChooser() {
 		if (jFraDateChooser == null) {
 			jFraDateChooser = new JDateChooser();
+			fraDato.add(Calendar.DATE, -10);
+			jFraDateChooser.setCalendar(fraDato);
 		}
 		return jFraDateChooser;
 	}
@@ -75,6 +86,7 @@ public class StatistikPanel extends JPanel {
 	private JDateChooser getJTilDateChooser() {
 		if (jTilDateChooser == null) {
 			jTilDateChooser = new JDateChooser();
+			jTilDateChooser.setCalendar(new GregorianCalendar());
 		}
 		return jTilDateChooser;
 	}
@@ -128,6 +140,7 @@ public class StatistikPanel extends JPanel {
 			gridBagConstraints.insets = new Insets(0, 5, 5, 0);
 			gridBagConstraints.gridy = 1;
 			statistikVælgPanel = new JPanel();
+			statistikVælgPanel.setBorder(MainFrame.getBorder());
 			statistikVælgPanel.setLayout(new GridBagLayout());
 			statistikVælgPanel.add(getJFraDateChooser(), gridBagConstraints);
 			statistikVælgPanel.add(getJTilDateChooser(), gridBagConstraints1);
@@ -153,21 +166,22 @@ public class StatistikPanel extends JPanel {
 			gridBagConstraints7.weightx = 1.0;
 			gridBagConstraints7.weighty = 1.0;
 			gridBagConstraints7.insets = new Insets(0, 5, 5, 5);
-			gridBagConstraints7.gridx = 0;
+			gridBagConstraints7.gridx = 1;
 			GridBagConstraints gridBagConstraints6 = new GridBagConstraints();
-			gridBagConstraints6.gridx = 0;
+			gridBagConstraints6.gridx = 1;
 			gridBagConstraints6.fill = GridBagConstraints.NONE;
 			gridBagConstraints6.anchor = GridBagConstraints.EAST;
 			gridBagConstraints6.insets = new Insets(0, 0, 5, 5);
 			gridBagConstraints6.gridy = 2;
 			GridBagConstraints gridBagConstraints5 = new GridBagConstraints();
-			gridBagConstraints5.gridx = 0;
+			gridBagConstraints5.gridx = 1;
 			gridBagConstraints5.insets = new Insets(5, 5, 1, 0);
 			gridBagConstraints5.anchor = GridBagConstraints.WEST;
 			gridBagConstraints5.gridy = 0;
 			statistikLabel = new JLabel();
-			statistikLabel.setText("JLabel");
+			statistikLabel.setText("Statistik :");
 			statistikVisPanel = new JPanel();
+			statistikVisPanel.setBorder(MainFrame.getBorder());
 			statistikVisPanel.setLayout(new GridBagLayout());
 			statistikVisPanel.add(statistikLabel, gridBagConstraints5);
 			statistikVisPanel.add(getResetButton(), gridBagConstraints6);
@@ -184,6 +198,16 @@ public class StatistikPanel extends JPanel {
 	private JList getStatistikVælgProdukter() {
 		if (statistikVælgProdukter == null) {
 			statistikVælgProdukter = new JList();
+			statistikVælgProdukter.setListData(service.getProdukttyper().toArray());
+			statistikVælgProdukter.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+			statistikVælgProdukter.setBorder(MainFrame.getBorder());
+			statistikVælgProdukter
+					.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+						public void valueChanged(javax.swing.event.ListSelectionEvent e) {
+							//statistikVælgProdukter.setListData(service.getProdukttyper().toArray());
+						}
+					});
+			
 		}
 		return statistikVælgProdukter;
 	}
@@ -197,6 +221,15 @@ public class StatistikPanel extends JPanel {
 		if (statistikHentButton == null) {
 			statistikHentButton = new JButton();
 			statistikHentButton.setText("Hent Statistik");
+			statistikHentButton.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					Object[] produkter = getStatistikVælgProdukter().getSelectedValues();
+					Calendar fraDato = jFraDateChooser.getCalendar();
+					Calendar tilDato = jTilDateChooser.getCalendar();
+					Object[][] statistik = service.createStatistik(fraDato, tilDato, produkter);
+					getStatistikTable().setModel(new DefaultTableModel(statistik, columnNames));
+				}
+			});
 		}
 		return statistikHentButton;
 	}
@@ -210,6 +243,11 @@ public class StatistikPanel extends JPanel {
 		if (resetButton == null) {
 			resetButton = new JButton();
 			resetButton.setText("Ryd Tabel");
+			resetButton.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					getStatistikTable().setModel(new DefaultTableModel(columnNames,0));
+				}
+			});
 		}
 		return resetButton;
 	}
@@ -235,6 +273,7 @@ public class StatistikPanel extends JPanel {
 	private JTable getStatistikTable() {
 		if (statistikTable == null) {
 			statistikTable = new JTable();
+			statistikTable.setModel(new DefaultTableModel(columnNames, 0));
 		}
 		return statistikTable;
 	}
