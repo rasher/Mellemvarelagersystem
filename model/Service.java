@@ -18,6 +18,10 @@ public class Service {
 	private final int antalRækker = 12;
 	private final int pladserPerRække = 6;
 	
+	/**
+	 * Få en instans af Service klassen
+	 * @return Service klasse objekt
+	 */
 	public static Service getInstance()
 	{
 		if(thisInstance == null)
@@ -25,6 +29,9 @@ public class Service {
 		return thisInstance;
 	}
 	
+	/**
+	 * Constructor
+	 */
 	private Service()
 	{
 		
