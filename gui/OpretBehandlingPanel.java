@@ -305,7 +305,6 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	 */
 	@Override
 	public void slet() {
-		System.out.println("Slet");
 		Behandling valgtBehandling = (Behandling) getVælgBehandlingComboBox().getSelectedItem();
 		if (valgtBehandling != null) {
 			try {
@@ -377,7 +376,6 @@ public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver
 	 */
 	public void fravælgValgtDelbehandling() {
 		BehandlingDelbehandlingRelation valgtDelbehandling = (BehandlingDelbehandlingRelation) getValgteDelbehandlingerList().getSelectedValue();
-		System.out.println("Fravælg valgt delbehandling: " + valgtDelbehandling);
 		int valgtIndex = getValgteDelbehandlingerList().getSelectedIndex();
 		if (valgtIndex > -1) {
 			valgteDelbehandlingerModel.remove(valgtIndex);
