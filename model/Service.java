@@ -159,6 +159,12 @@ public class Service {
 		return null;
 	}
 	
+	/**
+	 * Find den bedst mulige placering på mellemvarelageret for en mellemvare.
+	 * 
+	 * @param mellemvare Mellemvaren der skal placeres på mellemvarelageret
+	 * @return Den bedst fundne placering for mellemvaren, eller null hvis ingen vare er fundet
+	 */
 	public Placering beregnPlacering(Mellemvare mellemvare)
 	{
 		Placering optimalPlacering = null;
