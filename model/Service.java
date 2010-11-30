@@ -5,6 +5,12 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import javax.persistence.*;
 
+/**
+ * Service klasse til Carletti Mellemvarelagersystemet
+ * 
+ * @author Peter Runge Christensen
+ * @author Jonas Häggqvist
+ */
 public class Service {
 	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("Mellemvarelager");
 	private EntityManager em = emf.createEntityManager();
@@ -23,6 +29,13 @@ public class Service {
 	{
 		
 	}
+	
+	/**
+	 * Opret en mellemvare af en given produkttype. Der oprettes behandlingstrin
+	 * og den første behandling påbegyndes og tørring startes.
+	 * @param produkttype Mellemvarens produkttype
+	 * @return Den oprettede mellemvare
+	 */
 	public Mellemvare createMellemvare(Produkttype produkttype)
 	{
 		Mellemvare nyMellemvare = null;
@@ -43,37 +56,81 @@ public class Service {
 		}
 		return nyMellemvare;
 	}
+	
+	/**
+	 * Opret en ny produkttype med en given behandling
+	 * @param behandling behandlingen der skal tilknyttes
+	 * @return den oprettede produkttype
+	 */
 	public Produkttype createProdukttype(Behandling behandling)
 	{
 		Produkttype nyProdukttype = new Produkttype();
 		nyProdukttype.setBehandling(behandling);
 		return nyProdukttype;
 	}
+	
+	/**
+	 * Opret en BehandlingDelbehandlingRelation som står for at knytte en
+	 * behandling til en delbehandling.
+	 * @return Den oprettede BehandlingDelbehandlingRelation
+	 */
 	public BehandlingDelbehandlingRelation createBehandlingDelbehandlingRelation()
 	{
 		return new BehandlingDelbehandlingRelation();
 	}
 	
+	/**
+	 * Opret en Behandling
+	 * @return Den oprettede Behandling
+	 */
 	public Behandling createBehandling()
 	{
 		Behandling nyBehandling = new Behandling();
 		return nyBehandling;
 	}
+	
+	/**
+	 * Opret en Delbehandling
+	 * @return Den oprettede Delbehandling
+	 */
 	public Delbehandling createDelbehandling()
 	{
 		Delbehandling nyDelbehandling = new Delbehandling();
 		return nyDelbehandling;
 	}
+	
+	/**
+	 * Hent en liste af mellemvarer som har opnået deres minimums tørringstid
+	 * og er mere end antalTimerFraMaks timer fra at nå deres maksimale
+	 * tørringstid.
+	 * @param antalTimerFraMaks Skæringspunktet før maksimale tørringstid
+	 * @return Listen af Mellemvarer
+	 */
 	public List<Mellemvare> getKlar(int antalTimerFraMaks)
 	{
 		return getTørringsDatoListe(antalTimerFraMaks, true);
 	}
 	
+	/**
+	 * Hent en liste af mellemvarer som har opnået deres minimums tørringstid
+	 * og er mindre end antalTimerFraMaks timer fra at nå deres maksimale
+	 * tørringstid.
+	 * @param antalTimerFraMaks Skæringspunktet før maksimale tørringstid
+	 * @return Listen af Mellemvarer
+	 */
 	public List<Mellemvare> getNærOverskredet(int antalTimerFraMaks)
 	{
 		return getTørringsDatoListe(antalTimerFraMaks, false);
 	}
 	
+	/**
+	 * Hent en liste af Mellemvarer som har opnået deres minimums tørringstid.
+	 * Returnerer kun Mellemvarer som er enten over eller under antalTimerFraMaks
+	 * fra at nå deres maksimale tørringstid. 
+	 * @param antalTimerFraMaks Skæringspunktet før maksimale tørringstid
+	 * @param klarListe Returner listen af mellemvarer der ikke er tæt på deres maksimale tørringstid.
+	 * @return Listen af Mellemvarer
+	 */
 	private List<Mellemvare> getTørringsDatoListe(int antalTimerFraMaks, boolean klarListe)
 	{
 		em.getTransaction().begin();
@@ -94,6 +151,10 @@ public class Service {
 		return resultatListe;
 	}
 	
+	/**
+	 * Gem et objekt i Databasen
+	 * @param o Objektet der skal gemmes
+	 */
 	public void gemIDatabase(Object o)
 	{
 		em.getTransaction().begin();
@@ -101,6 +162,10 @@ public class Service {
 		em.getTransaction().commit();
 	}
 	
+	/**
+	 * Hent alle Mellemvarer
+	 * @return Listen af alle mellemvarer
+	 */
 	public List<Mellemvare> getMellemvarer()
 	{
 		em.getTransaction().begin();
@@ -110,6 +175,10 @@ public class Service {
 
 	}
 	
+	/**
+	 * Hent alle Produkttyper
+	 * @return Listen af alle Produkttyper
+	 */
 	public List<Produkttype> getProdukttyper()
 	{
 		em.getTransaction().begin();
@@ -118,6 +187,10 @@ public class Service {
 		return produkttyper;
 	}
 	
+	/**
+	 * Hent alle Behandlinger
+	 * @return Listen af alle Behandlinger
+	 */
 	public List<Behandling> getBehandlinger()
 	{
 		em.getTransaction().begin();
@@ -126,6 +199,10 @@ public class Service {
 		return behandlinger;
 	}
 	
+	/**
+	 * Hent alle Delbehandlinger
+	 * @return Listen af alle Delbehandlinger
+	 */
 	public List<Delbehandling> getDelbehandlinger()
 	{
 		em.getTransaction().begin();
@@ -134,6 +211,10 @@ public class Service {
 		return behandlinger;
 	}
 	
+	/**
+	 * Fjern et objekt fra databasen
+	 * @param o Objektet der skal fjernes
+	 */
 	public void fjernFraDatabase(Object o)
 	{
 		em.getTransaction().begin();
@@ -214,6 +295,12 @@ public class Service {
 		return optimalPlacering;
 	}
 	
+	/**
+	 * Fjern en mellemvare fra en given række. Alle mellemvarer der står bagved
+	 * flyttes en plads frem.
+	 * @param mellemvare Mellemvaren der skal fjernes.
+	 * @throws Exception Hvis Mellemvaren ikke har nogen placering
+	 */
 	public void fjernFraRække(Mellemvare mellemvare) throws Exception {
 		if (mellemvare.getPlacering() == null) {
 			throw new Exception("Mellemvare er ikke i nogen række");
@@ -234,12 +321,23 @@ public class Service {
 		em.getTransaction().commit();		
 	}
 	
+	/**
+	 * Send en Mellemvare til pakning. Den fjernes fra den række den står i.
+	 * @param mellemvare Mellemvaren der skal sendes til pakning.
+	 * @throws Exception
+	 */
 	public void sendTilPakning(Mellemvare mellemvare) throws Exception {
 		fjernFraRække(mellemvare);
 		mellemvare.sendTilPakning();
 		gemIDatabase(mellemvare);
 	}
 	
+	/**
+	 * Start næste delbehandling på en mellemvare. Hvis der er en igangværende
+	 * delbehandling, fjernes den først fra den række den står i på lageret.
+	 * @param mellemvare Mellemvaren der skal påbegynde delbehandling
+	 * @throws Exception
+	 */
 	public void startDelbehandling(Mellemvare mellemvare) throws Exception {
 		if (mellemvare.getAktueltBehandlingTrin() != null) {
 			fjernFraRække(mellemvare);
@@ -248,6 +346,12 @@ public class Service {
 		gemIDatabase(mellemvare);
 	}
 	
+	/**
+	 * Start tørring af en mellemvare. Der findes en placering for mellevaren
+	 * og denne sættes på mellemvaren.
+	 * @param mellemvare Mellemvaren der skal til tørring
+	 * @throws Exception Hvis der ikke kan findes en plads til mellemvaren.
+	 */
 	public void startTørring(Mellemvare mellemvare) throws Exception {
 		Placering placering = beregnPlacering(mellemvare);
 		if (placering != null) {
