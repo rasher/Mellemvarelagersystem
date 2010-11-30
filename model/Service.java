@@ -150,10 +150,7 @@ public class Service {
 		{
 			if(m.getMaksimumTørringNået().after(skæringsPunkt) == klarListe) {
 				resultatListe.add(m);
-				System.out.println("  INCL: " + m);
 			}
-			else
-				System.out.println("  EXCL: " + m);
 		}
 		em.getTransaction().commit();
 		return resultatListe;
