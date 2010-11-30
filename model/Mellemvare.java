@@ -10,10 +10,12 @@ import javax.persistence.*;
 /**
  * En mellemvare i systemet. Mellemvaren har en Produkttype og en liste af
  * BehandlingsTrin der skal udføres før den er færdig.
+ *
+ * @author Jonas Häggqvist
+ * @author Johnny S. Sørensen
  */
 @Entity
 @Table(name = "Mellemvare")
-
 @NamedQueries({
 	@NamedQuery(name = "findAlleMellemvarer", query = "Select mv from Mellemvare mv"),
 	@NamedQuery(name = "findMinimumstidOpnået", query = "Select mv from Mellemvare mv where mv.aktuelBehandlingsTrin is not null and mv.minimumTørringNået < CURRENT_TIMESTAMP order by mv.maksimumTørringNået desc"),
@@ -21,7 +23,6 @@ import javax.persistence.*;
 	@NamedQuery(name = "findVarerIRække", query = "Select mv from Mellemvare mv where mv.placering.række = :række Order by mv.placering.pladsIRække"),
 	@NamedQuery(name = "findVarerAfProdukttype", query = "Select mv from Mellemvare mv where mv.produkttype = :produkttype")
 })
-
 public class Mellemvare {
 	@Id
 	@GeneratedValue
@@ -164,39 +165,43 @@ public class Mellemvare {
 	}
 
 	/**
-	 * @return the minimumTørringNået
+	 * @return Tidspunktet hvor Mellemvaren har opnået sin minimum tørringstid
 	 */
 	public Calendar getMinimumTørringNået() {
 		return minimumTørringNået;
 	}
 
 	/**
-	 * @return the optimalTørringNået
+	 * @return Tidspunktet hvor Mellemvaren har opnået sin optimale tørringstid
 	 */
 	public Calendar getOptimalTørringNået() {
 		return optimalTørringNået;
 	}
 
 	/**
-	 * @return the maksimumTørringNået
+	 * @return Tidspunktet hvor Mellemvaren har opnået sin maksimale tørringstid
 	 */
 	public Calendar getMaksimumTørringNået() {
 		return maksimumTørringNået;
 	}
 	
+	/**
+	 * @return Det aktuelle behandlingstrin
+	 */
 	public BehandlingsTrin getAktueltBehandlingTrin()
 	{
 		return aktuelBehandlingsTrin;
 	}
 	
 	/**
-	 * @return the placering
+	 * @return Mellemvarens placering
 	 */
 	public Placering getPlacering() {
 		return placering;
 	}
 
 	/**
+	 * Sæt en ny placering for mellemvaren
 	 * @param placering the placering to set
 	 */
 	public void setPlacering(Placering placering) {
@@ -205,9 +210,7 @@ public class Mellemvare {
 	
 	/**
 	 *  @author Johnny S. Sørensen
-	 *  
 	 *  @return om mellemvaren er blevet for gammel, dvs har overskredet maksimaltørringstid på en af sine behandlingstrin
-	 *  
 	 */
 	public boolean erForGammel(){
 		boolean forGammel = false;
@@ -221,6 +224,12 @@ public class Mellemvare {
 		return forGammel;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
 	public String toString(){
 		return produkttype + " (" + batchNummer + ")";
 	}
