@@ -23,7 +23,6 @@ public class Behandling {
 	private List<BehandlingDelbehandlingRelation> behandlingDelbehandlingRelationer = 
 		new ArrayList<BehandlingDelbehandlingRelation>();
 	
-	
 	/**
 	 * Returner Behandlingens navn
 	 * @return Behandlingens navn
