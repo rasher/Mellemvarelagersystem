@@ -201,13 +201,6 @@ public class StatistikPanel extends JPanel {
 			statistikVælgProdukter.setListData(service.getProdukttyper().toArray());
 			statistikVælgProdukter.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 			statistikVælgProdukter.setBorder(MainFrame.getBorder());
-			statistikVælgProdukter
-					.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-						public void valueChanged(javax.swing.event.ListSelectionEvent e) {
-							//statistikVælgProdukter.setListData(service.getProdukttyper().toArray());
-						}
-					});
-			
 		}
 		return statistikVælgProdukter;
 	}
@@ -228,6 +221,7 @@ public class StatistikPanel extends JPanel {
 					Calendar tilDato = jTilDateChooser.getCalendar();
 					Object[][] statistik = service.createStatistik(fraDato, tilDato, produkter);
 					getStatistikTable().setModel(new DefaultTableModel(statistik, columnNames));
+					getStatistikVælgProdukter().clearSelection();
 				}
 			});
 		}
@@ -246,6 +240,7 @@ public class StatistikPanel extends JPanel {
 			resetButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					getStatistikTable().setModel(new DefaultTableModel(columnNames,0));
+					getStatistikVælgProdukter().clearSelection();
 				}
 			});
 		}

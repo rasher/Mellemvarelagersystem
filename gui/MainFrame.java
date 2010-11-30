@@ -27,7 +27,7 @@ public class MainFrame extends JFrame {
 	private JMenuItem StatistikMenuItem = null;
 	private LagerPanel lagerPanel = null;  //  @jve:decl-index=0:visual-constraint="342,13"//  @jve:decl-index=0:
 	private AdministrationPanel administrationPanel = null;  //  @jve:decl-index=0:visual-constraint="339,226"
-	private OpdaterToerreListerThread opdaterTørreListerThread = new OpdaterToerreListerThread();
+	private OpdaterToerreListerThread opdaterTørreListerThread = new OpdaterToerreListerThread();  //  @jve:decl-index=0:
 	private JMenu testMenu = null;
 	private JMenuItem testMenuOpretTestData = null;
 	private JMenuItem testMenuSletAltData = null;

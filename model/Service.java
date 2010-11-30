@@ -382,6 +382,8 @@ public class Service {
 	 */
 	public Object[][] createStatistik(Calendar fraDato, Calendar tilDato, Object[] produkttyper)
 	{
+		if(produkttyper.length == 0)
+			produkttyper = getProdukttyper().toArray();
 		Object[][] statistik = new Object[produkttyper.length][4];
 		em.getTransaction().begin();
 		for(int i = 0 ; i < produkttyper.length ; i++)
