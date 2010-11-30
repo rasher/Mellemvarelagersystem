@@ -377,17 +377,28 @@ public class Service {
 	{
 		Object[][] statistik = new Object[produkttype.length][4];
 		em.getTransaction().begin();
+		long gennemsnitTidPåLager = 0;
+		int færdigeMellemvareTæller = 0;
+		int spild
 		for(int i = 0 ; i < produkttype.length ; i++)
 		{
 			Query q = em.createNamedQuery("findVarerAfProdukttype");
 			List<Mellemvare> mellemvarer = q.setParameter("produkttype", produkttype[i]).getResultList();
 			for(int p = 0 ; p < mellemvarer.size() ; p++)
 			{
+				if(mellemvarer.get(p))
 				List<BehandlingsTrin> bt = mellemvarer.get(p).getBehandlingsTrin();
-				if(bt.get(bt.size() - 1).getSlut() != null)
-					if(bt.get(0).getStart().after(fraDato) && bt.get(bt.size() - 1).getSlut().before(tilDato))
+				Calendar startDato = bt.get(0).getStart();
+				Calendar slutDato = bt.get(bt.size() - 1).getSlut();
+				if(slutDato != null)
+					if(startDato.after(fraDato) && slutDato.before(tilDato))
 					{
+						int mellemvarerProduceret = 1;
 						statistik[i][0] = produkttype[i].getNavn();
+						statistik[i][1] = mellemvarerProduceret++;
+						færdigeMellemvareTæller++;
+						gennemsnitTidPåLager = slutDato.getTimeInMillis() - startDato.getTimeInMillis();
+						
 						
 					}
 			}
