@@ -375,24 +375,26 @@ public class Service {
 	/**
 	 * Udregn statistik på alle mellemvarer af en given produkttype, 
 	 * det er muligt at beregne for flere produkttyper
+	 * @author Johnny
+	 * @author Peter
 	 * @param fraDato tages fra JCalendar som er intervallets start
 	 * @param tilDato tages fra JCalendar som er intervallets slutning
-	 * @param produkttype er de produkttyper der er valgt i listen
+	 * @param produkttyper er de produkttyper der er valgt i listen
 	 * @return et 2 dimensionelt array af statistik data, indholdende alle færdig produceret mellemvarer,
 	 * gennemsnitstider for produkttyper og spild procent.
 	 */
-	public Object[][] createStatistik(Calendar fraDato, Calendar tilDato, Object[] produkttype)
+	public Object[][] createStatistik(Calendar fraDato, Calendar tilDato, Object[] produkttyper)
 	{
-		Object[][] statistik = new Object[produkttype.length][4];
+		Object[][] statistik = new Object[produkttyper.length][4];
 		em.getTransaction().begin();
-		for(int i = 0 ; i < produkttype.length ; i++)
+		for(int i = 0 ; i < produkttyper.length ; i++)
 		{
 			long gennemsnitTidPåLager = 0;
 			int færdigeMellemvareTæller = 0;
 			int spildteVarer = 0;
 			int mellemvarerProduceret = 0;
 			Query q = em.createNamedQuery("findVarerAfProdukttype");
-			List<Mellemvare> mellemvarer = q.setParameter("produkttype", produkttype[i]).getResultList();
+			List<Mellemvare> mellemvarer = q.setParameter("produkttype", produkttyper[i]).getResultList();
 			for(int p = 0 ; p < mellemvarer.size() ; p++)
 			{
 				if(mellemvarer.get(p).erForGammel())
@@ -411,7 +413,7 @@ public class Service {
 						gennemsnitTidPåLager += slutDato.getTimeInMillis() - startDato.getTimeInMillis();	
 					}
 			}
-			statistik[i][0] = ((Produkttype) produkttype[i]).getNavn();
+			statistik[i][0] = ((Produkttype) produkttyper[i]).getNavn();
 			statistik[i][1] = mellemvarerProduceret;
 			if(færdigeMellemvareTæller != 0)
 				statistik[i][2] = (gennemsnitTidPåLager/færdigeMellemvareTæller) / (1000) + " Sekunder";
