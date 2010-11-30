@@ -389,7 +389,6 @@ public class Service {
 			long gennemsnitTidPåLager = 0;
 			int færdigeMellemvareTæller = 0;
 			int spildteVarer = 0;
-			int mellemvarerProduceret = 0;
 			Query q = em.createNamedQuery("findVarerAfProdukttype");
 			List<Mellemvare> mellemvarer = q.setParameter("produkttype", produkttyper[i]).getResultList();
 			for(int p = 0 ; p < mellemvarer.size() ; p++)
@@ -405,13 +404,12 @@ public class Service {
 				if(slutDato != null)
 					if(startDato.after(fraDato) && slutDato.before(tilDato))
 					{
-						mellemvarerProduceret++;
 						færdigeMellemvareTæller++;
 						gennemsnitTidPåLager += slutDato.getTimeInMillis() - startDato.getTimeInMillis();	
 					}
 			}
 			statistik[i][0] = ((Produkttype) produkttyper[i]).getNavn();
-			statistik[i][1] = mellemvarerProduceret;
+			statistik[i][1] = færdigeMellemvareTæller;
 			if(færdigeMellemvareTæller != 0)
 				statistik[i][2] = (gennemsnitTidPåLager/færdigeMellemvareTæller) / (1000) + " Sekunder";
 			else
