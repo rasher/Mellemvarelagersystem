@@ -33,6 +33,7 @@ public class MainFrame extends JFrame {
 	private JMenuItem testMenuSletAltData = null;
 	private JMenuItem testMenuSætAlleVarerKlar = null;
 	private JMenuItem testMenuSætEnVareOverskredet = null;
+	private StatistikPanel statistikPanel = null;  //  @jve:decl-index=0:visual-constraint="1175,908"
 	
 	/**
 	 * This method initializes CarlettiMenuBar	
@@ -130,6 +131,13 @@ public class MainFrame extends JFrame {
 		if (StatistikMenuItem == null) {
 			StatistikMenuItem = new JMenuItem();
 			StatistikMenuItem.setText("Statistik");
+			StatistikMenuItem.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					MainFrame.this.setSize(920,500);
+					setContentPane(getStatistikPanel());
+					MainFrame.this.setVisible(true);
+				}
+			});
 		}
 		return StatistikMenuItem;
 	}
@@ -252,6 +260,18 @@ public class MainFrame extends JFrame {
 			testMenuSætEnVareOverskredet.setText("Sæt en vare overskredet");
 		}
 		return testMenuSætEnVareOverskredet;
+	}
+
+	/**
+	 * This method initializes statistikPanel	
+	 * 	
+	 * @return gui.StatistikPanel	
+	 */
+	private StatistikPanel getStatistikPanel() {
+		if (statistikPanel == null) {
+			statistikPanel = new StatistikPanel();
+		}
+		return statistikPanel;
 	}
 
 	/**

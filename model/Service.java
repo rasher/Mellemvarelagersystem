@@ -373,26 +373,49 @@ public class Service {
 		gemIDatabase(mellemvare);
 	}
 	
-	public Object[][] createStatistik(Calendar fraDato, Calendar tilDato, Produkttype[] produkttype)
+	public Object[][] createStatistik(Calendar fraDato, Calendar tilDato, Object[] produkttype)
 	{
 		Object[][] statistik = new Object[produkttype.length][4];
 		em.getTransaction().begin();
 		for(int i = 0 ; i < produkttype.length ; i++)
 		{
+			long gennemsnitTidPåLager = 0;
+			int færdigeMellemvareTæller = 0;
+			int spildteVarer = 0;
+			int mellemvarerProduceret = 0;
 			Query q = em.createNamedQuery("findVarerAfProdukttype");
 			List<Mellemvare> mellemvarer = q.setParameter("produkttype", produkttype[i]).getResultList();
 			for(int p = 0 ; p < mellemvarer.size() ; p++)
 			{
+				if(mellemvarer.get(p).erForGammel())
+				{
+					spildteVarer++;
+					continue;
+				}
 				List<BehandlingsTrin> bt = mellemvarer.get(p).getBehandlingsTrin();
-				if(bt.get(bt.size() - 1).getSlut() != null)
-					if(bt.get(0).getStart().after(fraDato) && bt.get(bt.size() - 1).getSlut().before(tilDato))
+				Calendar startDato = bt.get(0).getStart();
+				Calendar slutDato = bt.get(bt.size() - 1).getSlut();
+				if(slutDato != null)
+					if(startDato.after(fraDato) && slutDato.before(tilDato))
 					{
-						statistik[i][0] = produkttype[i].getNavn();
-						
+						mellemvarerProduceret++;
+						færdigeMellemvareTæller++;
+						gennemsnitTidPåLager += slutDato.getTimeInMillis() - startDato.getTimeInMillis();	
 					}
 			}
-			
+			statistik[i][0] = ((Produkttype) produkttype[i]).getNavn();
+			statistik[i][1] = mellemvarerProduceret;
+			if(færdigeMellemvareTæller != 0)
+				statistik[i][2] = (gennemsnitTidPåLager/færdigeMellemvareTæller) / (1000) + " Sekunder";
+			else
+				statistik[i][2] = "N/A";
+			if(færdigeMellemvareTæller != 0 && spildteVarer != 0)
+				statistik[i][3] = spildteVarer/(spildteVarer + færdigeMellemvareTæller) + " %";
+			else
+				statistik[i][3] = "N/A";
 		}
+		em.getTransaction().commit();
+		return statistik;
 			
 	}
 
