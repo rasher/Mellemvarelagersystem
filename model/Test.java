@@ -73,11 +73,11 @@ public class Test {
 		d4.setOptimalTørringsTid(2);
 		d4.setMaksimumTørringsTid(3);
 		Delbehandling d5 = service.createDelbehandling();
-		d4.setNavn("Hindbærgelé");
-		d4.setBehandlingsSted("Hal 3");
-		d4.setMinimumTørringsTid(2);
-		d4.setOptimalTørringsTid(4);
-		d4.setMaksimumTørringsTid(9);
+		d5.setNavn("Hindbærgelé");
+		d5.setBehandlingsSted("Hal 3");
+		d5.setMinimumTørringsTid(2);
+		d5.setOptimalTørringsTid(4);
+		d5.setMaksimumTørringsTid(9);
 		BehandlingDelbehandlingRelation bdr1 = service.createBehandlingDelbehandlingRelation();
 		BehandlingDelbehandlingRelation bdr2 = service.createBehandlingDelbehandlingRelation();
 		BehandlingDelbehandlingRelation bdr3 = service.createBehandlingDelbehandlingRelation();
