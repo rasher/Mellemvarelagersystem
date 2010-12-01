@@ -3,8 +3,6 @@ package gui;
 import javax.swing.SwingUtilities;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -36,7 +34,6 @@ public class MainFrame extends JFrame {
 	private JMenuItem testMenuOpretTestData = null;
 	private JMenuItem testMenuSletAltData = null;
 	private JMenuItem testMenuSætAlleVarerKlar = null;
-	private JMenuItem testMenuSætEnVareOverskredet = null;
 	private StatistikPanel statistikPanel = null;  //  @jve:decl-index=0:visual-constraint="1175,908"
 	private ImageIcon carlettiBillede = null;
 	private JLabel billedeLabel = null;
