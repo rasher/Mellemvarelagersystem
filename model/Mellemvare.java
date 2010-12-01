@@ -38,7 +38,7 @@ public class Mellemvare {
 	private BehandlingsTrin aktuelBehandlingsTrin;
 	@OneToMany(cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
 	private List<BehandlingsTrin> behandlingsTrin = new ArrayList<BehandlingsTrin>();
-	@ManyToOne(cascade = CascadeType.DETACH)
+	@ManyToOne
 	private Produkttype produkttype;
 	@OneToOne(cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
 	private Placering placering;
@@ -185,6 +185,27 @@ public class Mellemvare {
 		return maksimumTørringNået;
 	}
 	
+	/**
+	 * @param minimumTørringNået Tidspunktet hvor Mellemvaren har opnået sin minimale tørringstid
+	 */
+	public void setMinimumTørringNået(Calendar minimumTørringNået) {
+		this.minimumTørringNået = minimumTørringNået;
+	}
+
+	/**
+	 * @param optimalTørringNået Tidspunktet hvor Mellemvaren har opnået sin optimale tørringstid
+	 */
+	public void setOptimalTørringNået(Calendar optimalTørringNået) {
+		this.optimalTørringNået = optimalTørringNået;
+	}
+
+	/**
+	 * @param maksimumTørringNået Tidspunktet hvor Mellemvaren har opnået sin maksimale tørringstid
+	 */
+	public void setMaksimumTørringNået(Calendar maksimumTørringNået) {
+		this.maksimumTørringNået = maksimumTørringNået;
+	}
+
 	/**
 	 * @return Det aktuelle behandlingstrin
 	 */

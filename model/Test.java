@@ -1,5 +1,7 @@
 package model;
 
+import java.util.GregorianCalendar;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -178,22 +180,25 @@ public class Test {
 	 * Slet alle objekter i databasen.
 	 */
 	public void sletAlt() {
-		em.getTransaction().begin();
-		em.createQuery("delete from Mellemvare").executeUpdate();
-		em.createQuery("delete from BehandlingsTrin").executeUpdate();
-		em.createQuery("delete from Produkttype").executeUpdate();
-		em.createQuery("delete from Behandling").executeUpdate();
-		em.createQuery("delete from BehandlingsTrin").executeUpdate();
-		em.getTransaction().commit();
+		Service service = Service.getInstance();
+		for (Produkttype p: service.getProdukttyper())
+			service.fjernFraDatabase(p);
+		for (Behandling b: service.getBehandlinger())
+			service.fjernFraDatabase(b);
+		for (Delbehandling d: service.getDelbehandlinger())
+			service.fjernFraDatabase(d);
 	}
 	
 	/**
 	 * Sæt alle mellemvarer i databasen til at have opnået deres minimums tørringstid.
 	 */
 	public void sætAlleKlar() {
-		em.getTransaction().begin();
-		em.createQuery("update Mellemvare set minimumTørringNået=CURRENT_TIMESTAMP").executeUpdate();
-		em.getTransaction().commit();
+		for (Mellemvare m: Service.getInstance().getMellemvarer()) {
+			if (m.getMinimumTørringNået() != null) {
+				m.setMinimumTørringNået(new GregorianCalendar());
+				Service.getInstance().gemIDatabase(m);
+			}
+		}
 	}
 	
 	/**
