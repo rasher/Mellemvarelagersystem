@@ -196,7 +196,6 @@ public class MainFrame extends JFrame {
 			testMenu.add(getTestMenuOpretTestData());
 			testMenu.add(getTestMenuSletAltData());
 			testMenu.add(getTestMenuSætAlleVarerKlar());
-			testMenu.add(getTestMenuSætEnVareOverskredet());
 		}
 		return testMenu;
 	}
@@ -261,20 +260,6 @@ public class MainFrame extends JFrame {
 			});
 		}
 		return testMenuSætAlleVarerKlar;
-	}
-
-	/**
-	 * This method initializes testMenuSætEnVareOverskredet	
-	 * 	
-	 * @return javax.swing.JMenuItem	
-	 */
-	private JMenuItem getTestMenuSætEnVareOverskredet() {
-		if (testMenuSætEnVareOverskredet == null) {
-			testMenuSætEnVareOverskredet = new JMenuItem();
-			testMenuSætEnVareOverskredet.setEnabled(false);
-			testMenuSætEnVareOverskredet.setText("Sæt en vare overskredet");
-		}
-		return testMenuSætEnVareOverskredet;
 	}
 
 	/**
