@@ -38,7 +38,7 @@ public class Mellemvare {
 	private BehandlingsTrin aktuelBehandlingsTrin;
 	@OneToMany(cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
 	private List<BehandlingsTrin> behandlingsTrin = new ArrayList<BehandlingsTrin>();
-	@ManyToOne(cascade = CascadeType.DETACH)
+	@ManyToOne
 	private Produkttype produkttype;
 	@OneToOne(cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
 	private Placering placering;
