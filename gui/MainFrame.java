@@ -135,6 +135,7 @@ public class MainFrame extends JFrame {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					MainFrame.this.setSize(920,500);
 					setContentPane(getStatistikPanel());
+					getStatistikPanel().updateListe();
 					MainFrame.this.setVisible(true);
 				}
 			});

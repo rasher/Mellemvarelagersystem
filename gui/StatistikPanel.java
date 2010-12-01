@@ -272,5 +272,9 @@ public class StatistikPanel extends JPanel {
 		}
 		return statistikTable;
 	}
+	public void updateListe()
+	{
+		getStatistikVælgProdukter().setListData(service.getProdukttyper().toArray());
+	}
 
 }  //  @jve:decl-index=0:visual-constraint="27,10"
