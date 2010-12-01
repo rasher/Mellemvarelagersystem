@@ -88,10 +88,10 @@ public class Test {
 		bdr5.setRækkefølge(2);
 		bdr6.setDelbehandling(d4);
 		bdr6.setRækkefølge(3);
-		bdr6.setDelbehandling(d2);
-		bdr6.setRækkefølge(1);
-		bdr6.setDelbehandling(d2);
-		bdr6.setRækkefølge(2);
+		bdr7.setDelbehandling(d2);
+		bdr7.setRækkefølge(1);
+		bdr8.setDelbehandling(d2);
+		bdr8.setRækkefølge(2);
 		b1.addBehandlingDelbehandlingRelation(bdr1);
 		b1.addBehandlingDelbehandlingRelation(bdr2);
 		b1.addBehandlingDelbehandlingRelation(bdr3);
@@ -122,23 +122,18 @@ public class Test {
 		Produkttype p1 = service.createProdukttype(b1);
 		p1.setNavn("Skumbanan");
 		Produkttype p2 = service.createProdukttype(b2);
-		p1.setNavn("Frøer");
+		p2.setNavn("Frøer");
 		service.gemIDatabase(p);
 		service.gemIDatabase(p1);
 		service.gemIDatabase(p2);
 		Mellemvare m = service.createMellemvare(p);
 		Mellemvare m1 = service.createMellemvare(p1);
-		Mellemvare m2 = service.createMellemvare(p2);
-
-	
 		
 		try {
 			service.startDelbehandling(m);
 			service.startDelbehandling(m1);
-			service.startDelbehandling(m2);
 			service.startTørring(m);
 			service.startTørring(m1);
-			service.startTørring(m2);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
