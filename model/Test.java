@@ -44,6 +44,8 @@ public class Test {
 		b1.setNavn("Chokoladeovertrukket skum");
 		Behandling b2 = service.createBehandling();
 		b2.setNavn("Cremefyldt chokolade");
+		Behandling b3 = service.createBehandling();
+		b3.setNavn("Chokoladeovertrukket Hindbærgelé");
 		Delbehandling d1 = service.createDelbehandling();
 		d1.setNavn("Sukkerlag");
 		d1.setBehandlingsSted("Hal 1");
@@ -68,6 +70,12 @@ public class Test {
 		d4.setMinimumTørringsTid(1);
 		d4.setOptimalTørringsTid(2);
 		d4.setMaksimumTørringsTid(3);
+		Delbehandling d5 = service.createDelbehandling();
+		d4.setNavn("Hindbærgelé");
+		d4.setBehandlingsSted("Hal 3");
+		d4.setMinimumTørringsTid(2);
+		d4.setOptimalTørringsTid(4);
+		d4.setMaksimumTørringsTid(9);
 		BehandlingDelbehandlingRelation bdr1 = service.createBehandlingDelbehandlingRelation();
 		BehandlingDelbehandlingRelation bdr2 = service.createBehandlingDelbehandlingRelation();
 		BehandlingDelbehandlingRelation bdr3 = service.createBehandlingDelbehandlingRelation();
@@ -76,6 +84,8 @@ public class Test {
 		BehandlingDelbehandlingRelation bdr6 = service.createBehandlingDelbehandlingRelation();
 		BehandlingDelbehandlingRelation bdr7 = service.createBehandlingDelbehandlingRelation();
 		BehandlingDelbehandlingRelation bdr8 = service.createBehandlingDelbehandlingRelation();
+		BehandlingDelbehandlingRelation bdr9 = service.createBehandlingDelbehandlingRelation();
+		BehandlingDelbehandlingRelation bdr10 = service.createBehandlingDelbehandlingRelation();
 		bdr1.setDelbehandling(d1);
 		bdr1.setRækkefølge(1);
 		bdr2.setDelbehandling(d1);
@@ -90,24 +100,32 @@ public class Test {
 		bdr6.setRækkefølge(3);
 		bdr7.setDelbehandling(d2);
 		bdr7.setRækkefølge(1);
-		bdr8.setDelbehandling(d2);
+		bdr8.setDelbehandling(d4);
 		bdr8.setRækkefølge(2);
-		b1.addBehandlingDelbehandlingRelation(bdr1);
-		b1.addBehandlingDelbehandlingRelation(bdr2);
-		b1.addBehandlingDelbehandlingRelation(bdr3);
-		b.addBehandlingDelbehandlingRelation(bdr4);
-		b.addBehandlingDelbehandlingRelation(bdr5);
-		b.addBehandlingDelbehandlingRelation(bdr6);
+		bdr9.setDelbehandling(d5);
+		bdr9.setRækkefølge(1);
+		bdr10.setDelbehandling(d4);
+		bdr10.setRækkefølge(2);
+		b.addBehandlingDelbehandlingRelation(bdr1);
+		b.addBehandlingDelbehandlingRelation(bdr2);
+		b.addBehandlingDelbehandlingRelation(bdr3);
+		b1.addBehandlingDelbehandlingRelation(bdr4);
+		b1.addBehandlingDelbehandlingRelation(bdr5);
+		b1.addBehandlingDelbehandlingRelation(bdr6);
 		b2.addBehandlingDelbehandlingRelation(bdr7);
 		b2.addBehandlingDelbehandlingRelation(bdr8);
+		b3.addBehandlingDelbehandlingRelation(bdr9);
+		b3.addBehandlingDelbehandlingRelation(bdr10);
 		
 		service.gemIDatabase(d1);
 		service.gemIDatabase(d2);
 		service.gemIDatabase(d3);
 		service.gemIDatabase(d4);
+		service.gemIDatabase(d5);
 		service.gemIDatabase(b);
 		service.gemIDatabase(b1);
 		service.gemIDatabase(b2);
+		service.gemIDatabase(b3);
 		service.gemIDatabase(bdr1);
 		service.gemIDatabase(bdr2);
 		service.gemIDatabase(bdr3);
@@ -116,6 +134,8 @@ public class Test {
 		service.gemIDatabase(bdr6);
 		service.gemIDatabase(bdr7);
 		service.gemIDatabase(bdr8);
+		service.gemIDatabase(bdr9);
+		service.gemIDatabase(bdr10);
 		
 		Produkttype p = service.createProdukttype(b);
 		p.setNavn("Bolcheting");
@@ -123,9 +143,12 @@ public class Test {
 		p1.setNavn("Skumbanan");
 		Produkttype p2 = service.createProdukttype(b2);
 		p2.setNavn("Frøer");
+		Produkttype p3 = service.createProdukttype(b3);
+		p3.setNavn("Maritza");
 		service.gemIDatabase(p);
 		service.gemIDatabase(p1);
 		service.gemIDatabase(p2);
+		service.gemIDatabase(p3);
 		Mellemvare m = service.createMellemvare(p);
 		Mellemvare m1 = service.createMellemvare(p1);
 		
