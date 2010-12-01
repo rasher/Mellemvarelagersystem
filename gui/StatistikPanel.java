@@ -7,7 +7,6 @@ import java.awt.GridBagConstraints;
 import javax.swing.JLabel;
 import java.awt.Insets;
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -18,7 +17,6 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
-import model.Produkttype;
 import model.Service;
 
 public class StatistikPanel extends JPanel {

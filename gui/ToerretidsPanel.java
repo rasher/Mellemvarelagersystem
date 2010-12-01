@@ -8,7 +8,6 @@ import java.text.NumberFormat;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 public class ToerretidsPanel extends JPanel {
 

@@ -12,7 +12,6 @@ import javax.swing.JTextArea;
 
 import model.Behandling;
 import model.BehandlingDelbehandlingRelation;
-import model.Delbehandling;
 import model.Produkttype;
 import model.Service;
 
