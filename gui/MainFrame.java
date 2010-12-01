@@ -3,7 +3,10 @@ package gui;
 import javax.swing.SwingUtilities;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
+
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
@@ -14,6 +17,7 @@ import javax.swing.UIManager;
 import javax.swing.border.Border;
 
 import model.Test;
+import javax.swing.JLabel;
 
 public class MainFrame extends JFrame {
 
@@ -34,7 +38,8 @@ public class MainFrame extends JFrame {
 	private JMenuItem testMenuSætAlleVarerKlar = null;
 	private JMenuItem testMenuSætEnVareOverskredet = null;
 	private StatistikPanel statistikPanel = null;  //  @jve:decl-index=0:visual-constraint="1175,908"
-	
+	private ImageIcon carlettiBillede = null;
+	private JLabel billedeLabel = null;
 	/**
 	 * This method initializes CarlettiMenuBar	
 	 * 	
@@ -48,6 +53,15 @@ public class MainFrame extends JFrame {
 			CarlettiMenuBar.add(getTestMenu());
 		}
 		return CarlettiMenuBar;
+	}
+	
+	private ImageIcon getCarlettiBillede()
+	{
+		if(carlettiBillede == null)
+		{
+			carlettiBillede = new ImageIcon("Carletti_logo_CMYK_under5cm.png");
+		}
+		return carlettiBillede;
 	}
 
 	/**
@@ -325,8 +339,10 @@ public class MainFrame extends JFrame {
 	 */
 	private JPanel getJContentPane() {
 		if (jContentPane == null) {
+			billedeLabel = new JLabel(getCarlettiBillede());
 			jContentPane = new JPanel();
 			jContentPane.setLayout(new BorderLayout());
+			jContentPane.add(billedeLabel, BorderLayout.CENTER);
 		}
 		return jContentPane;
 	}
