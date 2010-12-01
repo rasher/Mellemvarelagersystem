@@ -13,6 +13,10 @@ properties:
 * javax.persistence.jdbc.user
 * javax.persistence.jdbc.password
 
+Det er vigtigt at din database understøtter foreign keys. MySQL bruger som
+standard en storage engine der ikke gør dette. Skift storage engine til
+InnoDB for at få dette til at virke hvis du benytter MySQL.
+
 Slet evt. de to properties eclipselink.ddl-generation og
 eclipselink.ddl-generation.output-mode for at bevare data når programmet
 genstartes.
