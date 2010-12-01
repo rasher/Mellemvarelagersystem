@@ -186,6 +186,27 @@ public class Mellemvare {
 	}
 	
 	/**
+	 * @param minimumTørringNået Tidspunktet hvor Mellemvaren har opnået sin minimale tørringstid
+	 */
+	public void setMinimumTørringNået(Calendar minimumTørringNået) {
+		this.minimumTørringNået = minimumTørringNået;
+	}
+
+	/**
+	 * @param optimalTørringNået Tidspunktet hvor Mellemvaren har opnået sin optimale tørringstid
+	 */
+	public void setOptimalTørringNået(Calendar optimalTørringNået) {
+		this.optimalTørringNået = optimalTørringNået;
+	}
+
+	/**
+	 * @param maksimumTørringNået Tidspunktet hvor Mellemvaren har opnået sin maksimale tørringstid
+	 */
+	public void setMaksimumTørringNået(Calendar maksimumTørringNået) {
+		this.maksimumTørringNået = maksimumTørringNået;
+	}
+
+	/**
 	 * @return Det aktuelle behandlingstrin
 	 */
 	public BehandlingsTrin getAktueltBehandlingTrin()
