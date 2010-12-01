@@ -12,7 +12,6 @@ import javax.swing.JTextArea;
 
 import model.Behandling;
 import model.BehandlingDelbehandlingRelation;
-import model.Delbehandling;
 import model.Produkttype;
 import model.Service;
 
@@ -255,8 +254,8 @@ public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserve
 	public void slet() {
 		if(aktuelProdukttype != null)
 		{
-			if(JOptionPane.showConfirmDialog(null,"Sikker på du vil slette denne produkttype? " +
-					"ved at gøre dette sletter du også alle tilknyttede Mellemvare", "Sikker på du vil slette?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+			if(JOptionPane.showConfirmDialog(null,"Sikker på du vil slette denne produkttype? \r\n " +
+					"ved at gøre dette sletter du også alle tilknyttede Mellemvare, der er " + aktuelProdukttype.getMellemvarer().size() + " Tilknyttede mellemvare(r) den denne produkttype", "Sikker på du vil slette?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
 				service.fjernFraDatabase(aktuelProdukttype);
 		}
 		opdaterComboBox();
