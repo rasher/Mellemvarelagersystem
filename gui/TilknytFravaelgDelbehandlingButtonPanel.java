@@ -5,6 +5,9 @@ import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+/**
+ * @author Johnny S Sørensen (JVE)
+ */
 public class TilknytFravaelgDelbehandlingButtonPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -43,7 +46,7 @@ public class TilknytFravaelgDelbehandlingButtonPanel extends JPanel {
 	private JButton getTilknytButton() {
 		if (tilknytButton == null) {
 			tilknytButton = new JButton();
-			tilknytButton.setText("Λ");
+			tilknytButton.setText("\u039B");
 			tilknytButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					opretBehandlingPanel.tilknytValgtDelbehandling();

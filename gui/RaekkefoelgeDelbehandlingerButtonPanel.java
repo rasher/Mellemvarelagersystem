@@ -5,6 +5,10 @@ import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+/**
+ * @author Jonas Häggqvist
+ * @author Johnny S Sørensen (JVE)
+ */
 public class RaekkefoelgeDelbehandlingerButtonPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -50,7 +54,7 @@ public class RaekkefoelgeDelbehandlingerButtonPanel extends JPanel {
 	private JButton getRykOPButton() {
 		if (rykOPButton == null) {
 			rykOPButton = new JButton();
-			rykOPButton.setText("↑");
+			rykOPButton.setText("\u2191");
 			rykOPButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					opretBehandlingPanel.flytDelbehandlingOp();
@@ -68,7 +72,7 @@ public class RaekkefoelgeDelbehandlingerButtonPanel extends JPanel {
 	private JButton getRykNedButton() {
 		if (rykNedButton == null) {
 			rykNedButton = new JButton();
-			rykNedButton.setText("↓");
+			rykNedButton.setText("\u2193");
 			rykNedButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					opretBehandlingPanel.flytDelbehandlingNed();

@@ -16,6 +16,10 @@ import model.Produkttype;
 import model.Service;
 import javax.swing.JScrollPane;
 
+
+/**
+ * @author Johnny S Sørensen
+ */
 public class RegistrerNyMellemvarePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;

@@ -4,6 +4,9 @@ import java.awt.GridLayout;
 
 import javax.swing.JPanel;
 
+/**
+ * @author Johnny S Sørensen (JVE)
+ */
 public class AdministrationPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;

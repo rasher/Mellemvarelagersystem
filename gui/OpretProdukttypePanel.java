@@ -18,6 +18,10 @@ import model.Service;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 
+/**
+ * @author Peter Runge Christensen
+ * @author Johnny S Sørensen (JVE)
+ */
 public class OpretProdukttypePanel extends JPanel implements OpretGemSletObserver {
 
 	private static final long serialVersionUID = 1L;

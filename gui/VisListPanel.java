@@ -12,6 +12,9 @@ import javax.swing.JSlider;
 import model.Mellemvare;
 import javax.swing.JScrollPane;
 
+/**
+ * @author Johnny S Sørensen
+ */
 public class VisListPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;

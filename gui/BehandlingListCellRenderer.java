@@ -12,8 +12,7 @@ import javax.swing.ListCellRenderer;
 import model.Behandling;
 
 /**
- * @author Jonas Häggqvist (10dm10v1)
- *
+ * @author Jonas Häggqvist
  */
 @SuppressWarnings("serial")
 public class BehandlingListCellRenderer extends JLabel implements ListCellRenderer {
