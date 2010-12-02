@@ -5,6 +5,10 @@ Medlemmer:
 * Peter Runge Christensen
 * Jonas Häggqvist
 
+Brug menuen Test > Opret testdata for at oprette en mængde test data. Det
+kan være nødvendigt at genstarte programmet for at alle dele af programmet
+opdaterer med den nye data.
+
 For at få projektet til at køre skal du have en gyldig JPA opsætning i
 filen META-INF/persistence.xml som gemmer data i en relationel database.
 Et eksempel på en sådan fil kan ses nedenfor. Ret værdierne for følgende
