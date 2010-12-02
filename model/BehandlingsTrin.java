@@ -22,7 +22,8 @@ public class BehandlingsTrin {
 	private Calendar tørringStart;
 	@ManyToOne
 	private Delbehandling delbehandling;
-	
+	private int rækkefølge;
+
 	/**
 	 * @return Tidspunktet hvor BehandlingsTrinnet startedes
 	 */
@@ -103,5 +104,20 @@ public class BehandlingsTrin {
 	 */
 	public int getMaksimumTørringstid() {
 		return delbehandling.getMaksimumTørringsTid();
+	}
+	
+	/**
+	 * 
+	 * @return Rækkefølgen behandlingstrin står i på mellemvaren
+	 */
+	public int getRækkefølge() {
+		return rækkefølge;
+	}
+	/**
+	 * 
+	 * @param index for rækkefølgen
+	 */
+	public void setRækkefølge(int rækkefølge) {
+		this.rækkefølge = rækkefølge;
 	}
 }
