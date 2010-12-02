@@ -10,6 +10,10 @@ import javax.swing.JPanel;
 import model.Delbehandling;
 import model.Service;
 
+/**
+ * @author Johnny S Sørensen (JVE)
+ * @author Petere Runge Christensen
+ */
 public class OpretDelbehandlingPanel extends JPanel implements OpretGemSletObserver {
 
 	private static final long serialVersionUID = 1L;

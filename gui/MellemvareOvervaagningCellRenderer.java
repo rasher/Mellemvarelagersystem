@@ -14,15 +14,10 @@ import javax.swing.ListCellRenderer;
 import model.Mellemvare;
 
 /**
- * @author Jonas Häggqvist (10dm10v1)
- *
+ * @author Jonas Häggqvist
  */
 public class MellemvareOvervaagningCellRenderer extends JLabel implements
 		ListCellRenderer {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public MellemvareOvervaagningCellRenderer() {

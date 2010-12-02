@@ -12,8 +12,7 @@ import javax.swing.ListCellRenderer;
 import model.Delbehandling;
 
 /**
- * @author Jonas Häggqvist (10dm10v1)
- * 
+ * @author Jonas Häggqvist
  */
 @SuppressWarnings("serial")
 public class DelbehandlingListCellRenderer extends JLabel implements ListCellRenderer {

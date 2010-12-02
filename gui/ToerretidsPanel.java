@@ -9,6 +9,11 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * @author Johnny S Sørensen (JVE)
+ * @author Peter Runge Christensen
+ * @author Jonas Häggqvist
+ */
 public class ToerretidsPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;

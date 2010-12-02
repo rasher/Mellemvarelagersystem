@@ -12,6 +12,10 @@ import javax.swing.JTextField;
 
 import model.Delbehandling;
 
+/**
+ * @author Johnny S Sørensen (JVE)
+ * @author Peter Runge Christensen
+ */
 public class DelbehandlingDelPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;

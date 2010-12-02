@@ -17,6 +17,11 @@ import javax.swing.border.Border;
 import model.Test;
 import javax.swing.JLabel;
 
+/**
+ * @author Johnny S Sørensen
+ * @author Jonas Häggqvist
+ * @author Peter Runge Christensen
+ */
 public class MainFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;

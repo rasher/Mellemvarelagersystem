@@ -25,7 +25,8 @@ import model.Service;
 /**
  * Dette panel giver brugeren mulighed for at oprette Behandlinger og tilknytte
  * delbehandlinger.
- * @author Jonas Häggqvist (10dm10v1)
+ * @author Johnny S Sørensen (JVE)
+ * @author Jonas Häggqvist
  */
 public class OpretBehandlingPanel extends JPanel implements OpretGemSletObserver {
 

@@ -5,6 +5,10 @@ import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+/**
+ * @author Jonas Häggqvist
+ * @author Johnny S Sørensen (JVE)
+ */
 public class RaekkefoelgeDelbehandlingerButtonPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;

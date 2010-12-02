@@ -19,6 +19,9 @@ import model.BehandlingsTrin;
 import model.Mellemvare;
 import model.Service;
 
+/**
+ * @author Johnny S Sørensen
+ */
 public class HaandterMellemvarePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;

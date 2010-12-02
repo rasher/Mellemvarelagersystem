@@ -19,6 +19,10 @@ import javax.swing.table.DefaultTableModel;
 
 import model.Service;
 
+/**
+ * @author Johnny S Sørensen
+ * @author Peter Runge Christensen
+ */
 public class StatistikPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;

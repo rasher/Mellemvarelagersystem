@@ -4,8 +4,7 @@
 package gui;
 
 /**
- * @author Jonas Häggqvist (10dm10v1)
- *
+ * @author Jonas Häggqvist
  */
 public interface OpretGemSletObserver {
 	/**

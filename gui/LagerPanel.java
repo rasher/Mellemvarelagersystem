@@ -1,12 +1,13 @@
 package gui;
 
-
 import java.awt.GridLayout;
 import java.awt.Dimension;
 
 import javax.swing.JPanel;
 
-
+/**
+ * @author Johnny S Sørensen (JVE)
+ */
 public class LagerPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;

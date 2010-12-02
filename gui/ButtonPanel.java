@@ -9,6 +9,10 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+/**
+ * @author Johnny S Sørensen (JVE)
+ * @author Jonas Häggqvist
+ */
 public class ButtonPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
