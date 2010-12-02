@@ -52,10 +52,13 @@ public class Service {
 			em.getTransaction().begin();
 			nyMellemvare = new Mellemvare();
 			nyMellemvare.setProdukttype(produkttype);
+			int i = 1;
 			for(Delbehandling delbehandling : produkttype.getDelbehandlinger())
 			{
 				BehandlingsTrin nytBehandlingsTrin = new BehandlingsTrin();
 				nytBehandlingsTrin.setDelbehandling(delbehandling);
+				nytBehandlingsTrin.setRækkefølge(i);
+				i += 1;
 				nyMellemvare.addBehandlingsTrin(nytBehandlingsTrin);
 				em.persist(nytBehandlingsTrin);
 			}
