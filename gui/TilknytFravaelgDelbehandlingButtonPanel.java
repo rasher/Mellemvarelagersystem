@@ -43,7 +43,7 @@ public class TilknytFravaelgDelbehandlingButtonPanel extends JPanel {
 	private JButton getTilknytButton() {
 		if (tilknytButton == null) {
 			tilknytButton = new JButton();
-			tilknytButton.setText("Λ");
+			tilknytButton.setText("\u039B");
 			tilknytButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					opretBehandlingPanel.tilknytValgtDelbehandling();
