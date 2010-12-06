@@ -4,4 +4,5 @@
 .settings/*
 .settings
 *.class
+jdbcsettings.txt
 META-INF/persistence.xml
