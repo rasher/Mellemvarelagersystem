@@ -24,11 +24,15 @@ public class Database {
 			Scanner scanner;
 			try {
 				scanner = new Scanner(new File(filnavn));
+				Class.forName(scanner.nextLine());
 				connection = DriverManager.getConnection(scanner.nextLine());
 			} catch (FileNotFoundException e) {
 				System.err.println("Indsæt din jdbc url i filen " + filnavn);
 			} catch (SQLException e) {
 				System.err.println("Kunne ikke forbinde til databasen");
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				System.err.println("Ugyldig klassenavn");
 				e.printStackTrace();
 			}
 		}
