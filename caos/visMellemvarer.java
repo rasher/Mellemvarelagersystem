@@ -26,9 +26,8 @@ public class visMellemvarer {
 	 *
 	 */
 	private static void visMellemvarer() {
-		System.out.println("Mellemvarer:");
-		System.out.println("");
 		System.out.println("Batchnummer\t" + "Minimumtørring nået\t" + "optimaltørring nået\t" + "maksimumtørring nået\t" + "Tid til maksimumtørring er nået\t");
+		System.out.println("-----------------------------------------------------------------------------------------------------------------------");
 		try {
 			Statement stmt = conn.createStatement();
 			ResultSet res = stmt.executeQuery("	select BATCHNUMMER, MINIMUMTØRRINGNÅET, OPTIMALTØRRINGNÅET, MAKSIMUMTØRRINGNÅET, DATEDIFF(mi, current_timestamp, MAKSIMUMTØRRINGNÅET) as TidTilMaks from Mellemvare where MAKSIMUMTØRRINGNÅET not like 'null' Order By TidTilMaks;");
