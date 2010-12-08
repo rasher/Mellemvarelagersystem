@@ -71,9 +71,11 @@ public class UdtagTilDelbehandling {
 			);
 			stmt.executeUpdate(sql);
 			stmt.execute("COMMIT TRANSACTION");
+			System.out.println("Vare udtaget til delbehanlding.");
 			stmt.close();
 			Database.closeConnection();
 		} catch (SQLException e) {
+			System.err.println("Der opstod en fejl under handlingen:");
 			e.printStackTrace();
 		}
 	}
