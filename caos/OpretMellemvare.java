@@ -12,9 +12,6 @@ import java.util.Scanner;
  *
  */
 public class OpretMellemvare {
-	private static Connection conn;
-	private static Scanner scanner;
-	
 	/**
 	 * @param args
 	 */
@@ -30,8 +27,6 @@ public class OpretMellemvare {
 		System.out.println(" * Registrer ny mellemvare *");
 		System.out.println(" ***************************");
 		System.out.println("");
-		scanner = new Scanner(System.in);
-		conn = Database.getConnection();
 		int produktType = vælgProdukttype();
 		int batchNummer = opretMellemvare(produktType);
 		System.out.println("Mellemvare oprettet med batchnummer: " + batchNummer);
@@ -44,6 +39,7 @@ public class OpretMellemvare {
 	private static int opretMellemvare(int produktType) {
 		int mellemvareBatchnummer = -1;
 		try {
+			Connection conn = Database.getConnection();
 			Statement stmt = conn.createStatement();
 			mellemvareBatchnummer = næsteNøgle("Mellemvare", "BATCHNUMMER");
 			stmt.execute("BEGIN TRANSACTION");
@@ -71,6 +67,7 @@ public class OpretMellemvare {
 			}
 			stmt.execute("COMMIT TRANSACTION");
 			stmt.close();
+			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -82,16 +79,17 @@ public class OpretMellemvare {
 	 * @param column
 	 * @return Næste værdi af den numeriske kolonne column i tabellen tabel
 	 */
-	private static int næsteNøgle(String tabel, String column) {
+	public static int næsteNøgle(String tabel, String column) {
 		int næsteNøgle = -1;
 			Statement stmt;
 			try {
+				Connection conn = Database.getConnection();
 				stmt = conn.createStatement();
-				ResultSet res = stmt.executeQuery("SELECT MAX("+column+") as næsteNøgle FROM " + tabel);
+				ResultSet res = stmt.executeQuery("SELECT MAX("+column+")+1 as næsteNøgle FROM " + tabel);
 				res.next();
-				næsteNøgle = res.getInt("næsteNøgle") + 1;
+				næsteNøgle = res.getInt("næsteNøgle");
+				conn.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		return næsteNøgle;
@@ -103,11 +101,13 @@ public class OpretMellemvare {
 	 * 
 	 * @return Det indtastede id
 	 */
-	private static int vælgProdukttype() {
+	public static int vælgProdukttype() {
 		System.out.println("Produkttyper:");
 		ArrayList<Integer> produkttyper = new ArrayList<Integer>();
 		int produktType = -1;
 		try {
+			Connection conn = Database.getConnection();
+			Scanner scanner = new Scanner(System.in);
 			Statement stmt = conn.createStatement();
 			ResultSet res = stmt.executeQuery("SELECT ID, NAVN FROM Produkttype ORDER BY NAVN");
 			while (res.next()) {
@@ -120,7 +120,6 @@ public class OpretMellemvare {
 				produktType = scanner.nextInt();
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return produktType;
