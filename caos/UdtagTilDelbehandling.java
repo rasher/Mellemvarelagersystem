@@ -23,9 +23,10 @@ public class UdtagTilDelbehandling {
 	
 	public static void udtagTilDelbehandling(int batchNummer) {
 		Connection conn = Database.getConnection();
+		Statement stmt = null;
 		try {
 			String sql = "";
-			Statement stmt = conn.createStatement();
+			stmt = conn.createStatement();
 		
 			// Hvis der findes en aktuel delbehandling, skal dens slut sættes til nu
 			stmt.execute("BEGIN TRANSACTION");
@@ -70,6 +71,14 @@ public class UdtagTilDelbehandling {
 			stmt.close();
 			Database.closeConnection();
 		} catch (SQLException e) {
+			if (stmt != null) {
+				try {
+					stmt.execute("ROLLBACK TRANSACTION");
+				} catch (SQLException e1) {
+					System.err.println("Der opstod en fejl under handlingen:");
+					e1.printStackTrace();
+				}
+			}
 			System.err.println("Der opstod en fejl under handlingen:");
 			e.printStackTrace();
 		}
