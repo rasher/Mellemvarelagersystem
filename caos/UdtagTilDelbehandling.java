@@ -44,6 +44,7 @@ public class UdtagTilDelbehandling {
 				// Hvis der er en aktuel delbehandling og den ikke har påbegyndt tørring kan vi
 				// ikke fortsætte
 				if (aktuelDelbehandling.getTimestamp("tørringstart") == null) {
+					System.err.println("Vare er ikke påbegyndt tørring og kan derfor ikke udtages til næste delbehandling");
 					stmt.close();
 					Database.closeConnection();
 					return;
