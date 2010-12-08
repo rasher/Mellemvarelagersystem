@@ -24,7 +24,6 @@ public class OpretStoredProcedure {
 					"delete from BehandlingsTrin where BehandlingsTrin.ID not in (select Mellemvare_BehandlingsTrin.behandlingsTrin_ID from Mellemvare_BehandlingsTrin); " +
 					"END");
 			System.out.println("Stored procedure oprettet!");
-			//if (res != null) res.close();
 			if (stmt != null) stmt.close();
 			if (minConnection != null) minConnection.close();
 		}
