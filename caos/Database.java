@@ -21,6 +21,7 @@ public class Database {
 	 */
 	public static Connection getConnection() {
 		String filnavn = "jdbcsettings.txt";
+		connCount += 1;
 		if (connection == null) {
 			Scanner scanner;
 			try {
@@ -37,7 +38,6 @@ public class Database {
 				e.printStackTrace();
 			}
 		}
-		connCount += 1;
 		return connection;
 	}
 
@@ -46,6 +46,7 @@ public class Database {
 		if (connection != null && connCount == 0) {
 			try {
 				connection.close();
+				connection = null;
 			} catch (SQLException e) {
 				System.err.println("Kunne ikke lukke databaseforbindelse");
 				e.printStackTrace();
