@@ -70,6 +70,7 @@ public class UdtagTilDelbehandling {
 			}
 			
 			// Sæt aktuelt-behandlingstrin til næste
+			// TODO: TJEK AT DER FINDES ET NÆSTE
 			sql = String.format("update Mellemvare set aktuelbehandlingstrin_id=(select bt.ID from BehandlingsTrin bt " +
 					"left join Mellemvare_BehandlingsTrin mbt on mbt.behandlingsTrin_ID=bt.ID " +
 					"left join Mellemvare m on m.BATCHNUMMER=mbt.Mellemvare_BATCHNUMMER " +
