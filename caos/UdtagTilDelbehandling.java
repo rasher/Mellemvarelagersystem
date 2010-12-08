@@ -59,7 +59,7 @@ public class UdtagTilDelbehandling {
 				int k = 1;
 				int l = 2;
 				Random r = new Random();
-				int nymax = (Math.abs(r.nextInt()) % 1000000+1) + 200000;
+				int nymax = (Math.abs(r.nextInt()) % 100000+1) + 20000;
 				for (int i=0; i < nymax; i += 1) {
 					for (int j=0; j < nymax; j += 1) {
 						k = l - k;
