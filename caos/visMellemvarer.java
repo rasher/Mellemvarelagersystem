@@ -4,11 +4,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Scanner;
 
 public class visMellemvarer {
 	private static Connection conn;
-	private static Scanner scanner;
 	
 	/**
 	 * @param args
@@ -19,13 +17,13 @@ public class visMellemvarer {
 		System.out.println(" ****************************");
 		System.out.println("");
 		conn = Database.getConnection();
-		visMellemvarer();
+		visMellemvareListe();
 	}
 
 	/**
 	 *
 	 */
-	private static void visMellemvarer() {
+	private static void visMellemvareListe() {
 		System.out.println("Batchnummer\t" + "Minimumtørring nået\t" + "optimaltørring nået\t" + "maksimumtørring nået\t" + "Tid til maksimumtørring er nået\t");
 		System.out.println("-----------------------------------------------------------------------------------------------------------------------");
 		try {
