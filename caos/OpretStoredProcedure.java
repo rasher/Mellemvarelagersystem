@@ -1,9 +1,6 @@
 package caos;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class OpretStoredProcedure {
@@ -15,7 +12,7 @@ public class OpretStoredProcedure {
 			minConnection = Database.getConnection();
 			Statement stmt = minConnection.createStatement();
 			System.out.println("Opret Stored procedure: ");
-			boolean res=stmt.execute("create PROCEDURE sletdata as BEGIN delete from Produkttype_Mellemvare " +
+			stmt.execute("create PROCEDURE sletdata as BEGIN delete from Produkttype_Mellemvare " +
 					"where Produkttype_Mellemvare.mellemvarer_BATCHNUMMER in (select Mellemvare.BATCHNUMMER " +
 					"from Mellemvare where Mellemvare.AKTUELBEHANDLINGSTRIN_ID IS NULL OR Mellemvare.MAKSIMUMTØRRINGNÅET < CURRENT_TIMESTAMP); " +
 					"delete from Mellemvare_BehandlingsTrin where Mellemvare_BehandlingsTrin.Mellemvare_BATCHNUMMER in (select Mellemvare.BATCHNUMMER " +
