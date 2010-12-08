@@ -12,6 +12,7 @@ import java.util.Scanner;
  */
 public class Database {
 	private static Connection connection;
+	private static int connCount = 0;
 
 	/**
 	 * Få en instans af Service klassen
@@ -36,11 +37,13 @@ public class Database {
 				e.printStackTrace();
 			}
 		}
+		connCount += 1;
 		return connection;
 	}
 
 	public static void closeConnection() {
-		if (connection != null) {
+		connCount -= 1;
+		if (connection != null && connCount == 0) {
 			try {
 				connection.close();
 			} catch (SQLException e) {
