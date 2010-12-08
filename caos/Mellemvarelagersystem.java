@@ -32,6 +32,8 @@ public class Mellemvarelagersystem {
 			System.out.println("99. Afslut");
 			valg = scanner.nextInt();
 			switch (valg) {
+			case 6:
+				System.err.println("Ikke implementeret endnu.");
 			case 5:
 				OpretMellemvare.registrerNyMellemvare();
 				break;
