@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.GregorianCalendar;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -21,7 +23,7 @@ public class UdtagTilDelbehandling {
 		udtagTilDelbehandling(mellemvare, false);
 	}
 	
-	public static void udtagTilDelbehandling(int batchNummer, boolean medPause) {
+    public static synchronized void udtagTilDelbehandling(int batchNummer, boolean medPause) {
 		Connection conn = Database.getConnection();
 		Statement stmt = null;
 		try {
@@ -29,7 +31,7 @@ public class UdtagTilDelbehandling {
 			stmt = conn.createStatement();
 		
 			// Hvis der findes en aktuel delbehandling, skal dens slut sættes til nu
-			stmt.execute("BEGIN TRANSACTION");
+			conn.setAutoCommit(false);
 			ResultSet aktuelDelbehandling = stmt.executeQuery("select bt.ID as ID, bt.TØRRINGSTART as tørringstart, bt.RÆKKEFØLGE as rækkefølge from BehandlingsTrin bt " +
 				"left join Mellemvare_BehandlingsTrin mbt on bt.ID=mbt.behandlingsTrin_ID " +
 				"left join Mellemvare m on m.BATCHNUMMER=mbt.Mellemvare_BATCHNUMMER " +
@@ -42,6 +44,7 @@ public class UdtagTilDelbehandling {
 				if (aktuelDelbehandling.getTimestamp("tørringstart") == null) {
 					System.err.println("Vare er ikke påbegyndt tørring og kan derfor ikke udtages til næste delbehandling");
 					stmt.close();
+					conn.setAutoCommit(true);
 					Database.closeConnection();
 					return;
 				}
@@ -49,10 +52,21 @@ public class UdtagTilDelbehandling {
 				stmt.executeUpdate("update BehandlingsTrin set slut=current_timestamp where id="+aktuelDelbehandling.getInt("ID"));
 			}
 			
+			// For at teste holder vi her en pause så vi kan se at de to threads
+			// ikke tilgår funktionen samtidigt.
 			if (medPause) {
-				for (int i=0; i < 10000; i += 1) {
-					for (int j=0; j < 10000; j += 1);
+				System.out.println(String.format("Pause start: %1$tH:%1$tM:%1$tS.%1$tL", new GregorianCalendar()));
+				int k = 1;
+				int l = 2;
+				Random r = new Random();
+				int nymax = (Math.abs(r.nextInt()) % 1000000+1) + 200000;
+				for (int i=0; i < nymax; i += 1) {
+					for (int j=0; j < nymax; j += 1) {
+						k = l - k;
+						l = k - l;
+					}
 				}
+				System.out.println(String.format("Pause slut: %1$tH:%1$tM:%1$tS.%1$tL", new GregorianCalendar()));
 			}
 			
 			// Sæt aktuelt-behandlingstrin til næste
@@ -72,7 +86,15 @@ public class UdtagTilDelbehandling {
 					batchNummer
 			);
 			stmt.executeUpdate(sql);
+			
+			sql = String.format("update Mellemvare set MINIMUMTØRRINGNÅET=null, OPTIMALTØRRINGNÅET=null, MAKSIMUMTØRRINGNÅET=null " +
+					"where BATCHNUMMER=%d",
+						batchNummer
+				);
+			stmt.executeUpdate(sql);
+			
 			conn.commit();
+			conn.setAutoCommit(true);
 			System.out.println("Vare udtaget til delbehanlding.");
 			stmt.close();
 			Database.closeConnection();
