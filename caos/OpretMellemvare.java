@@ -67,7 +67,7 @@ public class OpretMellemvare {
 			}
 			stmt.execute("COMMIT TRANSACTION");
 			stmt.close();
-			conn.close();
+			Database.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -88,7 +88,7 @@ public class OpretMellemvare {
 				ResultSet res = stmt.executeQuery("SELECT MAX("+column+")+1 as næsteNøgle FROM " + tabel);
 				res.next();
 				næsteNøgle = res.getInt("næsteNøgle");
-				conn.close();
+				Database.closeConnection();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
