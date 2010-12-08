@@ -16,28 +16,23 @@ import java.util.Scanner;
 public class UdtagTilDelbehandling {
 
 	public static void main(String[] args) {
-		udtagTilDelbehandling();
+		int produktType = OpretMellemvare.vælgProdukttype();
+		int mellemvare = vælgMellemvare(produktType);
+		udtagTilDelbehandling(mellemvare);
 	}
 	
-	public static void udtagTilDelbehandling() {
+	public static void udtagTilDelbehandling(int batchNummer) {
 		Connection conn = Database.getConnection();
 		try {
 			String sql = "";
 			Statement stmt = conn.createStatement();
-			int produktType = OpretMellemvare.vælgProdukttype();
-			/*
-			 * Indlæs mellemvare id Vælg aktuelBehandlingsTrin if
-			 * aktuelBehandlingsTrin != null or
-			 * aktuelBehandlingsTrin.tørringsstart != null
-			 */
-			int mellemvare = vælgMellemvare(produktType);
-			
+		
 			// Hvis der findes en aktuel delbehandling, skal dens slut sættes til nu
 			stmt.execute("BEGIN TRANSACTION");
 			ResultSet aktuelDelbehandling = stmt.executeQuery("select bt.ID as ID, bt.TØRRINGSTART as tørringstart, bt.RÆKKEFØLGE as rækkefølge from BehandlingsTrin bt " +
 				"left join Mellemvare_BehandlingsTrin mbt on bt.ID=mbt.behandlingsTrin_ID " +
 				"left join Mellemvare m on m.BATCHNUMMER=mbt.Mellemvare_BATCHNUMMER " +
-				"where m.BATCHNUMMER=" + mellemvare + " " +
+				"where m.BATCHNUMMER=" + batchNummer + " " +
 				"and m.AKTUELBEHANDLINGSTRIN_ID=bt.ID");
 			int trinNr = 1;
 			if (aktuelDelbehandling.next()) {
@@ -59,7 +54,7 @@ public class UdtagTilDelbehandling {
 					"left join Mellemvare m on m.BATCHNUMMER=mbt.Mellemvare_BATCHNUMMER " +
 					"where m.BATCHNUMMER=%1$d " +
 					"and bt.RÆKKEFØLGE=%2$d) where batchnummer=%1$d",
-					mellemvare, trinNr
+					batchNummer, trinNr
 			);
 			stmt.executeUpdate(sql);
 			
@@ -67,7 +62,7 @@ public class UdtagTilDelbehandling {
 			sql = String.format("update behandlingstrin set start=current_timestamp where id=(select bt.ID from BehandlingsTrin bt " +
 				"left join Mellemvare m on m.AKTUELBEHANDLINGSTRIN_ID=bt.ID " +
 				"where m.BATCHNUMMER=%d)",
-					mellemvare
+					batchNummer
 			);
 			stmt.executeUpdate(sql);
 			stmt.execute("COMMIT TRANSACTION");

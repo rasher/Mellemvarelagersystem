@@ -47,7 +47,7 @@ public class Mellemvarelagersystem {
 				visMellemvarer.main(new String[]{});
 				break;
 			case 1:
-				UdtagTilDelbehandling.udtagTilDelbehandling();
+				UdtagTilDelbehandling.main(new String[]{});
 				break;
 			case 99:
 				break;
