@@ -17,12 +17,12 @@ public class Mellemvarelagersystem {
 	public static void main(String[] args) {
 		System.out.println("**********************************");
 		System.out.println("* Carletti mellemvarelagersystem *");
-		System.out.println("**********************************\n");
+		System.out.println("**********************************");
 		
 		int valg = -1;
 		Scanner scanner = new Scanner(System.in);
 		while (valg != 99) {
-			System.out.println("Hovedmenu. Vælg ønsket handling:");
+			System.out.println("\nHovedmenu. Vælg ønsket handling:");
 			System.out.println(" 1. Udtag vare til delbehandling");
 			System.out.println(" 2. Vis alle mellemvarer");
 			System.out.println(" 3. Beregn tid på lager for mellemvare");
@@ -39,6 +39,7 @@ public class Mellemvarelagersystem {
 				MellemvareFraProdukttype.main(new String[]{});
 				break;
 			case 3:
+				visMaksimaleLagertiderForMellemvarer.main(new String[]{});
 				break;
 			case 2:
 				visMellemvarer.main(new String[]{});
