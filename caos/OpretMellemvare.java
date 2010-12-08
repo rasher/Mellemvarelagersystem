@@ -44,6 +44,7 @@ public class OpretMellemvare {
 			mellemvareBatchnummer = næsteNøgle("Mellemvare", "BATCHNUMMER");
 			stmt.execute("BEGIN TRANSACTION");
 			stmt.executeUpdate("INSERT INTO Mellemvare (BATCHNUMMER, PRODUKTTYPE_ID) VALUES ("+mellemvareBatchnummer+", "+produktType+")", Statement.RETURN_GENERATED_KEYS);
+			stmt.executeUpdate("INSERT INTO Produkttype_Mellemvare (Produkttype_ID, mellemvarer_BATCHNUMMER) VALUES ("+produktType+", "+mellemvareBatchnummer+")");
 			ResultSet delbehandlinger = stmt.executeQuery(
 					"select d.NAVN as navn, d.id as id, bd.RÆKKEFØLGE as rækkefølge, d.MINIMUMTØRRINGSTID as minimumtørringstid, d.OPTIMALTØRRINGSTID as optimaltørringstid, d.MAKSIMUMTØRRINGSTID as maksimumtørringstid from Produkttype p " +
 					"left join Behandling b on p.BEHANDLING_NR=b.NR " +
