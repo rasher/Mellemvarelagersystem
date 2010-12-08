@@ -49,6 +49,12 @@ public class UdtagTilDelbehandling {
 				stmt.executeUpdate("update BehandlingsTrin set slut=current_timestamp where id="+aktuelDelbehandling.getInt("ID"));
 			}
 			
+			if (medPause) {
+				for (int i=0; i < 10000; i += 1) {
+					for (int j=0; j < 10000; j += 1);
+				}
+			}
+			
 			// Sæt aktuelt-behandlingstrin til næste
 			sql = String.format("update Mellemvare set aktuelbehandlingstrin_id=(select bt.ID from BehandlingsTrin bt " +
 					"left join Mellemvare_BehandlingsTrin mbt on mbt.behandlingsTrin_ID=bt.ID " +
@@ -66,7 +72,7 @@ public class UdtagTilDelbehandling {
 					batchNummer
 			);
 			stmt.executeUpdate(sql);
-			stmt.execute("COMMIT TRANSACTION");
+			conn.commit();
 			System.out.println("Vare udtaget til delbehanlding.");
 			stmt.close();
 			Database.closeConnection();
