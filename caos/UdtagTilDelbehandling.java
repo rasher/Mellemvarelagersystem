@@ -18,10 +18,10 @@ public class UdtagTilDelbehandling {
 	public static void main(String[] args) {
 		int produktType = OpretMellemvare.vælgProdukttype();
 		int mellemvare = vælgMellemvare(produktType);
-		udtagTilDelbehandling(mellemvare);
+		udtagTilDelbehandling(mellemvare, false);
 	}
 	
-	public static void udtagTilDelbehandling(int batchNummer) {
+	public static void udtagTilDelbehandling(int batchNummer, boolean medPause) {
 		Connection conn = Database.getConnection();
 		Statement stmt = null;
 		try {
