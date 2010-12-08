@@ -20,8 +20,11 @@ public class MellemvareFraProdukttype
 			BufferedReader lineIn = new BufferedReader(new InputStreamReader(System.in));
 			String produkttype= lineIn.readLine();
 			System.out.println("Tilknyttet mellemvarer: ");
-			ResultSet res=stmt.executeQuery("select m.BATCHNUMMER, d.NAVN, bt.RÆKKEFØLGE, (select COUNT(bt.ID) from BehandlingsTrin bt, Mellemvare_BehandlingsTrin mbt where mbt.Mellemvare_BATCHNUMMER = m.BATCHNUMMER and bt.ID = mbt.behandlingsTrin_ID) from Mellemvare m, Delbehandling d, BehandlingsTrin bt where (m.PRODUKTTYPE_ID, d.ID) in"
-					+ "(select Produkttype.ID, bt.DELBEHANDLING_ID from Produkttype where Produkttype.NAVN = '" + produkttype + "' and m.AKTUELBEHANDLINGSTRIN_ID = bt.ID)");
+			ResultSet res=stmt.executeQuery("SELECT m.BATCHNUMMER, d.NAVN, bt.RÆKKEFØLGE, (SELECT COUNT(*) FROM " +
+     "Mellemvare_BehandlingsTrin mbt, BehandlingsTrin bt WHERE mbt.Mellemvare_BATCHNUMMER=m.BATCHNUMMER " +
+     "AND mbt.behandlingsTrin_ID=bt.ID) as ANTALTRIN FROM Produkttype p RIGHT JOIN Mellemvare m ON p.ID = m.PRODUKTTYPE_ID " +
+     "RIGHT JOIN BehandlingsTrin bt ON bt.ID = m.AKTUELBEHANDLINGSTRIN_ID RIGHT JOIN Delbehandling d ON d.ID = bt.DELBEHANDLING_ID " +
+     "WHERE p.NAVN = '" + produkttype +"';");
 			while (res.next()) {
 				System.out.println("Batchnummer: " + res.getString(1) + "\t Delbehandingsnavn: " + res.getString(2)+ "\t Delbehanding: " 
 						+ res.getString(3) + " ud af " + res.getString(4));
