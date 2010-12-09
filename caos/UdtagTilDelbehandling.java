@@ -69,19 +69,6 @@ public class UdtagTilDelbehandling {
 				System.out.println(String.format("Pause slut: %1$tH:%1$tM:%1$tS.%1$tL", new GregorianCalendar()));
 			}
 			
-			// Sæt start for det aktuelle behandlingstrin
-			sql = String.format("update behandlingstrin set start=current_timestamp where id=(select bt.ID from BehandlingsTrin bt " +
-				"left join Mellemvare m on m.AKTUELBEHANDLINGSTRIN_ID=bt.ID " +
-				"where m.BATCHNUMMER=%d)",
-					batchNummer
-			);
-			stmt.executeUpdate(sql);
-			
-			sql = String.format("update Mellemvare set MINIMUMTØRRINGNÅET=null, OPTIMALTØRRINGNÅET=null, MAKSIMUMTØRRINGNÅET=null " +
-					"where BATCHNUMMER=%d",
-						batchNummer
-				);
-			stmt.executeUpdate(sql);
 			
 			// Sæt aktuelt-behandlingstrin til næste
 			// TODO: TJEK AT DER FINDES ET NÆSTE
@@ -89,14 +76,22 @@ public class UdtagTilDelbehandling {
 					"left join Mellemvare_BehandlingsTrin mbt on mbt.behandlingsTrin_ID=bt.ID " +
 					"left join Mellemvare m on m.BATCHNUMMER=mbt.Mellemvare_BATCHNUMMER " +
 					"where m.BATCHNUMMER=%1$d " +
-					"and bt.RÆKKEFØLGE=%2$d) where batchnummer=%1$d",
+					"and bt.RÆKKEFØLGE=%2$d), MINIMUMTØRRINGNÅET=null, OPTIMALTØRRINGNÅET=null, MAKSIMUMTØRRINGNÅET=null where batchnummer=%1$d",
 					batchNummer, trinNr
 			);
 			stmt.executeUpdate(sql);
 			
+			// Sæt start for det aktuelle behandlingstrin
+			sql = String.format("update behandlingstrin set start=current_timestamp where id=(select bt.ID from BehandlingsTrin bt " +
+				"left join Mellemvare m on m.AKTUELBEHANDLINGSTRIN_ID=bt.ID " +
+				"where m.BATCHNUMMER=%d)",
+					batchNummer
+			);
+			stmt.executeUpdate(sql);
+
 			conn.commit();
 			conn.setAutoCommit(true);
-			System.out.println("Vare udtaget til delbehanlding.");
+			System.out.println("Vare udtaget fra mellemvarelager.");
 			stmt.close();
 			Database.closeConnection();
 		} catch (SQLException e) {
