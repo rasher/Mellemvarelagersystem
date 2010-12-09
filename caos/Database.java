@@ -15,9 +15,9 @@ public class Database {
 	private static int connCount = 0;
 
 	/**
-	 * Få en instans af Service klassen
+	 * Få en database connection
 	 * 
-	 * @return Service klasse objekt
+	 * @return database connection objekt
 	 */
 	public static Connection getConnection() {
 		String filnavn = "jdbcsettings.txt";
